@@ -1,0 +1,26 @@
+@import "config.scss";
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+:root {
+  @include css-vars;
+}
+
+html {
+  font-size: 1rem;
+  font-size: min(max(0.9rem, 1.3vw), 1.1rem);
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  line-height: 1.4;
+}
+
+a {
+  @include themed(color, primary);
+  text-decoration: none;
+}

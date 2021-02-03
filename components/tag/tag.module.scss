@@ -1,0 +1,21 @@
+@import "../../styles/config";
+
+.tag {
+  border-radius: 3px;
+  padding: 0 0.5rem;
+  background-color: #fafafa;
+  color: #727272;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 -0.125rem;
+  width: calc(100% + 0.25rem);
+
+  .tag {
+    margin: 0.125rem;
+  }
+}

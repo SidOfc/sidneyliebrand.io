@@ -1,0 +1,161 @@
+@import "../../styles/config";
+
+.light {
+  white-space: nowrap;
+  color: #888;
+}
+
+.h2 {
+  @include themed(background-color, primary);
+  @include themed(color, primary-foreground);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.5rem;
+  margin: 3rem 0;
+}
+
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+
+  & + & {
+    margin-top: 2rem;
+  }
+}
+
+.row {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.block {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & + & {
+    margin-top: 3rem;
+  }
+
+  p {
+    margin: 0.75rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.details {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.title {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.2rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0;
+  line-height: 1;
+}
+
+.stats {
+  margin: 0.25rem 0;
+  line-height: 1;
+}
+
+.dates {
+  display: inline-block;
+  margin: 0.25rem 0;
+}
+
+.subtitle + .dates,
+.subtitle + .stats,
+.dates + .stats {
+  margin-top: 0;
+}
+
+.bullet {
+  padding: 0 1rem;
+}
+
+.additions {
+  color: #00852c;
+}
+
+.deletions {
+  color: #d33947;
+}
+
+.logo {
+  flex: 0 0 6rem;
+  position: relative;
+  width: 6rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-right: 1rem;
+
+  @media all and (max-width: 32rem) {
+    display: none;
+  }
+}
+
+.volunteering {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: -1rem;
+  width: calc(100% + 2rem);
+}
+
+.volunteer {
+  flex: 1 1 calc(100% / 3 - 2rem);
+  min-width: 9rem;
+  display: flex;
+  margin: 1rem;
+  flex-flow: column nowrap;
+}
+
+.banner {
+  margin-top: 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  line-height: 1.1;
+}
+
+.bannerLogo {
+  flex: 0 1 auto;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.bannerHeader {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bannerSubtitle {
+  font-size: 1.3rem;
+  color: #888;
+}
+
+.bannerDetails {
+  margin-top: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  line-height: 1.6;
+  font-size: 1.2rem;
+
+  a * {
+    vertical-align: middle;
+  }
+}

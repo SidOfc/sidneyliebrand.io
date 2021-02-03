@@ -1,0 +1,17 @@
+@use "sass:map";
+
+$colors: (
+  primary: #651eea,
+  primary-foreground: #ffffff,
+);
+
+@mixin css-vars {
+  @each $var, $value in $colors {
+    --#{$var}: #{$value};
+  }
+}
+
+@mixin themed($property, $color) {
+  #{$property}: #{map.get($colors, $color)};
+  #{$property}: var(--#{$color});
+}
