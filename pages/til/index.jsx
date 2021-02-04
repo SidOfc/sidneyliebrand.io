@@ -1,4 +1,4 @@
-import {useState, useMemo} from 'react';
+import {useState} from 'react';
 import renderToString from 'next-mdx-remote/render-to-string';
 import matter from 'gray-matter';
 import styles from './til.module.scss';
