@@ -10,7 +10,8 @@ than [.webm](https://caniuse.com/#feat=webm) so aside from generating .webm file
 fallback .mp4 files. This `ffmpeg` command converts a .gif to a more efficient .mp4 file:
 
 ~~~shell
-ffmpeg -i file.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" file.mp4
+ffmpeg -i file.gif -movflags faststart -pix_fmt yuv420p \
+       -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" file.mp4
 ~~~
 
 The `-px_fmt yuv420p` and `-vf "scale=trunc(iw/2)*2:trunc(ih/2)*2"` are

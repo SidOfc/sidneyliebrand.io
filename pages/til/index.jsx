@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import styles from './til.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import CodeBlock from '../../components/code-block';
 import {classes} from '../../util';
 import {processMarkdownDir} from '../../util/static';
 
@@ -47,7 +48,9 @@ export default function Index({tils}) {
 }
 
 export async function getStaticProps() {
-    const tils = await processMarkdownDir('data/til');
+    const tils = await processMarkdownDir('data/til', {
+        components: {pre: CodeBlock},
+    });
 
     return {
         props: {

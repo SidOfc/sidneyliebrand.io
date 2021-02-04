@@ -21,14 +21,20 @@ body {
 }
 
 a {
-  @include themed(color, primary);
+  @include themed('color', 'primary-bg');
   text-decoration: none;
 }
 
 pre {
   padding: 0.5rem 0.75rem;
   overflow-x: auto;
-  background-color: #222;
-  color: #fff;
   border-radius: 0.25rem;
+}
+
+p code {
+  @include themed('background-color', 'inline-code-bg');
+  @include themed('color', 'inline-code-fg');
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.8em;
 }

@@ -1,13 +1,13 @@
 @import "../../styles/config";
 
 .light {
+  @include themed('color', 'page-fg-accent');
   white-space: nowrap;
-  color: #888;
 }
 
 .h2 {
-  @include themed(background-color, primary);
-  @include themed(color, primary-foreground);
+  @include themed('background-color', 'primary-bg');
+  @include themed('color', 'primary-fg');
   font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -87,11 +87,11 @@
 }
 
 .additions {
-  color: #00852c;
+  @include themed('color', 'addition-fg');
 }
 
 .deletions {
-  color: #d33947;
+  @include themed('color', 'deletion-fg');
 }
 
 .logo {
