@@ -13,6 +13,28 @@ const MONTHS = [
     'Dec',
 ];
 
+export function slug(str) {
+    return str
+        .replace(/\.\w+$/g, '')
+        .replace(/\W+/g, ' ')
+        .replace(/\s+/g, '-')
+        .toLowerCase();
+}
+
+export function classes(...classArgs) {
+    return classArgs.reduce((acc, arg) => {
+        if (Array.isArray(arg)) {
+            return [acc, ...arg].filter((x) => x).join(' ');
+        } else if (arg?.constructor === Object) {
+            return Object.entries(arg).reduce(
+                (acc, [cn, include]) => (include ? `${acc} ${cn}` : acc),
+                acc
+            );
+        }
+        return String(arg);
+    }, '');
+}
+
 export function dateFormat(maybeDate, includeDay = false) {
     const date = toDate(maybeDate);
     const day = includeDay ? ` ${date.getDate()}` : '';

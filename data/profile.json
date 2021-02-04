@@ -7,6 +7,14 @@
     "description": "Sidney Liebrand is a front-end developer with experience in JavaScript, React, Ruby, Ruby on Rails and much more!",
     "languages": ["Dutch", "English"],
     "programming": {
+        "repos": [
+            "browserino",
+            "mkdx",
+            "cani",
+            "simple_csv",
+            "TwentyFortyEight",
+            "2048-crystal"
+        ],
         "languages": [
             "ruby",
             "crystal",

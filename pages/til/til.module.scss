@@ -1,0 +1,33 @@
+.entry {
+  max-width: 100%;
+
+  &:nth-child(2n-1) {
+    background-color: #efefef;
+  }
+}
+
+.entryHeader {
+  padding: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.entryHeaderArrow {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  user-select: none;
+}
+
+.entryHeaderArrowOpen {
+  transform: rotate(180deg);
+}
+
+.entryContent {
+  padding: 1rem;
+  padding-top: 0;
+  border-top: 2px dashed rgba(0,0,0,.2);
+}

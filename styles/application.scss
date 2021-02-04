@@ -10,7 +10,7 @@
 
 html {
   font-size: 1rem;
-  font-size: min(max(0.9rem, 1.3vw), 1.1rem);
+  font-size: min(max(0.9rem, 1.5vw), 1.2rem);
   height: 100%;
 }
 
@@ -23,4 +23,12 @@ body {
 a {
   @include themed(color, primary);
   text-decoration: none;
+}
+
+pre {
+  padding: 0.5rem 0.75rem;
+  overflow-x: auto;
+  background-color: #222;
+  color: #fff;
+  border-radius: 0.25rem;
 }

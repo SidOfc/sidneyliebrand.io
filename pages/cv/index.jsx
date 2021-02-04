@@ -1,34 +1,50 @@
 import styles from './cv.module.scss';
 import {Container as Tags} from '../../components/tag';
+import profile from '../../data/profile.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import {dateFormat, dateDiff} from '../../util';
+import {getPinnedRepositories} from '../../util/static';
 
-export default function Cv({profile, pinnedRepositories}) {
+export default function Index({pinnedRepositories}) {
     const {programming, education, volunteering} = profile;
 
     return (
         <>
             <div className={styles.banner}>
                 <div className={styles.bannerLogo}>
-                    <Image src="/media/cv-portrait.jpg" width={140} height={210} />
+                    <Image
+                        src="/media/cv-portrait.jpg"
+                        width={140}
+                        height={210}
+                    />
                 </div>
                 <div className={styles.column}>
                     <h1 className={styles.bannerHeader}>{profile.name}</h1>
-                    <span className={styles.bannerSubtitle}>{profile.title}</span>
+                    <span className={styles.bannerSubtitle}>
+                        {profile.title}
+                    </span>
                     <span className={styles.bannerDetails}>
                         <span>
                             {profile.city}, {profile.country}
                         </span>
                         <Link href="https://github.com/sidofc">
                             <a title="Sidney Liebrand's GitHub page">
-                                <Image src="/media/github.svg" width={16} height={16} />{' '}
+                                <Image
+                                    src="/media/github.svg"
+                                    width={16}
+                                    height={16}
+                                />{' '}
                                 /sidofc
                             </a>
                         </Link>
                         <Link href="https://linkedin.com/in/sidneyliebrand">
                             <a title="Sidney Liebrand's LinkedIn page">
-                                <Image src="/media/linkedin.svg" width={16} height={16} />{' '}
+                                <Image
+                                    src="/media/linkedin.svg"
+                                    width={16}
+                                    height={16}
+                                />{' '}
                                 /sidneyliebrand
                             </a>
                         </Link>
@@ -93,11 +109,18 @@ export default function Cv({profile, pinnedRepositories}) {
                         />
                         <span>{item.city}</span>
                         <span>
-                            {item.start ? dateFormat(item.start, true) : 'Unknown'} -{' '}
+                            {item.start
+                                ? dateFormat(item.start, true)
+                                : 'Unknown'}{' '}
+                            -{' '}
                             {item.end ? dateFormat(item.end, true) : 'Present'}
                         </span>
                         {item.link && (
-                            <a href={item.link} target="_blank" rel="noopener,noreferrer">
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener,noreferrer"
+                            >
                                 View event
                             </a>
                         )}
@@ -183,74 +206,17 @@ function Details({
             </span>
             {customData}
             {tags && <Tags tags={tags} />}
-            {description && <p dangerouslySetInnerHTML={{__html: description}} />}
+            {description && (
+                <p dangerouslySetInnerHTML={{__html: description}} />
+            )}
         </div>
     );
 }
 
 export async function getStaticProps() {
-    const fs = require('fs');
-    const {Octokit} = require('@octokit/rest');
-    const auth = fs.readFileSync('.api-access-token').toString();
-    const api = new Octokit({auth});
-    const PINNED = [
-        'browserino',
-        'mkdx',
-        'cani',
-        'simple_csv',
-        'TwentyFortyEight',
-        '2048-crystal',
-    ];
-
-    const {default: profile} = await import('../../data/profile.json');
-    const pinnedRepositories = await Promise.all(
-        PINNED.map(async (name, index) => {
-            const options = {owner: 'sidofc', repo: name};
-            const [repo, topics, stats] = await Promise.all([
-                api.repos
-                    .get(options)
-                    .then(({data}) => data)
-                    .catch(() => ({})),
-                api.repos
-                    .getAllTopics(options)
-                    .then(({data}) => data.names || [])
-                    .catch(() => []),
-                api.repos
-                    .getContributorsStats(options)
-                    .then(({data}) =>
-                        data.reduce(
-                            (acc, {total, weeks}) =>
-                                weeks.reduce(
-                                    (acc, week) => {
-                                        acc.additions += week.a;
-                                        acc.deletions += week.d;
-
-                                        return acc;
-                                    },
-                                    {...acc, commits: acc.commits + total}
-                                ),
-                            {commits: 0, additions: 0, deletions: 0}
-                        )
-                    )
-                    .catch(() => []),
-            ]);
-
-            return {
-                id: repo.id,
-                index,
-                name: repo.name,
-                url: repo.html_url,
-                createdAt: repo.created_at,
-                pushedAt: repo.pushed_at,
-                description: repo.description,
-                starCount: repo.stargazers_count,
-                topics,
-                stats,
-            };
-        })
-    );
+    const pinnedRepositories = await getPinnedRepositories();
 
     return {
-        props: {profile, pinnedRepositories},
+        props: {pinnedRepositories},
     };
 }

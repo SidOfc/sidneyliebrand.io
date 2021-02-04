@@ -9,7 +9,10 @@ export default function Layout({children}) {
                 <div className={styles.header__fixed}>
                     <div className={styles.header__content}>
                         <Link href="/">
-                            <a title="Home page" className={styles.header__logo}>
+                            <a
+                                title="Home page"
+                                className={styles.header__logo}
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 429.29 114.44"
@@ -56,7 +59,8 @@ export default function Layout({children}) {
             </header>
             <main className={styles.content}>{children}</main>
             <footer className={styles.footer}>
-                <strong>&copy;</strong> sidneyliebrand.io {new Date().getFullYear()}
+                <strong>&copy;</strong> sidneyliebrand.io{' '}
+                {new Date().getFullYear()}
             </footer>
         </div>
     );
