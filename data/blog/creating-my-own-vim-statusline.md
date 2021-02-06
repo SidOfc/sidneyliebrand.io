@@ -14,7 +14,12 @@ to customize it to look and function however they want. Before getting to my lig
 configuration (and after that, my own implementation) however,
 I want to show (or remind) you how Vim's statusline looks out of the box:
 
-<%= figure_tag 'posts/vim-default-statusline.png', alt: 'default vim statusline' %>
+<Image
+    src="/media/posts/vim-default-statusline.png"
+    alt="default vim statusline"
+    width="1924"
+    height="68"
+/>
 
 It provides useful information such as the current filename and the line and
 column number the cursor is on (it also shows "All" to the right but to this
@@ -22,11 +27,21 @@ day I haven't really looked into what that means). Aside from that, the
 statusline shows when the file has been modified with a `[+]` marker
 after the filename:
 
-<%= figure_tag 'posts/vim-default-statusline-modified.png', alt: 'default vim statusline with modified flag' %>
+<Image
+    src="/media/posts/vim-default-statusline-modified.png"
+    alt="default vim statusline with modified flag"
+    width="1924"
+    height="68"
+/>
 
 And finally, it will also show when a file is readonly with a `[RO]` marker:
 
-<%= figure_tag 'posts/vim-default-statusline-readonly.png', alt: 'default vim statusline with read-only flag' %>
+<Image
+    src="/media/posts/vim-default-statusline-readonly.png"
+    alt="default vim statusline with read-only flag"
+    width="1924"
+    height="68"
+/>
 
 This is all nice and useful, but at the same time it isn't very... ehm
 visually pleasing... at least in my opinion. This is where lightline comes in.
@@ -39,7 +54,12 @@ I was a few years ago. I wanted it to do things it did not do out of the box
 such as showing a different color in each mode and replacing the bulky
 `[+]` and `[RO]` markers with something "cleaner". This is how I made mine look:
 
-<%= video_tag 'posts/vim-colored-statusline', alt: 'lightline.vim statusline colors' %>
+<Image
+    src="/media/posts/vim-colored-statusline.gif"
+    alt="lightline.vim statusline colors"
+    width="1922"
+    height="82"
+/>
 
 The blue color is used in normal mode, the yellow/green is used
 in insert mode, and the purple is used for all the visual modes
@@ -48,9 +68,14 @@ in insert mode, and the purple is used for all the visual modes
 This was already a massive improvement and as you may have noticed,
 the line and column numbers are now shown on the right and "All" is gone.
 I also mentioned that I wanted to replace the markers with something a bit
-cleaner, this is what I cam up with:
+cleaner, this is what I came up with:
 
-<%= figure_tag 'posts/vim-statusline-lightline-modified.png', alt: 'lightline.vim statusline with modified flag' %>
+<Image
+    src="/media/posts/vim-statusline-lightline-modified.png"
+    alt="lightline.vim statusline with modified flag"
+    width="1924"
+    height="66"
+/>
 
 The `+` is spaced and placed on the left side of the statusline. This
 is my personal preference, I think this is useful so that I can always see
@@ -256,7 +281,12 @@ need that anymore since I'm using my own file explorer :thinking:
 Aside from that it shows more colors than the three mentioned above, here's all
 of them in a short gif:
 
-<%= video_tag 'posts/vim-colored-statusline-all', alt: 'custom statusline showing all colors' %>
+<Image
+    src="/media/posts/vim-colored-statusline-all.gif"
+    alt="custom statusline showing all colors"
+    width="1922"
+    height="82"
+/>
 
 In addition to blue for normal mode, yellow/green for insert, and purple for
 visual modes, it also shows red when in replace mode and a nice orange

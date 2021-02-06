@@ -48,7 +48,12 @@ and the file will be no older than a day at worst. For brevity I did not include
 Ruby script but it can be [found here](https://github.com/SidOfc/dotfiles/blob/653c0331b3bd8a3b6fb5fbff0531f038e7eb5b12/bin/ciu) in my [dotfiles repo](https://github.com/SidOfc/dotfiles).
 Combining it with FZF yielded the following result:
 
-<%= figure_tag 'posts/caniuse-fzf-ie-last-version-features.png', alt: 'Caniuse fzf: IE features supported since last version' %>
+<Image
+    src="/media/posts/caniuse-fzf-ie-last-version-features.png"
+    alt="Caniuse fzf: IE features supported since last version"
+    width="900"
+    height="348"
+/>
 
 The above display might seem a bit intimidating at first, but the output isn't hard to understand
 if you know what each column indicates. In the leftmost column, we have a 2 letter W3C status, e.g.
@@ -66,7 +71,12 @@ to search for this as a single word rather than 4 single characters.
 
 I can also search for all the `[wd]` features, like this:
 
-<%= figure_tag 'posts/caniuse-search-wd-feature.png', alt: 'Searching for working draft CSS features' %>
+<Image
+    src="/media/posts/caniuse-search-wd-feature.png"
+    alt="Searching for working draft CSS features"
+    width="900"
+    height="140"
+/>
 
 Any text you see on the screenshots can be used to search and you get some free bonuses of seeing how many
 features there are in caniuse (426) and how many of them matched your query (86 are WD apparently).
@@ -93,11 +103,21 @@ cani() {
 
 This will take your selected features from FZF:
 
-<%= figure_tag 'posts/caniuse-select-multiple-features.png', alt: 'Selecting multiple feature entries' %>
+<Image
+    src="/media/posts/caniuse-select-multiple-features.png"
+    alt="Selecting multiple feature entries"
+    width="900"
+    height="279"
+/>
 
 then it tries to select the title and run each selected feature title through the `caniuse` command:
 
-<%= figure_tag 'posts/caniuse-cmd-output.png', alt: 'Output entry results using caniuse-cmd package' %>
+<Image
+    src="/media/posts/caniuse-cmd-output.png"
+    alt="Output entry results using caniuse-cmd package"
+    width="900"
+    height="666"
+/>
 
 There! All the details I can muster now combined in a single command with support for outputting multiple features at the same time.
 

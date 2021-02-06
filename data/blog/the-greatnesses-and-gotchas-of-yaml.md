@@ -9,7 +9,12 @@ for pointing to the base 60 parsing 'feature' in the [`docker-compose`](https://
 It led to me finding another great resource and added it along with some new content
 to this post.
 
-<%= figure_tag 'posts/yaml-homepage.png', alt: 'https://yaml.org homepage' %>
+<Image
+    src="/media/posts/yaml-homepage.png"
+    alt="yaml.org homepage"
+    width="900"
+    height="371"
+/>
 
 In this post I want to talk about [YAML](http://yaml.org/).
 Like the very popular [JSON](http://json.org/) format, it is a file format

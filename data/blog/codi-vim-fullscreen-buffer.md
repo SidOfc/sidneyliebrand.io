@@ -4,9 +4,13 @@ description: "Learn how to set up Codi.vim to create a fullscreen scratch buffer
 published:   "2018-08-27T07:55:24Z"
 ---
 
-<%= figure_tag 'posts/codi-banner.png',
-                class: 'wide',
-                alt:   'A Codi.vim fullscreen buffer' %>
+<Image
+    src="/media/posts/codi-banner.png"
+    alt="A Codi.vim fullscreen buffer"
+    width="1672"
+    height="972"
+    class="wide"
+/>
 
 Recently I discovered [codi.vim](https://github.com/metakirby5/codi.vim) on [vimawesome.com](https://vimawesome.com/?q=cat%3Aother).
 It sells itself as an "interactive scratchpad for hackers".
@@ -16,7 +20,12 @@ I pair program on a weekly basis using various different languages.
 I used to turn to a REPL for help but this quickly becomes annoying when trying to write multi-line expressions.
 Making a typo in the middle of a `do ... end` block in Ruby is quite costly:
 
-<%= video_tag 'posts/pry-multiline-typo', alt: 'Multiline expression typo in Pry' %>
+<Image
+    src="/media/posts/pry-multiline-typo.gif"
+    alt="Multiline expression typo in Pry"
+    width="1033"
+    height="250"
+/>
 
 Another thing to note here is that code and results are printed sequentially.
 This means that any code you write goes off-screen at least twice as fast because the result is printed below it.
@@ -24,7 +33,12 @@ This means that any code you write goes off-screen at least twice as fast becaus
 In case of errors and stack traces it can become a lot worse as well.
 Codi solves all of this by allowing you to type in one pane and it prints the results in a separate pane side-by-side:
 
-<%= video_tag 'posts/ruby-demo', alt: 'Demo of Ruby in Codi.vim' %>
+<Image
+    src="/media/posts/ruby-demo.gif"
+    alt="Demo of Ruby in Codi.vim"
+    width="1033"
+    height="141"
+/>
 
 This feature, and the fact that I can toggle this buffer for _multiple programming languages_ using a single mapping blew my mind but as with anything,
 it requires some more battle testing to see if it works in common scenario's.
@@ -33,14 +47,24 @@ it requires some more battle testing to see if it works in common scenario's.
 
 This is where I found out that when used with a split, it will not be fullscreen but rather split the current buffer:
 
-<%= video_tag 'posts/split-behavior', alt: 'Default split behavior' %>
+<Image
+    src="/media/posts/split-behavior.gif"
+    alt="Default split behavior"
+    width="1033"
+    height="496"
+/>
 
 At this point I started experimenting with a small [vimscript snippet](https://gist.github.com/SidOfc/5218a7a9f12ed2105a9b052ca8e6707e) in my .vimrc.
 Excluding comments and blanks it is 10 LoC.
 It wraps the default `Codi` command in a function which creates an empty buffer in a new tab with the right filetype set before finally running `Codi` itself.
 This creates the fullscreen split that I wanted:
 
-<%= video_tag 'posts/wrapped-split-behavior', alt: 'Enhanced split behavior' %>
+<Image
+    src="/media/posts/wrapped-split-behavior.gif"
+    alt="Enhanced split behavior"
+    width="1033"
+    height="496"
+/>
 
 ## Problem solved, or maybe not?
 
@@ -53,7 +77,12 @@ After hiding the buffer, its `tabpagenr()` is stored in a dictionary keyed by th
 
 Then, when toggling codi for a filetype that is stored, switch to that tab instead of opening a new one (there is even a check if that tab actually exists):
 
-<%= video_tag 'posts/wrapped-split-behavior-2', alt: 'Enhanced split behavior version 2' %>
+<Image
+    src="/media/posts/wrapped-split-behavior-2.gif"
+    alt="Enhanced split behavior version 2"
+    width="1033"
+    height="496"
+/>
 
 And there we go! Aside from the fact that the buffer now remains, the name is also `scratch::ruby`.
 This is a bit more descriptive than having just `[Scratch]` in `:ls` output when multiple codi buffers of a different filetype are active.
@@ -67,7 +96,7 @@ Unfortunately it didn't make it since it was too workflow specific.
 As you may have been able to see in the issue though, the code in that snippet is _slighty_ different from the example gist linked in this post.
 The main difference is this line which resizes codi to 50% of the buffer width whenever a new instance is spawned:
 
-~~~vim
+~~~viml
 " since it is fullscreen, I'd like a 50/50 split
 let g:codi#width = winwidth(winnr()) / 2
 ~~~

@@ -36,7 +36,7 @@ Fortunately, not much is needed to set this up.
 Vim needs a directory to store the persistent undo history and two settings need to be tweaked / enabled.
 This is the snippet I have in my Vim config that handles this automatically:
 
-~~~vim
+~~~viml
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')
     " define a path to store persistent_undo files.

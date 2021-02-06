@@ -17,13 +17,23 @@ FZF is a fuzzy finder for your terminal, it is a command line application that
 filters each line from given input with a query that the user types.
 When the query changes, the results update in realtime.
 
-<%= video_tag 'posts/fzf-ls-example', alt: 'FZF + LS example' %>
+<Image
+    src="/media/posts/fzf-ls-example.gif"
+    alt="FZF + LS example"
+    width="768"
+    height="180"
+/>
 
 After finding the file you're looking for, hitting <kbd>enter</kbd> prints the highlighted
 entry. You can combine this with your `$EDITOR` variable to search for a file and then edit
 it for example.
 
-<%= video_tag 'posts/open-changelog-neovim', alt: 'Open CHANGELOG.md in NeoVim' %>
+<Image
+    src="/media/posts/open-changelog-neovim.gif"
+    alt="Open CHANGELOG.md in NeoVim"
+    width="768"
+    height="180"
+/>
 
 Of course this is only a simple example. The possibilities with FZF are endless.
 There are countless ways in which you can use it to filter input and use that in
@@ -35,7 +45,12 @@ As it already says in the name, it is another `grep` program. Ripgrep is written
 in rust and one of its primary goals is to be the *fastest* `grep` of them all.
 It performs amazing even in a larger code base.
 
-<%= video_tag 'posts/rg-ls-fzf', alt: 'Ripgrep list files with FZF' %>
+<Image
+    src="/media/posts/rg-ls-fzf.gif"
+    alt="Ripgrep list files with FZF"
+    width="768"
+    height="180"
+/>
 
 Ripgrep has many options to explore, there are way to many to list here.
 Some of the options I use most often with ripgrep are:
@@ -88,7 +103,12 @@ To make this easier, I wrote a small wrapper (first in [zsh](https://github.com/
 later migrated to [fish](https://github.com/SidOfc/dotfiles/blob/e94b96b908479950186e42a3709511a0afe300e4/.config/fish/functions/kp.fish)) called `kp`.
 It lists processes using `ps -ef` and pipes it to `fzf`.
 
-<%= video_tag 'posts/kill-with-kp', alt: 'Killing processes using kp' %>
+<Image
+    src="/media/posts/kill-with-kp.gif"
+    alt="Killing processes using kp"
+    width="768"
+    height="180"
+/>
 
 This command opens an FZF window with your processes. FZF has an option to allow
 selecting multiple entries (`-m flag`). When <kbd>enter</kbd> is pressed, both marked
@@ -121,7 +141,12 @@ another for updating and one for deleting brew packages:
 Whenever I have to do anything with brew, it is completely painless and it
 works quite well for package discovery too.
 
-<%= video_tag 'posts/bip-interface', alt: 'Brew Install Plugin interface' %>
+<Image
+    src="/media/posts/bip-interface.gif"
+    alt="Brew Install Plugin interface"
+    width="768"
+    height="180"
+/>
 
 ## Finding binaries
 
@@ -134,7 +159,12 @@ and slowness in your terminal.
 My solution to this is a simple path explorer called `fp` ([zsh](https://github.com/SidOfc/dotfiles/blob/d07fa3862ed065c2a5a7f1160ae98416bfe2e1ee/zsh/fp), [fish](https://github.com/SidOfc/dotfiles/blob/e94b96b908479950186e42a3709511a0afe300e4/.config/fish/functions/fp.fish)).
 It invokes FZF with a list of folders populated using `$PATH`.
 
-<%= video_tag 'posts/dirs-in-path', alt: 'Directories present in $PATH' %>
+<Image
+    src="/media/posts/dirs-in-path.gif"
+    alt="Directories present in $PATH"
+    width="768"
+    height="180"
+/>
 
 Of course there are more than 3 paths in my list but I cropped the gif for brevity here.
 When I press <kbd>enter</kbd> on the `/bin` entry, I see a list of executables inside that folder.
@@ -149,7 +179,12 @@ Additionally, I've written a post before on how to [combine Caniuse with FZF](/b
 It allows me to quickly find out wether I should stay away from some Web API or not.
 this small tool also allows me to query features that have been added or deprecated recently.
 
-<%= video_tag 'posts/checking-caniuse', alt: 'An example of looking for features using cani' %>
+<Image
+    src="/media/posts/checking-caniuse.gif"
+    alt="An example of looking for features using cani"
+    width="768"
+    height="180"
+/>
 
 The `cani` command ([zsh](https://github.com/SidOfc/dotfiles/blob/d07fa3862ed065c2a5a7f1160ae98416bfe2e1ee/zsh/cani), [fish](https://github.com/SidOfc/dotfiles/blob/1e07bc882e64cc22783ac8ec2a01651503ecc7b3/.config/fish/functions/cani.fish)) itself uses another [ruby script](https://github.com/SidOfc/dotfiles/blob/653c0331b3bd8a3b6fb5fbff0531f038e7eb5b12/bin/ciu)
 (`ciu`) I wrote to actually provide the data and format it properly.
@@ -185,7 +220,12 @@ The solution was to use the `:Files` command provided by FZF.vim. This lists fil
 using your `$FZF_DEFAULT_COMMAND` environment variable. It opens the currently
 highlighted file on <kbd>enter</kbd>.
 
-<%= video_tag 'posts/fzf-files-demo', alt: 'FZF :Files demo' %>
+<Image
+    src="/media/posts/fzf-files-demo.gif"
+    alt="FZF :Files demo"
+    width="1049"
+    height="714"
+/>
 
 Since I was already so used to the <kbd>ctrl</kbd>+<kbd>p</kbd> mapping from the CtrlP plugin,
 I mapped the `:Files` command to it: `nnoremap <C-p> :Files<Cr>`.
@@ -207,7 +247,12 @@ inside the directory are listed (except those ignored in a `~/.rgignore` file).
 Last but not least I wanted to find files based on what was inside of a file.
 This is useful to see where a class or function is used for example.
 
-<%= video_tag 'posts/fzf-rg-demo', alt: 'FZF :Rg demo' %>
+<Image
+    src="/media/posts/fzf-rg-demo.gif"
+    alt="FZF :Rg demo"
+    width="1049"
+    height="714"
+/>
 
 The name of this command is `:Rg` which already uses `ripgrep` in the background! Done right?
 Nope &mdash; after playing around I noticed that while `:Rg` indeed searches the file's
@@ -226,7 +271,7 @@ An [issue](https://github.com/junegunn/fzf.vim/issues/346) was created for the
 exact same reason for the `:Ag` command. Based on [this comment](https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704)
 I came up with the following setup to accomplish this:
 
-~~~vim
+~~~viml
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,

@@ -4,9 +4,13 @@ description: "In my never ending quest for an optimal Vim setup I am always look
 published:   "2017-09-16T13:11:03Z"
 ---
 
-<%= figure_tag 'posts/vimrc-movement-key-binds.png',
-               class: 'wide',
-               alt: 'A screenshot of my vimrc movement key bindings' %>
+<Image
+    src="/media/posts/vimrc-movement-key-binds.png"
+    alt="A screenshot of my vimrc movement key bindings"
+    width="900"
+    height="315"
+    class="wide"
+/>
 
 Vim is installed on almost every unix system known to man,
 therefore knowing how it works will allow you to work pretty much anywhere.
@@ -42,7 +46,7 @@ So without further ado, here are my non-plugin key binds.
 
 ### Pairing braces
 
-~~~vim
+~~~viml
 inoremap <> <><Left>
 inoremap () ()<Left>
 inoremap {} {}<Left>
@@ -62,7 +66,7 @@ but it will also "insert" `<Left>` or rather, insert an arrow keypress left whic
 
 ### Navigational keys
 
-~~~vim
+~~~viml
 nmap <Up>    <Nop>
 nmap <Down>  <Nop>
 nmap <Left>  <Nop>
@@ -93,7 +97,7 @@ I'm done working with a file. Now it will show me the file I had open before tha
 
 ### Insert mode navigational keys
 
-~~~vim
+~~~viml
 imap <Up>    <Nop>
 imap <Down>  <Nop>
 imap <Left>  <Nop>
@@ -118,7 +122,7 @@ ended up with the `<C-[direction]>` keys for movement in insert mode.
 
 ### <kbd>tab</kbd> and <kbd>shift</kbd>+<kbd>tab</kbd> to indent and de-indent
 
-~~~vim
+~~~viml
 nmap >> <Nop>
 nmap << <Nop>
 vmap >> <Nop>
@@ -136,7 +140,7 @@ Like with the default paragraph binds I think these can be better by just using 
 
 ### Avoiding the <kbd>esc</kbd> key
 
-~~~vim
+~~~viml
 inoremap <S-Tab> <Esc>
 onoremap <S-Tab> <Esc>
 ~~~
@@ -151,7 +155,7 @@ I will no longer be in operator pending mode, handy for when you accidentally ty
 
 ### Run macro's with <kbd>Q</kbd>
 
-~~~vim
+~~~viml
 nnoremap Q @q
 ~~~
 
@@ -163,7 +167,7 @@ I mostly remember and use one macro at a time for the moment so this bind fits m
 
 ### Consistent <kbd>Y</kbd>
 
-~~~vim
+~~~viml
 nnoremap Y y$
 ~~~
 

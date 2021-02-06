@@ -8,7 +8,12 @@ Lately I've been getting more and more annoyed by the way Medium decides to do t
 Some time ago they decided to [make everything premium](https://medium.com/membership), so after reading 5 stories you'd be greeted
 with something like:
 
-<%= figure_tag 'posts/reader-paywall.jpg', alt: 'The reader paywall message on medium that appears after 5 posts' %>
+<Image
+    src="/media/posts/reader-paywall.jpg"
+    alt="The reader paywall message on medium that appears after 5 posts"
+    width="1448"
+    height="864"
+/>
 
 While this sucks, it's not uncommon for "premium" content to be paywalled. My problem
 with this setup is that I do not consider my content "premium" at all.
@@ -20,14 +25,24 @@ like. All without asking for a single penny.
 Medium however, does not care about anything that is "free" or "open" at all. Seeing as every time I
 open one of my stories on Medium, the following message appears at the top:
 
-<%= figure_tag 'posts/metered-paywall.png', alt: 'The metered paywall message on medium' %>
+<Image
+    src="/media/posts/metered-paywall.png"
+    alt="The metered paywall message on medium"
+    width="872"
+    height="112"
+/>
 
 # "Only you can see this message"
 
 At first, I tried to close the popup. But of course, I should have known that it would not be that simple,
 seeing as they are trying to get me to make my stories paid so they can benefit too.
 
-<%= video_tag 'posts/metered-paywall-never-closing', alt: 'Re-appearing message across page reloads' %>
+<Image
+    src="/media/posts/metered-paywall-never-closing.gif"
+    alt="Re-appearing message across page reloads"
+    width="1531"
+    height="482"
+/>
 
 Medium really seems to want authors to read this message I guess. Since after reloading the page, the message re-appears,
 **every. single. time.** After trying to ignore it for a while, this popup started getting

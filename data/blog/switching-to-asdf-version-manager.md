@@ -4,7 +4,12 @@ description: "Depending on how many languages you program in, getting all their 
 published:   "2017-08-15T21:04:44Z"
 ---
 
-<%= figure_tag 'posts/asdfmovie-banner.svg', alt: 'asdfmovie quote from youtube' %>
+<Image
+    src="/media/posts/asdfmovie-banner.svg"
+    alt="asdfmovie quote from youtube"
+    width="356"
+    height="200"
+/>
 
 Version management tools for programming languages are a common thing in (web-)developer land.
 I started to wonder if there was an all-in-one version management tool.

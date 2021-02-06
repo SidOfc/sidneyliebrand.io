@@ -4,7 +4,12 @@ description: "Any kind of cold-call from some random recruiter or sales rep is a
 published:   "2018-08-31T22:41:19Z"
 ---
 
-<%= figure_tag 'posts/recruiter-table-flip.svg' %>
+<Image
+    src="/media/posts/recruiter-table-flip.svg"
+    alt="person flipping a table"
+    width="800"
+    height="409"
+/>
 
 So far I haven't been bothered too much by recruiters but every once in a while some moron decides to call me at work in the middle of the day.
 They probably don't even care about the fact that I'm already working happily and full-time at a company, they just call me up and say something like:
