@@ -1,10 +1,9 @@
-import hydrate from 'next-mdx-remote/hydrate';
-import CodeBlock from '../../components/code-block';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
+import {hydrate} from '../../util/markdown';
 import '../../util/prism';
 
 export default function Til({title, source}) {
-    const content = hydrate(source, {components: {pre: CodeBlock}});
+    const content = hydrate(source);
 
     return (
         <>
@@ -15,9 +14,7 @@ export default function Til({title, source}) {
 }
 
 export async function getStaticProps(context) {
-    const props = await processMarkdownSlug('data/blog', context.params.slug, {
-        components: {pre: CodeBlock},
-    });
+    const props = await processMarkdownSlug('data/blog', context.params.slug);
 
     return {
         props,

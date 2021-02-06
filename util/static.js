@@ -2,7 +2,8 @@ import renderToString from 'next-mdx-remote/render-to-string';
 import matter from 'gray-matter';
 import profile from '../data/profile.json';
 import {Octokit} from '@octokit/rest';
-import {slug} from './';
+import {components} from './markdown';
+import {slug, readTime} from './';
 import {promises as fs} from 'fs';
 
 export async function getPinnedRepositories() {
@@ -57,7 +58,7 @@ export async function getPinnedRepositories() {
     );
 }
 
-export async function processMarkdownFile(filePath, renderOpts = {}) {
+export async function processMarkdownFile(filePath, renderOpts = {components}) {
     const filename = filePath.split('/').pop();
     const rawMarkdown = await fs.readFile(filePath);
     const {content, data} = matter(rawMarkdown);
@@ -68,12 +69,17 @@ export async function processMarkdownFile(filePath, renderOpts = {}) {
 
     return {
         ...data,
+        readTimeInMinutes: readTime(rawMarkdown.toString()),
         source,
         slug: slug(filename),
     };
 }
 
-export async function processMarkdownSlug(dirPath, urlSlug, renderOpts = {}) {
+export async function processMarkdownSlug(
+    dirPath,
+    urlSlug,
+    renderOpts = {components}
+) {
     const filenames = await fs.readdir(dirPath);
     const found = filenames.find((filename) => slug(filename) === urlSlug);
 
@@ -86,7 +92,7 @@ export async function getMarkdownDirSlugs(dirPath) {
     return filenames.map(slug);
 }
 
-export async function processMarkdownDir(dirPath, renderOpts = {}) {
+export async function processMarkdownDir(dirPath, renderOpts = {components}) {
     const filenames = await fs.readdir(dirPath);
 
     return Promise.all(

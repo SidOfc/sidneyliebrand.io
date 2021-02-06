@@ -4,7 +4,6 @@ import matter from 'gray-matter';
 import styles from './til.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import CodeBlock from '../../components/code-block';
 import {classes} from '../../util';
 import {processMarkdownDir} from '../../util/static';
 
@@ -13,31 +12,28 @@ export default function Index({tils}) {
 
     return (
         <>
-            {tils.map((til) => (
-                <article key={til.slug} className={styles.entry}>
+            {tils.map(({title, slug, source}) => (
+                <article key={slug} className={styles.entry}>
                     <div
                         className={styles.entryHeader}
-                        onClick={() =>
-                            setOpened(opened === til.slug ? null : til.slug)
-                        }
+                        onClick={() => setOpened(opened === slug ? null : slug)}
                     >
-                        <Link href={`/til/${til.slug}`}>
-                            <a>{til.title}</a>
+                        <Link href={`/til/${slug}`}>
+                            <a>{title}</a>
                         </Link>
                         <div
                             className={classes(styles.entryHeaderArrow, {
-                                [styles.entryHeaderArrowOpen]:
-                                    opened === til.slug,
+                                [styles.entryHeaderArrowOpen]: opened === slug,
                             })}
                         >
                             <Image src={`/media/arrow.svg`} layout="fill" />
                         </div>
                     </div>
-                    {opened === til.slug && (
+                    {opened === slug && (
                         <section
                             className={styles.entryContent}
                             dangerouslySetInnerHTML={{
-                                __html: til.source.renderedOutput,
+                                __html: source.renderedOutput,
                             }}
                         />
                     )}
@@ -48,9 +44,7 @@ export default function Index({tils}) {
 }
 
 export async function getStaticProps() {
-    const tils = await processMarkdownDir('data/til', {
-        components: {pre: CodeBlock},
-    });
+    const tils = await processMarkdownDir('data/til');
 
     return {
         props: {
