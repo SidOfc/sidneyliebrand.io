@@ -178,7 +178,7 @@ show a "grayscale" version. This is the pure-vimscript implementation I came up 
 let g:mode_colors = {
       \ 'n':  'StatusLineSection',
       \ 'v':  'StatusLineSectionV',
-      \ '': 'StatusLineSectionV',
+      \ '^V': 'StatusLineSectionV',
       \ 'i':  'StatusLineSectionI',
       \ 'c':  'StatusLineSectionC',
       \ 'r':  'StatusLineSectionR'
@@ -229,7 +229,7 @@ augroup vimrc
     \ setlocal statusline&
 
   " restore statusline highlights on colorscheme update
-  au Colorscheme * call <SID>StatusLineHighlights()atusline&
+  au Colorscheme * call <SID>StatusLineHighlights()
 augroup END
 ~~~
 

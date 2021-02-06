@@ -1,6 +1,7 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import CodeBlock from '../../components/code-block';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
+import '../../util/prism';
 
 export default function Til({title, source}) {
     const content = hydrate(source, {components: {pre: CodeBlock}});
