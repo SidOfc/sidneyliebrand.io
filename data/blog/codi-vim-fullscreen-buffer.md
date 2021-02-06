@@ -1,7 +1,7 @@
 ---
-title:       'Codi.vim + fullscreen buffer'
-description: 'Learn how to set up Codi.vim to create a fullscreen scratch buffer that also works with Vim splits. We will take a look at wrapping the <code>Codi</code> command and improving the buffer name(s) as seen in <code>:ls</code>.'
-published:   '2018-08-27T07:55:24Z'
+title:       "Codi.vim + fullscreen buffer"
+description: "Learn how to set up Codi.vim to create a fullscreen scratch buffer that also works with Vim splits. We will take a look at wrapping the <code>Codi</code> command and improving the buffer name(s) as seen in <code>:ls</code>."
+published:   "2018-08-27T07:55:24Z"
 ---
 
 <%= figure_tag 'posts/codi-banner.png',

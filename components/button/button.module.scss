@@ -1,0 +1,32 @@
+@import "../../styles/config";
+
+.button {
+  @include themed('background-color', 'primary-bg');
+  @include themed('color', 'primary-fg');
+  position: relative;
+  padding: 0;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}

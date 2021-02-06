@@ -1,8 +1,8 @@
 ---
-title:       'How FZF and ripgrep improved my workflow'
-description: 'In my never ending quest for simplicity I recently discovered FZF and ripgrep. Two command-line tools that have the potential to make every dag programming tasks easier. In this post I will explain how I use these tools to do things in a matter of keystrokes rather than having to re-google that command you keep forgetting <strong>every. single. time.</strong>.'
-published:   '2018-06-24T13:33:37Z'
-updated:     '2019-07-10T21:10:00Z'
+title:       "How FZF and ripgrep improved my workflow"
+description: "In my never ending quest for simplicity I recently discovered FZF and ripgrep. Two command-line tools that have the potential to make every dag programming tasks easier. In this post I will explain how I use these tools to do things in a matter of keystrokes rather than having to re-google that command you keep forgetting <strong>every. single. time.</strong>."
+published:   "2018-06-24T13:33:37Z"
+updated:     "2019-07-10T21:10:00Z"
 ---
 
 Today I want to talk about [fzf](https://github.com/junegunn/fzf) and [ripgrep](https://github.com/BurntSushi/ripgrep),

@@ -3,7 +3,7 @@
 $vars: (
   'page-bg': #fff,
   'page-fg': #000,
-  'page-fg-accent': #888,
+  'page-accent-fg': #666,
   'primary-bg': #651eea,
   'primary-fg': #ffffff,
   'inline-code-bg': #f1f1f1,
@@ -21,4 +21,8 @@ $vars: (
 @mixin themed($property, $var) {
   #{$property}: #{map.get($vars, $var)};
   #{$property}: var(--#{$var});
+}
+
+@function ends-with($string, $find) {
+    @return str-length($string) >= str-length($find) AND str-slice($string, (str-length($string) - str-length($find) + 1)) == $find;
 }

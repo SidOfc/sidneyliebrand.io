@@ -1,5 +1,7 @@
 import styles from './cv.module.scss';
 import {Container as Tags} from '../../components/tag';
+import Text from '../../components/text';
+import Bullet from '../../components/bullet';
 import profile from '../../data/profile.json';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +13,7 @@ export default function Index({pinnedRepositories}) {
 
     return (
         <>
-            <div className={styles.banner}>
+            <section className={styles.banner}>
                 <div className={styles.bannerLogo}>
                     <Image
                         src="/media/cv-portrait.jpg"
@@ -20,50 +22,58 @@ export default function Index({pinnedRepositories}) {
                     />
                 </div>
                 <div className={styles.column}>
-                    <h1 className={styles.bannerHeader}>{profile.name}</h1>
-                    <span className={styles.bannerSubtitle}>
+                    <Text as="h1" className={styles.bannerHeader}>
+                        {profile.name}
+                    </Text>
+                    <Text color="page-accent" className={styles.bannerSubtitle}>
                         {profile.title}
-                    </span>
-                    <span className={styles.bannerDetails}>
-                        <span>
+                    </Text>
+                    <div className={styles.bannerDetails}>
+                        <Text>
                             {profile.city}, {profile.country}
-                        </span>
-                        <Link href="https://github.com/sidofc">
-                            <a title="Sidney Liebrand's GitHub page">
-                                <Image
-                                    src="/media/github.svg"
-                                    width={16}
-                                    height={16}
-                                />{' '}
-                                /sidofc
-                            </a>
-                        </Link>
-                        <Link href="https://linkedin.com/in/sidneyliebrand">
-                            <a title="Sidney Liebrand's LinkedIn page">
-                                <Image
-                                    src="/media/linkedin.svg"
-                                    width={16}
-                                    height={16}
-                                />{' '}
-                                /sidneyliebrand
-                            </a>
-                        </Link>
-                    </span>
+                        </Text>
+                        <Text
+                            href="https://github.com/sidofc"
+                            title="Sidney Liebrand's GitHub page"
+                        >
+                            <Image
+                                src="/media/github.svg"
+                                width={16}
+                                height={16}
+                            />{' '}
+                            /sidofc
+                        </Text>
+                        <Text
+                            href="https://linkedin.com/in/sidneyliebrand"
+                            title="Sidney Liebrand's LinkedIn page"
+                        >
+                            <Image
+                                src="/media/linkedin.svg"
+                                width={16}
+                                height={16}
+                            />{' '}
+                            /sidneyliebrand
+                        </Text>
+                    </div>
                 </div>
-            </div>
-            <h2 className={styles.h2}>Familiar technologies</h2>
-            <div className={styles.column}>
+            </section>
+            <section className={styles.column}>
+                <Text as="h2" className={styles.h2}>
+                    Familiar technologies
+                </Text>
                 <div className={styles.row}>
-                    <strong>Languages</strong>
+                    <Text as="strong">Languages</Text>
                     <Tags tags={programming.languages} />
                 </div>
                 <div className={styles.row}>
-                    <strong>Tools</strong>
+                    <Text as="strong">Tools</Text>
                     <Tags tags={programming.tools} />
                 </div>
-            </div>
-            <h2 className={styles.h2}>Experience</h2>
-            <div className={styles.column}>
+            </section>
+            <section className={styles.column}>
+                <Text as="h2" className={styles.h2}>
+                    Experience
+                </Text>
                 {programming.jobs.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
@@ -79,9 +89,11 @@ export default function Index({pinnedRepositories}) {
                         />
                     </div>
                 ))}
-            </div>
-            <h2 className={styles.h2}>Education</h2>
-            <div className={styles.column}>
+            </section>
+            <section className={styles.column}>
+                <Text as="h2" className={styles.h2}>
+                    Education
+                </Text>
                 {education.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
@@ -97,70 +109,78 @@ export default function Index({pinnedRepositories}) {
                         />
                     </div>
                 ))}
-            </div>
-            <h2 className={styles.h2}>Volunteering</h2>
-            <div className={styles.volunteering}>
-                {volunteering.map((item) => (
-                    <div key={item.start} className={styles.volunteer}>
-                        <Title
-                            as="strong"
-                            title={`${item.title} at ${item.organisation}`}
-                            className={styles.title}
+            </section>
+            <section className={styles.column}>
+                <Text as="h2" className={styles.h2}>
+                    Volunteering
+                </Text>
+                <div className={styles.volunteering}>
+                    {volunteering.map((item) => (
+                        <div key={item.start} className={styles.volunteer}>
+                            <Text as="strong" className={styles.title}>
+                                {item.title} at {item.organisation}
+                            </Text>
+                            <Text>
+                                {item.city}
+                                <br />
+                                {dateFormat(item.start, {
+                                    day: true,
+                                    fallback: 'Unknown',
+                                })}
+                                &nbsp;-&nbsp;
+                                {dateFormat(item.end, {
+                                    day: true,
+                                    fallback: 'Present',
+                                })}
+                            </Text>
+                            {item.link && (
+                                <Text href={item.link}>View event</Text>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </section>
+            <section className={styles.column}>
+                <Text as="h2" className={styles.h2}>
+                    Open source projects
+                </Text>
+                {pinnedRepositories.map((item) => (
+                    <div key={item.name} className={styles.block}>
+                        <Details
+                            link={item.url}
+                            title={item.name}
+                            tags={item.topics}
+                            start={item.createdAt}
+                            subtitle={item.description}
+                            customData={
+                                <span className={styles.stats}>
+                                    <Text color="addition">
+                                        {item.stats.additions}++
+                                    </Text>
+                                    <Bullet wide />
+                                    <Text color="deletion">
+                                        {item.stats.deletions}--
+                                    </Text>
+                                    <Bullet wide />
+                                    <Text>
+                                        {item.stats.commits} commits,
+                                        {item.pushedAt && (
+                                            <>
+                                                {' '}
+                                                last commit on{' '}
+                                                {dateFormat(
+                                                    item.pushedAt,
+                                                    true
+                                                )}
+                                            </>
+                                        )}
+                                    </Text>
+                                </span>
+                            }
                         />
-                        <span>{item.city}</span>
-                        <span>
-                            {item.start
-                                ? dateFormat(item.start, true)
-                                : 'Unknown'}{' '}
-                            -{' '}
-                            {item.end ? dateFormat(item.end, true) : 'Present'}
-                        </span>
-                        {item.link && (
-                            <a
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener,noreferrer"
-                            >
-                                View event
-                            </a>
-                        )}
                     </div>
                 ))}
-            </div>
-            <h2 className={styles.h2}>Open source projects</h2>
-            {pinnedRepositories.map((item) => (
-                <div key={item.name} className={styles.block}>
-                    <Details
-                        link={item.url}
-                        title={item.name}
-                        tags={item.topics}
-                        start={item.createdAt}
-                        subtitle={item.description}
-                        customData={
-                            <span className={styles.stats}>
-                                <span className={styles.additions}>
-                                    {item.stats.additions}++
-                                </span>
-                                <span className={styles.bullet}>&bull;</span>
-                                <span className={styles.deletions}>
-                                    {item.stats.deletions}--
-                                </span>
-                                <span className={styles.bullet}>&bull;</span>
-                                <span className={styles.light}>
-                                    {item.stats.commits} commits,
-                                    {item.pushedAt && (
-                                        <>
-                                            {' '}
-                                            last commit on{' '}
-                                            {dateFormat(item.pushedAt, true)}
-                                        </>
-                                    )}
-                                </span>
-                            </span>
-                        }
-                    />
-                </div>
-            ))}
+            </section>
         </>
     );
 }
@@ -192,22 +212,25 @@ function Details({
 }) {
     return (
         <div className={styles.details}>
-            <Title title={title} link={link} className={styles.title} />
+            <Text as="h3" href={link} className={styles.title}>
+                {title}
+            </Text>
             {subtitle && (
-                <span
+                <Text
                     className={styles.subtitle}
                     dangerouslySetInnerHTML={{__html: subtitle}}
                 />
             )}
-            <span className={styles.dates}>
-                {start ? dateFormat(start) : 'Unknown'} -{' '}
-                {end ? dateFormat(end) : 'Present'}{' '}
-                <span className={styles.light}>({dateDiff(start, end)})</span>
-            </span>
+            <Text className={styles.dates}>
+                {dateFormat(start, {fallback: 'Unknown'})}
+                &nbsp;-&nbsp;
+                {dateFormat(end, {fallback: 'Present'})}{' '}
+                <Text color="page-accent">({dateDiff(start, end)})</Text>
+            </Text>
             {customData}
             {tags && <Tags tags={tags} />}
             {description && (
-                <p dangerouslySetInnerHTML={{__html: description}} />
+                <Text as="p" dangerouslySetInnerHTML={{__html: description}} />
             )}
         </div>
     );

@@ -14,7 +14,7 @@ export default function Index({tils}) {
     return (
         <>
             {tils.map((til) => (
-                <div key={til.slug} className={styles.entry}>
+                <article key={til.slug} className={styles.entry}>
                     <div
                         className={styles.entryHeader}
                         onClick={() =>
@@ -34,14 +34,14 @@ export default function Index({tils}) {
                         </div>
                     </div>
                     {opened === til.slug && (
-                        <div
+                        <section
                             className={styles.entryContent}
                             dangerouslySetInnerHTML={{
                                 __html: til.source.renderedOutput,
                             }}
                         />
                     )}
-                </div>
+                </article>
             ))}
         </>
     );

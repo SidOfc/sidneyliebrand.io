@@ -1,7 +1,7 @@
 ---
-title:       'Switching to ASDF version manager'
-description: 'Depending on how many languages you program in, getting all their version managers installed, added to <code>$PATH</code>, configured etc... becomes quite a pain when setting up a new system, or even figuring out how this one works because you\'ve used something else for a while.'
-published:   '2017-08-15T21:04:44Z'
+title:       "Switching to ASDF version manager"
+description: "Depending on how many languages you program in, getting all their version managers installed, added to <code>$PATH</code>, configured etc... becomes quite a pain when setting up a new system, or even figuring out how this one works because you've used something else for a while."
+published:   "2017-08-15T21:04:44Z"
 ---
 
 <%= figure_tag 'posts/asdfmovie-banner.svg', alt: 'asdfmovie quote from youtube' %>

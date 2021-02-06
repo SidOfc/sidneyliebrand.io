@@ -1,0 +1,14 @@
+@import "../../styles/config";
+
+.nowrap {
+  white-space: nowrap;
+}
+
+@each $name, $value in $vars {
+  @if ends-with($name, '-fg') {
+    .#{$name} {
+      @include themed('color', $name)
+    }
+  }
+}
+

@@ -1,7 +1,7 @@
 ---
-title:       'The greatnesses and gotchas of YAML'
-description: 'YAML is a great language for configuration files, it is a lot more flexible than JSON with comments and inheritance for example. While I was doing some research about YAML I found bits of information scattered all over the place so I attempted to piece the great things and the quirks together in a post!'
-published:   '2017-12-23T07:25:59Z'
+title:       "The greatnesses and gotchas of YAML"
+description: "YAML is a great language for configuration files, it is a lot more flexible than JSON with comments and inheritance for example. While I was doing some research about YAML I found bits of information scattered all over the place so I attempted to piece the great things and the quirks together in a post!"
+published:   "2017-12-23T07:25:59Z"
 ---
 
 **Update 08–11–2018:** Thank you [Anatoli Babenia](https://medium.com/@abitrolly)

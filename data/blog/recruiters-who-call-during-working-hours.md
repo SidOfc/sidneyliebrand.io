@@ -1,7 +1,7 @@
 ---
-title:       'Recruiters who call during working hours'
-description: 'Any kind of cold-call from some random recruiter or sales rep is annoying enough as is. Imagine my frustration when I got a call from a recruiter who called on the <strong>company phone</strong> in the middle of a working day!'
-published:   '2018-08-31T22:41:19Z'
+title:       "Recruiters who call during working hours"
+description: "Any kind of cold-call from some random recruiter or sales rep is annoying enough as is. Imagine my frustration when I got a call from a recruiter who called on the <strong>company phone</strong> in the middle of a working day!"
+published:   "2018-08-31T22:41:19Z"
 ---
 
 <%= figure_tag 'posts/recruiter-table-flip.svg' %>

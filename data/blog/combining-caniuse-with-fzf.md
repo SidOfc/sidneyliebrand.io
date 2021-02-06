@@ -1,7 +1,7 @@
 ---
-title:       'Combining Caniuse with FZF'
-description: 'There is caniuse.com which you can use to search online, but what if you\'re a lazy dev like me that likes to keep his stuff in the terminal? Well, for this reason I wrote a small wrapper using some of my all time favorite tools: Ruby and FZF!'
-published:   '2017-09-03T11:47:27Z'
+title:       "Combining Caniuse with FZF"
+description: "There is caniuse.com which you can use to search online, but what if you're a lazy dev like me that likes to keep his stuff in the terminal? Well, for this reason I wrote a small wrapper using some of my all time favorite tools: Ruby and FZF!"
+published:   "2017-09-03T11:47:27Z"
 ---
 
 Do you love [Caniuse](http://caniuse.com/) and [FZF](https://github.com/junegunn/fzf)? I do! As a front end developer,

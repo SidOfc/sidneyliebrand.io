@@ -61,7 +61,10 @@ export async function processMarkdownFile(filePath, renderOpts = {}) {
     const filename = filePath.split('/').pop();
     const rawMarkdown = await fs.readFile(filePath);
     const {content, data} = matter(rawMarkdown);
-    const source = await renderToString(content, {...renderOpts, scope: data});
+    const source = await renderToString(content, {
+        ...renderOpts,
+        scope: data,
+    });
 
     return {
         ...data,
@@ -85,6 +88,7 @@ export async function getMarkdownDirSlugs(dirPath) {
 
 export async function processMarkdownDir(dirPath, renderOpts = {}) {
     const filenames = await fs.readdir(dirPath);
+
     return Promise.all(
         filenames.map((filename) =>
             processMarkdownFile(`${dirPath}/${filename}`, renderOpts)

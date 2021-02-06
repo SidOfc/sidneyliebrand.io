@@ -1,7 +1,7 @@
 ---
-title:       'Vim tip: persistent undo'
-description: 'Usually, when you open a file in your editor, make some changes, save and close, you lose the ability to <kbd>ctrl</kbd>+<kbd>Z</kbd>. Vim has a built in mechanism to persist changes made to files on disk. This may not sound that exciting, but what if your editor crashes while you have a set of changes you may want to revert stored?'
-published:   '2018-08-04T20:17:52Z'
+title:       "Vim tip: persistent undo"
+description: "Usually, when you open a file in your editor, make some changes, save and close, you lose the ability to <kbd>ctrl</kbd>+<kbd>Z</kbd>. Vim has a built in mechanism to persist changes made to files on disk. This may not sound that exciting, but what if your editor crashes while you have a set of changes you may want to revert stored?"
+published:   "2018-08-04T20:17:52Z"
 ---
 
 Sometimes I happen to close a buffer that I had open for a while and modified here and there.

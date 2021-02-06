@@ -13,6 +13,10 @@ const MONTHS = [
     'Dec',
 ];
 
+export function readTime(str) {
+    return Math.round(Math.max(1, (str.match(/\s+/g) || []).length / 200));
+}
+
 export function slug(str) {
     return str
         .replace(/\.\w+$/g, '')
@@ -22,20 +26,27 @@ export function slug(str) {
 }
 
 export function classes(...classArgs) {
-    return classArgs.reduce((acc, arg) => {
-        if (Array.isArray(arg)) {
-            return [acc, ...arg].filter((x) => x).join(' ');
-        } else if (arg?.constructor === Object) {
-            return Object.entries(arg).reduce(
-                (acc, [cn, include]) => (include ? `${acc} ${cn}` : acc),
-                acc
-            );
-        }
-        return String(arg);
-    }, '');
+    return classArgs
+        .reduce((acc, arg) => {
+            if (Array.isArray(arg)) {
+                return [acc, ...arg].filter((x) => x).join(' ');
+            } else if (arg?.constructor === Object) {
+                return Object.entries(arg).reduce(
+                    (acc, [cn, include]) => (include ? `${acc} ${cn}` : acc),
+                    acc
+                );
+            } else if (arg) {
+                return `${acc} ${arg}`;
+            }
+
+            return acc;
+        }, '')
+        .trim();
 }
 
-export function dateFormat(maybeDate, includeDay = false) {
+export function dateFormat(maybeDate, {includeDay, fallback} = {}) {
+    if (!maybeDate) return fallback;
+
     const date = toDate(maybeDate);
     const day = includeDay ? ` ${date.getDate()}` : '';
 

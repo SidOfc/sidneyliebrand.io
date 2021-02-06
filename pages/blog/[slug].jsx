@@ -14,7 +14,7 @@ export default function Til({title, source}) {
 }
 
 export async function getStaticProps(context) {
-    const props = await processMarkdownSlug('data/til', context.params.slug, {
+    const props = await processMarkdownSlug('data/blog', context.params.slug, {
         components: {pre: CodeBlock},
     });
 
@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const slugs = await getMarkdownDirSlugs('data/til');
+    const slugs = await getMarkdownDirSlugs('data/blog');
 
     return {
         paths: slugs.map((slug) => ({params: {slug}})),

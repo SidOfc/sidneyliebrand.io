@@ -1,7 +1,7 @@
 ---
-title:       'And your metered paywall isn\'t part of my story, Medium'
-description: 'I\'ve been greeted by the same "Your story isn\'t part of the metered paywall" message for a while now, and figured it was time to make a change in the right direction.'
-published:   '2019-06-10T04:36:22Z'
+title:       "And your metered paywall isn't part of my story, Medium"
+description: "I've been greeted by the same \"Your story isn't part of the metered paywall\" message for a while now, and figured it was time to make a change in the right direction."
+published:   "2019-06-10T04:36:22Z"
 ---
 
 Lately I've been getting more and more annoyed by the way Medium decides to do things.

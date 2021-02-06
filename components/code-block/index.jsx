@@ -1,9 +1,10 @@
 import Highlight, {defaultProps} from 'prism-react-renderer';
 
-export default function CodeBlock({children}) {
+export default function CodeBlock({className, children}) {
     return (
         <Highlight
             {...defaultProps}
+            className={className}
             code={children.props.children.trim()}
             language={children.props.className.split('-').pop()}
         >

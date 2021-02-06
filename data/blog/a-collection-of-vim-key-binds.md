@@ -1,7 +1,7 @@
 ---
-title:       'A collection of Vim key binds'
-description: 'In my never ending quest for an optimal Vim setup I am always looking for ways to improve. I\'ve used Vim for about two months now and I\'m still learning a lot. In this post I\'m going to take you through a part of my .vimrc that describes my non-plugin key binds.'
-published:   '2017-09-16T13:11:03Z'
+title:       "A collection of Vim key binds"
+description: "In my never ending quest for an optimal Vim setup I am always looking for ways to improve. I've used Vim for about two months now and I'm still learning a lot. In this post I'm going to take you through a part of my .vimrc that describes my non-plugin key binds."
+published:   "2017-09-16T13:11:03Z"
 ---
 
 <%= figure_tag 'posts/vimrc-movement-key-binds.png',

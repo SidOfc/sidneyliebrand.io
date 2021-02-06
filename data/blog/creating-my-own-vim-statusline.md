@@ -1,7 +1,7 @@
 ---
-title:       'Creating my own vim statusline'
-description: 'Recently I decided to clean up my vim plugins once again, I do not think I use too many but I prefer to keep my setup simple. One of the things which bothered me was the configuration for lightline.vim in my vim config. It seemed needlessly complex and I wondered if I could recreate it without any plugins at all!'
-published:   '2020-05-21T00:12:34Z'
+title:       "Creating my own vim statusline"
+description: "Recently I decided to clean up my vim plugins once again, I do not think I use too many but I prefer to keep my setup simple. One of the things which bothered me was the configuration for lightline.vim in my vim config. It seemed needlessly complex and I wondered if I could recreate it without any plugins at all!"
+published:   "2020-05-21T00:12:34Z"
 ---
 
 I love Vim (more specifically Neovim) and the great text editing powers it
