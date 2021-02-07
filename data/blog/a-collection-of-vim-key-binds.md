@@ -135,8 +135,8 @@ vnoremap <S-Tab> <<<Esc>gv
 ~~~
 
 Yet another pair of inconvenient binds are used for indenting and de-indenting code, <kbd>>></kbd> and <kbd><<</kbd> respectively.
-Like with the default paragraph binds I think these can be better by just using the bindings I already know and use:
-<kbd>tab</kbd> and <kbd>shift</kbd>+<kbd>tab</kbd>. These binds are to be used in normal or visual mode as we have a special purpose for <kbd>shift</kbd>+<kbd>tab</kbd> in insert mode.
+Like with the default paragraph binds I think these can be better by just using the bindings I already know and use: <kbd>tab</kbd>
+and <kbd>shift</kbd>+<kbd>tab</kbd>. These binds are to be used in normal or visual mode as we have a special purpose for <kbd>shift</kbd>+<kbd>tab</kbd> in insert mode.
 
 ### Avoiding the <kbd>esc</kbd> key
 
@@ -171,8 +171,8 @@ I mostly remember and use one macro at a time for the moment so this bind fits m
 nnoremap Y y$
 ~~~
 
-So unlike our friends <kbd>C</kbd> and <kbd>D</kbd> which change and delete *from cursor to end of line* respectively,
-<kbd>Y</kbd> seems to have some issues, it basically does a <kbd>y</kbd><kbd>y</kbd> which we already have... <kbd>y</kbd><kbd>y</kbd> for. So to make it consistent with its bro's,
+So unlike our friends <kbd>C</kbd> and <kbd>D</kbd> which change and delete *from cursor to end of line* respectively, <kbd>Y</kbd>
+seems to have some issues, it basically does a <kbd>y</kbd><kbd>y</kbd> which we already have... <kbd>y</kbd><kbd>y</kbd> for. So to make it consistent with its bro's,
 I remapped it to <kbd>y</kbd><kbd>$</kbd>. Additional explanation can be found in the help section: `:h Y`.
 
 ## Wrapping up

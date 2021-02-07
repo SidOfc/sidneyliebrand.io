@@ -10,7 +10,7 @@
 
 html {
   font-size: 1rem;
-  font-size: min(max(0.9rem, 1.5vw), 1.2rem);
+  font-size: min(max(0.95rem, 1.5vw), 1.2rem);
   height: 100%;
 }
 
@@ -33,8 +33,8 @@ pre {
 }
 
 p {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   font-size: 1.25rem;
 }
 
@@ -46,14 +46,17 @@ kbd {
   @include themed('background-color', 'kbd-bg');
   @include themed('color', 'kbd-fg');
   @include themed('box-shadow', '0px 1px $0', 'kbd-fg');
+  line-height: 1;
   display: inline-block;
   text-transform: uppercase;
   text-align: center;
-  min-width: 1.6rem;
-  padding: 0.1rem 0.6rem;
-  border-radius: 0.25rem;
+  min-width: 1.6em;
+  padding: 0.3em 0.6em 0.2em;
+  border-radius: 0.25em;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 0.6em;
+  font-size: 0.7em;
+  vertical-align: middle;
+  transform: translateY(-0.125em);
 }
 
 p code {
@@ -68,12 +71,39 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-family: sans-serif;
   font-weight: 700;
-  margin: 2rem 0 0.25rem;
-  font-size: 2.5em;
+  margin: 3rem 0 0.15rem;
+
+  & + * {
+    margin-top: 0.5rem;
+  }
 
   & + p {
-    margin-top: 0.25rem;
+    margin-top: -0.25rem;
   }
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+h4 {
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.1em;
+}
+
+h6 {
+  font-size: 1em;
 }
 
 blockquote {
@@ -84,5 +114,6 @@ blockquote {
   padding: 0 2rem;
   border: none;
   border-left: 0.25rem solid;
+  font-family: serif;
   font-style: italic;
 }

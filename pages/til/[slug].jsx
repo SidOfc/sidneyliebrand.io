@@ -1,16 +1,10 @@
+import Post from '../../components/post';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
 import {hydrate} from '../../util/markdown';
 import '../../util/prism';
 
-export default function Til({title, source}) {
-    const content = hydrate(source);
-
-    return (
-        <>
-            <h1>{title}</h1>
-            {content}
-        </>
-    );
+export default function Til(props) {
+    return <Post {...props} />;
 }
 
 export async function getStaticProps(context) {

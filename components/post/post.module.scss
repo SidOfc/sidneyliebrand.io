@@ -1,7 +1,17 @@
 .post {
   display: block;
-  max-width: 50rem;
   margin: 0 auto;
+  max-width: 800px;
   line-height: 1.6;
-  font-family: serif;
+
+  p {
+    font-family: serif;
+  }
+}
+
+.postData {
+  line-height: 1;
+  display: inline-block;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
 }
