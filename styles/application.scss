@@ -32,11 +32,6 @@ pre {
   border-radius: 0.25rem;
 }
 
-p {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  font-size: 1.25rem;
-}
 
 pre {
   font-size: 0.9rem;
@@ -71,11 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-family: sans-serif;
   font-weight: 700;
-  margin: 3rem 0 0.15rem;
-
-  & + * {
-    margin-top: 0.5rem;
-  }
+  margin: 2rem 0 0.15rem;
 
   & + p {
     margin-top: -0.25rem;

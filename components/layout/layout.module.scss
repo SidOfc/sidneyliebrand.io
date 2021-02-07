@@ -14,68 +14,71 @@
   position: relative;
   height: 3.125rem;
   z-index: 10;
+}
 
-  &__fixed {
-    @include themed('background-color', 'page-bg');
-    @include themed('box-shadow', '0px 0px 4px $0', 'header-shadow');
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3.125rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-  }
+.headerFixed {
+  @include themed('background-color', 'page-bg');
+  @include themed('box-shadow', '0px 0px 4px $0', 'header-shadow');
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.125rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
 
-  &__content {
+.headerContent {
+  height: 100%;
+  width: 54rem;
+  max-width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  @include themed('color', 'primary-bg');
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logoCode {
+  color: #aaa;
+}
+
+.navigation {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+
+  a {
     height: 100%;
-    width: 54rem;
-    max-width: 100%;
-    padding: 0 1rem;
-    display: flex;
-    flex-flow: row nowrap;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
+    padding: 0 0.5rem;
+    font-weight: 700;
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 
-  &__logo {
-    @include themed('fill', 'primary-bg');
-    width: 6rem;
-    display: flex;
-    align-items: center;
+  a + a {
+    margin-left: 1rem;
   }
 
-  &__navigation {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-flow: row nowrap;
-
-    a {
-      height: 100%;
-      display: inline-flex;
-      align-items: center;
-      padding: 0 0.5rem;
-      font-weight: 700;
-
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-
-    a + a {
-      margin-left: 1rem;
-    }
-
-    .github {
-      position: relative;
-      width: 2rem;
-      height: 2rem;
-      padding: 0;
-      margin-left: 1.5rem;
-    }
+  .github {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    margin: 0;
   }
 }
 
