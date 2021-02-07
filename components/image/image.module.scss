@@ -1,7 +1,26 @@
-.image {
+@import "../../styles/config";
+
+.figure {
   flex: 1 1 auto;
   max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.image {
   position: relative;
   border-radius: 0.25rem;
   overflow: hidden;
+}
+
+.alt {
+  @include themed('color', 'page-accent-fg');
+
+  text-align: center;
+  margin-top: 0.125rem;
+  font-size: 1.1rem;
+}
+
+.ratio {
+  visibility: none;
 }

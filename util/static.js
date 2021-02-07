@@ -1,8 +1,7 @@
-import renderToString from 'next-mdx-remote/render-to-string';
 import matter from 'gray-matter';
 import profile from '../data/profile.json';
 import {Octokit} from '@octokit/rest';
-import {components} from './markdown';
+import {renderToString} from './markdown';
 import {slug, readTime} from './';
 import {promises as fs} from 'fs';
 
@@ -58,14 +57,11 @@ export async function getPinnedRepositories() {
     );
 }
 
-export async function processMarkdownFile(filePath, renderOpts = {components}) {
+export async function processMarkdownFile(filePath) {
     const filename = filePath.split('/').pop();
     const rawMarkdown = await fs.readFile(filePath);
     const {content, data} = matter(rawMarkdown);
-    const source = await renderToString(content, {
-        ...renderOpts,
-        scope: data,
-    });
+    const source = await renderToString(content, {scope: data});
 
     return {
         ...data,
@@ -75,15 +71,11 @@ export async function processMarkdownFile(filePath, renderOpts = {components}) {
     };
 }
 
-export async function processMarkdownSlug(
-    dirPath,
-    urlSlug,
-    renderOpts = {components}
-) {
+export async function processMarkdownSlug(dirPath, urlSlug) {
     const filenames = await fs.readdir(dirPath);
     const found = filenames.find((filename) => slug(filename) === urlSlug);
 
-    return found ? processMarkdownFile(`${dirPath}/${found}`, renderOpts) : {};
+    return found ? processMarkdownFile(`${dirPath}/${found}`) : {};
 }
 
 export async function getMarkdownDirSlugs(dirPath) {
@@ -92,12 +84,12 @@ export async function getMarkdownDirSlugs(dirPath) {
     return filenames.map(slug);
 }
 
-export async function processMarkdownDir(dirPath, renderOpts = {components}) {
+export async function processMarkdownDir(dirPath) {
     const filenames = await fs.readdir(dirPath);
 
     return Promise.all(
         filenames.map((filename) =>
-            processMarkdownFile(`${dirPath}/${filename}`, renderOpts)
+            processMarkdownFile(`${dirPath}/${filename}`)
         )
     );
 }

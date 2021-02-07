@@ -1,13 +1,17 @@
 @use "sass:map";
+@use "sass:list";
 
 $vars: (
   'page-bg': #fff,
   'page-fg': #000,
   'page-accent-fg': #666,
+  'header-shadow': #ccc,
   'primary-bg': #651eea,
   'primary-fg': #ffffff,
   'inline-code-bg': #f1f1f1,
   'inline-code-fg': #444,
+  'kbd-bg': #fcfcfc,
+  'kbd-fg': #555,
   'addition-fg': #00852c,
   'deletion-fg': #d33947,
 );
@@ -18,11 +22,24 @@ $vars: (
   }
 }
 
-@mixin themed($property, $var) {
-  #{$property}: #{map.get($vars, $var)};
-  #{$property}: var(--#{$var});
-}
+@mixin themed($property, $args...) {
+  $length: list.length($args);
+  $var: list.nth($args, 1);
 
-@function ends-with($string, $find) {
-    @return str-length($string) >= str-length($find) AND str-slice($string, (str-length($string) - str-length($find) + 1)) == $find;
+  @if $length == 1 {
+    #{$property}: #{map.get($vars, $var)};
+    #{$property}: var(--#{$var});
+  } @else if $length > 1 {
+    $values: ();
+    $keys: ();
+
+    @for $idx from 2 through $length {
+      $arg: list.nth($args, $idx);
+      $values: list.append($values, map.get($vars, $arg));
+      $keys: list.append($keys, "var(--#{$arg})");
+    }
+
+    #{$property}: #{substitute($var, $values...)};
+    #{$property}: #{substitute($var, $keys...)};
+  }
 }

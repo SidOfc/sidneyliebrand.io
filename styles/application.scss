@@ -15,6 +15,7 @@ html {
 }
 
 body {
+  @include themed('color', 'page-fg');
   height: 100%;
   margin: 0;
   line-height: 1.4;
@@ -31,10 +32,57 @@ pre {
   border-radius: 0.25rem;
 }
 
+p {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+}
+
+pre {
+  font-size: 0.9rem;
+}
+
+kbd {
+  @include themed('background-color', 'kbd-bg');
+  @include themed('color', 'kbd-fg');
+  @include themed('box-shadow', '0px 1px $0', 'kbd-fg');
+  display: inline-block;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 1.6rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 0.6em;
+}
+
 p code {
   @include themed('background-color', 'inline-code-bg');
   @include themed('color', 'inline-code-fg');
-  padding: 0.25rem 0.4rem;
+  padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.8em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  font-family: sans-serif;
+  font-weight: 700;
+  margin: 2rem 0 0.25rem;
+  font-size: 2.5em;
+
+  & + p {
+    margin-top: 0.25rem;
+  }
+}
+
+blockquote {
+  @include themed('border-color', 'page-accent-fg');
+  @include themed('color', 'page-accent-fg');
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 2rem;
+  border: none;
+  border-left: 0.25rem solid;
+  font-style: italic;
 }

@@ -14,8 +14,8 @@ published:   "2018-08-31T22:41:19Z"
 So far I haven't been bothered too much by recruiters but every once in a while some moron decides to call me at work in the middle of the day.
 They probably don't even care about the fact that I'm already working happily and full-time at a company, they just call me up and say something like:
 
-> Hi Sidney! My name is [insert random name] and I want to talk to you!
- <br />&mdash; every recruiter ever
+> Hi Sidney! My name is [insert random name] and I want to talk to you!<br />
+  &mdash; every recruiter ever
 
 The first time I got a call like this, it came from the *company phone.*
 Someone had asked specifically for *my* help with a certain issue.

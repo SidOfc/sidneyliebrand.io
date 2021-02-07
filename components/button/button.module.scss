@@ -21,9 +21,8 @@
     left: 0;
     right: 0;
     opacity: 0;
-    transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.1s linear;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
   }
 
   &:hover::after {
