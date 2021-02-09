@@ -1,4 +1,7 @@
 node_modules
 .api-access-token
 .next
+public/sitemap.xml
+public/feed.xml
+public/atom.xml
 

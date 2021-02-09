@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "generate-metadata": "node scripts/generate-metadata.js"
     },
     "keywords": [],
     "author": "Sidney Liebrand",
@@ -14,10 +15,12 @@
     "dependencies": {
         "@octokit/rest": "^18.0.15",
         "gray-matter": "^4.0.2",
+        "html-entities": "^2.1.0",
         "next": "^10.0.6",
         "next-mdx-remote": "^2.1.3",
         "node-emoji": "^1.10.0",
         "prettier": "^2.2.1",
+        "prettify-xml": "^1.2.0",
         "prism-react-renderer": "^1.1.1",
         "prismjs": "^1.23.0",
         "react": "^17.0.1",
