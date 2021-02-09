@@ -13,6 +13,16 @@ const MONTHS = [
     'Dec',
 ];
 
+export function linkProps(href) {
+    const isExternal =
+        !href.match(/(?:https?:)(?:\/\/)?sidneyliebrand\.(?:io|next)/i) &&
+        !href.startsWith('/');
+
+    return isExternal
+        ? {href, target: '_blank', rel: 'noopener,noreferrer'}
+        : {};
+}
+
 export function supportsRegExpLookBehind() {
     try {
         new RegExp('(?<!x)yz');

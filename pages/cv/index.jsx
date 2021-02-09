@@ -5,7 +5,7 @@ import Bullet from '../../components/bullet';
 import profile from '../../data/profile.json';
 import Image from '../../components/image';
 import Link from 'next/link';
-import {dateFormat, dateDiff} from '../../util';
+import {dateFormat, dateDiff, linkProps} from '../../util';
 import {getPinnedRepositories} from '../../util/static';
 
 export default function Index({pinnedRepositories}) {
@@ -189,21 +189,7 @@ function Details({
     return (
         <div className={styles.details}>
             <h3 className={styles.title}>
-                {link ? (
-                    <a
-                        href={link}
-                        {...(link.startsWith('http')
-                            ? {
-                                  target: '_blank',
-                                  rel: 'noopener,noreferrer',
-                              }
-                            : {})}
-                    >
-                        {title}
-                    </a>
-                ) : (
-                    title
-                )}
+                {link ? <a {...linkProps(link)}>{title}</a> : title}
             </h3>
             {subtitle && (
                 <span
