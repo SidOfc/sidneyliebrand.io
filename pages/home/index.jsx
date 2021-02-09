@@ -31,7 +31,7 @@ export default function Index({posts}) {
                                 <h2>{title}</h2>
                                 <Text color="page-accent">
                                     By Sidney Liebrand on{' '}
-                                    {dateFormat(published)}
+                                    {dateFormat(published, {includeDay: true})}
                                     <Bullet />
                                     {readTimeInMinutes} min read
                                 </Text>
