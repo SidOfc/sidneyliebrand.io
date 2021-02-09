@@ -3,7 +3,7 @@ import {Container as Tags} from '../../components/tag';
 import Text from '../../components/text';
 import Bullet from '../../components/bullet';
 import profile from '../../data/profile.json';
-import Image from 'next/image';
+import Image from '../../components/image';
 import Link from 'next/link';
 import {dateFormat, dateDiff} from '../../util';
 import {getPinnedRepositories} from '../../util/static';
@@ -22,58 +22,52 @@ export default function Index({pinnedRepositories}) {
                     />
                 </div>
                 <div className={styles.column}>
-                    <Text as="h1" className={styles.bannerHeader}>
-                        {profile.name}
-                    </Text>
+                    <h1 className={styles.bannerHeader}>{profile.name}</h1>
                     <Text color="page-accent" className={styles.bannerSubtitle}>
                         {profile.title}
                     </Text>
                     <div className={styles.bannerDetails}>
-                        <Text>
-                            {profile.city}, {profile.country}
-                        </Text>
-                        <Text
-                            href="https://github.com/sidofc"
-                            title="Sidney Liebrand's GitHub page"
-                        >
-                            <Image
-                                src="/media/github.svg"
-                                width={16}
-                                height={16}
-                            />{' '}
-                            /sidofc
-                        </Text>
-                        <Text
-                            href="https://linkedin.com/in/sidneyliebrand"
-                            title="Sidney Liebrand's LinkedIn page"
-                        >
-                            <Image
-                                src="/media/linkedin.svg"
-                                width={16}
-                                height={16}
-                            />{' '}
-                            /sidneyliebrand
-                        </Text>
+                        <span>{`${profile.city}, ${profile.country}`}</span>
+                        <Link href="https://github.com/sidofc">
+                            <a>
+                                <Image
+                                    showAlt={false}
+                                    src="/media/github.svg"
+                                    alt="Sidney Liebrand's GitHub page"
+                                    width={16}
+                                    height={16}
+                                />{' '}
+                                /sidofc
+                            </a>
+                        </Link>
+                        <Link href="https://linkedin.com/in/sidneyliebrand">
+                            <a>
+                                <Image
+                                    showAlt={false}
+                                    src="/media/linkedin.svg"
+                                    alt="Sidney Liebrand's LinkedIn page"
+                                    width={16}
+                                    height={16}
+                                />{' '}
+                                /sidneyliebrand
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </section>
             <section className={styles.column}>
-                <Text as="h2" className={styles.h2}>
-                    Familiar technologies
-                </Text>
+                <h2 className={styles.h2}>Familiar technologies</h2>
                 <div className={styles.row}>
-                    <Text as="strong">Languages</Text>
+                    <strong>Programming languages</strong>
                     <Tags tags={programming.languages} />
                 </div>
                 <div className={styles.row}>
-                    <Text as="strong">Tools</Text>
+                    <strong>Tools</strong>
                     <Tags tags={programming.tools} />
                 </div>
             </section>
             <section className={styles.column}>
-                <Text as="h2" className={styles.h2}>
-                    Experience
-                </Text>
+                <h2 className={styles.h2}>Experience</h2>
                 {programming.jobs.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
@@ -91,9 +85,7 @@ export default function Index({pinnedRepositories}) {
                 ))}
             </section>
             <section className={styles.column}>
-                <Text as="h2" className={styles.h2}>
-                    Education
-                </Text>
+                <h2 className={styles.h2}>Education</h2>
                 {education.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
@@ -111,18 +103,15 @@ export default function Index({pinnedRepositories}) {
                 ))}
             </section>
             <section className={styles.column}>
-                <Text as="h2" className={styles.h2}>
-                    Volunteering
-                </Text>
+                <h2 className={styles.h2}>Volunteering</h2>
                 <div className={styles.volunteering}>
                     {volunteering.map((item) => (
                         <div key={item.start} className={styles.volunteer}>
-                            <Text as="strong" className={styles.title}>
+                            <strong className={styles.title}>
                                 {item.title} at {item.organisation}
-                            </Text>
-                            <Text>
-                                {item.city}
-                                <br />
+                            </strong>
+                            <span>{item.city}</span>
+                            <span>
                                 {dateFormat(item.start, {
                                     day: true,
                                     fallback: 'Unknown',
@@ -132,18 +121,16 @@ export default function Index({pinnedRepositories}) {
                                     day: true,
                                     fallback: 'Present',
                                 })}
-                            </Text>
+                            </span>
                             {item.link && (
-                                <Text href={item.link}>View event</Text>
+                                <Link href={item.link}>View event</Link>
                             )}
                         </div>
                     ))}
                 </div>
             </section>
             <section className={styles.column}>
-                <Text as="h2" className={styles.h2}>
-                    Open source projects
-                </Text>
+                <h2 className={styles.h2}>Open source projects</h2>
                 {pinnedRepositories.map((item) => (
                     <div key={item.name} className={styles.block}>
                         <Details
@@ -162,19 +149,14 @@ export default function Index({pinnedRepositories}) {
                                         {item.stats.deletions}--
                                     </Text>
                                     <Bullet wide />
-                                    <Text>
-                                        {item.stats.commits} commits,
-                                        {item.pushedAt && (
-                                            <>
-                                                {' '}
-                                                last commit on{' '}
-                                                {dateFormat(
-                                                    item.pushedAt,
-                                                    true
-                                                )}
-                                            </>
-                                        )}
-                                    </Text>
+                                    {item.stats.commits} commits,
+                                    {item.pushedAt && (
+                                        <>
+                                            {' '}
+                                            last commit on{' '}
+                                            {dateFormat(item.pushedAt, true)}
+                                        </>
+                                    )}
                                 </span>
                             }
                         />
@@ -188,13 +170,7 @@ export default function Index({pinnedRepositories}) {
 function Title({title, link, as: Component = 'h3', ...props}) {
     return (
         <Component {...props} title={title}>
-            {link ? (
-                <a href={link} target="_blank" rel="noopener,noreferrer">
-                    {title}
-                </a>
-            ) : (
-                title
-            )}
+            {link ? <Link href={link}>{title}</Link> : title}
         </Component>
     );
 }
@@ -212,25 +188,39 @@ function Details({
 }) {
     return (
         <div className={styles.details}>
-            <Text as="h3" href={link} className={styles.title}>
-                {title}
-            </Text>
+            <h3 className={styles.title}>
+                {link ? (
+                    <a
+                        href={link}
+                        {...(link.startsWith('http')
+                            ? {
+                                  target: '_blank',
+                                  rel: 'noopener,noreferrer',
+                              }
+                            : {})}
+                    >
+                        {title}
+                    </a>
+                ) : (
+                    title
+                )}
+            </h3>
             {subtitle && (
-                <Text
+                <span
                     className={styles.subtitle}
                     dangerouslySetInnerHTML={{__html: subtitle}}
                 />
             )}
-            <Text className={styles.dates}>
+            <span className={styles.dates}>
                 {dateFormat(start, {fallback: 'Unknown'})}
                 &nbsp;-&nbsp;
                 {dateFormat(end, {fallback: 'Present'})}{' '}
                 <Text color="page-accent">({dateDiff(start, end)})</Text>
-            </Text>
+            </span>
             {customData}
             {tags && <Tags tags={tags} />}
             {description && (
-                <Text as="p" dangerouslySetInnerHTML={{__html: description}} />
+                <p dangerouslySetInnerHTML={{__html: description}} />
             )}
         </div>
     );

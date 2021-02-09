@@ -28,15 +28,14 @@ export default function Index({posts}) {
                     }) => (
                         <Link key={title} href={`/blog/${slug}`}>
                             <a title={title} className={styles.blogEntry}>
-                                <Text as="h2">{title}</Text>
+                                <h2>{title}</h2>
                                 <Text color="page-accent">
                                     By Sidney Liebrand on{' '}
                                     {dateFormat(published)}
                                     <Bullet />
                                     {readTimeInMinutes} min read
                                 </Text>
-                                <Text
-                                    as="p"
+                                <p
                                     dangerouslySetInnerHTML={{
                                         __html: description,
                                     }}

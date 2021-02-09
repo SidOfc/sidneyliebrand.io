@@ -125,7 +125,7 @@
 
 .bannerLogo {
   display: flex;
-  flex: 0 1 auto;
+  flex: 0 1 8.75rem;
   width: auto;
   margin-right: 1rem;
   border-radius: 0.25rem;
@@ -150,5 +150,11 @@
 
   a * {
     vertical-align: middle;
+  }
+
+  figure {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
   }
 }
