@@ -1,6 +1,6 @@
 ---
 title:       'Fixing audio configuration after upgrading Ubuntu'
-description: 'In this TIL: fixing some audio decifiencies in Ubuntu after upgrading'
+description: 'It is never fun when stuff breaks! This post is about me fixing some audio deficiencies after upgrading Ubuntu.'
 published:   '2020-05-20T00:13:37Z'
 ---
 
@@ -29,3 +29,7 @@ and commenting out `load-module module-switch-on-connect` like this:
 ~~~ini
 # load-module module-switch-on-connect
 ~~~
+
+Until next time :)
+
+:wave:

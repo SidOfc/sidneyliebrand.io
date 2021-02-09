@@ -19,9 +19,6 @@ export default function Layout({children}) {
                             </a>
                         </Link>
                         <nav className={styles.navigation}>
-                            <Link href="/til">
-                                <a title="Things I learned">TIL</a>
-                            </Link>
                             <Link href="/cv">
                                 <a title="Curriculum Vitae">C.V.</a>
                             </Link>

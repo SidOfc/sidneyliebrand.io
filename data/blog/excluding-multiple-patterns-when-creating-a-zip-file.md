@@ -1,6 +1,6 @@
 ---
 title:       'Excluding multiple patterns when creating a zip file'
-description: 'In this TIL: creating a zip file using multiple excludes'
+description: 'A short post about creating a zip archive using multiple excludes.'
 published:   '2018-06-06T00:00:00Z'
 ---
 
@@ -16,3 +16,7 @@ zip -r mkdx.zip mkdx -x "*git*" -x "*.gif" -x "*test*"
 ~~~
 
 This recursively adds files while excluding any git, gif, or test files / directories.
+
+Until next time :)
+
+:wave:
