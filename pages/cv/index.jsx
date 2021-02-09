@@ -59,11 +59,11 @@ export default function Index({pinnedRepositories}) {
                 <h2 className={styles.h2}>Familiar technologies</h2>
                 <div className={styles.row}>
                     <strong>Programming languages</strong>
-                    <Tags tags={programming.languages} />
+                    <Tags tags={programming.languages.sort()} />
                 </div>
                 <div className={styles.row}>
                     <strong>Tools</strong>
-                    <Tags tags={programming.tools} />
+                    <Tags tags={programming.tools.sort()} />
                 </div>
             </section>
             <section className={styles.column}>
@@ -204,7 +204,7 @@ function Details({
                 <Text color="page-accent">({dateDiff(start, end)})</Text>
             </span>
             {customData}
-            {tags && <Tags tags={tags} />}
+            {tags && <Tags tags={tags.sort()} />}
             {description && (
                 <p dangerouslySetInnerHTML={{__html: description}} />
             )}

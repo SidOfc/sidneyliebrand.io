@@ -32,6 +32,7 @@
             "rollup",
             "webpack",
             "react",
+            "next.js",
             "css-modules",
             "styled-components",
             "i18next",
@@ -41,7 +42,8 @@
             "sass",
             "flow",
             "jekyll",
-            "postcss"
+            "postcss",
+            "pug"
         ],
         "jobs": [
             {
@@ -67,7 +69,10 @@
                     "ruby-on-rails",
                     "react",
                     "jekyll",
-                    "postcss"
+                    "postcss",
+                    "pug",
+                    "i18next",
+                    "styled-components"
                 ]
             },
             {
