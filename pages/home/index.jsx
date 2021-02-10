@@ -1,21 +1,23 @@
 import styles from './home.module.scss';
+import Head from '../../components/head';
 import Bullet from '../../components/bullet';
 import Button from '../../components/button';
 import Banner from '../../components/banner';
 import Text from '../../components/text';
 import Link from 'next/link';
-import {processMarkdownDir} from '../../util/static';
+import {processMarkdownDir, getPageData} from '../../util/static';
 import {dateFormat, readTime} from '../../util';
 
-export default function Index({posts}) {
+export default function Index({title, description, posts}) {
     return (
         <>
+            <Head title={title} description={description} />
             <Banner
                 src="/media/avatar.jpg"
                 width={280}
                 height={280}
-                title="Welcome to my digital home!"
-                description="My name is Sidney Liebrand. I am a Dutch front-end developer working with React and Ruby on Rails at Floorplanner in Rotterdam. This is the place where I publish new blog posts and perhaps a tool or two in the future."
+                title={title}
+                description={description}
             />
             <section className={styles.blogEntries}>
                 {posts.map(
@@ -53,10 +55,13 @@ export default function Index({posts}) {
 }
 
 export async function getStaticProps() {
+    const {title, description} = getPageData('/');
     const posts = await processMarkdownDir('data/blog');
 
     return {
         props: {
+            title,
+            description,
             posts: posts
                 .filter((p) => p.published)
                 .sort((a, b) => new Date(b.published) - new Date(a.published)),

@@ -10,6 +10,9 @@
   position: relative;
   border-radius: 0.25rem;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .alt {
@@ -18,8 +21,4 @@
   text-align: center;
   margin-top: 0.125rem;
   font-size: 1.1rem;
-}
-
-.ratio {
-  visibility: none;
 }

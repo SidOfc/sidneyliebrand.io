@@ -1,7 +1,6 @@
 import {forwardRef} from 'react';
 import styles from './image.module.scss';
 import {classes} from '../../util';
-import NextImage from 'next/image';
 
 export default forwardRef(
     ({src, width, height, className, alt, showAlt = true}, ref) => {
@@ -10,13 +9,14 @@ export default forwardRef(
 
         return (
             <figure className={classes(className, styles.figure)} ref={ref}>
-                <div className={styles.image}>
-                    {src && <NextImage src={src} alt={alt} layout="fill" />}
-                    <div
-                        className={styles.ratio}
-                        style={{paddingBottom: `${(h / w) * 100}%`}}
-                    />
-                </div>
+                <div
+                    className={styles.image}
+                    title={alt}
+                    style={{
+                        backgroundImage: `url(${src})`,
+                        paddingBottom: `${(h / w) * 100}%`,
+                    }}
+                />
                 {alt && showAlt && (
                     <figcaption className={styles.alt}>{alt}</figcaption>
                 )}

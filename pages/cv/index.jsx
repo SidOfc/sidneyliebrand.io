@@ -2,17 +2,19 @@ import styles from './cv.module.scss';
 import {Container as Tags} from '../../components/tag';
 import Text from '../../components/text';
 import Bullet from '../../components/bullet';
-import profile from '../../data/profile.json';
+import {profile} from '../../data/content.json';
 import Image from '../../components/image';
+import Head from '../../components/head';
 import Link from 'next/link';
+import {getPinnedRepositories, getPageData} from '../../util/static';
 import {dateFormat, dateDiff, linkProps} from '../../util';
-import {getPinnedRepositories} from '../../util/static';
 
-export default function Index({pinnedRepositories}) {
+export default function Index({title, description, pinnedRepositories}) {
     const {programming, education, volunteering} = profile;
 
     return (
         <>
+            <Head title={title} description={description} />
             <section className={styles.banner}>
                 <div className={styles.bannerLogo}>
                     <Image
@@ -213,9 +215,10 @@ function Details({
 }
 
 export async function getStaticProps() {
+    const {title, description} = getPageData('/cv');
     const pinnedRepositories = await getPinnedRepositories();
 
     return {
-        props: {pinnedRepositories},
+        props: {title, description, pinnedRepositories},
     };
 }

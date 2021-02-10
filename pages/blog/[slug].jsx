@@ -1,9 +1,15 @@
 import Post from '../../components/post';
+import Head from '../../components/head';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
 import '../../util/prism';
 
 export default function Blog(props) {
-    return <Post {...props} />;
+    return (
+        <>
+            <Head title={props.title} description={props.description} />
+            <Post {...props} />
+        </>
+    );
 }
 
 export async function getStaticProps(context) {

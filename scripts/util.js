@@ -1,7 +1,6 @@
 const {promises: fs, readFileSync} = require('fs');
 const matter = require('gray-matter');
-const {host, pages} = require('../data/seo.json');
-const profile = require('../data/profile.json');
+const {host, pages, profile} = require('../data/content.json');
 const xml = require('prettify-xml');
 const {encode: htmlentities} = require('html-entities');
 

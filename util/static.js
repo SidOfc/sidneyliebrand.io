@@ -1,9 +1,13 @@
 import matter from 'gray-matter';
-import profile from '../data/profile.json';
+import {profile, pages} from '../data/content.json';
 import {Octokit} from '@octokit/rest';
 import {renderToString} from './markdown';
 import {slug, readTime} from './';
 import {promises as fs} from 'fs';
+
+export function getPageData(path) {
+    return pages.find((page) => page.path.endsWith(path));
+}
 
 export async function getPinnedRepositories() {
     const auth = (await fs.readFile('.api-access-token')).toString();
