@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build && npm run generate-metadata next export",
+        "build": "next build && npm run generate-metadata && next export",
         "start": "next start",
         "generate-metadata": "node scripts/generate-metadata.js"
     },
@@ -13,6 +13,7 @@
     "author": "Sidney Liebrand",
     "license": "MIT",
     "dependencies": {
+        "@next/bundle-analyzer": "^10.0.6",
         "@octokit/rest": "^18.0.15",
         "gray-matter": "^4.0.2",
         "html-entities": "^2.1.0",

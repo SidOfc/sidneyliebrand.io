@@ -2,7 +2,7 @@ import styles from './post.module.scss';
 import Text from '../text';
 import Bullet from '../bullet';
 import {dateFormat} from '../../util';
-import {hydrate} from '../../util/markdown';
+import {hydrate} from '../../util/mdx';
 
 export default function Post({title, published, readTimeInMinutes, source}) {
     const content = hydrate(source);

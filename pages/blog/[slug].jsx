@@ -1,7 +1,6 @@
 import Post from '../../components/post';
 import Head from '../../components/head';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
-import '../../util/prism';
 
 export default function Blog(props) {
     return (

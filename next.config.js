@@ -1,6 +1,9 @@
 const {types} = require('sass');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE ? true : false,
+});
 
-module.exports = {
+module.exports = withBundleAnalyzer({
     webpack(config, {isServer}) {
         // https://coderberry.com/posts/mdx_next
         // fixes import [module] from [node_lib] errors
@@ -49,4 +52,4 @@ module.exports = {
             },
         },
     },
-};
+});

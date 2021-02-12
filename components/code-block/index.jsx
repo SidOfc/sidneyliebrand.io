@@ -1,4 +1,5 @@
 import Highlight, {defaultProps} from 'prism-react-renderer';
+import '../../util/prism';
 
 const THEME = {
     plain: JSON.parse(JSON.stringify(defaultProps.theme.plain)),
@@ -9,6 +10,11 @@ THEME.styles.push({
     language: 'bash',
     style: {color: '#fa60c3'},
     types: ['function'],
+});
+
+THEME.styles.push({
+    style: {color: '#9390a1'},
+    types: ['comment'],
 });
 
 export default function CodeBlock({className, children}) {
