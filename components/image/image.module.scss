@@ -1,5 +1,15 @@
 @import "../../styles/config";
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .figure {
   flex: 1 1 auto;
   max-width: 100%;
@@ -13,6 +23,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  animation: fade-in ease-in-out 0.5s;
 }
 
 .alt {

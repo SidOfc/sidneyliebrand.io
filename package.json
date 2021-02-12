@@ -26,6 +26,7 @@
         "prismjs": "^1.23.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-lazyload": "^3.2.0",
         "sass": "^1.32.5"
     },
     "prettier": {
