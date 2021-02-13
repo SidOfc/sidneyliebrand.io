@@ -29,7 +29,7 @@ export default forwardRef(
                 >
                     <div className={styles.relative} style={{paddingBottom}}>
                         {src.match(/\.\w+$/) ? (
-                            <img className={styles.media} src={src} />
+                            <img className={styles.media} src={src} alt={alt} />
                         ) : (
                             <video
                                 className={styles.media}
