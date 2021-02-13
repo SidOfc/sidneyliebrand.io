@@ -28,6 +28,7 @@ export default function Layout({children}) {
                                         className={styles.github}
                                         src="/media/github.svg"
                                         alt="Sidney Liebrand's GitHub page"
+                                        showAlt={false}
                                         width={16}
                                         height={16}
                                     />
