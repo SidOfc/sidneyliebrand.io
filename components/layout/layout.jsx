@@ -27,6 +27,7 @@ export default function Layout({children}) {
                                     <Media
                                         className={styles.github}
                                         src="/media/github.svg"
+                                        alt="Sidney Liebrand's GitHub page"
                                         width={16}
                                         height={16}
                                     />
