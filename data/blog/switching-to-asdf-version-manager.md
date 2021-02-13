@@ -4,7 +4,7 @@ description: "Depending on how many languages you program in, getting all their 
 published:   "2017-08-15T21:04:44Z"
 ---
 
-<Image
+<Media
     src="/media/posts/asdfmovie-banner.svg"
     alt="asdfmovie quote from youtube"
     width="356"

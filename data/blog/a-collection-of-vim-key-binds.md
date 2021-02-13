@@ -4,7 +4,7 @@ description: "In my never ending quest for an optimal Vim setup I am always look
 published:   "2017-09-16T13:11:03Z"
 ---
 
-<Image
+<Media
     src="/media/posts/vimrc-movement-key-binds.png"
     alt="A screenshot of my vimrc movement key bindings"
     width="900"

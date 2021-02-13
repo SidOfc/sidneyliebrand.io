@@ -8,7 +8,7 @@ Lately I've been getting more and more annoyed by the way Medium decides to do t
 Some time ago they decided to [make everything premium](https://medium.com/membership), so after reading 5 stories you'd be greeted
 with something like:
 
-<Image
+<Media
     src="/media/posts/reader-paywall.jpg"
     alt="The reader paywall message on medium that appears after 5 posts"
     width="1448"
@@ -25,7 +25,7 @@ like. All without asking for a single penny.
 Medium however, does not care about anything that is "free" or "open" at all. Seeing as every time I
 open one of my stories on Medium, the following message appears at the top:
 
-<Image
+<Media
     src="/media/posts/metered-paywall.png"
     alt="The metered paywall message on medium"
     width="872"
@@ -37,8 +37,8 @@ open one of my stories on Medium, the following message appears at the top:
 At first, I tried to close the popup. But of course, I should have known that it would not be that simple,
 seeing as they are trying to get me to make my stories paid so they can benefit too.
 
-<Image
-    src="/media/posts/metered-paywall-never-closing.gif"
+<Media
+    src="/media/posts/metered-paywall-never-closing"
     alt="Re-appearing message across page reloads"
     width="1531"
     height="482"

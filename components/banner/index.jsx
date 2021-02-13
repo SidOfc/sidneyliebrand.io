@@ -1,10 +1,10 @@
 import styles from './banner.module.scss';
-import Image from '../image';
+import Media from '../media';
 
 export default function Banner({src, width, height, title, description}) {
     return (
         <section className={styles.banner}>
-            <Image
+            <Media
                 src={src}
                 width={width}
                 height={height}

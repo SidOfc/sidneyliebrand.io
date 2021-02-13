@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from '../image';
+import Media from '../media';
 import Text from '../text';
 import styles from './layout.module.scss';
 
@@ -24,7 +24,7 @@ export default function Layout({children}) {
                             </Link>
                             <Link href="https://github.com/sidofc">
                                 <a title="Sidney Liebrand's GitHub page">
-                                    <Image
+                                    <Media
                                         className={styles.github}
                                         src="/media/github.svg"
                                         width={16}

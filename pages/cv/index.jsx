@@ -3,7 +3,7 @@ import {Container as Tags} from '../../components/tag';
 import Text from '../../components/text';
 import Bullet from '../../components/bullet';
 import {profile} from '../../data/content.json';
-import Image from '../../components/image';
+import Media from '../../components/media';
 import Head from '../../components/head';
 import Link from 'next/link';
 import {getPinnedRepositories, getPageData} from '../../util/static';
@@ -17,7 +17,7 @@ export default function Index({title, description, pinnedRepositories}) {
             <Head title={title} description={description} />
             <section className={styles.banner}>
                 <div className={styles.bannerLogo}>
-                    <Image
+                    <Media
                         src="/media/cv-portrait.jpg"
                         width={140}
                         height={210}
@@ -32,7 +32,7 @@ export default function Index({title, description, pinnedRepositories}) {
                         <span>{`${profile.city}, ${profile.country}`}</span>
                         <Link href="https://github.com/sidofc">
                             <a>
-                                <Image
+                                <Media
                                     showAlt={false}
                                     src="/media/github.svg"
                                     alt="Sidney Liebrand's GitHub page"
@@ -44,7 +44,7 @@ export default function Index({title, description, pinnedRepositories}) {
                         </Link>
                         <Link href="https://linkedin.com/in/sidneyliebrand">
                             <a>
-                                <Image
+                                <Media
                                     showAlt={false}
                                     src="/media/linkedin.svg"
                                     alt="Sidney Liebrand's LinkedIn page"
@@ -73,7 +73,7 @@ export default function Index({title, description, pinnedRepositories}) {
                 {programming.jobs.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
-                            <Image
+                            <Media
                                 src={`/media/${item.logo.url}`}
                                 width={item.logo.width}
                                 height={item.logo.height}
@@ -91,7 +91,7 @@ export default function Index({title, description, pinnedRepositories}) {
                 {education.map((item) => (
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
-                            <Image
+                            <Media
                                 src={`/media/${item.logo.url}`}
                                 width={item.logo.width}
                                 height={item.logo.height}

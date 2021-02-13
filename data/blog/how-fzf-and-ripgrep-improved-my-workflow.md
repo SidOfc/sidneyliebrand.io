@@ -17,8 +17,8 @@ FZF is a fuzzy finder for your terminal, it is a command line application that
 filters each line from given input with a query that the user types.
 When the query changes, the results update in realtime.
 
-<Image
-    src="/media/posts/fzf-ls-example.gif"
+<Media
+    src="/media/posts/fzf-ls-example"
     alt="FZF + LS example"
     width="768"
     height="180"
@@ -28,8 +28,8 @@ After finding the file you're looking for, hitting <kbd>enter</kbd> prints the h
 entry. You can combine this with your `$EDITOR` variable to search for a file and then edit
 it for example.
 
-<Image
-    src="/media/posts/open-changelog-neovim.gif"
+<Media
+    src="/media/posts/open-changelog-neovim"
     alt="Open CHANGELOG.md in NeoVim"
     width="768"
     height="180"
@@ -45,8 +45,8 @@ As it already says in the name, it is another `grep` program. Ripgrep is written
 in rust and one of its primary goals is to be the *fastest* `grep` of them all.
 It performs amazing even in a larger code base.
 
-<Image
-    src="/media/posts/rg-ls-fzf.gif"
+<Media
+    src="/media/posts/rg-ls-fzf"
     alt="Ripgrep list files with FZF"
     width="768"
     height="180"
@@ -103,8 +103,8 @@ To make this easier, I wrote a small wrapper (first in [zsh](https://github.com/
 later migrated to [fish](https://github.com/SidOfc/dotfiles/blob/e94b96b908479950186e42a3709511a0afe300e4/.config/fish/functions/kp.fish)) called `kp`.
 It lists processes using `ps -ef` and pipes it to `fzf`.
 
-<Image
-    src="/media/posts/kill-with-kp.gif"
+<Media
+    src="/media/posts/kill-with-kp"
     alt="Killing processes using kp"
     width="768"
     height="180"
@@ -141,8 +141,8 @@ another for updating and one for deleting brew packages:
 Whenever I have to do anything with brew, it is completely painless and it
 works quite well for package discovery too.
 
-<Image
-    src="/media/posts/bip-interface.gif"
+<Media
+    src="/media/posts/bip-interface"
     alt="Brew Install Plugin interface"
     width="768"
     height="180"
@@ -159,8 +159,8 @@ and slowness in your terminal.
 My solution to this is a simple path explorer called `fp` ([zsh](https://github.com/SidOfc/dotfiles/blob/d07fa3862ed065c2a5a7f1160ae98416bfe2e1ee/zsh/fp), [fish](https://github.com/SidOfc/dotfiles/blob/e94b96b908479950186e42a3709511a0afe300e4/.config/fish/functions/fp.fish)).
 It invokes FZF with a list of folders populated using `$PATH`.
 
-<Image
-    src="/media/posts/dirs-in-path.gif"
+<Media
+    src="/media/posts/dirs-in-path"
     alt="Directories present in $PATH"
     width="768"
     height="180"
@@ -179,8 +179,8 @@ Additionally, I've written a post before on how to [combine Caniuse with FZF](/b
 It allows me to quickly find out wether I should stay away from some Web API or not.
 this small tool also allows me to query features that have been added or deprecated recently.
 
-<Image
-    src="/media/posts/checking-caniuse.gif"
+<Media
+    src="/media/posts/checking-caniuse"
     alt="An example of looking for features using cani"
     width="768"
     height="180"
@@ -220,8 +220,8 @@ The solution was to use the `:Files` command provided by FZF.vim. This lists fil
 using your `$FZF_DEFAULT_COMMAND` environment variable. It opens the currently
 highlighted file on <kbd>enter</kbd>.
 
-<Image
-    src="/media/posts/fzf-files-demo.gif"
+<Media
+    src="/media/posts/fzf-files-demo"
     alt="FZF :Files demo"
     width="1049"
     height="714"
@@ -247,8 +247,8 @@ inside the directory are listed (except those ignored in a `~/.rgignore` file).
 Last but not least I wanted to find files based on what was inside of a file.
 This is useful to see where a class or function is used for example.
 
-<Image
-    src="/media/posts/fzf-rg-demo.gif"
+<Media
+    src="/media/posts/fzf-rg-demo"
     alt="FZF :Rg demo"
     width="1049"
     height="714"

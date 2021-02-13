@@ -14,7 +14,7 @@ to customize it to look and function however they want. Before getting to my lig
 configuration (and after that, my own implementation) however,
 I want to show (or remind) you how Vim's statusline looks out of the box:
 
-<Image
+<Media
     src="/media/posts/vim-default-statusline.png"
     alt="default vim statusline"
     width="1924"
@@ -27,7 +27,7 @@ day I haven't really looked into what that means). Aside from that, the
 statusline shows when the file has been modified with a `[+]` marker
 after the filename:
 
-<Image
+<Media
     src="/media/posts/vim-default-statusline-modified.png"
     alt="default vim statusline with modified flag"
     width="1924"
@@ -36,7 +36,7 @@ after the filename:
 
 And finally, it will also show when a file is readonly with a `[RO]` marker:
 
-<Image
+<Media
     src="/media/posts/vim-default-statusline-readonly.png"
     alt="default vim statusline with read-only flag"
     width="1924"
@@ -54,8 +54,8 @@ I was a few years ago. I wanted it to do things it did not do out of the box
 such as showing a different color in each mode and replacing the bulky
 `[+]` and `[RO]` markers with something "cleaner". This is how I made mine look:
 
-<Image
-    src="/media/posts/vim-colored-statusline.gif"
+<Media
+    src="/media/posts/vim-colored-statusline"
     alt="lightline.vim statusline colors"
     width="1922"
     height="82"
@@ -70,7 +70,7 @@ the line and column numbers are now shown on the right and "All" is gone.
 I also mentioned that I wanted to replace the markers with something a bit
 cleaner, this is what I came up with:
 
-<Image
+<Media
     src="/media/posts/vim-statusline-lightline-modified.png"
     alt="lightline.vim statusline with modified flag"
     width="1924"
@@ -281,8 +281,8 @@ need that anymore since I'm using my own file explorer :thinking:
 Aside from that it shows more colors than the three mentioned above, here's all
 of them in a short gif:
 
-<Image
-    src="/media/posts/vim-colored-statusline-all.gif"
+<Media
+    src="/media/posts/vim-colored-statusline-all"
     alt="custom statusline showing all colors"
     width="1922"
     height="82"

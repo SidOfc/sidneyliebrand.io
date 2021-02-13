@@ -9,7 +9,7 @@ for pointing to the base 60 parsing 'feature' in the [`docker-compose`](https://
 It led to me finding another great resource and added it along with some new content
 to this post.
 
-<Image
+<Media
     src="/media/posts/yaml-homepage.png"
     alt="yaml.org homepage"
     width="900"

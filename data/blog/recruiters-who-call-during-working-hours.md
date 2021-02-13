@@ -4,7 +4,7 @@ description: "Any kind of cold-call from some random recruiter or sales rep is a
 published:   "2018-08-31T22:41:19Z"
 ---
 
-<Image
+<Media
     src="/media/posts/recruiter-table-flip.svg"
     alt="person flipping a table"
     width="800"

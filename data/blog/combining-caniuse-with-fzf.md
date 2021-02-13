@@ -48,7 +48,7 @@ and the file will be no older than a day at worst. For brevity I did not include
 Ruby script but it can be [found here](https://github.com/SidOfc/dotfiles/blob/653c0331b3bd8a3b6fb5fbff0531f038e7eb5b12/bin/ciu) in my [dotfiles repo](https://github.com/SidOfc/dotfiles).
 Combining it with FZF yielded the following result:
 
-<Image
+<Media
     src="/media/posts/caniuse-fzf-ie-last-version-features.png"
     alt="Caniuse fzf: IE features supported since last version"
     width="900"
@@ -71,7 +71,7 @@ to search for this as a single word rather than 4 single characters.
 
 I can also search for all the `[wd]` features, like this:
 
-<Image
+<Media
     src="/media/posts/caniuse-search-wd-feature.png"
     alt="Searching for working draft CSS features"
     width="900"
@@ -103,7 +103,7 @@ cani() {
 
 This will take your selected features from FZF:
 
-<Image
+<Media
     src="/media/posts/caniuse-select-multiple-features.png"
     alt="Selecting multiple feature entries"
     width="900"
@@ -112,7 +112,7 @@ This will take your selected features from FZF:
 
 then it tries to select the title and run each selected feature title through the `caniuse` command:
 
-<Image
+<Media
     src="/media/posts/caniuse-cmd-output.png"
     alt="Output entry results using caniuse-cmd package"
     width="900"

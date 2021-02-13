@@ -16,20 +16,25 @@
   margin: 0;
 }
 
-.image {
+.relative {
   position: relative;
+}
+
+.media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-width: 100%;
+  animation: fade-in ease-in-out 0.5s;
   border-radius: 0.25rem;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: fade-in ease-in-out 0.5s;
 }
 
 .alt {
   @include themed('color', 'page-accent-fg');
-
+  line-height: 1.5;
   text-align: center;
-  margin-top: 0.125rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
