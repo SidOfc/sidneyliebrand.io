@@ -22,11 +22,7 @@ export default forwardRef(
 
         return (
             <figure className={classes(className, styles.figure)} ref={ref}>
-                <LazyLoad
-                    offset={200}
-                    placeholder={<div style={{paddingBottom}} />}
-                    once
-                >
+                <LazyLoad placeholder={<div style={{paddingBottom}} />} once>
                     <div className={styles.relative} style={{paddingBottom}}>
                         {src.match(/\.\w+$/) ? (
                             <img className={styles.media} src={src} alt={alt} />
