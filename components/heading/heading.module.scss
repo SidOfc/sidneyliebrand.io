@@ -1,0 +1,17 @@
+@import "../../styles/config";
+
+.container {
+  cursor: pointer;
+}
+
+.anchor {
+  position: relative;
+  visibility: hidden;
+  top: -4.125rem;
+}
+
+.link {
+  @include themed('color', 'page-fg');
+  display: block;
+  width: 100%;
+}

@@ -42,6 +42,7 @@ export function slug(str) {
     return str
         .replace(/\.\w+$/g, '')
         .replace(/\W+/g, ' ')
+        .trim()
         .replace(/\s+/g, '-')
         .toLowerCase();
 }

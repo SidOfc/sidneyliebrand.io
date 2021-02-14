@@ -173,7 +173,7 @@ Either find what you're looking for or go back.
 Going back to the overview is as easy as pressing <kbd>escape</kbd>. This will take you back to
 the directory listing. Pressing <kbd>escape</kbd> in the overview will exit the command completely.
 
-## Checking features on [caniuse.com](http://caniuse.com)
+## Checking features on caniuse.com
 
 Additionally, I've written a post before on how to [combine Caniuse with FZF](/blog/combining-caniuse-with-fzf).
 It allows me to quickly find out wether I should stay away from some Web API or not.
@@ -206,9 +206,9 @@ that offer file searching using fuzzy matching or [MRU](https://en.wikipedia.org
 I used CtrlP which always managed to do the job. But after playing around with FZF
 in the terminal I wondered if it could be applied to Vim as well.
 
-## [FZF.vim](https://github.com/junegunn/fzf.vim)
+## FZF.vim
 
-FZF has a small builtin Vim interface that already works, but it comes without
+[FZF](https://github.com/junegunn/fzf.vim) has a small builtin Vim interface that already works, but it comes without
 any existing functionality. The author of FZF also wrote this plugin.
 It is a small wrapper that provides common functionality. This includes listing files,
 buffers, tags, git logs and much more!
