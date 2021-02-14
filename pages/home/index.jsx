@@ -42,7 +42,10 @@ export default function Index({title, description, posts}) {
                                         __html: description,
                                     }}
                                 />
-                                <Button className={styles.blogEntryButton}>
+                                <Button
+                                    tabIndex={-1}
+                                    className={styles.blogEntryButton}
+                                >
                                     View post
                                 </Button>
                             </a>

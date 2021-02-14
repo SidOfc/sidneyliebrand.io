@@ -1,6 +1,7 @@
 import NextHead from 'next/head';
 import {useRouter} from 'next/router';
 import {host, profile} from '@data/content';
+import sassVars from '@data/sass-variables';
 
 export default function Head({title, description}) {
     const {asPath} = useRouter();
@@ -50,7 +51,10 @@ export default function Head({title, description}) {
                 name="viewport"
                 content="width=device-width, initial-scale=1.0"
             />
-            <meta name="theme-color" content="#651eea" />
+            <meta
+                name="theme-color"
+                content={sassVars['primary-bg'] || '#000'}
+            />
             <meta name="robots" content="index, follow" />
             <meta name="author" content={profile.name} />
             <meta name="description" content={description} />

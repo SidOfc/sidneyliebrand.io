@@ -109,3 +109,9 @@ blockquote {
   font-family: serif;
   font-style: italic;
 }
+
+*:focus {
+  @include themed('box-shadow', '0 0 0 0.15rem $0', 'primary-bg');
+  border-radius: 0.25rem;
+  outline: none;
+}

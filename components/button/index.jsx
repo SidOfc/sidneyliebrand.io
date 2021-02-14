@@ -1,9 +1,12 @@
 import styles from './button.module.scss';
 import {classes} from '@src/util';
 
-export default function Button({className, children}) {
+export default function Button({className, children, tabIndex = 0}) {
     return (
-        <button className={classes(className, styles.button)}>
+        <button
+            tabIndex={tabIndex}
+            className={classes(className, styles.button)}
+        >
             {children}
         </button>
     );

@@ -2,6 +2,7 @@ const {types} = require('sass');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE ? true : false,
 });
+const sassVars = require('./data/sass-variables.json');
 
 module.exports = withBundleAnalyzer({
     webpack(config, {isServer}) {
@@ -18,6 +19,11 @@ module.exports = withBundleAnalyzer({
         return config;
     },
     sassOptions: {
+        prependData: `$vars: (
+            ${Object.entries(sassVars).map(
+                ([name, value]) => `${name}: ${value}`
+            )}
+        );`,
         functions: {
             'ends-with($string, $end)': (string, end) => {
                 const subject = string.getValue();

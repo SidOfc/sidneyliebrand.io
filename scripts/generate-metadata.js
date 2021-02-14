@@ -1,12 +1,16 @@
-const {getPosts, createSitemap, createFeed, createAtom} = require('./util');
+const util = require('./util');
+const {pages} = require('../data/content.json');
 
-(async function metadata() {
-    const posts = await getPosts();
+(async function () {
+    const posts = await util.getPosts();
     const date = new Date();
 
     return Promise.all([
-        createSitemap('public/sitemap.xml'),
-        createFeed('public/feed.xml', {posts, date}),
-        createAtom('public/atom.xml', {posts, date}),
+        util.createWebmanifest('public/site.webmanifest'),
+        util.createFeed('public/feed.xml', {entries: posts, date}),
+        util.createAtom('public/atom.xml', {entries: posts, date}),
+        util.createSitemap('public/sitemap.xml', {
+            entries: [...pages, ...posts],
+        }),
     ]);
 })();

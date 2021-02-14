@@ -1,6 +1,7 @@
 const {promises: fs, readFileSync} = require('fs');
 const matter = require('gray-matter');
-const {host, pages, profile} = require('../data/content.json');
+const {host, profile} = require('../data/content.json');
+const sassVars = require('../data/sass-variables.json');
 const xml = require('prettify-xml');
 const {encode: htmlentities} = require('html-entities');
 
@@ -26,68 +27,46 @@ async function getPosts() {
     );
 }
 
-async function getPages() {
-    const posts = await getPosts();
-
-    return [...pages, ...posts];
-}
-
-async function createSitemap(destination) {
-    const pages = await getPages();
-    const sitemap = xml(
-        `
-        <?xml version="1.0" encoding="utf-8" ?>
-        <urlset xmlns="https://sitemaps.org/schemas/sitemap/0.9">
-            ${pages
-                .map(({path, priority = 0.1, changefreq = 'yearly'}) =>
-                    `
-                    <url>
-                        <loc>${host}${path.replace(/\/+$/i, '')}</loc>
-                        <priority>${priority}</priority>
-                        <changefreq>${changefreq}</changefreq>
-                    </url>
-                    `.trim()
-                )
-                .join('')}
-        </urlset>
-        `
+async function createSitemap(destination, {entries}) {
+    return fs.writeFile(
+        destination,
+        xml(
+            `
+            <?xml version="1.0" encoding="utf-8" ?>
+            <urlset xmlns="https://sitemaps.org/schemas/sitemap/0.9">
+                ${entries
+                    .map(({path, priority = 0.1, changefreq = 'yearly'}) =>
+                        `
+                        <url>
+                            <loc>${host}${path.replace(/\/+$/i, '')}</loc>
+                            <priority>${priority}</priority>
+                            <changefreq>${changefreq}</changefreq>
+                        </url>
+                        `.trim()
+                    )
+                    .join('')}
+            </urlset>
+            `
+        )
     );
-
-    return fs.writeFile(destination, sitemap);
 }
 
 function feedItem({title, description, path, published}) {
     const url = `${host}${path.replace(/\/+$/i, '')}`;
+    const xmlDescription = htmlentities(description, {level: 'xml'});
 
     return `
-    <item>
-        <title>${title}</title>
-        <description>${htmlentities(description, {level: 'xml'})}</description>
-        <link>${url}</link>
-        <guid isPermalink="true">${url}</guid>
-        <pubdate>${new Date(published).toUTCString()}</pubdate>
-    </item>
+        <item>
+            <title>${title}</title>
+            <description>${xmlDescription}</description>
+            <link>${url}</link>
+            <guid isPermalink="true">${url}</guid>
+            <pubdate>${new Date(published).toUTCString()}</pubdate>
+        </item>
     `.trim();
 }
 
-function atomItem({title, description, path, published, updated = published}) {
-    const url = `${host}${path.replace(/\/+$/i, '')}`;
-
-    return `
-    <entry>
-        <title>${title}</title>
-        <summary>${htmlentities(description, {level: 'xml'})}</summary>
-        <id>${url}</id>
-        <link rel="alternate" href="${url}" />
-        <published>${published}</published>
-        <updated>${updated}</updated>
-    </entry>
-    `;
-}
-
-async function createFeed(destination, options = {}) {
-    const posts = options.posts || (await getPosts());
-    const date = options.date || new Date();
+async function createFeed(destination, {entries, date}) {
     const feed = xml(
         `
         <?xml version="1.0" encoding="utf-8" ?>
@@ -99,7 +78,7 @@ async function createFeed(destination, options = {}) {
                 <lastBuildDate>${date.toUTCString()}</lastBuildDate>
                 <copyright>Copyright ${host} ${date.getFullYear()}</copyright>
                 <category term="technology" />
-                ${posts.map(feedItem).join('\n')}
+                ${entries.map(feedItem).join('\n')}
             </channel>
         </rss>
         `
@@ -108,30 +87,68 @@ async function createFeed(destination, options = {}) {
     return fs.writeFile(destination, feed);
 }
 
-async function createAtom(destination, options = {}) {
-    const posts = options.posts || (await getPosts());
-    const date = options.date || new Date();
-    const atom = xml(
-        `
-        <?xml version="1.0" encoding="utf-8" ?>
-        <feed xmlns="https://www.w3.org/2005/Atom">
-            <title>${profile.name}'s blog</title>
-            <subtitle>The official ${host} Atom feed</subtitle>
-            <id>${host}</id>
-            <link href="${host}" />
-            <link href="${host}/atom.xml" rel="self" />
-            <updated>${date.toJSON()}</updated>
-            <rights>Copyright ${host} ${date.getFullYear()}</rights>
-            <category term="technology" />
-            <author>
-                <name>${profile.name}</name>
-            </author>
-            ${posts.map(atomItem).join('\n')}
-        </feed>
-        `
-    );
+function atomItem({title, description, path, published, updated = published}) {
+    const url = `${host}${path.replace(/\/+$/i, '')}`;
 
-    return fs.writeFile(destination, atom);
+    return `
+        <entry>
+            <title>${title}</title>
+            <summary>${htmlentities(description, {level: 'xml'})}</summary>
+            <id>${url}</id>
+            <link rel="alternate" href="${url}" />
+            <published>${published}</published>
+            <updated>${updated}</updated>
+        </entry>
+    `;
+}
+
+async function createAtom(destination, {entries, date}) {
+    return fs.writeFile(
+        destination,
+        xml(
+            `
+            <?xml version="1.0" encoding="utf-8" ?>
+            <feed xmlns="https://www.w3.org/2005/Atom">
+                <title>${profile.name}'s blog</title>
+                <subtitle>The official ${host} Atom feed</subtitle>
+                <id>${host}</id>
+                <link href="${host}" />
+                <link href="${host}/atom.xml" rel="self" />
+                <updated>${date.toJSON()}</updated>
+                <rights>Copyright ${host} ${date.getFullYear()}</rights>
+                <category term="technology" />
+                <author>
+                    <name>${profile.name}</name>
+                </author>
+                ${entries.map(atomItem).join('\n')}
+            </feed>
+            `
+        )
+    );
+}
+
+async function createWebmanifest(destination) {
+    const webmanifest = JSON.stringify({
+        name: 'sidneyliebrand.io',
+        short_name: 'sl.io',
+        icons: [
+            {
+                src: '/android-chrome-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
+            },
+            {
+                src: '/android-chrome-512x512.png',
+                sizes: '512x512',
+                type: 'image/png',
+            },
+        ],
+        theme_color: sassVars['primary-fg'],
+        background_color: sassVars['primary-bg'],
+        display: 'standalone',
+    });
+
+    return fs.writeFile(destination, webmanifest);
 }
 
 module.exports = {
@@ -139,4 +156,5 @@ module.exports = {
     createSitemap,
     createFeed,
     createAtom,
+    createWebmanifest,
 };
