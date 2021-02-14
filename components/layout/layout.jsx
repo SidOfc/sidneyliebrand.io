@@ -10,7 +10,7 @@ export default function Layout({children}) {
                 <div className={styles.headerFixed}>
                     <div className={styles.headerContent}>
                         <Link href="/">
-                            <a className={styles.logo}>
+                            <a className={styles.logo} title="View home page">
                                 <span className={styles.logoCode}>{'<'}</span>
                                 Sidney
                                 <span className={styles.logoCode}>.</span>
@@ -20,10 +20,13 @@ export default function Layout({children}) {
                         </Link>
                         <nav className={styles.navigation}>
                             <Link href="/cv">
-                                <a title="Curriculum Vitae">C.V.</a>
+                                <a title="View curriculum vitae">C.V.</a>
                             </Link>
                             <Link href="https://github.com/sidofc">
-                                <a title="Sidney Liebrand's GitHub page">
+                                <a
+                                    className={styles.githubWrapper}
+                                    title="Visit Sidney Liebrand's GitHub page"
+                                >
                                     <Media
                                         className={styles.github}
                                         src="/media/github.svg"

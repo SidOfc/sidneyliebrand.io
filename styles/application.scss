@@ -55,7 +55,7 @@ p {
   line-height: 1.3;
 }
 
-p code {
+code {
   @include themed('background-color', 'inline-code-bg');
   @include themed('color', 'inline-code-fg');
   padding: 0.2rem 0.4rem;
@@ -103,14 +103,14 @@ blockquote {
   @include themed('color', 'page-accent-fg');
   margin-left: 0;
   margin-right: 0;
-  padding: 0 2rem;
+  padding: 0 1rem;
   border: none;
   border-left: 0.25rem solid;
   font-family: serif;
   font-style: italic;
 }
 
-*:focus {
+*:focus-visible {
   @include themed('box-shadow', '0 0 0 0.15rem $0', 'primary-bg');
   border-radius: 0.25rem;
   outline: none;

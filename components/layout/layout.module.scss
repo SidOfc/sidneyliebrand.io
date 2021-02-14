@@ -45,6 +45,10 @@
   @include themed('color', 'primary-bg');
   font-weight: 700;
   font-size: 1.2rem;
+  line-height: 1;
+  position: relative;
+  left: -0.6rem;
+  padding: 0.6rem;
 }
 
 .logoCode {
@@ -58,19 +62,21 @@
   flex-flow: row nowrap;
 
   a {
+    position: relative;
     display: inline-flex;
     align-items: center;
     padding: 0.5rem;
     font-weight: 700;
-
-    &:last-child {
-      position: relative;
-      right: -0.5rem;
-    }
   }
 
   a + a {
     margin-left: 1rem;
+  }
+
+  .githubWrapper {
+    padding: 0.3rem;
+    right: -0.3rem;
+    border-radius: 100%;
   }
 
   .github {
