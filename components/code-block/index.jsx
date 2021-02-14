@@ -1,5 +1,5 @@
 import Highlight, {defaultProps} from 'prism-react-renderer';
-import '../../util/prism';
+import '@src/util/prism';
 
 const THEME = {
     plain: JSON.parse(JSON.stringify(defaultProps.theme.plain)),

@@ -1,5 +1,5 @@
 import styles from './banner.module.scss';
-import Media from '../media';
+import Media from '@components/media';
 
 export default function Banner({src, width, height, title, description}) {
     return (

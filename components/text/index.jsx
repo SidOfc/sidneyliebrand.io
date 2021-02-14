@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import styles from './text.module.scss';
-import {classes} from '../../util';
+import {classes} from '@src/util';
 
 export default function Text({color, className, ...props}) {
     return (

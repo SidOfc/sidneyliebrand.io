@@ -1,6 +1,6 @@
-import Post from '../../components/post';
-import Head from '../../components/head';
-import {processMarkdownSlug, getMarkdownDirSlugs} from '../../util/static';
+import Post from '@components/post';
+import Head from '@components/head';
+import {processMarkdownSlug, getMarkdownDirSlugs} from '@src/util/static';
 
 export default function Blog(props) {
     return (

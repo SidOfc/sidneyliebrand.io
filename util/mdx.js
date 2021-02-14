@@ -1,7 +1,7 @@
 import remoteHydrate from 'next-mdx-remote/hydrate';
-import CodeBlock from '../components/code-block';
-import Heading from '../components/heading';
-import Media from '../components/media';
+import CodeBlock from '@components/code-block';
+import Heading from '@components/heading';
+import Media from '@components/media';
 
 export const MARKDOWN_OPTIONS = {
     components: {

@@ -1,13 +1,13 @@
 import styles from './cv.module.scss';
-import {Container as Tags} from '../../components/tag';
-import Text from '../../components/text';
-import Bullet from '../../components/bullet';
-import {profile} from '../../data/content.json';
-import Media from '../../components/media';
-import Head from '../../components/head';
 import Link from 'next/link';
-import {getPinnedRepositories, getPageData} from '../../util/static';
-import {dateFormat, dateDiff, linkProps} from '../../util';
+import {Container as Tags} from '@components/tag';
+import Text from '@components/text';
+import Bullet from '@components/bullet';
+import Media from '@components/media';
+import Head from '@components/head';
+import {getPinnedRepositories, getPageData} from '@src/util/static';
+import {dateFormat, dateDiff, linkProps} from '@src/util';
+import {profile} from '@data/content.json';
 
 export default function Index({title, description, pinnedRepositories}) {
     const {programming, education, volunteering} = profile;

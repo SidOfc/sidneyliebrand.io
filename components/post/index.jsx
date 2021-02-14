@@ -1,9 +1,9 @@
 import styles from './post.module.scss';
-import Text from '../text';
-import Heading from '../heading';
-import Bullet from '../bullet';
-import {dateFormat} from '../../util';
-import {hydrate} from '../../util/mdx';
+import Text from '@components/text';
+import Heading from '@components/heading';
+import Bullet from '@components/bullet';
+import {dateFormat} from '@src/util';
+import {hydrate} from '@src/util/mdx';
 
 export default function Post({
     title,

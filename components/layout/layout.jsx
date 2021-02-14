@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Media from '../media';
-import Text from '../text';
 import styles from './layout.module.scss';
+import Link from 'next/link';
+import Media from '@components/media';
+import Text from '@components/text';
 
 export default function Layout({children}) {
     return (

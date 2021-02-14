@@ -1,7 +1,7 @@
 import {forwardRef} from 'react';
 import styles from './media.module.scss';
 import LazyLoad from 'react-lazyload';
-import {classes} from '../../util';
+import {classes} from '@src/util';
 
 export default forwardRef(
     (

@@ -1,12 +1,12 @@
 import styles from './home.module.scss';
-import Head from '../../components/head';
-import Bullet from '../../components/bullet';
-import Button from '../../components/button';
-import Banner from '../../components/banner';
-import Text from '../../components/text';
 import Link from 'next/link';
-import {processMarkdownDir, getPageData} from '../../util/static';
-import {dateFormat, readTime} from '../../util';
+import Head from '@components/head';
+import Bullet from '@components/bullet';
+import Button from '@components/button';
+import Banner from '@components/banner';
+import Text from '@components/text';
+import {processMarkdownDir, getPageData} from '@src/util/static';
+import {dateFormat, readTime} from '@src/util';
 
 export default function Index({title, description, posts}) {
     return (

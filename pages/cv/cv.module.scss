@@ -1,4 +1,4 @@
-@import "../../styles/config";
+@import "@styles/config";
 
 .h2 {
   @include themed('background-color', 'primary-bg');

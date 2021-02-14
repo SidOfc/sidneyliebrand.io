@@ -1,11 +1,11 @@
-import remoteRenderToString from 'next-mdx-remote/render-to-string';
 import {promises as fs} from 'fs';
+import remoteRenderToString from 'next-mdx-remote/render-to-string';
 import matter from 'gray-matter';
 import {emojify} from 'node-emoji';
 import {Octokit} from '@octokit/rest';
-import {profile, pages} from '../data/content.json';
-import {slug, readTime} from './';
-import {MARKDOWN_OPTIONS} from './mdx';
+import {MARKDOWN_OPTIONS} from '@src/util/mdx';
+import {slug, readTime} from '@src/util';
+import {profile, pages} from '@data/content.json';
 
 export async function renderToString(content, opts = {}) {
     return remoteRenderToString(emojify(content), {

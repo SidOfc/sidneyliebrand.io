@@ -1,6 +1,6 @@
 import NextHead from 'next/head';
 import {useRouter} from 'next/router';
-import {host, profile} from '../../data/content';
+import {host, profile} from '@data/content';
 
 export default function Head({title, description}) {
     const {asPath} = useRouter();
