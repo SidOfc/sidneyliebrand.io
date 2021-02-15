@@ -4,8 +4,8 @@ description: "YAML is a great language for configuration files, it is a lot more
 published:   "2017-12-23T07:25:59Z"
 ---
 
-**Update 08–11–2018:** Thank you [Anatoli Babenia](https://medium.com/@abitrolly)
-for pointing to the base 60 parsing 'feature' in the [`docker-compose`](https://docs.docker.com/compose/compose-file/compose-file-v2/#ports) documentation.
+**Update 08–11–2018:** Thank you [Anatoli Babenia](https://medium.com/@abitrolly "Visit Anatoli Babenia on Medium")
+for pointing to the base 60 parsing 'feature' in the [`docker-compose`](https://docs.docker.com/compose/compose-file/compose-file-v2/#ports "Visit base 60 parsing section on docs.docker.com") documentation.
 It led to me finding another great resource and added it along with some new content
 to this post.
 
@@ -16,8 +16,8 @@ to this post.
     height="371"
 />
 
-In this post I want to talk about [YAML](http://yaml.org/).
-Like the very popular [JSON](http://json.org/) format, it is a file format
+In this post I want to talk about [YAML](http://yaml.org/ "Visit yaml.org").
+Like the very popular [JSON](http://json.org/ "Visit json.org") format, it is a file format
 that allows you to store data in a structured way. Last week I had a
 discussion with a colleague about an unexpected output value when parsing
 YAML to a Ruby hash. The YAML data looks like this:
@@ -65,7 +65,7 @@ And of course, in Python too:
 
 At this point we became curious, I mean, there must be *some* kind of `nil` value,
 right? So we ventured to Google and well, found an answer in no time at all :)
-There is a `nil` value in YAML, it's called [`null`](http://yaml.org/type/null.html)!
+There is a `nil` value in YAML, it's called [`null`](http://yaml.org/type/null.html "Visit null type documentation on yaml.org")!
 
 ~~~yaml
 ---
@@ -78,32 +78,32 @@ Also yields the expected result for both Ruby and Python.
 ## And this was only the start...
 
 Since that moment I've been wondering what *more* is there to YAML.
-I've written literally [thousands of lines of YAML](https://github.com/SidOfc/browserino/tree/master/spec/files)
-test data for one of [my gems](http://github.com/sidofc/browserino)
+I've written literally [thousands of lines of YAML](https://github.com/SidOfc/browserino/tree/master/spec/files "Visit SidOfc/browserino YAML test files directory")
+test data for one of [my gems](http://github.com/sidofc/browserino "Visit SidOfc/browserino github repository")
 but I've never really wondered what the language could really do.
 
 What I also noticed is that there aren't all that many YAML posts out there,
 some resources I used while gathering information for this post:
 
-* [https://learnxinyminutes.com/docs/yaml/](https://learnxinyminutes.com/docs/yaml/)
+* [https://learnxinyminutes.com/docs/yaml/](https://learnxinyminutes.com/docs/yaml/ "Visit the learnxinyminutes.com YAML docs")
 
-* [https://yaml.org/](https://yaml.org/)
+* [https://yaml.org/](https://yaml.org/ "Visit yaml.org")
 
-* [https://codebeautify.org/yaml-validator](https://codebeautify.org/yaml-validator)
+* [https://codebeautify.org/yaml-validator](https://codebeautify.org/yaml-validator "Visit the codebeautify YAML validator")
 
-* [https://docs.saltstack.com/en/latest/topics/yaml/](https://docs.saltstack.com/en/latest/topics/yaml/)
+* [https://docs.saltstack.com/en/latest/topics/yaml/](https://docs.saltstack.com/en/latest/topics/yaml/ "visit the doc.saltstack.com YAML topic")
 
-* [https://www.yaml.org/spec/1.2/spec.html](https://www.yaml.org/spec/1.2/spec.html)
+* [https://www.yaml.org/spec/1.2/spec.html](https://www.yaml.org/spec/1.2/spec.html "Visit the YAML specification")
 
-* [https://stackoverflow.com/a/1729545/2224331](https://stackoverflow.com/a/1729545/2224331)
+* [https://stackoverflow.com/a/1729545/2224331](https://stackoverflow.com/a/1729545/2224331 "Visit StackOverflow answer")
 
-* [https://stackoverflow.com/a/16986339/2224331](https://stackoverflow.com/a/16986339/2224331)
+* [https://stackoverflow.com/a/16986339/2224331](https://stackoverflow.com/a/16986339/2224331 "Visit StackOverflow answer")
 
-* [https://json.org/](https://json.org/)
+* [https://json.org/](https://json.org/ "Visit json.org")
 
-* [https://pyyaml.org/wiki/PyYAMLDocumentation](https://pyyaml.org/wiki/PyYAMLDocumentation)
+* [https://pyyaml.org/wiki/PyYAMLDocumentation](https://pyyaml.org/wiki/PyYAMLDocumentation "Visit pyyaml.org YAML documentation")
 
-* [http://blog.teamlazerbeez.com/2009/04/15/yaml-gotchas/](http://blog.teamlazerbeez.com/2009/04/15/yaml-gotchas/)
+* [http://blog.teamlazerbeez.com/2009/04/15/yaml-gotchas/](http://blog.teamlazerbeez.com/2009/04/15/yaml-gotchas/ "Visit blog.teamlazerbeez.com YAML blog post")
 
 So I would like to share some of the features of YAML that you might not know about and also,
 share some differences between YAML parsers (the Ruby and Python parsers).
@@ -141,7 +141,7 @@ you want to overwrite with its new value below the `<<:* default` line.
 ## Write JSON in your YAML
 
 Another handy thing to know is that you can write JSON inside YAML, this is pretty neat and to be
-expected as [YAML is a superset of JSON](https://stackoverflow.com/questions/1726802/what-is-the-difference-between-yaml-and-json-when-to-prefer-one-over-the-other/1729545#1729545) (or well, since version 1.2 it is at least).
+expected as [YAML is a superset of JSON](https://stackoverflow.com/questions/1726802/what-is-the-difference-between-yaml-and-json-when-to-prefer-one-over-the-other/1729545#1729545 "Visit StackOverflow answer") (or well, since version 1.2 it is at least).
 
 The following YAML:
 
@@ -223,7 +223,7 @@ folded: >
         this text will appear over two lines.
 ~~~
 
-[Both snippets came from here.](https://learnxinyminutes.com/docs/yaml/) This post also contains
+[Both snippets came from here.](https://learnxinyminutes.com/docs/yaml/ "Visit the learnxinyminutes.com YAML docs") This post also contains
 a lot of other great YAML examples you should definitely check out!
 
 ## Quoted strings, begone!
@@ -353,7 +353,7 @@ YAML.load("key: 12:30:00")
 # => {"key"=>45000}
 ~~~
 
-While the result is [following the spec](http://yaml.org/type/float.html), it is more often than
+While the result is [following the spec](http://yaml.org/type/float.html "Visit float type documentation on yaml.org"), it is more often than
 not undesired. It becomes more interesting when the digit starts with a leading `0`. In Ruby:
 
 ~~~ruby
@@ -476,8 +476,8 @@ In short, this post described the following features:
 
 YAML is certainly a versatile marku...lang... yeah never mind that :) But seriously though, YAML is indeed very versatile, it can do lots of things as you have hopefully seen in the examples.
 
-The REPLS used for testing were [pry](https://github.com/pry/pry) for Ruby and Python's builtin REPL.
-The Ruby parser used was [Yaml](https://ruby-doc.org/stdlib-2.4.2/libdoc/yaml/rdoc/YAML.html) on Ruby (MRI) 2.4.1 and for Python, [pyyaml](https://pyyaml.org/wiki/PyYAMLDocumentation) was used on Python 3.6.2.
+The REPLS used for testing were [pry](https://github.com/pry/pry "Visit pry/pry repository") for Ruby and Python's builtin REPL.
+The Ruby parser used was [Yaml](https://ruby-doc.org/stdlib-2.4.2/libdoc/yaml/rdoc/YAML.html "Visit ruby-doc.org YAML documentation") on Ruby (MRI) 2.4.1 and for Python, [pyyaml](https://pyyaml.org/wiki/PyYAMLDocumentation "Visit pyyaml.org YAML documentation") was used on Python 3.6.2.
 
 **Post update**: During the process of updating this post, I used pry for Ruby (MRI) 2.5.1 and Python's (3.6.7) builtin REPL. The same libraries were used for testing.
 

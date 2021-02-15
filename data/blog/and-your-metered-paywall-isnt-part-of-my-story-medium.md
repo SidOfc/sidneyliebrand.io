@@ -5,7 +5,7 @@ published:   "2019-06-10T04:36:22Z"
 ---
 
 Lately I've been getting more and more annoyed by the way Medium decides to do things.
-Some time ago they decided to [make everything premium](https://medium.com/membership), so after reading 5 stories you'd be greeted
+Some time ago they decided to [make everything premium](https://medium.com/membership "Visit medium.com/membership"), so after reading 5 stories you'd be greeted
 with something like:
 
 <Media
@@ -46,7 +46,7 @@ seeing as they are trying to get me to make my stories paid so they can benefit 
 
 Medium really seems to want authors to read this message I guess. Since after reloading the page, the message re-appears,
 **every. single. time.** After trying to ignore it for a while, this popup started getting
-under my skin. I decided to [learn some more](https://help.medium.com/hc/en-us/articles/360018834334) and found _one_ barely
+under my skin. I decided to [learn some more](https://help.medium.com/hc/en-us/articles/360018834334 "Visit Medium help section") and found _one_ barely
 two-line paragraph of text that caught my eye:
 
 > Stories that are not part of the paywall will only be distributed to your followers,
