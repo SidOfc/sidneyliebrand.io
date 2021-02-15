@@ -2,6 +2,7 @@ import styles from './post.module.scss';
 import Text from '@components/text';
 import Heading from '@components/heading';
 import Bullet from '@components/bullet';
+import Button from '@components/button';
 import {dateFormat} from '@src/util';
 import {hydrate} from '@src/util/mdx';
 
@@ -23,6 +24,7 @@ export default function Post({
                 {readTimeInMinutes} min read
             </Text>
             {content}
+            <Button href="/">Back</Button>
         </article>
     );
 }
