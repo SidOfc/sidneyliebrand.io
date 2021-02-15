@@ -7,7 +7,8 @@
         "dev": "next dev",
         "build": "next build && npm run generate-metadata && next export",
         "start": "next start",
-        "generate-metadata": "node scripts/generate-metadata.js"
+        "generate-metadata": "node scripts/generate-metadata.js",
+        "deploy": "npm run build --silent && bash scripts/deploy"
     },
     "keywords": [],
     "author": "Sidney Liebrand",

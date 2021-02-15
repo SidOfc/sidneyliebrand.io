@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+NODE_ENV="production"
+BUILD_ID="build-$(date +"%s")"
+GIT_REMOTE="git@github.com:sidofc/sidofc.github.io"
+BUILD_DIR="$(pwd)/out"
+DEPLOY_DIR="/tmp/deploy-$BUILD_ID"
+CUSTOM_DOMAIN="sidneyliebrand.io"
+
+# print build details
+echo "build: $BUILD_ID"
+echo "dist:  $BUILD_DIR"
+echo "tmp:   $DEPLOY_DIR"
+
+# build setup
+rm -rf $DEPLOY_DIR
+mkdir -p $DEPLOY_DIR
+
+# clear git repo for a fresh build
+git clone $GIT_REMOTE $DEPLOY_DIR
+git -C $DEPLOY_DIR rm -rf . --quiet
+git -C $DEPLOY_DIR clean -fxd --quiet
+
+# copy files to deploy repo
+cp -r $BUILD_DIR/* $DEPLOY_DIR
+touch $DEPLOY_DIR/.nojekyll
+echo $BUILD_ID > $DEPLOY_DIR/.version
+echo $CUSTOM_DOMAIN > $DEPLOY_DIR/CNAME
+
+# commit and push new version
+git -C $DEPLOY_DIR add .
+git -C $DEPLOY_DIR commit -m $BUILD_ID
+git -C $DEPLOY_DIR tag -a $BUILD_ID -m $BUILD_ID
+git -C $DEPLOY_DIR push
+git -C $DEPLOY_DIR push --tags
+
+# clean up deploy dir
+rm -rf $DEPLOY_DIR
+
+echo "deployed to remote: $GIT_REMOTE"
