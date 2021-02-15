@@ -13,6 +13,14 @@ const MONTHS = [
     'Dec',
 ];
 
+export function except(obj, keys) {
+    return Object.entries(obj).reduce((filtered, [key, value]) => {
+        if (!keys.includes(key)) Object.assign(filtered, {[key]: value});
+
+        return filtered;
+    }, {});
+}
+
 export function linkProps(href) {
     const isExternal =
         !href.match(/(?:https?:)(?:\/\/)?sidneyliebrand\.(?:io|next)/i) &&

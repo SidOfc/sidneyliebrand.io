@@ -6,7 +6,7 @@ import Button from '@components/button';
 import Banner from '@components/banner';
 import Text from '@components/text';
 import {processMarkdownDir, getPageData} from '@src/util/static';
-import {dateFormat, readTime} from '@src/util';
+import {dateFormat, readTime, except} from '@src/util';
 
 export default function Index({title, description, posts}) {
     return (
@@ -67,7 +67,8 @@ export async function getStaticProps() {
             description,
             posts: posts
                 .filter((p) => p.published)
-                .sort((a, b) => new Date(b.published) - new Date(a.published)),
+                .sort((a, b) => new Date(b.published) - new Date(a.published))
+                .map((post) => except(post, 'source')),
         },
     };
 }
