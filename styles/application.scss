@@ -127,6 +127,10 @@ blockquote {
   font-style: italic;
 }
 
+*:focus {
+  outline: none;
+}
+
 *:focus-visible {
   @include themed('box-shadow', '0 0 0 0.15rem $0', 'primary-bg');
   border-radius: 0.25rem;
