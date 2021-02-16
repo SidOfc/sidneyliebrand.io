@@ -1,11 +1,11 @@
-import {useState, useCallback, useEffect} from 'react';
+import {useState, useEffect, useLayoutEffect} from 'react';
 
 export default function useDarkMode() {
-    const [isDark, setDark] = useState(
-        process.browser
-            ? document.body.getAttribute('class')?.includes('dark')
-            : false
-    );
+    const [isDark, setDark] = useState(false);
+
+    useLayoutEffect(() => {
+        setDark(document.body.getAttribute('class')?.includes('dark'));
+    }, []);
 
     useEffect(() => {
         if (isDark) {
