@@ -6,6 +6,18 @@ export default class Document extends NextDocument {
             <Html lang="en">
                 <Head />
                 <body>
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                        try {
+                            if (localStorage.getItem('dark')) {
+                                document.body.setAttribute('class', 'dark')
+                            }
+                        } catch (e) {
+                        }
+                    `,
+                        }}
+                    />
                     <Main />
                     <NextScript />
                 </body>

@@ -5,7 +5,7 @@ published:   "2018-06-24T13:33:37Z"
 updated:     "2019-07-10T21:10:00Z"
 ---
 
-Today I want to talk about [fzf](https://github.com/junegunn/fzf "Visit junegunn/fzf on github") and [ripgrep](https://github.com/BurntSushi/ripgrep "Visit BurntSushi/ripgrep on github"),
+Today I want to talk about [fzf](https://github.com/junegunn/fzf "Visit junegunn/fzf on GitHub") and [ripgrep](https://github.com/BurntSushi/ripgrep "Visit BurntSushi/ripgrep on github"),
 two tools I use all the time when working in Vim and the terminal.
 They have become an absolutely **vital** part of my workflow.
 Ever since I started using them I can't imagine myself functioning
@@ -121,7 +121,7 @@ exit from this specific window.
 
 ## Installing brew plugins
 
-Another use case is to install, update or purge [brew](https://github.com/Homebrew "Visit Homebrew on github")
+Another use case is to install, update or purge [brew](https://github.com/Homebrew "Visit Homebrew on GitHub")
 plugins from your system. When you are looking for a brew package, a common pattern
 is to use `brew search` together with `grep` to find out if it exists.
 
@@ -191,7 +191,7 @@ The `cani` command ([zsh](https://github.com/SidOfc/dotfiles/blob/d07fa3862ed065
 The data is fetched once then cached for a day.
 So you'll have fresh data on a daily basis :)
 
-*This mixture of shell + ruby has since been [ported](https://github.com/SidOfc/cani "View SidOfc/cani on github") to a [Ruby Gem](https://rubygems.org/gems/cani "View cani gem on rubygems.org") :)*
+*This mixture of shell + ruby has since been [ported](https://github.com/SidOfc/cani "View SidOfc/cani on GitHub") to a [Ruby Gem](https://rubygems.org/gems/cani "View cani gem on rubygems.org") :)*
 
 ## Vim
 
@@ -202,13 +202,13 @@ focus of what you are trying to find. Therefore it should be as mindless as poss
 e.g: press a key, type query, press enter to go to matching file.
 
 Finding files wasn't too much of an issue here. There is a long list of Vim plugins
-that offer file searching using fuzzy matching or [MRU](https://en.wikipedia.org/wiki/Most_Recently_Used "Visit Most Recently Used definition on wikipedia.org") algorithms. Two examples of this are [CtrlP](https://github.com/ctrlpvim/ctrlp.vim "Visit ctrlpvim/ctrlp.vim on github") and [Command-T](https://github.com/wincent/command-t "Visit wincent/command-t on github").
+that offer file searching using fuzzy matching or [MRU](https://en.wikipedia.org/wiki/Most_Recently_Used "Visit Most Recently Used definition on wikipedia.org") algorithms. Two examples of this are [CtrlP](https://github.com/ctrlpvim/ctrlp.vim "Visit ctrlpvim/ctrlp.vim on GitHub") and [Command-T](https://github.com/wincent/command-t "Visit wincent/command-t on github").
 I used CtrlP which always managed to do the job. But after playing around with FZF
 in the terminal I wondered if it could be applied to Vim as well.
 
 ## FZF.vim
 
-[FZF](https://github.com/junegunn/fzf.vim "Visit junegunn/fzf.vim on github") has a small builtin Vim interface that already works, but it comes without
+[FZF](https://github.com/junegunn/fzf.vim "Visit junegunn/fzf.vim on GitHub") has a small builtin Vim interface that already works, but it comes without
 any existing functionality. The author of FZF also wrote this plugin.
 It is a small wrapper that provides common functionality. This includes listing files,
 buffers, tags, git logs and much more!

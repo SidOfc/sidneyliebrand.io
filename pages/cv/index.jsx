@@ -30,21 +30,23 @@ export default function Index({title, description, pinnedRepositories}) {
                     </Text>
                     <div className={styles.bannerDetails}>
                         <span>{`${profile.city}, ${profile.country}`}</span>
-                        <Link href="https://github.com/sidofc">
-                            <a>
+                        <Link href="https://github.com/SidOfc">
+                            <a title="Visit Sidney Liebrand's GitHub page">
                                 <Media
+                                    invertDark
                                     showAlt={false}
                                     src="/media/github.svg"
                                     alt="Sidney Liebrand's GitHub page"
                                     width={16}
                                     height={16}
                                 />{' '}
-                                /sidofc
+                                /SidOfc
                             </a>
                         </Link>
                         <Link href="https://linkedin.com/in/sidneyliebrand">
-                            <a>
+                            <a title="Visit Sidney Liebrand's LinkedIn page">
                                 <Media
+                                    invertDark
                                     showAlt={false}
                                     src="/media/linkedin.svg"
                                     alt="Sidney Liebrand's LinkedIn page"

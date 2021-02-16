@@ -9,6 +9,12 @@
   }
 }
 
+@mixin dark {
+  :global(.dark) & {
+    @content;
+  }
+}
+
 @mixin themed($property, $args...) {
   $length: list.length($args);
   $var: list.nth($args, 1);

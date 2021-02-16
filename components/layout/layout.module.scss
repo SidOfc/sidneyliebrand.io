@@ -69,20 +69,18 @@
     font-weight: 700;
   }
 
-  a + a {
+  > * + * {
     margin-left: 1rem;
   }
 
   .githubWrapper {
-    padding: 0.3rem;
-    right: -0.3rem;
     border-radius: 100%;
   }
 
   .github {
     position: relative;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.4rem;
+    height: 1.4rem;
     padding: 0;
     margin: 0;
   }
@@ -100,4 +98,24 @@
 .footer {
   text-align: center;
   padding: 0.5rem;
+}
+
+.darkModeWrapper {
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.darkModeToggle {
+  @include themed('background-color', 'page-bg');
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 100%;
+
+  @include dark {
+    background-color: transparent;
+    filter: invert(1);
+  }
 }

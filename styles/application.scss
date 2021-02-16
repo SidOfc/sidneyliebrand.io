@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "config.scss";
 
 *, *::after, *::before {
@@ -8,6 +9,21 @@
   @include css-vars;
 }
 
+.dark {
+  --page-bg: #111;
+  --page-fg: #eee;
+  --page-accent-fg: #aaa;
+  --addition-fg: #00cc00;
+  --deletion-fg: #ff0000;
+  --tag-bg: #666;
+  --tag-fg: #e8e8e8;
+  --inline-code-bg: #666;
+  --inline-code-fg: #e8e8e8;
+  --primary-bg: #834de8;
+  --link-fg: #a676ff;
+  --header-shadow: #333;
+}
+
 html {
   font-size: 1rem;
   font-size: min(max(0.95rem, 1.5vw), 1.2rem);
@@ -16,13 +32,14 @@ html {
 
 body {
   @include themed('color', 'page-fg');
+  @include themed('background-color', 'page-bg');
   height: 100%;
   margin: 0;
   line-height: 1.4;
 }
 
 a {
-  @include themed('color', 'primary-bg');
+  @include themed('color', 'link-fg');
   text-decoration: none;
 }
 
@@ -41,13 +58,13 @@ kbd {
   display: inline-block;
   text-transform: uppercase;
   text-align: center;
-  min-width: 1.6em;
-  padding: 0.3em 0.6em 0.2em;
-  border-radius: 0.25em;
+  min-width: 1.6rem;
+  padding: 0.2rem 0.4rem 0.1rem;
+  border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 0.7em;
+  font-size: 0.7rem;
   vertical-align: middle;
-  transform: translateY(-0.125em);
+  transform: translateY(-0.125rem);
 }
 
 p {
@@ -60,7 +77,7 @@ code {
   @include themed('color', 'inline-code-fg');
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
 
 h1, h2, h3, h4, h5, h6 {

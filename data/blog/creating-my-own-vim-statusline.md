@@ -7,7 +7,7 @@ published:   "2020-05-21T00:12:34Z"
 I love Vim (more specifically Neovim) and the great text editing powers it
 comes with out of the box. It gets even better when enhancing Vim with
 plugins to make life a lot easier as well. Over time I've added, swapped,
-and removed many. One of the plugins I have used for a long time is [lightline.vim](https://github.com/itchyny/lightline.vim "Visit itchyny/lightline.vim on github").
+and removed many. One of the plugins I have used for a long time is [lightline.vim](https://github.com/itchyny/lightline.vim "Visit itchyny/lightline.vim on GitHub").
 
 lightline is a plugin that takes control of Vim's statusline and allows the user
 to customize it to look and function however they want. Before getting to my lightline
@@ -179,7 +179,7 @@ was no longer satisfied by the cryptic block of configuration.
 
 I also didn't want to sink more time into demystifying it either. What I wanted,
 was **simplicity**. After having gained some experience with Vim and writing
-[my own markdown plugin](https://github.com/sidofc/mkdx "Visit SidOfc/mkdx on github") and [my own file explorer](https://github.com/sidofc/treevial "Visit SidOfc/treevial on github")
+[my own markdown plugin](https://github.com/SidOfc/mkdx "Visit SidOfc/mkdx on GitHub") and [my own file explorer](https://github.com/sidofc/treevial "Visit SidOfc/treevial on github")
 I figured it was time to write my own statusline.
 
 ## Ditching lightline.vim

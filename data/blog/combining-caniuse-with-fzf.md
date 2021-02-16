@@ -4,7 +4,7 @@ description: "There is caniuse.com which you can use to search online, but what 
 published:   "2017-09-03T11:47:27Z"
 ---
 
-Do you love [Caniuse](http://caniuse.com/ "Visit caniuse.com") and [FZF](https://github.com/junegunn/fzf "Visit junegunn/fzf on github")? I do! As a front end developer,
+Do you love [Caniuse](http://caniuse.com/ "Visit caniuse.com") and [FZF](https://github.com/junegunn/fzf "Visit junegunn/fzf on GitHub")? I do! As a front end developer,
 every now and then I need to check the support of some feature across major browsers.
 For this I used to go to caniuse.com, search for the feature and make a decision based on that.
 
@@ -15,7 +15,7 @@ things where I spend most of my time &mdash; inside a terminal.
 ## caniuse-cmd
 
 My first attempt at trying to get my results in the terminal was of course by googling
-for a package which I could use. That package was [caniuse-cmd](https://github.com/sgentle/caniuse-cmd "Visit sgentle/caniuse-cmd on github")
+for a package which I could use. That package was [caniuse-cmd](https://github.com/sgentle/caniuse-cmd "Visit sgentle/caniuse-cmd on GitHub")
 which adds a `caniuse` command and displays results based on the feature you're looking for.
 
 It works really well for doing a single query of a feature, but I thought I could make this
@@ -45,7 +45,7 @@ So I decided not to use the dependency and instead, find a [raw source of data](
 
 With this functionality, I can pipe the output of my script into FZF to search through all the features on caniuse,
 and the file will be no older than a day at worst. For brevity I did not include the ~60 line
-Ruby script but it can be [found here](https://github.com/SidOfc/dotfiles/blob/653c0331b3bd8a3b6fb5fbff0531f038e7eb5b12/bin/ciu "View ciu shell script") in my [dotfiles repo](https://github.com/SidOfc/dotfiles "Visit SidOfc/dotfiles on github").
+Ruby script but it can be [found here](https://github.com/SidOfc/dotfiles/blob/653c0331b3bd8a3b6fb5fbff0531f038e7eb5b12/bin/ciu "View ciu shell script") in my [dotfiles repo](https://github.com/SidOfc/dotfiles "Visit SidOfc/dotfiles on GitHub").
 Combining it with FZF yielded the following result:
 
 <Media
@@ -138,7 +138,7 @@ either way it will probably become a package :)
 
 ## Update 08–07–2018
 
-The `cani` command is now packaged as a [RubyGem](https://github.com/sidofc/cani "Visit SidOfc/cani on github") with some additional commands and features :)
+The `cani` command is now packaged as a [RubyGem](https://github.com/SidOfc/cani "Visit SidOfc/cani on GitHub") with some additional commands and features :)
 
 Cheers!
 

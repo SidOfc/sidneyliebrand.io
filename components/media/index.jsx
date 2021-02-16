@@ -11,6 +11,7 @@ export default forwardRef(
             height,
             className,
             alt,
+            invertDark,
             showAlt = true,
             exts = ['webm', 'mp4'],
         },
@@ -21,7 +22,12 @@ export default forwardRef(
         const paddingBottom = `${(h / w) * 100}%`;
 
         return (
-            <figure className={classes(className, styles.figure)} ref={ref}>
+            <figure
+                className={classes(className, styles.figure, {
+                    [styles.invertDark]: invertDark,
+                })}
+                ref={ref}
+            >
                 <LazyLoad placeholder={<div style={{paddingBottom}} />} once>
                     <div className={styles.relative} style={{paddingBottom}}>
                         {src.match(/\.\w+$/) ? (

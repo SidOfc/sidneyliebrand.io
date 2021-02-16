@@ -13,6 +13,10 @@
   border-radius: 100%;
   overflow: hidden;
   margin: 0;
+
+  @include dark {
+    @include themed('border', '0.25rem solid $0', 'page-fg');
+  }
 }
 
 .content {

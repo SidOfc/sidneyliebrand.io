@@ -12,7 +12,7 @@ published:   "2018-08-27T07:55:24Z"
     class="wide"
 />
 
-Recently I discovered [codi.vim](https://github.com/metakirby5/codi.vim "Visit metakirby5/codi.vim on github") on [vimawesome.com](https://vimawesome.com/?q=cat%3Aother "Visit vimawesome.com 'Other' category plugin").
+Recently I discovered [codi.vim](https://github.com/metakirby5/codi.vim "Visit metakirby5/codi.vim on GitHub") on [vimawesome.com](https://vimawesome.com/?q=cat%3Aother "Visit vimawesome.com 'Other' category plugin").
 It sells itself as an "interactive scratchpad for hackers".
 After playing around with it for 5 minutes I was completely sold.
 

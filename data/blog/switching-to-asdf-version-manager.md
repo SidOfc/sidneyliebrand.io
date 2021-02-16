@@ -5,6 +5,7 @@ published:   "2017-08-15T21:04:44Z"
 ---
 
 <Media
+    invertDark
     src="/media/posts/asdfmovie-banner.svg"
     alt="asdfmovie quote from youtube"
     width="356"
@@ -19,19 +20,19 @@ slow down my shell. So lets prevent that shall we!
 I've always used [RVM](https://rvm.io "Visit rvm.io") in the past without problem, the shell took about half a
 second to load and that was acceptable. I mean, you can't have it all right :)
 
-Aside from sourcing good old RVM, recently I also added [NVM](https://github.com/creationix/nvm "Visit creationix/nvm on github") to the stack.
+Aside from sourcing good old RVM, recently I also added [NVM](https://github.com/creationix/nvm "Visit creationix/nvm on GitHub") to the stack.
 No problem I thought! Until I resourced my shell and had to wait for two seconds... Yeah,
 this goes beyond the "you can't have it all" criteria. I often open a shell for a quick ssh session,
 running tests, git commands, etc... There has to be a better way!
 
 ## A universal version manager
 
-Enter [ASDF](https://github.com/asdf-vm/asdf "Visit asdf-vm/asdf on github") and [friends](https://github.com/asdf-vm/asdf-plugins "Visit asdf-vm/asdf-plugins on github").
-ASDF is a universal and extensible version management tool for many [programming languages](https://github.com/asdf-vm/asdf-plugins "Visit asdf-vm/asdf-plugins on github").
+Enter [ASDF](https://github.com/asdf-vm/asdf "Visit asdf-vm/asdf on GitHub") and [friends](https://github.com/asdf-vm/asdf-plugins "Visit asdf-vm/asdf-plugins on github").
+ASDF is a universal and extensible version management tool for many [programming languages](https://github.com/asdf-vm/asdf-plugins "Visit asdf-vm/asdf-plugins on GitHub").
 It provides the version management tooling and allows you to choose which plugins you would like to install.
 Like Node.js, Ruby or Python for instance.
 
-To get started, go to their [github page](https://github.com/asdf-vm/asdf "Visit asdf-vm/asdf on github") and install ASDF.
+To get started, go to their [github page](https://github.com/asdf-vm/asdf "Visit asdf-vm/asdf on GitHub") and install ASDF.
 
 After installing, you'll only have the core of ASDF.
 We'll need to extend it by adding plugins to it and using those to install versions
@@ -45,11 +46,11 @@ and look for plugins for those programming languages. The following is what I us
 
 * [asdf-vm/asdf-ruby](https://github.com/asdf-vm/asdf-ruby "Visit asdf-vm-asdf-ruby")
 
-* [asdf-vm/asdf-nodejs](https://github.com/asdf-vm/asdf-nodejs "Visit asdf-vm/asdf-nodejs on github")
+* [asdf-vm/asdf-nodejs](https://github.com/asdf-vm/asdf-nodejs "Visit asdf-vm/asdf-nodejs on GitHub")
 
-* [code-lever/asdf-rust](https://github.com/code-lever/asdf-rust "Visit code-lever/asdf-rust on github")
+* [code-lever/asdf-rust](https://github.com/code-lever/asdf-rust "Visit code-lever/asdf-rust on GitHub")
 
-* [asdf-community/asdf-crystal](https://github.com/asdf-community/asdf-crystal "Visit asdf-community/asdf-crystal on github")
+* [asdf-community/asdf-crystal](https://github.com/asdf-community/asdf-crystal "Visit asdf-community/asdf-crystal on GitHub")
 
 There are installation instructions on every plugin repo. Sometimes, steps
 for migrating from your old version manager are also included.
@@ -105,7 +106,7 @@ This enables ASDF read all version files we know and love.
 ## Conclusion
 
 As for my shell time, it's back where it was with only RVM. But nothing messes with my `cd` command anymore.
-I also don't have to keep adding these noisy `source` lines to [my dotfiles](https://github.com/sidofc/dotfiles "Visit SidOfc/dotfiles on github").
+I also don't have to keep adding these noisy `source` lines to [my dotfiles](https://github.com/SidOfc/dotfiles "Visit SidOfc/dotfiles on GitHub").
 
 ASDF is still quite new and at the time of writing, there are few integrations.
 This means that if you use `capistrano` to deploy using RVM for example, you won't be able to do that using ASDF just yet.

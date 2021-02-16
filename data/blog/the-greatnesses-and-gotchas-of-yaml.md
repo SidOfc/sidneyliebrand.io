@@ -79,7 +79,7 @@ Also yields the expected result for both Ruby and Python.
 
 Since that moment I've been wondering what *more* is there to YAML.
 I've written literally [thousands of lines of YAML](https://github.com/SidOfc/browserino/tree/master/spec/files "Visit SidOfc/browserino YAML test files directory")
-test data for one of [my gems](http://github.com/sidofc/browserino "Visit SidOfc/browserino github repository")
+test data for one of [my gems](http://github.com/SidOfc/browserino "Visit SidOfc/browserino github repository")
 but I've never really wondered what the language could really do.
 
 What I also noticed is that there aren't all that many YAML posts out there,
