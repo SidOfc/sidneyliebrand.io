@@ -12,6 +12,9 @@ export default class Document extends NextDocument {
                         try {
                             if (localStorage.getItem('dark')) {
                                 document.body.setAttribute('class', 'dark')
+                                var style = document.createElement('style');
+                                style.innerHTML = 'html { background-color: #111; }';
+                                document.head.appendChild(style);
                             }
                         } catch (e) {
                         }
