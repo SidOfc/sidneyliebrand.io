@@ -38,8 +38,6 @@ export function supportsRegExpLookBehind() {
     } catch (e) {
         return false;
     }
-
-    return false;
 }
 
 export function readTime(str) {

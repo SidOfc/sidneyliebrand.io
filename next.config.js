@@ -26,9 +26,6 @@ module.exports = withBundleAnalyzer({
         );`,
         functions: {
             'ends-with($string, $end)': (string, end) => {
-                const subject = string.getValue();
-                const target = end.getValue();
-
                 return string.getValue().endsWith(end.getValue())
                     ? types.Boolean.TRUE
                     : types.Boolean.FALSE;
