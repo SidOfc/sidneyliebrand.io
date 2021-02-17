@@ -31,15 +31,6 @@ export function linkProps(href) {
         : {};
 }
 
-export function supportsRegExpLookBehind() {
-    try {
-        new RegExp('(?<!x)yz');
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-
 export function readTime(str) {
     return Math.round(Math.max(1, (str.match(/\s+/g) || []).length / 200));
 }
