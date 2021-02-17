@@ -14,6 +14,7 @@ export default function Index({title, description, posts}) {
             <Head title={title} description={description} />
             <Banner
                 src="/media/avatar.jpg"
+                alt="Cartoon avatar of Sidney Liebrand"
                 width={280}
                 height={280}
                 title={title}

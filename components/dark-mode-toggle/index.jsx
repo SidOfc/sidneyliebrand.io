@@ -9,7 +9,7 @@ export default function DarkModeToggle() {
         <div
             tabIndex={0}
             onClick={toggleDark}
-            title={isDark ? 'Toggle light mode' : 'Toggle dark mode'}
+            title="Toggle dark theme"
             onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                     event.stopPropagation();
