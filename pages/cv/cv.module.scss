@@ -94,16 +94,16 @@
   justify-content: center;
   margin-right: 1rem;
 
+  @media all and (max-width: 32rem) {
+    display: none;
+  }
+
   @include dark {
     figure {
       @include themed('background-color', 'page-fg');
       padding: 0.5rem;
       border-radius: 0.25rem;
     }
-  }
-
-  @media all and (max-width: 32rem) {
-    display: none;
   }
 }
 

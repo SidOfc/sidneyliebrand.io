@@ -5,25 +5,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  @include css-vars;
-}
-
-.dark {
-  --page-bg: #111;
-  --page-fg: #eee;
-  --page-accent-fg: #aaa;
-  --addition-fg: #00cc00;
-  --deletion-fg: #ff0000;
-  --tag-bg: #666;
-  --tag-fg: #e8e8e8;
-  --inline-code-bg: #666;
-  --inline-code-fg: #e8e8e8;
-  --primary-bg: #834de8;
-  --link-fg: #a676ff;
-  --header-shadow: #333;
-}
-
 html {
   font-size: 1rem;
   font-size: min(max(0.95rem, 1.5vw), 1.2rem);
@@ -31,16 +12,18 @@ html {
 }
 
 body {
+  @include css-body-vars;
   @include themed('color', 'page-fg');
   @include themed('background-color', 'page-bg');
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   line-height: 1.4;
 }
 
 a {
-  @include themed('color', 'link-fg');
   text-decoration: none;
+
+  @include themed('color', 'link-fg');
 }
 
 pre {

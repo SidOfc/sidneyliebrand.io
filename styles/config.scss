@@ -3,9 +3,24 @@
 
 // NOTE: $vars is injected via next.config.js
 
-@mixin css-vars {
+@mixin css-body-vars {
   @each $var, $value in $vars {
     --#{$var}: #{$value};
+  }
+
+  &.dark {
+  --page-bg: #111;
+  --page-fg: #eee;
+  --page-accent-fg: #aaa;
+  --addition-fg: #00cc00;
+  --deletion-fg: #ff0000;
+  --tag-bg: #666;
+  --tag-fg: #e8e8e8;
+  --inline-code-bg: #666;
+  --inline-code-fg: #e8e8e8;
+  --primary-bg: #834de8;
+  --link-fg: #a676ff;
+  --header-shadow: #333;
   }
 }
 
@@ -20,7 +35,7 @@
   $var: list.nth($args, 1);
 
   @if $length == 1 {
-    #{$property}: #{map.get($vars, $var)};
+    // #{$property}: #{map.get($vars, $var)};
     #{$property}: var(--#{$var});
   } @else if $length > 1 {
     $values: ();
@@ -32,7 +47,7 @@
       $keys: list.append($keys, "var(--#{$arg})");
     }
 
-    #{$property}: #{substitute($var, $values...)};
+    // #{$property}: #{substitute($var, $values...)};
     #{$property}: #{substitute($var, $keys...)};
   }
 }

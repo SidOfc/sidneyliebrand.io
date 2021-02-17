@@ -17,7 +17,6 @@
 }
 
 .headerFixed {
-  @include themed('background-color', 'page-bg');
   @include themed('box-shadow', '0px 0px 4px $0', 'header-shadow');
   position: fixed;
   top: 0;
@@ -28,9 +27,27 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
+  backdrop-filter: blur(10px);
+
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    content: '';
+    @include themed('background-color', 'page-bg');
+
+    @supports (backdrop-filter: blur(10px)) {
+      opacity: 0.7;
+    }
+  }
 }
 
 .headerContent {
+  position: relative;
+  z-index: 1000;
   height: 100%;
   width: 56rem;
   max-width: 100%;
