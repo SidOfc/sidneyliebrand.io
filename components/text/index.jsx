@@ -1,4 +1,3 @@
-import {Fragment} from 'react';
 import styles from './text.module.scss';
 import {classes} from '@src/util';
 

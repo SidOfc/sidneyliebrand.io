@@ -16,6 +16,7 @@ module.exports = {
     ignorePatterns: ['*out*'],
     rules: {
         'no-empty': ['error', {allowEmptyCatch: true}],
+        'react/prop-types': 'off',
         'react/display-name': 'off',
         'react/react-in-jsx-scope': 'off',
     },

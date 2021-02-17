@@ -3,7 +3,7 @@ import {classes} from '@src/util';
 import useDarkMode from '@hooks/use-dark-mode';
 
 export default function DarkModeToggle() {
-    const {isDark, toggleDark} = useDarkMode();
+    const {toggleDark} = useDarkMode();
 
     return (
         <div

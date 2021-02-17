@@ -13,5 +13,6 @@
     "deletion-fg": "#d33947",
     "tag-bg": "#fafafa",
     "tag-fg": "#727272",
-    "link-fg": "#651eea"
+    "link-fg": "#651eea",
+    "selection-bg": "rgba(101, 30, 234, 0.2)"
 }

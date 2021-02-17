@@ -18,7 +18,9 @@ export default function Index({title, description, pinnedRepositories}) {
             <section className={styles.banner}>
                 <div className={styles.bannerLogo}>
                     <Media
+                        showAlt={false}
                         src="/media/cv-portrait.jpg"
+                        alt="Portrait of Sidney Liebrand"
                         width={140}
                         height={210}
                     />
@@ -171,14 +173,6 @@ export default function Index({title, description, pinnedRepositories}) {
     );
 }
 
-function Title({title, link, as: Component = 'h3', ...props}) {
-    return (
-        <Component {...props} title={title}>
-            {link ? <Link href={link}>{title}</Link> : title}
-        </Component>
-    );
-}
-
 function Details({
     link,
     title,
@@ -188,7 +182,6 @@ function Details({
     start,
     end,
     customData,
-    showDuration = true,
 }) {
     return (
         <div className={styles.details}>

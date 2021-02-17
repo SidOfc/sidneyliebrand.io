@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useCallback, useEffect} from 'react';
 
 export default function useDarkMode() {
     const [isDark, setDark] = useState(() => {
@@ -6,6 +6,7 @@ export default function useDarkMode() {
             ? document.body.getAttribute('class')?.includes('dark')
             : false;
     });
+    const toggleDark = useCallback(() => setDark((prev) => !prev), []);
 
     useEffect(() => {
         try {
@@ -19,5 +20,5 @@ export default function useDarkMode() {
         } catch (e) {}
     }, [isDark]);
 
-    return {isDark, toggleDark: () => setDark(!isDark)};
+    return {isDark, toggleDark};
 }

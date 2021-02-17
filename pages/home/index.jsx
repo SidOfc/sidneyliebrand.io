@@ -6,7 +6,7 @@ import Button from '@components/button';
 import Banner from '@components/banner';
 import Text from '@components/text';
 import {processMarkdownDir, getPageData} from '@src/util/static';
-import {dateFormat, readTime, except} from '@src/util';
+import {dateFormat, except} from '@src/util';
 
 export default function Index({title, description, posts}) {
     return (
