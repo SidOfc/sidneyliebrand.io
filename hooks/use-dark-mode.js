@@ -8,17 +8,15 @@ export default function useDarkMode() {
     });
 
     useEffect(() => {
-        if (isDark) {
-            document.body.setAttribute('class', 'dark');
-            try {
+        try {
+            if (isDark) {
+                document.body.setAttribute('class', 'dark');
                 localStorage.setItem('dark', 'true');
-            } catch (e) {}
-        } else {
-            document.body.setAttribute('class', '');
-            try {
+            } else {
+                document.body.setAttribute('class', '');
                 localStorage.removeItem('dark');
-            } catch (e) {}
-        }
+            }
+        } catch (e) {}
     }, [isDark]);
 
     return {isDark, toggleDark: () => setDark(!isDark)};
