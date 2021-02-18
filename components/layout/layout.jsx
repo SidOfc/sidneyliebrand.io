@@ -12,11 +12,10 @@ export default function Layout({children}) {
                     <div className={styles.headerContent}>
                         <Link href="/">
                             <a className={styles.logo} title="View home page">
-                                <span className={styles.logoCode}>{'<'}</span>
-                                Sidney
-                                <span className={styles.logoCode}>.</span>
-                                Liebrand&nbsp;
-                                <span className={styles.logoCode}>/{'>'}</span>
+                                <span className={styles.logoTopLeft} />
+                                <span className={styles.logoBottomLeft} />
+                                <span className={styles.logoTopRight} />
+                                <span className={styles.logoBottomRight} />
                             </a>
                         </Link>
                         <nav className={styles.navigation}>
