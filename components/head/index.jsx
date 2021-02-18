@@ -12,6 +12,11 @@ export default function Head({title, description}) {
             <link rel="cannonical" href={`${host}${asPath}`} />
             <link rel="manifest" href="/site.webmanifest" />
             <link
+                rel="mask-icon"
+                href="/safari-pinned-tab.svg"
+                color="#a676ff"
+            />
+            <link
                 rel="icon"
                 sizes="48x48"
                 type="image/icon"
@@ -51,10 +56,8 @@ export default function Head({title, description}) {
                 name="viewport"
                 content="width=device-width, initial-scale=1.0"
             />
-            <meta
-                name="theme-color"
-                content={sassVars['primary-bg'] || '#000'}
-            />
+            <meta name="theme-color" content="#ffffff" />
+            <meta name="msapplication-TileColor" content="#ffc40d" />
             <meta name="robots" content="index, follow" />
             <meta name="author" content={profile.name} />
             <meta name="description" content={description} />
