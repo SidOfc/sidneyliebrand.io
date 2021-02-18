@@ -76,6 +76,7 @@
     height: 0.8rem;
     border: 0.125rem solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    transition: transform 0.05s linear;
 
     &::after {
       content: '';
@@ -90,8 +91,12 @@
     }
   }
 
-  &:hover span::after {
-    opacity: 1;
+  &:hover span {
+    transform: rotate(90deg);
+
+    &::after {
+      opacity: 1;
+    }
   }
 }
 
