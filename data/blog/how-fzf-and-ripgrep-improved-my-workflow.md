@@ -176,7 +176,7 @@ the directory listing. Pressing <kbd>escape</kbd> in the overview will exit the 
 ## Checking features on caniuse.com
 
 Additionally, I've written a post before on how to [combine Caniuse with FZF](/blog/combining-caniuse-with-fzf "Read the 'combine Caniuse with FZF post'").
-It allows me to quickly find out wether I should stay away from some Web API or not.
+It allows me to quickly find out whether I should stay away from some Web API or not.
 this small tool also allows me to query features that have been added or deprecated recently.
 
 <Media
@@ -294,7 +294,7 @@ part of my workflow. I use them while barely noticing their presence and they
 take a lot of complexity away from the task at hand. This allows me to focus
 on what matters instead of finding out how to do something which should be trivial.
 
-Wether it be killing services / processes, installing brew packages,
+Whether it be killing services / processes, installing brew packages,
 finding a glitch in my path or a feature set in caniuse, I can do it in fewer
 keystrokes with more fine-grained control. I even use FZF as a standalone
 filter sometimes when I have to find something in line-based command output,

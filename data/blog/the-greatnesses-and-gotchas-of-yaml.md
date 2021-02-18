@@ -483,7 +483,7 @@ The Ruby parser used was [Yaml](https://ruby-doc.org/stdlib-2.4.2/libdoc/yaml/rd
 
 ## Conclusion
 
-I think YAML is great! Every experience I've had so far with YAML has been a positive one, wether it includes writing thousands of lines or debugging an issue. Even writing this post was a pleasure, I just took my time, opened my favorite REPL's with pane-sync on to reduce typing and started compiling information and examples, sometimes with side-effects I didn't even anticipate which led to interesting results.
+I think YAML is great! Every experience I've had so far with YAML has been a positive one, whether it includes writing thousands of lines or debugging an issue. Even writing this post was a pleasure, I just took my time, opened my favorite REPL's with pane-sync on to reduce typing and started compiling information and examples, sometimes with side-effects I didn't even anticipate which led to interesting results.
 
 I'm pretty sure I've missed some things considering what we've just witnessed earlier in the Casting Values section, there are probably lots more of these nuances between various other parsers.
 

@@ -60,7 +60,7 @@ if you know what each column indicates. In the leftmost column, we have a 2 lett
 `[wd]` for "Working Draft". Followed by a percentage of global support which is followed by the title of the feature.
 
 On the right side we see the browsers listed with a bunch of plus, minus and tilde signs.
-This indicates wether or not a feature is supported (`+`), partially supported (`~`) or not supported (`-`).
+This indicates whether or not a feature is supported (`+`), partially supported (`~`) or not supported (`-`).
 It shows the support for the last 2 versions (first sign is previous, last is current) which is why there are 2.
 The idea being that, I can look for features which are only supported in the latest version of a
 browser and see which ones they are so I can look for them in any project and patch them if needed.
