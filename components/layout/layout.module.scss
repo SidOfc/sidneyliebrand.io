@@ -67,7 +67,6 @@
   left: -0.6rem;
   width: 2.4rem;
   height: 2.4rem;
-  transition: transform 0.05s linear;
 
   span {
     @include themed('background-color', 'primary-bg');
@@ -76,10 +75,23 @@
     width: 0.8rem;
     height: 0.8rem;
     border: 0.125rem solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.05s linear;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   }
 
-  &:hover {
-    transform: scale(1.1);
+  &:hover span::after {
+    opacity: 1;
   }
 }
 
