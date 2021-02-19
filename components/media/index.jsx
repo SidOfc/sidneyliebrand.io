@@ -28,7 +28,11 @@ export default forwardRef(
                 })}
                 ref={ref}
             >
-                <LazyLoad placeholder={<div style={{paddingBottom}} />} once>
+                <LazyLoad
+                    placeholder={<div style={{paddingBottom}} />}
+                    offset={300}
+                    once
+                >
                     <div className={styles.relative} style={{paddingBottom}}>
                         {src.match(/\.\w+$/) ? (
                             <img className={styles.media} src={src} alt={alt} />
