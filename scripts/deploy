@@ -2,7 +2,7 @@
 
 NODE_ENV="production"
 BUILD_ID="build-$(date +"%s")"
-GIT_REMOTE="git@github.com:sidofc/sidofc.github.io"
+GIT_REMOTE="git@github.com:SidOfc/sidofc.github.io.git"
 BUILD_DIR="$(pwd)/out"
 DEPLOY_DIR="/tmp/deploy-$BUILD_ID"
 CUSTOM_DOMAIN="sidneyliebrand.io"
