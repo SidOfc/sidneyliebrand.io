@@ -3,7 +3,7 @@
 
 // NOTE: $vars is injected via next.config.js
 
-@mixin css-body-vars {
+@mixin css-theme-vars {
   @each $var, $value in $vars {
     --#{$var}: #{$value};
   }

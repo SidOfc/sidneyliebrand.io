@@ -3,18 +3,22 @@ import {useState, useCallback, useEffect} from 'react';
 export default function useDarkMode() {
     const [isDark, setDark] = useState(() => {
         return process.browser
-            ? document.body.getAttribute('class')?.includes('dark')
+            ? document
+                  .querySelector('html')
+                  .getAttribute('class')
+                  ?.includes('dark')
             : false;
     });
     const toggleDark = useCallback(() => setDark((prev) => !prev), []);
 
     useEffect(() => {
         try {
+            const html = document.querySelector('html');
             if (isDark) {
-                document.body.setAttribute('class', 'dark');
+                html.setAttribute('class', 'dark');
                 localStorage.setItem('dark', 'true');
             } else {
-                document.body.setAttribute('class', '');
+                html.setAttribute('class', '');
                 localStorage.removeItem('dark');
             }
         } catch (e) {}
