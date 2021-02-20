@@ -147,12 +147,25 @@ export default function Index({title, description, pinnedRepositories}) {
                             subtitle={item.description}
                             customData={
                                 <span className={styles.stats}>
-                                    <Text color="addition">
+                                    <Text
+                                        color="addition"
+                                        title={`${item.stats.additions} additions`}
+                                    >
                                         {item.stats.additions}++
                                     </Text>
                                     <Bullet wide />
-                                    <Text color="deletion">
+                                    <Text
+                                        color="deletion"
+                                        title={`${item.stats.deletions} deletions`}
+                                    >
                                         {item.stats.deletions}--
+                                    </Text>
+                                    <Bullet wide />
+                                    <Text
+                                        color="star"
+                                        title={`${item.starCount} GitHub stars`}
+                                    >
+                                        {item.starCount}&#9733;
                                     </Text>
                                     <Bullet wide />
                                     {item.stats.commits} commits,
