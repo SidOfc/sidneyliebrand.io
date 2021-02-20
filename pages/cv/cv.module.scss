@@ -98,7 +98,7 @@
     display: none;
   }
 
-  @include dark {
+  @include active-theme('dark') {
     figure {
       @include themed('background-color', 'page-fg');
       padding: 0.5rem;
@@ -139,7 +139,7 @@
   border-radius: 0.25rem;
   overflow: hidden;
 
-  @include dark {
+  @include active-theme('dark') {
     @include themed('border', '0.25rem solid $0', 'page-fg');
   }
 }

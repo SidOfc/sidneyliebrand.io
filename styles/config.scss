@@ -19,12 +19,6 @@
   }
 }
 
-@mixin dark {
-  :global(.dark) & {
-    @content;
-  }
-}
-
 @mixin themed($property, $args...) {
   $length: list.length($args);
   $var: list.nth($args, 1);
@@ -40,6 +34,21 @@
     }
 
     #{$property}: #{substitute($var, $keys...)};
+  }
+}
+
+@mixin active-theme($themes...) {
+  $length: list.length($themes);
+  $selector: ":global(.#{list.nth($themes, 1)}) &";
+
+  @if $length > 1 {
+    @for $idx from 2 through $length {
+      $selector: "#{$selector},:global(.#{list.nth($themes, $idx)}) &";
+    }
+  }
+
+  #{$selector} {
+    @content;
   }
 }
 

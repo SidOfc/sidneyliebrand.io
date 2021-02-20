@@ -13,7 +13,7 @@
   height: 1.4rem;
   border-radius: 100%;
 
-  @include dark {
+  @include active-theme('dark') {
     background-color: transparent;
     filter: invert(1);
   }
@@ -22,7 +22,7 @@
 .toggleLight {
   display: block;
 
-  @include dark {
+  @include active-theme('dark') {
     display: none;
   }
 }
@@ -30,7 +30,7 @@
 .toggleDark {
   display: none;
 
-  @include dark {
+  @include active-theme('dark') {
     display: block;
   }
 }

@@ -14,7 +14,7 @@
   overflow: hidden;
   margin: 0;
 
-  @include dark {
+  @include active-theme('dark') {
     @include themed('border', '0.25rem solid $0', 'page-fg');
   }
 }

@@ -30,7 +30,7 @@
 }
 
 .invertDark img {
-  @include dark {
+  @include active-theme('dark') {
     filter: invert(1);
   }
 }
