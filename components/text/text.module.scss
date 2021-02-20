@@ -1,6 +1,6 @@
 @import "@styles/config";
 
-@each $name, $value in $vars {
+@each $name, $value in map-deep-get($vars, 'themes', 'default') {
   @if ends-with($name, '-fg') {
     .#{$name} {
       @include themed('color', $name)
