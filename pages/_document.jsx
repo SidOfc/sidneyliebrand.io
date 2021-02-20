@@ -1,4 +1,5 @@
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
+import {themes} from '@data/sass-variables.json';
 
 export default class Document extends NextDocument {
     render() {
@@ -9,12 +10,14 @@ export default class Document extends NextDocument {
                         dangerouslySetInnerHTML={{
                             __html: `
                         try {
-                            if (localStorage.getItem('dark')) {
+                            var theme = localStorage.getItem('theme');
+                            if (theme) {
                                 var html = document.querySelector('html');
                                 var style = document.createElement('style');
+                                var themes = ${JSON.stringify(themes)};
 
-                                html.setAttribute('class', 'dark')
-                                style.innerHTML = 'html { background-color: #111; }';
+                                html.setAttribute('class', theme);
+                                style.innerHTML = 'html { background-color:' + themes[theme]['page-bg'] + '; }';
 
                                 document.head.appendChild(style);
                             }

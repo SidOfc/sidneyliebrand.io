@@ -19,11 +19,7 @@ module.exports = withBundleAnalyzer({
         return config;
     },
     sassOptions: {
-        prependData: `$vars: (
-            ${Object.entries(sassVars).map(
-                ([name, value]) => `${name}: ${value}`
-            )}
-        );`,
+        prependData: `$vars: ${serializeToSass(sassVars)};`,
         functions: {
             'ends-with($string, $end)': (string, end) => {
                 return string.getValue().endsWith(end.getValue())
@@ -56,3 +52,25 @@ module.exports = withBundleAnalyzer({
         },
     },
 });
+
+function isType(thing, ...types) {
+    return thing === null || thing === undefined
+        ? types.includes(thing)
+        : types.includes(thing.constructor);
+}
+
+function serializeToSass(subject) {
+    if (isType(subject, String)) {
+        return subject.match(/^(?:#|rgb|hsl|[\d.]+\w*$)/i)
+            ? `${subject}`
+            : `"${subject}"`;
+    } else if (isType(subject, Array)) {
+        return `(${subject.map(serializeToSass).join(',')})`;
+    } else if (isType(subject, Object)) {
+        return `(${Object.entries(subject)
+            .map(([key, value]) => `${key}: ${serializeToSass(value)}`)
+            .join(',')})`;
+    } else {
+        return `${subject}`;
+    }
+}

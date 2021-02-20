@@ -1,18 +1,40 @@
 {
-    "page-bg": "#fff",
-    "page-fg": "#000",
-    "page-accent-fg": "#666",
-    "header-shadow": "#ccc",
-    "primary-bg": "#651eea",
-    "primary-fg": "#ffffff",
-    "inline-code-bg": "#e8e8e8",
-    "inline-code-fg": "#444",
-    "kbd-bg": "#fff",
-    "kbd-fg": "#555",
-    "addition-fg": "#00852c",
-    "deletion-fg": "#d33947",
-    "tag-bg": "#fafafa",
-    "tag-fg": "#727272",
-    "link-fg": "#651eea",
-    "selection-bg": "rgba(101, 30, 234, 0.2)"
+    "themes": {
+        "default": {
+            "page-bg": "#fff",
+            "page-fg": "#000",
+            "page-accent-fg": "#666",
+            "header-shadow": "#ccc",
+            "primary-bg": "#651eea",
+            "primary-fg": "#ffffff",
+            "inline-code-bg": "#e8e8e8",
+            "inline-code-fg": "#444",
+            "kbd-bg": "#fff",
+            "kbd-fg": "#555",
+            "addition-fg": "#00852c",
+            "deletion-fg": "#d33947",
+            "tag-bg": "#fafafa",
+            "tag-fg": "#727272",
+            "link-fg": "#651eea",
+            "selection-bg": "rgba(101, 30, 234, 0.2)"
+        },
+        "dark": {
+            "page-bg": "#111",
+            "page-fg": "#eee",
+            "page-accent-fg": "#aaa",
+            "header-shadow": "#333",
+            "primary-bg": "#834de8",
+            "primary-fg": "#ffffff",
+            "inline-code-bg": "#666",
+            "inline-code-fg": "#e8e8e8",
+            "kbd-bg": "#666",
+            "kbd-fg": "#e8e8e8",
+            "addition-fg": "#00cc00",
+            "deletion-fg": "#ff0000",
+            "tag-bg": "#666",
+            "tag-fg": "#e8e8e8",
+            "link-fg": "#a676ff",
+            "selection-bg": "rgba(131, 77, 232, 0.4)"
+        }
+    }
 }

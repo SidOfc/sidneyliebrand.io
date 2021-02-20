@@ -143,8 +143,8 @@ async function createWebmanifest(destination) {
                 type: 'image/png',
             },
         ],
-        theme_color: sassVars['primary-fg'],
-        background_color: sassVars['primary-bg'],
+        theme_color: sassVars.themes.default['primary-fg'],
+        background_color: sassVars.themes.default['primary-bg'],
         display: 'standalone',
     });
 

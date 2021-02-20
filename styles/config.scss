@@ -4,26 +4,18 @@
 // NOTE: $vars is injected via next.config.js
 
 @mixin css-theme-vars {
-  @each $var, $value in $vars {
-    --#{$var}: #{$value};
-  }
-
-  &.dark {
-  --page-bg: #111;
-  --page-fg: #eee;
-  --page-accent-fg: #aaa;
-  --addition-fg: #00cc00;
-  --deletion-fg: #ff0000;
-  --tag-bg: #666;
-  --tag-fg: #e8e8e8;
-  --inline-code-bg: #666;
-  --inline-code-fg: #e8e8e8;
-  --kbd-bg: #666;
-  --kbd-fg: #e8e8e8;
-  --primary-bg: #834de8;
-  --link-fg: #a676ff;
-  --header-shadow: #333;
-  --selection-bg: rgba(131, 77, 232, 0.4);
+  @each $theme, $config in map-deep-get($vars, 'themes') {
+    @if ($theme == "default") {
+      @each $var, $value in $config {
+        --#{$var}: #{$value};
+      }
+    } @else {
+      &.#{$theme} {
+        @each $var, $value in $config {
+          --#{$var}: #{$value};
+        }
+      }
+    }
   }
 }
 
@@ -38,19 +30,23 @@
   $var: list.nth($args, 1);
 
   @if $length == 1 {
-    // #{$property}: #{map.get($vars, $var)};
     #{$property}: var(--#{$var});
   } @else if $length > 1 {
-    $values: ();
     $keys: ();
 
     @for $idx from 2 through $length {
       $arg: list.nth($args, $idx);
-      $values: list.append($values, map.get($vars, $arg));
       $keys: list.append($keys, "var(--#{$arg})");
     }
 
-    // #{$property}: #{substitute($var, $values...)};
     #{$property}: #{substitute($var, $keys...)};
   }
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
 }

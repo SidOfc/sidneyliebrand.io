@@ -1,7 +1,6 @@
 import NextHead from 'next/head';
 import {useRouter} from 'next/router';
 import {host, profile} from '@data/content';
-import sassVars from '@data/sass-variables';
 
 export default function Head({title, description}) {
     const {asPath} = useRouter();

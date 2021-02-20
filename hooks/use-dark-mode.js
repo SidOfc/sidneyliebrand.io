@@ -16,10 +16,10 @@ export default function useDarkMode() {
             const html = document.querySelector('html');
             if (isDark) {
                 html.setAttribute('class', 'dark');
-                localStorage.setItem('dark', 'true');
+                localStorage.setItem('theme', 'dark');
             } else {
                 html.setAttribute('class', '');
-                localStorage.removeItem('dark');
+                localStorage.removeItem('theme');
             }
         } catch (e) {}
     }, [isDark]);
