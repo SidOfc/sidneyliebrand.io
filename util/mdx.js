@@ -2,10 +2,12 @@ import remoteHydrate from 'next-mdx-remote/hydrate';
 import CodeBlock from '@components/code-block';
 import Heading from '@components/heading';
 import Media from '@components/media';
+import Caniuse from '@components/caniuse';
 
 export const MARKDOWN_OPTIONS = {
     components: {
         Media,
+        Caniuse,
         pre: CodeBlock,
         h1: (props) => <Heading {...props} as="h1" />,
         h2: (props) => <Heading {...props} as="h2" />,
