@@ -127,6 +127,7 @@ const VISIBLE_BROWSERS = [
     'and_chr',
     'ios_saf',
     'op_mob',
+    'op_mini',
     'android',
     'samsung',
     'and_uc',
@@ -149,26 +150,33 @@ function getFeature(id) {
         const versions = VISIBLE_VERSIONS[browser];
         const versionSupport = feature.stats[browser];
 
-        acc[browser] = versions.reduce((acc, version) => {
-            if (version && versionSupport[version]) {
-                const splitFlags = versionSupport[version].split(/\s+/i);
-                acc.push({
-                    version,
-                    flags: splitFlags.filter((x) => SUPPORT_LEVELS.includes(x)),
-                    notes: splitFlags
-                        .filter((x) => x.startsWith('#'))
-                        .map((x) => parseInt(x.replace('#', ''), 10)),
-                });
-            } else {
-                acc.push({version: null, flags: [], notes: []});
-            }
+        acc.push({
+            id: browser,
+            name: caniuse.agents[browser].browser,
+            versions: versions.reduce((acc, version) => {
+                if (version && versionSupport[version]) {
+                    const splitFlags = versionSupport[version].split(/\s+/i);
+                    acc.push({
+                        version,
+                        flags: splitFlags.filter((x) =>
+                            SUPPORT_LEVELS.includes(x)
+                        ),
+                        notes: splitFlags
+                            .filter((x) => x.startsWith('#'))
+                            .map((x) => parseInt(x.replace('#', ''), 10)),
+                    });
+                } else {
+                    acc.push({version: null, flags: [], notes: []});
+                }
 
-            return acc;
-        }, []);
+                return acc;
+            }, []),
+        });
 
         return acc;
-    }, {});
+    }, []);
     const activeNotes = Object.values(stats)
+        .map(({versions}) => versions)
         .reduce((acc, versions) => {
             versions.forEach(({notes}) => acc.push(...notes));
             return acc;

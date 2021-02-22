@@ -114,7 +114,7 @@ p.description {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  min-width: 6rem;
+  min-width: 7rem;
   margin: 0 0.125rem;
 
   &:first-child {
@@ -127,13 +127,14 @@ p.description {
 }
 
 .browser {
-  padding: 0.7rem 1rem;
-  margin: 6px 0;
+  padding: 0.7rem 1rem 0.25rem;
+  margin: 2px 0;
+  margin-top: auto;
   text-align: center;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  line-height: 1.2;
+  font-size: 0.65rem;
   border-bottom: 0.4rem solid transparent;
-  margin-bottom: auto;
 
   & + .cell {
     margin-top: 0.25rem;

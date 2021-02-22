@@ -64,9 +64,9 @@ export default function Caniuse({data}) {
                 </span>
             </div>
             <div className={styles.table}>
-                {Object.entries(data.stats).map(([name, versions]) => (
+                {data.stats.map(({id, name, versions}) => (
                     <div key={name} className={styles.column}>
-                        <div className={styles.browser} data-name={name}>
+                        <div className={styles.browser} data-name={id}>
                             {name}
                         </div>
                         {versions.map((item, idx) => (
