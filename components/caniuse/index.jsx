@@ -21,7 +21,7 @@ export default function Caniuse({data}) {
             <div className={styles.header}>
                 <span className={styles.headerLeft}>
                     <span className={styles.title}>{data.title}</span>
-                    <p
+                    <span
                         className={styles.description}
                         dangerouslySetInnerHTML={{__html: data.description}}
                     />
