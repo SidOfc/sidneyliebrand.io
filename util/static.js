@@ -3,6 +3,7 @@ import remoteRenderToString from 'next-mdx-remote/render-to-string';
 import matter from 'gray-matter';
 import {emojify} from 'node-emoji';
 import {Octokit} from '@octokit/rest';
+import {markdown} from 'markdown';
 import {MARKDOWN_OPTIONS} from '@src/util/mdx';
 import {slug, readTime} from '@src/util';
 import {profile, pages} from '@data/content.json';
@@ -114,7 +115,6 @@ function caniuseEmbedData(content) {
     );
 }
 
-const ERAS = [-2, -1, 0, 1];
 const SUPPORT_LEVELS = ['y', 'n', 'a', 'p', 'u', 'x', 'd'];
 const VISIBLE_BROWSERS = [
     'ie',
@@ -134,7 +134,7 @@ const VISIBLE_BROWSERS = [
 const VISIBLE_VERSIONS = Object.entries(caniuse.agents)
     .filter(([name]) => VISIBLE_BROWSERS.includes(name))
     .reduce((acc, [name, data]) => {
-        acc[name] = ERAS.map((era) => {
+        acc[name] = [-2, -1, 0, 1].map((era) => {
             const found = data.version_list.find((item) => item.era === era);
 
             return found ? found.version : null;
@@ -145,37 +145,57 @@ const VISIBLE_VERSIONS = Object.entries(caniuse.agents)
 
 function getFeature(id) {
     const feature = caniuse.data[id];
+    const stats = VISIBLE_BROWSERS.reduce((acc, browser) => {
+        const versions = VISIBLE_VERSIONS[browser];
+        const versionSupport = feature.stats[browser];
+
+        acc[browser] = versions.reduce((acc, version) => {
+            if (version && versionSupport[version]) {
+                const splitFlags = versionSupport[version].split(/\s+/i);
+                acc.push({
+                    version,
+                    flags: splitFlags.filter((x) => SUPPORT_LEVELS.includes(x)),
+                    notes: splitFlags
+                        .filter((x) => x.startsWith('#'))
+                        .map((x) => parseInt(x.replace('#', ''), 10)),
+                });
+            } else {
+                acc.push({version: null, flags: [], notes: []});
+            }
+
+            return acc;
+        }, []);
+
+        return acc;
+    }, {});
+    const activeNotes = Object.values(stats)
+        .reduce((acc, versions) => {
+            versions.forEach(({notes}) => acc.push(...notes));
+            return acc;
+        }, [])
+        .filter((note, idx, notes) => notes.indexOf(note) === idx);
 
     return {
         id,
+        notesByNum: activeNotes
+            .filter((note) => feature.notes_by_num[note])
+            .sort((a, b) => (a > b ? 1 : a === b ? 0 : -1))
+            .map((note) => ({
+                note,
+                text: `<span>${markdown
+                    .toHTML(feature.notes_by_num[note].trim())
+                    .replace(/^<p>\s*|\s*<\/p>$/gi, '')}</span>`,
+            })),
         title: feature.title,
-        description: feature.description,
+        description: `<span>${markdown
+            .toHTML(feature.description.trim())
+            .replace(/^<p>\s*|\s*<\/p>$/gi, '')}</span>`,
         status: feature.status,
         spec: feature.spec,
         usage: {
             y: feature.usage_perc_y,
             a: feature.usage_perc_a,
         },
-        stats: VISIBLE_BROWSERS.reduce((acc, browser) => {
-            const versions = VISIBLE_VERSIONS[browser];
-            const versionSupport = feature.stats[browser];
-
-            acc[browser] = versions.reduce((acc, version) => {
-                if (version && versionSupport[version]) {
-                    acc.push({
-                        version,
-                        flags: versionSupport[version]
-                            .split(/\s+/i)
-                            .filter((x) => SUPPORT_LEVELS.includes(x)),
-                    });
-                } else {
-                    acc.push({version: null, flags: []});
-                }
-
-                return acc;
-            }, []);
-
-            return acc;
-        }, {}),
+        stats,
     };
 }

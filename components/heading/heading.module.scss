@@ -12,6 +12,4 @@
 
 .link {
   @include themed('color', 'page-fg');
-  display: block;
-  width: 100%;
 }

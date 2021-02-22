@@ -33,6 +33,8 @@ the .webm file is (on average) **60%** smaller than the .gif file.
 When we check caniuse, [.webm support](https://caniuse.com/?search=webm "View caniuse.com webm support") looks good too, mostly.
 Indeed the only real reason today to use .mp4 on the web is to support Internet Explorer.
 
+<Caniuse data={cani:webm} />
+
 ## Convert .gif to .mp4
 
 To convert a .gif file to a web-safe .mp4, use the following command:
@@ -42,8 +44,7 @@ ffmpeg -i file.gif -movflags +faststart -pix_fmt yuv420p \
        -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" file.mp4
 ~~~
 
-This will output a .mp4 file that is [widely supported](https://caniuse.com/?search=mp4 "View caniuse.com mp4 support")
-in all browsers except Opera Mini. Let's also cover the options for this one:
+Let's also cover the options for this one:
 
 - `-i`: Specifies the _input file_, in this case `file.gif`.
 - `-movflags`: For web video we can specify `+faststart` to allow the video to start playing before the download is complete.
@@ -55,7 +56,10 @@ Additionally, [this commit](https://github.com/manateelazycat/deepin-screen-reco
 provides some additional context about `-pix_fmt` and `-vf`.
 
 The .mp4 file is (on average) **50%** smaller than the .gif file. While less efficient
-than .webm, it is still much better than using .gif.
+than .webm, it is still much better than using .gif. Additionally, this .mp4 file is [widely supported](https://caniuse.com/?search=mp4 "View caniuse.com mp4 support")
+in nearly all browsers.
+
+<Caniuse data={cani:mpeg4} />
 
 ## Conclusion
 
