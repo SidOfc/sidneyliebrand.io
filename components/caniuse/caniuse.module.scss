@@ -141,6 +141,26 @@
   display: flex;
   flex-flow: row wrap;
   overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-color: #c4ab7e #e5d8bc;
+
+  &::-webkit-scrollbar {
+    background-color: #e5d8bc;
+    border-radius: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c4ab7e;
+    border-radius: 0.25rem;
+
+    &:hover {
+      background-color: darken(#c4ab7e, 5%);
+    }
+
+    &:active {
+      background-color: darken(#c4ab7e, 10%);
+    }
+  }
 }
 
 .tableHeader {
