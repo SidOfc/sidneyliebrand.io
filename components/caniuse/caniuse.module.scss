@@ -11,6 +11,54 @@
   &:first-child {
     margin-top: 0;
   }
+
+  .description {
+    display: block;
+    font-family: sans-serif;
+    line-height: 1.2;
+    font-size: 1rem;
+    margin: 0.7rem 0;
+    color: rgba(0, 0, 0, 0.7);
+
+    code {
+      background-color: darken(#f2e8d5, 20%);
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .notesByNum {
+    list-style: none;
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+
+    li {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.7);
+
+      a {
+        color: darken(#f2e8d5, 50%);
+      }
+
+      & + li {
+        margin-top: 0.5rem;
+      }
+    }
+
+    .noteNum {
+      padding: 0.15rem 0.4rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: white;
+      margin-right: 1rem;
+      margin-bottom: auto;
+    }
+  }
 }
 
 .header {
@@ -76,23 +124,8 @@
   }
 }
 
-
 .title {
   font-size: 1.1rem;
-}
-
-.description {
-  display: block;
-  font-family: sans-serif;
-  line-height: 1.2;
-  font-size: 1rem;
-  margin: 1rem 0;
-  color: rgba(0, 0, 0, 0.7);
-
-  code {
-    background-color: darken(#f2e8d5, 20%);
-    color: rgba(0, 0, 0, 0.7);
-  }
 }
 
 .status {
@@ -304,39 +337,5 @@
   @media all and (max-width: 540px) {
     margin-top: 1rem;
     margin-right: auto;
-  }
-}
-
-ul.notesByNum {
-  list-style: none;
-  margin: 0;
-  margin-top: 1rem;
-  padding: 0;
-
-  li {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1;
-    color: rgba(0, 0, 0, 0.7);
-
-    a {
-      color: darken(#f2e8d5, 50%);
-    }
-
-    & + & {
-      margin-top: 0.5rem;
-    }
-  }
-
-  .noteNum {
-    padding: 0.15rem 0.4rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-weight: 700;
-    font-size: 0.7rem;
-    color: white;
-    margin-right: 1rem;
-    margin-bottom: auto;
   }
 }

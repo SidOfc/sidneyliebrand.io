@@ -17,11 +17,11 @@ export default function Caniuse({data}) {
     const [showNotes, setShowNotes] = useState(false);
 
     return (
-        <section className={styles.caniuse}>
+        <section className={styles.caniuse} data-embed>
             <div className={styles.header}>
                 <span className={styles.headerLeft}>
                     <span className={styles.title}>{data.title}</span>
-                    <span
+                    <p
                         className={styles.description}
                         dangerouslySetInnerHTML={{__html: data.description}}
                     />
