@@ -7,14 +7,11 @@ const TYPES = [
     ['y', 'supported'],
     ['n', 'unsupported'],
     ['a', 'partial'],
-    ['p', 'polyfill'],
     ['u', 'unknown'],
 ];
 
 export default function Caniuse({data}) {
     const [showNotes, setShowNotes] = useState(false);
-
-    if (data.id === 'css-backdrop-filter') console.log({data});
 
     return (
         <section className={styles.caniuse} data-embed>
@@ -64,46 +61,59 @@ export default function Caniuse({data}) {
                 </span>
             </div>
             <div className={styles.table}>
-                {data.stats.map(({id, name, versions}) => (
-                    <div key={name} className={styles.column}>
-                        <div className={styles.browser} data-name={id}>
-                            {name}
-                        </div>
-                        {versions.map((item, idx) => (
-                            <div
-                                key={idx}
-                                className={classes(
-                                    styles.cell,
-                                    ...(item?.flags || []).map(
-                                        (flag) => styles[`flag-${flag}`]
-                                    )
-                                )}
-                            >
-                                <div className={styles.cellDetails}>
-                                    <span className={styles.notes}>
-                                        {item.notes.map((note) => (
-                                            <span
-                                                className={styles.note}
-                                                key={note}
-                                            >
-                                                {note}
-                                            </span>
-                                        ))}
-                                    </span>
-                                    {item.prefixed && (
-                                        <span className={styles.prefixed} />
-                                    )}
-                                    {item.disabled && (
-                                        <span className={styles.disabled}>
-                                            &#9873;
-                                        </span>
-                                    )}
-                                </div>
-                                {item?.version || <>&nbsp;</>}
+                <div className={styles.tableHeader}>
+                    {data.stats.map(({id, name}) => (
+                        <div key={name} className={styles.column}>
+                            <div className={styles.browser} data-name={id}>
+                                {name}
                             </div>
-                        ))}
-                    </div>
-                ))}
+                        </div>
+                    ))}
+                </div>
+                <div
+                    className={classes(styles.tableBody, styles.tableBodyPast)}
+                >
+                    {data.stats.map(({id, name, versions}) => (
+                        <div key={name} className={styles.column}>
+                            {versions
+                                .filter(({era}) => era < 0)
+                                .map((item, idx) => (
+                                    <VersionCell
+                                        item={item}
+                                        prefix={data.prefixes[id]}
+                                        key={idx}
+                                    />
+                                ))}
+                        </div>
+                    ))}
+                </div>
+                <div
+                    className={classes(
+                        styles.tableBody,
+                        styles.tableBodyCurrent
+                    )}
+                >
+                    {data.stats.map(({id, name, versions}) => (
+                        <div key={name} className={styles.column}>
+                            <VersionCell
+                                item={versions.find(({era}) => era === 0)}
+                                prefix={data.prefixes[id]}
+                                key={name}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className={styles.tableBody}>
+                    {data.stats.map(({name, versions}) => (
+                        <div key={name} className={styles.column}>
+                            {versions
+                                .filter(({era}) => era > 0)
+                                .map((item, idx) => (
+                                    <VersionCell item={item} key={idx} />
+                                ))}
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className={styles.legendAndNotes}>
                 <div className={styles.legend}>
@@ -118,9 +128,10 @@ export default function Caniuse({data}) {
                             {caption}
                         </div>
                     ))}
-                    <div className={styles.legendItem}>
-                        <span className={styles.prefixed} />
-                        &nbsp;&nbsp;prefixed
+                    <div
+                        className={classes(styles.legendItem, styles['flag-p'])}
+                    >
+                        -prefixed-
                     </div>
                     <div className={styles.legendItem}>
                         <span className={styles.disabled}>&#9873;</span>
@@ -156,6 +167,34 @@ export default function Caniuse({data}) {
                 </ul>
             )}
         </section>
+    );
+}
+
+function VersionCell({item, prefix}) {
+    return (
+        <div
+            className={classes(
+                styles.cell,
+                ...(item?.flags || []).map((flag) => styles[`flag-${flag}`])
+            )}
+        >
+            <div className={styles.cellDetails}>
+                <span className={styles.notes}>
+                    {item.notes.map((note) => (
+                        <span className={styles.note} key={note}>
+                            {note}
+                        </span>
+                    ))}
+                </span>
+                {item.prefixed && (
+                    <span className={styles.prefixed}>-{prefix}-</span>
+                )}
+                {item.disabled && (
+                    <span className={styles.disabled}>&#9873;</span>
+                )}
+            </div>
+            {item?.version || <>&nbsp;</>}
+        </div>
     );
 }
 

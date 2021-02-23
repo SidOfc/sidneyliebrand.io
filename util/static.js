@@ -115,7 +115,6 @@ function caniuseEmbedData(content) {
     );
 }
 
-const SUPPORT_LEVELS = ['y', 'n', 'a', 'p', 'u'];
 const VISIBLE_BROWSERS = [
     'ie',
     'edge',
@@ -132,51 +131,88 @@ const VISIBLE_BROWSERS = [
     'samsung',
     'and_uc',
 ];
-const VISIBLE_VERSIONS = Object.entries(caniuse.agents)
-    .filter(([name]) => VISIBLE_BROWSERS.includes(name))
-    .reduce((acc, [name, data]) => {
-        acc[name] = [-2, -1, 0, 1].map((era) => {
-            const found = data.version_list.find((item) => item.era === era);
 
-            return found ? found.version : null;
-        });
+function flagData(str) {
+    const flags = str.split(/\s+/i);
+    const notes = flags
+        .filter((x) => x.startsWith('#'))
+        .map((x) => parseInt(x.replace('#', ''), 10));
+
+    if (flags.includes('p')) flags.push('n');
+
+    return {
+        notes,
+        flags: flags.filter((flag) => !['d', 'x', 'p'].includes(flag)),
+        disabled: flags.includes('d'),
+        prefixed: flags.includes('x'),
+    };
+}
+
+function compressStats(stats) {
+    const result = Object.entries(stats).reduce((acc, [agent, support]) => {
+        acc[agent] = caniuse.agents[agent].version_list
+            .filter(({version}) => support[version])
+            .reduce((groups, {version, era}) => {
+                const group = groups[groups.length - 1];
+                const flags = support[version];
+
+                if (
+                    group &&
+                    group[0].flags === flags &&
+                    ![1, 0].includes(era)
+                ) {
+                    group.push({version, era, flags});
+                } else {
+                    groups.push([{version, era, flags}]);
+                }
+
+                return groups;
+            }, [])
+            .map((group) => {
+                if (group.length === 1)
+                    return {...group[0], ...flagData(group[0].flags)};
+
+                const first = group[0];
+                const last = group[group.length - 1];
+                let firstVersion = first.version;
+                let lastVersion = last.version;
+
+                if (firstVersion.match(/^(?:\d+\.)+\d+(?:-(?:\d+\.)+\d+)$/)) {
+                    firstVersion = firstVersion.split('-').shift();
+                }
+
+                if (lastVersion.match(/^(?:\d+\.)+\d+(?:-(?:\d+\.)+\d+)$/)) {
+                    lastVersion = lastVersion.split('-').pop();
+                }
+
+                return {
+                    version: `${firstVersion}-${lastVersion}`,
+                    era: last.era,
+                    ...flagData(last.flags),
+                };
+            });
 
         return acc;
     }, {});
 
+    return result;
+}
+
 function getFeature(id) {
     const feature = caniuse.data[id];
-    const stats = VISIBLE_BROWSERS.reduce((acc, browser) => {
-        const versions = VISIBLE_VERSIONS[browser];
-        const versionSupport = feature.stats[browser];
-
-        acc.push({
-            id: browser,
-            name: caniuse.agents[browser].browser,
-            versions: versions.reduce((acc, version) => {
-                if (version && versionSupport[version]) {
-                    const splitFlags = versionSupport[version].split(/\s+/i);
-                    acc.push({
-                        version,
-                        flags: splitFlags.filter((x) =>
-                            SUPPORT_LEVELS.includes(x)
-                        ),
-                        notes: splitFlags
-                            .filter((x) => x.startsWith('#'))
-                            .map((x) => parseInt(x.replace('#', ''), 10)),
-                        disabled: splitFlags.includes('d'),
-                        prefixed: splitFlags.includes('x'),
-                    });
-                } else {
-                    acc.push({version: null, flags: [], notes: []});
-                }
-
-                return acc;
-            }, []),
-        });
-
-        return acc;
-    }, []);
+    const compressedStats = compressStats(feature.stats);
+    const stats = VISIBLE_BROWSERS.map((id) => ({
+        id,
+        name: caniuse.agents[id].browser,
+        versions: compressedStats[id],
+    }));
+    const prefixes = VISIBLE_BROWSERS.reduce(
+        (acc, id) => ({
+            ...acc,
+            [id]: caniuse.agents[id].prefix,
+        }),
+        {}
+    );
     const activeNotes = Object.values(stats)
         .map(({versions}) => versions)
         .reduce((acc, versions) => {
@@ -187,6 +223,7 @@ function getFeature(id) {
 
     return {
         id,
+        prefixes,
         notesByNum: activeNotes
             .filter((note) => feature.notes_by_num[note])
             .sort((a, b) => (a > b ? 1 : a === b ? 0 : -1))

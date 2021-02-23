@@ -1,4 +1,5 @@
 .caniuse {
+  position: relative;
   background-color: #f2e8d5;
   color: black;
   padding: 1rem;
@@ -7,6 +8,12 @@
   line-height: 1;
   font-family: sans-serif;
   border: 0.25rem solid #c4ab7e;
+
+  code {
+    background-color: #c4ab7e;
+    color: white;
+    font-size: 0.8em;
+  }
 
   &:first-child {
     margin-top: 0;
@@ -18,11 +25,6 @@
     line-height: 1.2;
     font-size: 1rem;
     margin: 0.7rem 0;
-
-    code {
-      background-color: #c4ab7e;
-      color: white;
-    }
   }
 
   .notesByNum {
@@ -49,7 +51,7 @@
 
     .noteNum {
       padding: 0.15rem 0.4rem;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: #c4ab7e;
       font-weight: 700;
       font-size: 0.7rem;
       color: white;
@@ -137,8 +139,22 @@
 
 .table {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   overflow-x: auto;
+}
+
+.tableHeader {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 0.25rem;
+}
+
+.tableBody {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 0.25rem;
 }
 
 .column {
@@ -146,26 +162,30 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  min-width: 7rem;
+  min-width: 5rem;
   margin: 0 0.125rem;
 
-  &:first-child {
-    padding-left: 0.25rem;
+  .tableBodyPast &::before {
+    display: block;
+    content: '';
+    background-color: rgba(0, 0, 0, 0.1);
+    flex: 1 1 auto;
+    margin-bottom: 0.125rem;
   }
 
-  &:last-child {
-    padding-right: 0.25rem;
+  .tableBodyPast &:empty::before {
+    margin-bottom: 0.375rem;
   }
 }
 
 .browser {
-  padding: 0.7rem 1rem 0.25rem;
-  margin: 2px 0;
+  padding: 0.7rem 0 0.25rem;
+  margin: 2px 0 0;
   margin-top: auto;
   text-align: center;
   text-transform: uppercase;
   line-height: 1.2;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   border-bottom: 0.4rem solid transparent;
 
   & + .cell {
@@ -213,7 +233,7 @@
 }
 
 .cell {
-  padding: 0.7rem 1rem;
+  padding: 0.7rem;
   margin: 0.125rem 0;
   color: white;
   font-size: 0.8rem;
@@ -222,7 +242,7 @@
   position: relative;
   z-index: 0;
 
-  &:nth-last-child(2) {
+  .tableBodyCurrent & {
     box-shadow: 0 0 0 0.25rem #b4a07c;
     z-index: 10;
   }
@@ -255,14 +275,14 @@
   color: white;
 }
 
-.flag-p {
-  background-color: #1383ba;
-  color: white;
-}
-
 .flag-u {
   background-color: #757575;
   color: white;
+}
+
+.flag-p {
+  background-color: yellow;
+  color: black;
 }
 
 .legend {
@@ -274,7 +294,7 @@
 .legendItem {
   min-width: 2rem;
   text-align: center;
-  padding: 0.15rem 0.3rem 0.25rem;
+  padding: 0.15rem 0.3rem;
   font-size: 0.7rem;
   margin: 0.25rem;
   display: flex;
@@ -284,9 +304,9 @@
 
 .cellDetails {
   position: absolute;
-  top: 0.1rem;
-  left: 0.1rem;
-  right: 0.1rem;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -299,18 +319,12 @@
 }
 
 .prefixed {
-  margin: 0.06125rem;
+  margin-left: 0.06125rem;
+  display: block;
   background-color: yellow;
-  padding: 0.2rem;
-  font-weight: 700;
-
-  &::before {
-    content: '';
-    display: block;
-    height: 0.12rem;
-    width: 0.4rem;
-    background-color: #444;
-  }
+  color: black;
+  padding: 0.1rem;
+  font-size: 0.5rem;
 }
 
 .notes {
@@ -323,8 +337,11 @@
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  margin: 0.06125rem;
   padding: 0.1rem 0.2rem;
+
+  & + & {
+    margin-left: 0.06125rem;
+  }
 }
 
 .legendAndNotes {
@@ -342,9 +359,11 @@
   margin-left: auto;
   padding: 0.5rem 0.5rem;
   font-weight: 700;
-  background-color: darken(#f2e8d5, 30%);
+  background-color: #c4ab7e;
+  color: white;
+  text-transform: uppercase;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   min-width: 140px;
   text-align: center;
   cursor: pointer;
