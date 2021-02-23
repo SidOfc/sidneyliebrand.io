@@ -7,14 +7,14 @@ const TYPES = [
     ['y', 'supported'],
     ['n', 'unsupported'],
     ['a', 'partial'],
-    ['x', 'prefixed'],
     ['p', 'polyfill'],
     ['u', 'unknown'],
-    ['d', 'disabled'],
 ];
 
 export default function Caniuse({data}) {
     const [showNotes, setShowNotes] = useState(false);
+
+    if (data.id === 'css-backdrop-filter') console.log({data});
 
     return (
         <section className={styles.caniuse} data-embed>
@@ -79,13 +79,26 @@ export default function Caniuse({data}) {
                                     )
                                 )}
                             >
-                                {(item?.notes?.length || 0) > 0 && (
-                                    <div className={styles.notes}>
+                                <div className={styles.cellDetails}>
+                                    <span className={styles.notes}>
                                         {item.notes.map((note) => (
-                                            <span key={note}>{note}</span>
+                                            <span
+                                                className={styles.note}
+                                                key={note}
+                                            >
+                                                {note}
+                                            </span>
                                         ))}
-                                    </div>
-                                )}
+                                    </span>
+                                    {item.prefixed && (
+                                        <span className={styles.prefixed} />
+                                    )}
+                                    {item.disabled && (
+                                        <span className={styles.disabled}>
+                                            &#9873;
+                                        </span>
+                                    )}
+                                </div>
                                 {item?.version || <>&nbsp;</>}
                             </div>
                         ))}
@@ -105,6 +118,14 @@ export default function Caniuse({data}) {
                             {caption}
                         </div>
                     ))}
+                    <div className={styles.legendItem}>
+                        <span className={styles.prefixed} />
+                        &nbsp;&nbsp;prefixed
+                    </div>
+                    <div className={styles.legendItem}>
+                        <span className={styles.disabled}>&#9873;</span>
+                        &nbsp;disabled
+                    </div>
                 </div>
                 {data.notesByNum.length > 0 && (
                     <button

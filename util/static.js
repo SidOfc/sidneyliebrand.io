@@ -115,7 +115,7 @@ function caniuseEmbedData(content) {
     );
 }
 
-const SUPPORT_LEVELS = ['y', 'n', 'a', 'p', 'u', 'x', 'd'];
+const SUPPORT_LEVELS = ['y', 'n', 'a', 'p', 'u'];
 const VISIBLE_BROWSERS = [
     'ie',
     'edge',
@@ -164,6 +164,8 @@ function getFeature(id) {
                         notes: splitFlags
                             .filter((x) => x.startsWith('#'))
                             .map((x) => parseInt(x.replace('#', ''), 10)),
+                        disabled: splitFlags.includes('d'),
+                        prefixed: splitFlags.includes('x'),
                     });
                 } else {
                     acc.push({version: null, flags: [], notes: []});

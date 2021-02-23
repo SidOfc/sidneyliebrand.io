@@ -6,7 +6,7 @@
   margin: 2rem 0;
   line-height: 1;
   font-family: sans-serif;
-  border: 0.25rem solid darken(#f2e8d5, 50%);
+  border: 0.25rem solid #c4ab7e;
 
   &:first-child {
     margin-top: 0;
@@ -18,11 +18,10 @@
     line-height: 1.2;
     font-size: 1rem;
     margin: 0.7rem 0;
-    color: rgba(0, 0, 0, 0.7);
 
     code {
-      background-color: darken(#f2e8d5, 20%);
-      color: rgba(0, 0, 0, 0.7);
+      background-color: #c4ab7e;
+      color: white;
     }
   }
 
@@ -38,10 +37,9 @@
       margin: 0;
       font-size: 0.9rem;
       line-height: 1;
-      color: rgba(0, 0, 0, 0.7);
 
       a {
-        color: darken(#f2e8d5, 50%);
+        color: darken(#c4ab7e, 20%);
       }
 
       & + li {
@@ -51,7 +49,7 @@
 
     .noteNum {
       padding: 0.15rem 0.4rem;
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.7);
       font-weight: 700;
       font-size: 0.7rem;
       color: white;
@@ -118,7 +116,7 @@
     white-space: nowrap;
     font-size: 0.7rem;
     color: darken(#f2e8d5, 50%);
-    border: 1px solid darken(#f2e8d5, 50%);
+    border: 1px solid darken(#c4ab7e, 20%);
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
   }
@@ -131,7 +129,7 @@
 .status {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
   padding: 0.3rem 0.4rem;
@@ -225,7 +223,7 @@
   z-index: 0;
 
   &:nth-last-child(2) {
-    box-shadow: 0 0 0 0.25rem darken(#f2e8d5, 30%);
+    box-shadow: 0 0 0 0.25rem #b4a07c;
     z-index: 10;
   }
 }
@@ -242,45 +240,28 @@
   color: #007a00;
 }
 
-.flag-a:not(.legendItem)::before {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  display: block;
-  content: '';
-  width: 0.4rem;
-  height: 0.4rem;
-  background-color: yellow;
-  border-radius: 100%;
-}
-
 .flag-n {
-  background-color: #9d0000;
+  background-color: #b43b2b;
   color: white;
 }
 
 .flag-y {
-  background-color: #007a00;
+  background-color: #2a8436;
   color: white;
 }
 
 .flag-a {
-  background-color: #977200;
+  background-color: #807301;
   color: white;
 }
 
 .flag-p {
-  background-color: #0786b1;
+  background-color: #1383ba;
   color: white;
 }
 
-.flag-x {
-  background-color: yellow;
-  color: black;
-}
-
-.flag-u, .flag-d {
-  background-color: #7b7b7b;
+.flag-u {
+  background-color: #757575;
   color: white;
 }
 
@@ -296,20 +277,54 @@
   padding: 0.15rem 0.3rem 0.25rem;
   font-size: 0.7rem;
   margin: 0.25rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.cellDetails {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.1rem;
+  right: 0.1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-size: 0.5rem;
+}
+
+.disabled {
+  font-size: 0.8rem;
+  margin: 0.06125rem;
+}
+
+.prefixed {
+  margin: 0.06125rem;
+  background-color: yellow;
+  padding: 0.2rem;
+  font-weight: 700;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 0.12rem;
+    width: 0.4rem;
+    background-color: #444;
+  }
 }
 
 .notes {
-  position: absolute;
-  top: 0.2rem;
-  left: 0;
-  font-size: 0.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-right: auto;
+}
 
-  span {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin: 0.06125rem;
-    padding: 0.1rem 0.2rem;
-  }
+.note {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  margin: 0.06125rem;
+  padding: 0.1rem 0.2rem;
 }
 
 .legendAndNotes {
