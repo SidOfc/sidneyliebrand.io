@@ -55,6 +55,10 @@
 .details {
   display: flex;
   flex-flow: column nowrap;
+
+  .logo + & {
+    max-width: 46rem;
+  }
 }
 
 .title {
