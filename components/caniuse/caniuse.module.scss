@@ -314,11 +314,18 @@
 }
 
 .flag-n {
-  --bg: #b43b2b;
-  --accent-bg: #{darken(#b43b2b, 4%)};
-  @include themed('background-color', 'bg');
-  @include themed('background-image', 'repeating-linear-gradient(45deg, $0 0, $1 1px, $1 0.4rem, $0 calc(0.4rem + 1px), $0 0.8rem)', 'bg', 'accent-bg');
+  $bg: #b43b2b;
+  $accent-bg: darken(#b43b2b, 4%);
   color: white;
+  background-color: $bg;
+  background-image: repeating-linear-gradient(
+    45deg,
+    $bg 0,
+    $accent-bg 1px,
+    $accent-bg 0.4rem,
+    $bg calc(0.4rem + 1px),
+    $bg 0.8rem
+  );
 }
 
 .flag-y {
@@ -327,11 +334,18 @@
 }
 
 .flag-a {
-  --bg: #807301;
-  --accent-bg: #{darken(#807301, 2.5%)};
-  @include themed('background-color', 'bg');
-  @include themed('background-image', 'repeating-linear-gradient(90deg, $0 0, $1 1px, $1 0.4rem, $0 calc(0.4rem + 1px), $0 0.8rem)', 'bg', 'accent-bg');
+  $bg: #807301;
+  $accent-bg: darken(#807301, 2.5%);
   color: white;
+  background-color: $bg;
+  background-image: repeating-linear-gradient(
+    90deg,
+    $bg 0,
+    $accent-bg 1px,
+    $accent-bg 0.4rem,
+    $bg calc(0.4rem + 1px),
+    $bg 0.8rem
+  );
 }
 
 .flag-u {

@@ -24,15 +24,19 @@
   $var: list.nth($args, 1);
 
   @if $length == 1 {
+    #{$property}: #{map-deep-get($vars, 'themes', 'default', $var)};
     #{$property}: var(--#{$var});
   } @else if $length > 1 {
+    $values: ();
     $keys: ();
 
     @for $idx from 2 through $length {
       $arg: list.nth($args, $idx);
+      $values: list.append($values, map-deep-get($vars, 'themes', 'default', $arg));
       $keys: list.append($keys, "var(--#{$arg})");
     }
 
+    #{$property}: #{substitute($var, $values...)};
     #{$property}: #{substitute($var, $keys...)};
   }
 }
