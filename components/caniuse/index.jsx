@@ -3,6 +3,8 @@ import styles from './caniuse.module.scss';
 import Bullet from '@components/bullet';
 import {classes, dateFormat} from '@src/util';
 
+const legendClass = (type) =>
+    classes(styles.legendItem, styles[`flag-${type}`]);
 const TYPES = [
     ['y', 'supported'],
     ['n', 'unsupported'],
@@ -12,8 +14,6 @@ const TYPES = [
 
 export default function Caniuse({data}) {
     const [showNotes, setShowNotes] = useState(false);
-    const legendClass = (type) =>
-        classes(styles.legendItem, styles[`flag-${type}`]);
 
     return (
         <section className={styles.caniuse} data-embed>

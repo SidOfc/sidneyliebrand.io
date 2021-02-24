@@ -1,3 +1,5 @@
+@import "@styles/config";
+
 .caniuse {
   position: relative;
   background-color: #f2e8d5;
@@ -282,7 +284,10 @@
 }
 
 .flag-n {
-  background-color: #b43b2b;
+  --bg: #b43b2b;
+  --accent-bg: #{darken(#b43b2b, 4%)};
+  @include themed('background-color', 'bg');
+  @include themed('background-image', 'repeating-linear-gradient(45deg, $0 0, $1 1px, $1 0.4rem, $0 calc(0.4rem + 1px), $0 0.8rem)', 'bg', 'accent-bg');
   color: white;
 }
 
@@ -292,7 +297,10 @@
 }
 
 .flag-a {
-  background-color: #807301;
+  --bg: #807301;
+  --accent-bg: #{darken(#807301, 2.5%)};
+  @include themed('background-color', 'bg');
+  @include themed('background-image', 'repeating-linear-gradient(90deg, $0 0, $1 1px, $1 0.4rem, $0 calc(0.4rem + 1px), $0 0.8rem)', 'bg', 'accent-bg');
   color: white;
 }
 
