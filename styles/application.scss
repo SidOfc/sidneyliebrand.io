@@ -9,21 +9,33 @@
   @include themed('background-color', 'selection-bg');
 }
 
-html {
-  @include css-theme-vars;
+* {
   @include themed('scrollbar-color', '$0 transparent', 'primary-bg');
-  overflow: overlay;
-  font-size: 1rem;
-  font-size: min(max(0.95rem, 1.5vw), 1.2rem);
-  height: 100%;
 
   &::-webkit-scrollbar {
     background-color: transparent;
+
+    &:vertical {
+      width: 0.8rem;
+    }
+
+    &:horizontal {
+      height: 0.8rem;
+    }
   }
 
   &::-webkit-scrollbar-thumb {
     @include themed('background-color', 'primary-bg');
   }
+}
+
+html {
+  @include css-theme-vars;
+  overflow: overlay;
+  font-size: 1rem;
+  font-size: min(max(0.95rem, 1.5vw), 1.2rem);
+  height: 100%;
+
 }
 
 body {

@@ -62,33 +62,37 @@
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: block;
+  overflow: hidden;
 
   @media all and (max-width: 540px) {
     flex-flow: column-reverse nowrap;
   }
 }
 
-.headerLeft {
-  margin-right: 3rem;
-
-  @media all and (max-width: 540px) {
-    margin-right: 0;
-  }
-}
-
-.headerRight {
-  font-weight: 700;
+.headerMeta {
+  float: right;
   display: flex;
   flex-flow: column nowrap;
 
   @media all and (max-width: 540px) {
+    margin-top: 0.5rem;
     width: 100%;
     flex-flow: row nowrap;
     align-items: center;
     margin-bottom: 1rem;
   }
+}
+
+.usage {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.updated {
+  margin-top: 0.25rem;
+  display: block;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .textRow {
@@ -97,6 +101,7 @@
   justify-content: flex-end;
   align-items: center;
   text-align: right;
+  font-size: 0.7rem;
 
   & + & {
     margin-top: 0.5rem;
@@ -116,7 +121,6 @@
   a {
     display: inline-block;
     white-space: nowrap;
-    font-size: 0.7rem;
     color: darken(#f2e8d5, 50%);
     border: 1px solid darken(#c4ab7e, 20%);
     padding: 0.2rem 0.4rem;
@@ -125,7 +129,7 @@
 }
 
 .title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .status {
@@ -167,14 +171,12 @@
   flex: 1 1 auto;
   display: flex;
   flex-flow: row nowrap;
-  padding: 0 0.25rem;
 }
 
 .tableBody {
   flex: 1 1 auto;
   display: flex;
   flex-flow: row nowrap;
-  padding: 0 0.25rem;
 }
 
 .column {
@@ -200,7 +202,6 @@
 
 .browser {
   padding: 0.7rem 0 0.25rem;
-  margin: 2px 0 0;
   margin-top: auto;
   text-align: center;
   text-transform: uppercase;
@@ -305,6 +306,11 @@
   color: black;
 }
 
+.flag-d {
+  background-color: black;
+  color: white;
+}
+
 .legend {
   display: flex;
   flex-flow: row wrap;
@@ -315,7 +321,7 @@
   min-width: 2rem;
   text-align: center;
   padding: 0.15rem 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin: 0.25rem;
   display: flex;
   flex-flow: row nowrap;
@@ -331,11 +337,6 @@
   flex-flow: row nowrap;
   align-items: center;
   font-size: 0.5rem;
-}
-
-.disabled {
-  font-size: 0.8rem;
-  margin: 0.06125rem;
 }
 
 .prefixed {

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import styles from './caniuse.module.scss';
 import Bullet from '@components/bullet';
-import {classes} from '@src/util';
+import {classes, dateFormat} from '@src/util';
 
 const TYPES = [
     ['y', 'supported'],
@@ -12,18 +12,14 @@ const TYPES = [
 
 export default function Caniuse({data}) {
     const [showNotes, setShowNotes] = useState(false);
+    const legendClass = (type) =>
+        classes(styles.legendItem, styles[`flag-${type}`]);
 
     return (
         <section className={styles.caniuse} data-embed>
             <div className={styles.header}>
-                <span className={styles.headerLeft}>
-                    <span className={styles.title}>{data.title}</span>
-                    <p
-                        className={styles.description}
-                        dangerouslySetInnerHTML={{__html: data.description}}
-                    />
-                </span>
-                <span className={styles.headerRight}>
+                <span className={styles.title}>{data.title}</span>
+                <span className={styles.headerMeta}>
                     <span className={classes(styles.textRow, styles.rowStatus)}>
                         <span className={styles.status}>{data.status}</span>
                         <Bullet />
@@ -59,6 +55,14 @@ export default function Caniuse({data}) {
                         </span>
                     )}
                 </span>
+                <p
+                    className={styles.description}
+                    dangerouslySetInnerHTML={{__html: data.description}}
+                />
+                <small className={styles.updated}>
+                    updated{' '}
+                    {dateFormat(new Date(data.updated), {includeDay: true})}
+                </small>
             </div>
             <div className={styles.table}>
                 <div className={styles.tableHeader}>
@@ -118,25 +122,12 @@ export default function Caniuse({data}) {
             <div className={styles.legendAndNotes}>
                 <div className={styles.legend}>
                     {TYPES.map(([type, caption]) => (
-                        <div
-                            key={type}
-                            className={classes(
-                                styles.legendItem,
-                                styles[`flag-${type}`]
-                            )}
-                        >
+                        <div key={type} className={legendClass(type)}>
                             {caption}
                         </div>
                     ))}
-                    <div
-                        className={classes(styles.legendItem, styles['flag-p'])}
-                    >
-                        -prefixed-
-                    </div>
-                    <div className={styles.legendItem}>
-                        <span className={styles.disabled}>&#9873;</span>
-                        &nbsp;disabled
-                    </div>
+                    <div className={legendClass('p')}>-prefixed-</div>
+                    <div className={legendClass('d')}>&#9873; disabled</div>
                 </div>
                 {data.notesByNum.length > 0 && (
                     <button

@@ -224,6 +224,7 @@ function getFeature(id) {
     return {
         id,
         prefixes,
+        updated: caniuse.updated * 1000,
         notesByNum: activeNotes
             .filter((note) => feature.notes_by_num[note])
             .sort((a, b) => (a > b ? 1 : a === b ? 0 : -1))
