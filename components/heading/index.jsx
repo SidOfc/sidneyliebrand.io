@@ -1,9 +1,9 @@
 import styles from './heading.module.scss';
 import innerText from 'react-innertext';
-import {slug} from '@src/util';
+import {hash} from '@src/util';
 
 export default function Heading({as: Component = 'h1', children, link}) {
-    const fragment = link ? null : slug(innerText(children));
+    const fragment = link ? null : hash(innerText(children));
 
     return (
         <Component

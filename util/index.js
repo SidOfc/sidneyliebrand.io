@@ -35,13 +35,12 @@ export function readTime(str) {
     return Math.round(Math.max(1, (str.match(/\s+/g) || []).length / 200));
 }
 
+export function hash(str) {
+    return str.replace(/\W+/g, ' ').trim().replace(/\s+/g, '-').toLowerCase();
+}
+
 export function slug(str) {
-    return str
-        .replace(/\.\w+$/g, '')
-        .replace(/\W+/g, ' ')
-        .trim()
-        .replace(/\s+/g, '-')
-        .toLowerCase();
+    return hash(str.replace(/\.\w+$/g, ''));
 }
 
 export function classes(...classArgs) {
