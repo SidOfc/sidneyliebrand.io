@@ -112,12 +112,24 @@ export default function Caniuse({data}) {
             </div>
             <div className={styles.tabs}>
                 {[
-                    ['notes', 'notesByNum'],
-                    ['resources', 'links'],
-                    ['bugs', 'bugs'],
+                    {
+                        type: 'notes',
+                        caption: 'Notes',
+                        disabled: data.notesByNum?.length === 0,
+                    },
+                    {
+                        type: 'resources',
+                        caption: 'Resources',
+                        disabled: data.notesByNum?.length === 0,
+                    },
+                    {
+                        type: 'bugs',
+                        caption: 'Known issues',
+                        disabled: data.bugs?.length === 0,
+                    },
                 ].map(
-                    ([type, property]) =>
-                        (data[property]?.length || 0) > 0 && (
+                    ({type, caption, disabled}) =>
+                        !disabled && (
                             <button
                                 key={type}
                                 type="button"
@@ -126,7 +138,7 @@ export default function Caniuse({data}) {
                                 })}
                                 onClick={() => setTab(type)}
                             >
-                                {type}
+                                {caption}
                             </button>
                         )
                 )}
