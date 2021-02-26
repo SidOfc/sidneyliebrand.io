@@ -148,10 +148,7 @@ function flagData(str) {
     };
 }
 
-function equalFlags(aStr, bStr) {
-    const a = flagData(aStr);
-    const b = flagData(bStr);
-
+function equalFlags(a, b) {
     return (
         a.notes.every((note) => b.notes.includes(note)) &&
         b.notes.every((note) => a.notes.includes(note)) &&
@@ -166,25 +163,24 @@ function compressStats(stats) {
     const result = Object.entries(stats).reduce((acc, [agent, support]) => {
         acc[agent] = caniuse.agents[agent].version_list
             .filter(({version}) => support[version])
-            .reduce((groups, {version, era}) => {
+            .map((cell) => ({...cell, ...flagData(support[cell.version])}))
+            .reduce((groups, cell) => {
                 const group = groups[groups.length - 1];
-                const flags = support[version];
 
                 if (
                     group &&
-                    equalFlags(group[0].flags, flags) &&
-                    ![1, 0].includes(era)
+                    equalFlags(group[0], cell) &&
+                    ![1, 0].includes(cell.era)
                 ) {
-                    group.push({version, era, flags});
+                    group.push(cell);
                 } else {
-                    groups.push([{version, era, flags}]);
+                    groups.push([cell]);
                 }
 
                 return groups;
             }, [])
             .map((group) => {
-                if (group.length === 1)
-                    return {...group[0], ...flagData(group[0].flags)};
+                if (group.length === 1) return group[0];
 
                 const first = group[0];
                 const last = group[group.length - 1];
@@ -200,9 +196,8 @@ function compressStats(stats) {
                 }
 
                 return {
+                    ...last,
                     version: `${firstVersion}-${lastVersion}`,
-                    era: last.era,
-                    ...flagData(last.flags),
                 };
             });
 
