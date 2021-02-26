@@ -3,17 +3,8 @@ import styles from './caniuse.module.scss';
 import Bullet from '@components/bullet';
 import {classes, dateFormat} from '@src/util';
 
-const legendClass = (type) =>
-    classes(styles.legendItem, styles[`flag-${type}`]);
-const TYPES = [
-    ['y', 'supported'],
-    ['n', 'unsupported'],
-    ['a', 'partial'],
-    ['u', 'unknown'],
-];
-
 export default function Caniuse({data}) {
-    const [showNotes, setShowNotes] = useState(false);
+    const [tab, setTab] = useState('notes');
 
     return (
         <section className={styles.caniuse} data-embed>
@@ -119,69 +110,122 @@ export default function Caniuse({data}) {
                     ))}
                 </div>
             </div>
-            <div className={styles.legendAndNotes}>
-                <div className={styles.legend}>
-                    {TYPES.map(([type, caption]) => (
-                        <div key={type} className={legendClass(type)}>
-                            {caption}
-                        </div>
-                    ))}
-                    <div className={legendClass('p')}>-prefixed-</div>
-                    <div className={legendClass('d')}>&#9873; disabled</div>
-                </div>
-                {data.notesByNum.length > 0 && (
-                    <button
-                        type="button"
-                        className={styles.notesToggle}
-                        onClick={() => setShowNotes((prev) => !prev)}
-                    >
-                        {showNotes ? 'Hide' : 'Show'}{' '}
-                        {data.notesByNum.length === 1
-                            ? '1 note'
-                            : `${data.notesByNum.length} notes`}
-                    </button>
+            <div className={styles.tabs}>
+                {[
+                    ['notes', 'notesByNum'],
+                    ['resources', 'links'],
+                    ['bugs', 'bugs'],
+                ].map(
+                    ([type, property]) =>
+                        (data[property]?.length || 0) > 0 && (
+                            <button
+                                key={type}
+                                type="button"
+                                className={classes(styles.tabToggle, {
+                                    [styles.tabSelected]: tab === type,
+                                })}
+                                onClick={() => setTab(type)}
+                            >
+                                {type}
+                            </button>
+                        )
                 )}
             </div>
-            {showNotes && (
-                <ul className={styles.notesByNum}>
-                    {data.notesByNum.map(({note, text}) => (
-                        <li
-                            key={note}
-                            dangerouslySetInnerHTML={{
-                                __html: `
+            <div className={styles.tabContents}>
+                {tab === 'notes' ? (
+                    <ul>
+                        {data.notesByNum.map(({note, text}) => (
+                            <li
+                                key={note}
+                                dangerouslySetInnerHTML={{
+                                    __html: `
                             <span class="${styles.noteNum}">${note}</span>
-                            ${text}
+                            <span>${text}</span>
                             `,
-                            }}
-                        ></li>
-                    ))}
-                </ul>
-            )}
+                                }}
+                            />
+                        ))}
+                    </ul>
+                ) : tab === 'resources' ? (
+                    <ul>
+                        {data.links.map(({url, title}) => (
+                            <li key={url}>
+                                <span className={styles.bullet} />
+                                <a
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener, noreferrer"
+                                >
+                                    {title}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                ) : tab === 'bugs' ? (
+                    <ul>
+                        {data.bugs.map((description, idx) => (
+                            <li
+                                key={idx}
+                                dangerouslySetInnerHTML={{
+                                    __html: `
+                            <span class="${styles.bullet}"></span>
+                            <span>${description}</span>
+                            `,
+                                }}
+                            />
+                        ))}
+                    </ul>
+                ) : null}
+            </div>
         </section>
     );
 }
 
 function VersionCell({item, prefix}) {
+    const flags = item?.flags || [];
+
     return (
         <div
+            title={
+                flags.includes('y')
+                    ? 'Supported'
+                    : flags.includes('n')
+                    ? 'Not supported'
+                    : flags.includes('u')
+                    ? 'Unknown'
+                    : flags.includes('a')
+                    ? 'Partial support'
+                    : null
+            }
             className={classes(
                 styles.cell,
-                ...(item?.flags || []).map((flag) => styles[`flag-${flag}`])
+                ...flags.map((flag) => styles[`flag-${flag}`])
             )}
         >
             <div className={styles.cellDetails}>
                 <span className={styles.notes}>
                     {item.notes.map((note) => (
-                        <span className={styles.note} key={note}>
+                        <span
+                            className={styles.note}
+                            title={`See note ${note}`}
+                            key={note}
+                        >
                             {note}
                         </span>
                     ))}
                 </span>
                 {item.prefixed && (
-                    <span className={styles.prefixed}>-{prefix}-</span>
+                    <span
+                        title={`Supported with '-${prefix}-' prefix`}
+                        className={styles.prefixed}
+                    >
+                        -{prefix}-
+                    </span>
                 )}
                 {item.disabled && (
-                    <span className={styles.disabled}>&#9873;</span>
+                    <span className={styles.disabled} title="Disabled">
+                        &#9873;
+                    </span>
                 )}
             </div>
             {item?.version || <>&nbsp;</>}

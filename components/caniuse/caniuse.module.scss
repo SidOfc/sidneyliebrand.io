@@ -9,12 +9,13 @@
   margin: 2rem 0;
   line-height: 1;
   font-family: sans-serif;
-  border: 0.25rem solid #c4ab7e;
+  border: 0.25rem solid #e0c89b;
 
   code {
     background-color: #c4ab7e;
     color: white;
     font-size: 0.8em;
+    padding: 0.1em 0.3em;
   }
 
   &:first-child {
@@ -37,10 +38,9 @@
     }
   }
 
-  .notesByNum {
+  ul, ol {
     list-style: none;
     margin: 0;
-    margin-top: 1rem;
     padding: 0;
 
     li {
@@ -48,10 +48,10 @@
       padding: 0;
       margin: 0;
       font-size: 0.9rem;
-      line-height: 1;
+      min-height: 1rem;
 
       a {
-        color: darken(#c4ab7e, 20%);
+        color: darken(map-deep-get($vars, 'themes', 'default', 'primary-bg'), 5%);
       }
 
       & + li {
@@ -66,6 +66,18 @@
       font-size: 0.7rem;
       color: white;
       margin-right: 1rem;
+      margin-bottom: auto;
+    }
+
+    .bullet {
+      width: 0.4em;
+      height: 0.4em;
+      min-width: 0.4em;
+      min-height: 0.4em;
+      background-color: black;
+      border-radius: 100%;
+      margin-right: 0.5rem;
+      margin-top: 0.5em;
       margin-bottom: auto;
     }
   }
@@ -293,6 +305,7 @@
   white-space: nowrap;
   position: relative;
   z-index: 0;
+  cursor: default;
 
   .tableBodyCurrent & {
     box-shadow: 0 0 0 0.25rem #b4a07c;
@@ -362,23 +375,6 @@
   color: white;
 }
 
-.legend {
-  display: flex;
-  flex-flow: row wrap;
-  margin: -0.25rem;
-}
-
-.legendItem {
-  min-width: 2rem;
-  text-align: center;
-  padding: 0.15rem 0.3rem;
-  font-size: 0.8rem;
-  margin: 0.25rem;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
 .cellDetails {
   position: absolute;
   top: 0;
@@ -390,6 +386,10 @@
   font-size: 0.5rem;
 }
 
+.disabled {
+  cursor: default;
+}
+
 .prefixed {
   margin-left: 0.06125rem;
   display: block;
@@ -397,6 +397,7 @@
   color: black;
   padding: 0.1rem;
   font-size: 0.5rem;
+  cursor: default;
 }
 
 .notes {
@@ -416,32 +417,52 @@
   }
 }
 
-.legendAndNotes {
+.tabs {
   display: flex;
   flex-flow: row nowrap;
-  align-items: flex-start;
   margin-top: 1rem;
-
-  @media all and (max-width: 540px) {
-    flex-flow: column nowrap;
-  }
 }
 
-.notesToggle {
-  margin-left: auto;
-  padding: 0.5rem 0.5rem;
+.tabContents {
+  background-color: #e0c89b;
+  margin-left: -1.1rem;
+  margin-right: -1.1rem;
+  margin-bottom: -1.1rem;
+  padding: 1.05rem;
+}
+
+.tabToggle {
+  position: relative;
+  overflow: hidden;
+  padding: 0.5rem 0.7rem 0.5rem 0.5rem;
   font-weight: 700;
-  background-color: #c4ab7e;
-  color: white;
+  background-color: #e5d8bc;
   text-transform: uppercase;
   border: none;
-  font-size: 0.7rem;
-  min-width: 140px;
+  font-size: 0.6rem;
   text-align: center;
   cursor: pointer;
 
-  @media all and (max-width: 540px) {
-    margin-top: 1rem;
-    margin-right: auto;
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0.4rem;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: top left;
+    transform: rotate(-14deg);
+    background-color: #f2e8d5;
+  }
+
+  &:hover {
+    background-color: lighten(#e0c89b, 5%);
+  }
+
+  &.tabSelected {
+    background-color: #e0c89b;
+    cursor: default;
+    pointer-events: none;
   }
 }

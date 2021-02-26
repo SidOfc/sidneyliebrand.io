@@ -199,7 +199,7 @@ function compressStats(stats) {
 }
 
 function getFeature(id) {
-    const feature = caniuse.data[id];
+    const feature = require(`caniuse-db/features-json/${id}.json`);
     const compressedStats = compressStats(feature.stats);
     const stats = VISIBLE_BROWSERS.map((id) => ({
         id,
@@ -224,20 +224,26 @@ function getFeature(id) {
     return {
         id,
         prefixes,
+        links: feature.links || [],
+        bugs: (feature.bugs || []).map(({description}) =>
+            markdown
+                .toHTML(description.trim())
+                .replace(/^<p>\s*|\s*<\/p>$/gi, '')
+        ),
         updated: caniuse.updated * 1000,
         notesByNum: activeNotes
             .filter((note) => feature.notes_by_num[note])
             .sort((a, b) => (a > b ? 1 : a === b ? 0 : -1))
             .map((note) => ({
                 note,
-                text: `<span>${markdown
+                text: markdown
                     .toHTML(feature.notes_by_num[note].trim())
-                    .replace(/^<p>\s*|\s*<\/p>$/gi, '')}</span>`,
+                    .replace(/^<p>\s*|\s*<\/p>$/gi, ''),
             })),
         title: feature.title,
-        description: `<span>${markdown
+        description: `${markdown
             .toHTML(feature.description.trim())
-            .replace(/^<p>\s*|\s*<\/p>$/gi, '')}</span>`,
+            .replace(/^<p>\s*|\s*<\/p>$/gi, '')}`,
         status: feature.status,
         spec: feature.spec,
         usage: {
