@@ -148,6 +148,20 @@ function flagData(str) {
     };
 }
 
+function equalFlags(aStr, bStr) {
+    const a = flagData(aStr);
+    const b = flagData(bStr);
+
+    return (
+        a.notes.every((note) => b.notes.includes(note)) &&
+        b.notes.every((note) => a.notes.includes(note)) &&
+        a.flags.every((flag) => b.flags.includes(flag)) &&
+        b.flags.every((flag) => a.flags.includes(flag)) &&
+        a.disabled === b.disabled &&
+        a.prefixed === b.prefixed
+    );
+}
+
 function compressStats(stats) {
     const result = Object.entries(stats).reduce((acc, [agent, support]) => {
         acc[agent] = caniuse.agents[agent].version_list
@@ -158,7 +172,7 @@ function compressStats(stats) {
 
                 if (
                     group &&
-                    group[0].flags === flags &&
+                    equalFlags(group[0].flags, flags) &&
                     ![1, 0].includes(era)
                 ) {
                     group.push({version, era, flags});
