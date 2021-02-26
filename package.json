@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build && npm run generate-metadata && next export",
+        "build": "npx rimraf .next && next build && npm run generate-metadata && next export",
         "start": "next start",
         "generate-metadata": "node scripts/generate-metadata.js",
         "deploy": "npm run build --silent && bash scripts/deploy"
@@ -31,6 +31,7 @@
         "react-dom": "^17.0.1",
         "react-innertext": "^1.1.5",
         "react-lazyload": "^3.2.0",
+        "rimraf": "^3.0.2",
         "sass": "^1.32.8"
     },
     "prettier": {
