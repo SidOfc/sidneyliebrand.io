@@ -5,7 +5,7 @@ import {emojify} from 'node-emoji';
 import {Octokit} from '@octokit/rest';
 import {markdown} from 'markdown';
 import {MARKDOWN_OPTIONS} from '@src/util/mdx';
-import {slug, readTime} from '@src/util';
+import {slug, readTime, mediaUrl} from '@src/util';
 import {profile, pages} from '@data/content.json';
 import caniuse from 'caniuse-db/fulldata-json/data-2.0.json';
 
@@ -127,29 +127,8 @@ function caniuseEmbedData(content) {
 }
 
 function withMedia(content) {
-    return interpolate(
-        content,
-        'media',
-        (src) => require(`public/media/${src}`).default
-    );
+    return interpolate(content, 'media', mediaUrl);
 }
-
-const VISIBLE_BROWSERS = [
-    'ie',
-    'edge',
-    'firefox',
-    'chrome',
-    'safari',
-    'opera',
-    'and_ff',
-    'and_chr',
-    'ios_saf',
-    'op_mob',
-    'op_mini',
-    'android',
-    'samsung',
-    'and_uc',
-];
 
 function flagData(str) {
     const flags = str.split(/\s+/i);
@@ -229,12 +208,13 @@ function compressStats(stats) {
 function getFeature(id) {
     const feature = require(`caniuse-db/features-json/${id}.json`);
     const compressedStats = compressStats(feature.stats);
-    const stats = VISIBLE_BROWSERS.map((id) => ({
+    const browsers = Object.keys(caniuse.agents);
+    const stats = browsers.map((id) => ({
         id,
         name: caniuse.agents[id].browser,
         versions: compressedStats[id],
     }));
-    const prefixes = VISIBLE_BROWSERS.reduce(
+    const prefixes = browsers.reduce(
         (acc, id) => ({
             ...acc,
             [id]: caniuse.agents[id].prefix,

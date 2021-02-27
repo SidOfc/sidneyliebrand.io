@@ -6,14 +6,14 @@ import Button from '@components/button';
 import Banner from '@components/banner';
 import Text from '@components/text';
 import {processMarkdownDir, getPageData} from '@src/util/static';
-import {dateFormat, except} from '@src/util';
+import {dateFormat, except, mediaUrl} from '@src/util';
 
 export default function Index({title, description, posts}) {
     return (
         <>
             <Head title={title} description={description} />
             <Banner
-                src="/media/avatar.jpg"
+                src={mediaUrl('avatar.jpg')}
                 alt="Cartoon avatar of Sidney Liebrand"
                 width={280}
                 height={280}

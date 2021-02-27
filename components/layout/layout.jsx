@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Media from '@components/media';
 import Text from '@components/text';
 import DarkModeToggle from '@components/dark-mode-toggle';
+import {mediaUrl} from '@src/util';
 
 export default function Layout({children}) {
     return (
@@ -30,7 +31,7 @@ export default function Layout({children}) {
                                     <Media
                                         invertDark
                                         className={styles.github}
-                                        src="/media/github.svg"
+                                        src={mediaUrl('github.svg')}
                                         alt="Sidney Liebrand's GitHub page"
                                         showAlt={false}
                                         width={16}

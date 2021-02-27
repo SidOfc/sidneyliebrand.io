@@ -20,8 +20,10 @@ module.exports = withBundleAnalyzer({
             test: /\.(svg|png|jpe?g|gif|mp4|webm)$/i,
             use: [
                 {
-                    loader: 'file-loader',
+                    loader: 'url-loader',
                     options: {
+                        limit: 8192,
+                        fallback: 'file-loader',
                         publicPath: `${isServer ? '/_next' : ''}/static`,
                         outputPath: `${isServer ? '../' : ''}/static`,
                         name: 'media/[name].[hash].[ext]',

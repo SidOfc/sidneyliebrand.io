@@ -6,7 +6,7 @@ import Bullet from '@components/bullet';
 import Media from '@components/media';
 import Head from '@components/head';
 import {getPinnedRepositories, getPageData} from '@src/util/static';
-import {dateFormat, dateDiff, linkProps} from '@src/util';
+import {dateFormat, dateDiff, linkProps, mediaUrl} from '@src/util';
 import {profile} from '@data/content.json';
 
 export default function Index({title, description, pinnedRepositories}) {
@@ -19,7 +19,7 @@ export default function Index({title, description, pinnedRepositories}) {
                 <div className={styles.bannerLogo}>
                     <Media
                         showAlt={false}
-                        src="/media/cv-portrait.jpg"
+                        src={mediaUrl('cv-portrait.jpg')}
                         alt="Portrait of Sidney Liebrand"
                         width={140}
                         height={210}
@@ -37,7 +37,7 @@ export default function Index({title, description, pinnedRepositories}) {
                                 <Media
                                     invertDark
                                     showAlt={false}
-                                    src="/media/github.svg"
+                                    src={mediaUrl('github.svg')}
                                     alt="Sidney Liebrand's GitHub page"
                                     width={16}
                                     height={16}
@@ -50,7 +50,7 @@ export default function Index({title, description, pinnedRepositories}) {
                                 <Media
                                     invertDark
                                     showAlt={false}
-                                    src="/media/linkedin.svg"
+                                    src={mediaUrl('linkedin.svg')}
                                     alt="Sidney Liebrand's LinkedIn page"
                                     width={16}
                                     height={16}
@@ -78,7 +78,7 @@ export default function Index({title, description, pinnedRepositories}) {
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
                             <Media
-                                src={`/media/${item.logo.url}`}
+                                src={mediaUrl(item.logo.url)}
                                 width={item.logo.width}
                                 height={item.logo.height}
                             />
@@ -96,7 +96,7 @@ export default function Index({title, description, pinnedRepositories}) {
                     <div key={item.organisation} className={styles.block}>
                         <div className={styles.logo}>
                             <Media
-                                src={`/media/${item.logo.url}`}
+                                src={mediaUrl(item.logo.url)}
                                 width={item.logo.width}
                                 height={item.logo.height}
                             />

@@ -205,7 +205,7 @@
     text-transform: uppercase;
     line-height: 1.2;
     font-size: 0.6rem;
-    border-bottom: 0.4rem solid transparent;
+    border-bottom: 0.3rem solid black;
 
     &[data-name="ie"],
     &[data-name="edge"],
@@ -244,6 +244,10 @@
 
     &[data-name="and_uc"] {
       border-color: #222;
+    }
+
+    &[data-name="kaios"] {
+      border-color: #6f02b5;
     }
   }
 

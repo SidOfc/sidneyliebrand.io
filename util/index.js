@@ -13,6 +13,10 @@ const MONTHS = [
     'Dec',
 ];
 
+export function mediaUrl(path) {
+    return require(`public/media/${path}`).default;
+}
+
 export function except(obj, keys) {
     return Object.entries(obj).reduce((filtered, [key, value]) => {
         if (!keys.includes(key)) Object.assign(filtered, {[key]: value});
