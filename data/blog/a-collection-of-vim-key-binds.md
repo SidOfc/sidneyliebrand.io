@@ -5,7 +5,7 @@ published:   "2017-09-16T13:11:03Z"
 ---
 
 <Media
-    src="/media/posts/vimrc-movement-key-binds.png"
+    src="{{media::posts/vimrc-movement-key-binds.png}}"
     alt="A screenshot of my vimrc movement key bindings"
     width="900"
     height="315"

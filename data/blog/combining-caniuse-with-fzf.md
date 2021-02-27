@@ -49,7 +49,7 @@ Ruby script but it can be [found here](https://github.com/SidOfc/dotfiles/blob/6
 Combining it with FZF yielded the following result:
 
 <Media
-    src="/media/posts/caniuse-fzf-ie-last-version-features.png"
+    src="{{media::posts/caniuse-fzf-ie-last-version-features.png}}"
     alt="Caniuse fzf: IE features supported since last version"
     width="900"
     height="348"
@@ -72,7 +72,7 @@ to search for this as a single word rather than 4 single characters.
 I can also search for all the `[wd]` features, like this:
 
 <Media
-    src="/media/posts/caniuse-search-wd-feature.png"
+    src="{{media::posts/caniuse-search-wd-feature.png}}"
     alt="Searching for working draft CSS features"
     width="900"
     height="140"
@@ -104,7 +104,7 @@ cani() {
 This will take your selected features from FZF:
 
 <Media
-    src="/media/posts/caniuse-select-multiple-features.png"
+    src="{{media::posts/caniuse-select-multiple-features.png}}"
     alt="Selecting multiple feature entries"
     width="900"
     height="279"
@@ -113,7 +113,7 @@ This will take your selected features from FZF:
 then it tries to select the title and run each selected feature title through the `caniuse` command:
 
 <Media
-    src="/media/posts/caniuse-cmd-output.png"
+    src="{{media::posts/caniuse-cmd-output.png}}"
     alt="Output entry results using caniuse-cmd package"
     width="900"
     height="666"

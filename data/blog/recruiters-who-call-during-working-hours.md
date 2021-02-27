@@ -6,7 +6,7 @@ published:   "2018-08-31T22:41:19Z"
 
 <Media
     invertDark
-    src="/media/posts/recruiter-table-flip.svg"
+    src="{{media::posts/recruiter-table-flip.svg}}"
     alt="person flipping a table"
     width="800"
     height="409"

@@ -15,7 +15,7 @@ configuration (and after that, my own implementation) however,
 I want to show (or remind) you how Vim's statusline looks out of the box:
 
 <Media
-    src="/media/posts/vim-default-statusline.png"
+    src="{{media::posts/vim-default-statusline.png}}"
     alt="default vim statusline"
     width="1924"
     height="68"
@@ -28,7 +28,7 @@ statusline shows when the file has been modified with a `[+]` marker
 after the filename:
 
 <Media
-    src="/media/posts/vim-default-statusline-modified.png"
+    src="{{media::posts/vim-default-statusline-modified.png}}"
     alt="default vim statusline with modified flag"
     width="1924"
     height="68"
@@ -37,7 +37,7 @@ after the filename:
 And finally, it will also show when a file is readonly with a `[RO]` marker:
 
 <Media
-    src="/media/posts/vim-default-statusline-readonly.png"
+    src="{{media::posts/vim-default-statusline-readonly.png}}"
     alt="default vim statusline with read-only flag"
     width="1924"
     height="68"
@@ -55,7 +55,7 @@ such as showing a different color in each mode and replacing the bulky
 `[+]` and `[RO]` markers with something "cleaner". This is how I made mine look:
 
 <Media
-    src="/media/posts/vim-colored-statusline"
+    src={["{{media::posts/vim-colored-statusline.webm}}", "{{media::posts/vim-colored-statusline.mp4}}"]}
     alt="lightline.vim statusline colors"
     width="1922"
     height="82"
@@ -71,7 +71,7 @@ I also mentioned that I wanted to replace the markers with something a bit
 cleaner, this is what I came up with:
 
 <Media
-    src="/media/posts/vim-statusline-lightline-modified.png"
+    src="{{media::posts/vim-statusline-lightline-modified.png}}"
     alt="lightline.vim statusline with modified flag"
     width="1924"
     height="66"
@@ -282,7 +282,7 @@ Aside from that it shows more colors than the three mentioned above, here's all
 of them in a short gif:
 
 <Media
-    src="/media/posts/vim-colored-statusline-all"
+    src={["{{media::posts/vim-colored-statusline-all.webm}}", "{{media::posts/vim-colored-statusline-all.mp4}}"]}
     alt="custom statusline showing all colors"
     width="1922"
     height="82"

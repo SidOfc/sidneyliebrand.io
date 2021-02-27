@@ -18,7 +18,7 @@ filters each line from given input with a query that the user types.
 When the query changes, the results update in realtime.
 
 <Media
-    src="/media/posts/fzf-ls-example"
+    src={["{{media::posts/fzf-ls-example.webm}}", "{{media::posts/fzf-ls-example.mp4}}"]}
     alt="FZF + LS example"
     width="768"
     height="180"
@@ -29,7 +29,7 @@ entry. You can combine this with your `$EDITOR` variable to search for a file an
 it for example.
 
 <Media
-    src="/media/posts/open-changelog-neovim"
+    src={["{{media::posts/open-changelog-neovim.webm}}", "{{media::posts/open-changelog-neovim.mp4}}"]}
     alt="Open CHANGELOG.md in NeoVim"
     width="768"
     height="180"
@@ -46,7 +46,7 @@ in rust and one of its primary goals is to be the *fastest* `grep` of them all.
 It performs amazing even in a larger code base.
 
 <Media
-    src="/media/posts/rg-ls-fzf"
+    src={["{{media::posts/rg-ls-fzf.webm}}", "{{media::posts/rg-ls-fzf.mp4}}"]}
     alt="Ripgrep list files with FZF"
     width="768"
     height="180"
@@ -104,7 +104,7 @@ later migrated to [fish](https://github.com/SidOfc/dotfiles/blob/e94b96b90847995
 It lists processes using `ps -ef` and pipes it to `fzf`.
 
 <Media
-    src="/media/posts/kill-with-kp"
+    src={["{{media::posts/kill-with-kp.webm}}", "{{media::posts/kill-with-kp.mp4}}"]}
     alt="Killing processes using kp"
     width="768"
     height="180"
@@ -142,7 +142,7 @@ Whenever I have to do anything with brew, it is completely painless and it
 works quite well for package discovery too.
 
 <Media
-    src="/media/posts/bip-interface"
+    src={["{{media::posts/bip-interface.webm}}", "{{media::posts/bip-interface.mp4}}"]}
     alt="Brew Install Plugin interface"
     width="768"
     height="180"
@@ -160,7 +160,7 @@ My solution to this is a simple path explorer called `fp` ([zsh](https://github.
 It invokes FZF with a list of folders populated using `$PATH`.
 
 <Media
-    src="/media/posts/dirs-in-path"
+    src={["{{media::posts/dirs-in-path.webm}}", "{{media::posts/dirs-in-path.mp4}}"]}
     alt="Directories present in $PATH"
     width="768"
     height="180"
@@ -180,7 +180,7 @@ It allows me to quickly find out whether I should stay away from some Web API or
 this small tool also allows me to query features that have been added or deprecated recently.
 
 <Media
-    src="/media/posts/checking-caniuse"
+    src={["{{media::posts/checking-caniuse.webm}}", "{{media::posts/checking-caniuse.mp4}}"]}
     alt="An example of looking for features using cani"
     width="768"
     height="180"
@@ -221,7 +221,7 @@ using your `$FZF_DEFAULT_COMMAND` environment variable. It opens the currently
 highlighted file on <kbd>enter</kbd>.
 
 <Media
-    src="/media/posts/fzf-files-demo"
+    src={["{{media::posts/fzf-files-demo.webm}}", "{{media::posts/fzf-files-demo.mp4}}"]}
     alt="FZF :Files demo"
     width="1049"
     height="714"
@@ -248,7 +248,7 @@ Last but not least I wanted to find files based on what was inside of a file.
 This is useful to see where a class or function is used for example.
 
 <Media
-    src="/media/posts/fzf-rg-demo"
+    src={["{{media::posts/fzf-rg-demo.webm}}", "{{media::posts/fzf-rg-demo.mp4}}"]}
     alt="FZF :Rg demo"
     width="1049"
     height="714"

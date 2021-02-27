@@ -5,7 +5,7 @@ published:   "2018-08-27T07:55:24Z"
 ---
 
 <Media
-    src="/media/posts/codi-banner.png"
+    src="{{media::posts/codi-banner.png}}"
     alt="A Codi.vim fullscreen buffer"
     width="1672"
     height="972"
@@ -21,7 +21,7 @@ I used to turn to a REPL for help but this quickly becomes annoying when trying 
 Making a typo in the middle of a `do ... end` block in Ruby is quite costly:
 
 <Media
-    src="/media/posts/pry-multiline-typo"
+    src={["{{media::posts/pry-multiline-typo.webm}}", "{{media::posts/pry-multiline-typo.mp4}}"]}
     alt="Multiline expression typo in Pry"
     width="1033"
     height="250"
@@ -34,7 +34,7 @@ In case of errors and stack traces it can become a lot worse as well.
 Codi solves all of this by allowing you to type in one pane and it prints the results in a separate pane side-by-side:
 
 <Media
-    src="/media/posts/ruby-demo"
+    src={["{{media::posts/ruby-demo.webm}}", "{{media::posts/ruby-demo.mp4}}"]}
     alt="Demo of Ruby in Codi.vim"
     width="1033"
     height="141"
@@ -48,7 +48,7 @@ it requires some more battle testing to see if it works in common scenario's.
 This is where I found out that when used with a split, it will not be fullscreen but rather split the current buffer:
 
 <Media
-    src="/media/posts/split-behavior"
+    src={["{{media::posts/split-behavior.webm}}", "{{media::posts/split-behavior.mp4}}"]}
     alt="Default split behavior"
     width="1033"
     height="496"
@@ -60,7 +60,7 @@ It wraps the default `Codi` command in a function which creates an empty buffer 
 This creates the fullscreen split that I wanted:
 
 <Media
-    src="/media/posts/wrapped-split-behavior"
+    src={["{{media::posts/wrapped-split-behavior.webm}}", "{{media::posts/wrapped-split-behavior.mp4}}"]}
     alt="Enhanced split behavior"
     width="1033"
     height="496"
@@ -78,7 +78,7 @@ After hiding the buffer, its `tabpagenr()` is stored in a dictionary keyed by th
 Then, when toggling codi for a filetype that is stored, switch to that tab instead of opening a new one (there is even a check if that tab actually exists):
 
 <Media
-    src="/media/posts/wrapped-split-behavior-2"
+    src={["{{media::posts/wrapped-split-behavior-2.webm}}", "{{media::posts/wrapped-split-behavior-2.mp4}}"]}
     alt="Enhanced split behavior version 2"
     width="1033"
     height="496"

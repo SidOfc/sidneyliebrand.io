@@ -16,6 +16,20 @@ module.exports = withBundleAnalyzer({
             };
         }
 
+        config.module.rules.push({
+            test: /\.(svg|png|jpe?g|gif|mp4|webm)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                    options: {
+                        publicPath: `${isServer ? '/_next' : ''}/static`,
+                        outputPath: `${isServer ? '../' : ''}/static`,
+                        name: 'media/[name].[hash].[ext]',
+                    },
+                },
+            ],
+        });
+
         return config;
     },
     sassOptions: {

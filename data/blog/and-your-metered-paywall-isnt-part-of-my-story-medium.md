@@ -9,7 +9,7 @@ Some time ago they decided to [make everything premium](https://medium.com/membe
 with something like:
 
 <Media
-    src="/media/posts/reader-paywall.jpg"
+    src="{{media::posts/reader-paywall.jpg}}"
     alt="The reader paywall message on medium that appears after 5 posts"
     width="1448"
     height="864"
@@ -26,7 +26,7 @@ Medium however, does not care about anything that is "free" or "open" at all. Se
 open one of my stories on Medium, the following message appears at the top:
 
 <Media
-    src="/media/posts/metered-paywall.png"
+    src="{{media::posts/metered-paywall.png}}"
     alt="The metered paywall message on medium"
     width="872"
     height="112"
@@ -38,7 +38,7 @@ At first, I tried to close the popup. But of course, I should have known that it
 seeing as they are trying to get me to make my stories paid so they can benefit too.
 
 <Media
-    src="/media/posts/metered-paywall-never-closing"
+    src={["{{media::posts/metered-paywall-never-closing.webm}}", "{{media::posts/metered-paywall-never-closing.mp4}}"]}
     alt="Re-appearing message across page reloads"
     width="1531"
     height="482"

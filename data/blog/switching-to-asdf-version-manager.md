@@ -6,7 +6,7 @@ published:   "2017-08-15T21:04:44Z"
 
 <Media
     invertDark
-    src="/media/posts/asdfmovie-banner.svg"
+    src="{{media::posts/asdfmovie-banner.svg}}"
     alt="asdfmovie quote from youtube"
     width="356"
     height="200"

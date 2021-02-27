@@ -4,22 +4,12 @@ import LazyLoad from 'react-lazyload';
 import {classes} from '@src/util';
 
 export default forwardRef(
-    (
-        {
-            src,
-            width,
-            height,
-            className,
-            alt,
-            invertDark,
-            showAlt = true,
-            exts = ['webm', 'mp4'],
-        },
-        ref
-    ) => {
+    ({src, width, height, className, alt, invertDark, showAlt = true}, ref) => {
         const w = parseInt(width) || 1;
         const h = parseInt(height) || 0;
         const paddingBottom = `${(h / w) * 100}%`;
+
+        // console.log({src: require(`../../public${src}`).default});
 
         return (
             <figure
@@ -34,9 +24,7 @@ export default forwardRef(
                     once
                 >
                     <div className={styles.relative} style={{paddingBottom}}>
-                        {src.match(/\.\w+$/) ? (
-                            <img className={styles.media} src={src} alt={alt} />
-                        ) : (
+                        {Array.isArray(src) ? (
                             <video
                                 className={styles.media}
                                 autoPlay
@@ -44,14 +32,16 @@ export default forwardRef(
                                 muted
                                 playsInline
                             >
-                                {exts.map((ext) => (
+                                {src.map((src) => (
                                     <source
-                                        key={ext}
-                                        src={`${src}.${ext}`}
-                                        type={`video/${ext}`}
+                                        key={src}
+                                        src={src}
+                                        type={`video/${src.split('.').pop()}`}
                                     />
                                 ))}
                             </video>
+                        ) : (
+                            <img className={styles.media} src={src} alt={alt} />
                         )}
                     </div>
                 </LazyLoad>

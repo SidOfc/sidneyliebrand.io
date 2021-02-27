@@ -33,7 +33,7 @@ the .webm file is (on average) **60%** smaller than the .gif file.
 When we check caniuse, [.webm support](https://caniuse.com/?search=webm "View caniuse.com webm support") looks good too, mostly.
 Indeed the only real reason today to use .mp4 on the web is to support Internet Explorer.
 
-<Caniuse data={cani:webm} />
+<Caniuse data={{{caniuse::webm}}} />
 
 ## Convert .gif to .mp4
 
@@ -59,7 +59,7 @@ The .mp4 file is (on average) **50%** smaller than the .gif file. While less eff
 than .webm, it is still much better than using .gif. Additionally, this .mp4 file is [widely supported](https://caniuse.com/?search=mp4 "View caniuse.com mp4 support")
 in nearly all browsers.
 
-<Caniuse data={cani:mpeg4} />
+<Caniuse data={{{caniuse::mpeg4}}} />
 
 ## Conclusion
 

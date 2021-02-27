@@ -10,7 +10,7 @@ It led to me finding another great resource and added it along with some new con
 to this post.
 
 <Media
-    src="/media/posts/yaml-homepage.png"
+    src="{{media::posts/yaml-homepage.png}}"
     alt="yaml.org homepage"
     width="900"
     height="371"

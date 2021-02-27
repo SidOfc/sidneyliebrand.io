@@ -75,7 +75,9 @@ export async function getPinnedRepositories() {
 export async function processMarkdownFile(filePath) {
     const filename = filePath.split('/').pop();
     const rawMarkdown = await fs.readFile(filePath);
-    const {content, data} = matter(caniuseEmbedData(rawMarkdown.toString()));
+    const {content, data} = matter(
+        withMedia(caniuseEmbedData(rawMarkdown.toString()))
+    );
     const source = await renderToString(content, {scope: data});
 
     return {
@@ -109,9 +111,26 @@ export async function processMarkdownDir(dirPath) {
     );
 }
 
+function interpolate(content, label, replace) {
+    const findRegExp = new RegExp(`{{${label}::.*?}}`, 'g');
+    const stripRegExp = new RegExp(`^{{${label}::|}}$`, 'g');
+
+    return content.replace(findRegExp, (match) =>
+        replace(match.replace(stripRegExp, ''))
+    );
+}
+
 function caniuseEmbedData(content) {
-    return content.replace(/cani:[\w-]+/g, (match) =>
-        JSON.stringify(getFeature(match.replace(/^cani:/, '')))
+    return interpolate(content, 'caniuse', (id) =>
+        JSON.stringify(getFeature(id))
+    );
+}
+
+function withMedia(content) {
+    return interpolate(
+        content,
+        'media',
+        (src) => require(`public/media/${src}`).default
     );
 }
 
