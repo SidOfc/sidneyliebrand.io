@@ -34,6 +34,11 @@ git -C $DEPLOY_DIR tag -a $BUILD_ID -m $BUILD_ID
 git -C $DEPLOY_DIR push
 git -C $DEPLOY_DIR push --tags
 
+# add and push tag to next.js repo
+git tag -a $BUILD_ID -m $BUILD_ID
+git push
+git push --tags
+
 # clean up deploy dir
 rm -rf $DEPLOY_DIR
 
