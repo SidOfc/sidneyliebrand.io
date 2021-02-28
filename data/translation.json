@@ -1,0 +1,9 @@
+{
+    "caniuse": {
+        "tabs": {
+            "notes": "Notes",
+            "links": "Resources",
+            "bugs": "Known issues"
+        }
+    }
+}

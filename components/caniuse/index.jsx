@@ -1,50 +1,50 @@
 import {useState} from 'react';
 import styles from './caniuse.module.scss';
-import Bullet from '@components/bullet';
 import {classes, dateFormat} from '@src/util';
+import t from '@src/util/translate';
 
 export default function Caniuse({data}) {
     const [tab, setTab] = useState('notes');
+    const regularNotes = data.notes.filter(({note}) => note === null);
+    const numberedNotes = data.notes.filter(({note}) => Number.isInteger(note));
 
     return (
         <section className={styles.caniuse} data-embed>
             <div className={styles.header}>
-                <span className={styles.title}>{data.title}</span>
+                <span className={styles.title}>
+                    <a
+                        href={`https://caniuse.com/${data.id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {data.title}
+                    </a>
+                    <span className={styles.status}>{data.status}</span>
+                </span>
                 <span className={styles.headerMeta}>
                     <span className={classes(styles.textRow, styles.rowStatus)}>
-                        <span className={styles.status}>{data.status}</span>
-                        <Bullet />
                         <span
-                            className={classes(
-                                styles.usage,
-                                styles[percentColor(data.usage.y)]
-                            )}
+                            title={`%${data.usage.y} supported`}
+                            className={styles.green}
                         >
                             %{data.usage.y}
                         </span>
+                        {data.usage.a > 0 && (
+                            <>
+                                <span className={styles.operator}>+</span>
+                                <span
+                                    title={`%${data.usage.y} partially supported`}
+                                    className={styles.yellow}
+                                >
+                                    %{data.usage.a}
+                                </span>
+                                <span className={styles.operator}>=</span>
+                                <span title={`%${data.usage.y} total`}>
+                                    %{data.usage.y + data.usage.a}
+                                </span>
+                            </>
+                        )}
                     </span>
-                    <span className={styles.textRow}>
-                        <a
-                            href={`https://caniuse.com/${data.id}`}
-                            rel="noreferrer"
-                            target="_blank"
-                            title="View on caniuse.com"
-                        >
-                            caniuse
-                        </a>
-                    </span>
-                    {data.spec && (
-                        <span className={styles.textRow}>
-                            <a
-                                href={data.spec}
-                                rel="noreferrer"
-                                target="_blank"
-                                title="View spec on w3.org"
-                            >
-                                spec
-                            </a>
-                        </span>
-                    )}
                 </span>
                 <p
                     className={styles.description}
@@ -111,54 +111,51 @@ export default function Caniuse({data}) {
                 </div>
             </div>
             <div className={styles.tabs}>
-                {[
-                    {
-                        type: 'notes',
-                        caption: 'Notes',
-                        disabled: data.notesByNum?.length === 0,
-                    },
-                    {
-                        type: 'resources',
-                        caption: 'Resources',
-                        disabled: data.notesByNum?.length === 0,
-                    },
-                    {
-                        type: 'bugs',
-                        caption: 'Known issues',
-                        disabled: data.bugs?.length === 0,
-                    },
-                ].map(
-                    ({type, caption, disabled}) =>
-                        !disabled && (
-                            <button
-                                key={type}
-                                type="button"
-                                className={classes(styles.tabToggle, {
-                                    [styles.tabSelected]: tab === type,
-                                })}
-                                onClick={() => setTab(type)}
-                            >
-                                {caption}
-                            </button>
-                        )
-                )}
+                {['notes', 'links', 'bugs']
+                    .filter((type) => data[type]?.length > 0)
+                    .map((type) => (
+                        <button
+                            key={type}
+                            type="button"
+                            className={classes(styles.tabToggle, {
+                                [styles.tabSelected]: tab === type,
+                            })}
+                            onClick={() => setTab(type)}
+                        >
+                            {t(`caniuse.tabs.${type}`)}
+                        </button>
+                    ))}
             </div>
             <div className={styles.tabContents}>
                 {tab === 'notes' ? (
-                    <ul>
-                        {data.notesByNum.map(({note, text}) => (
-                            <li
-                                key={note}
-                                dangerouslySetInnerHTML={{
-                                    __html: `
-                            <span class="${styles.noteNum}">${note}</span>
-                            <span>${text}</span>
-                            `,
-                                }}
-                            />
-                        ))}
-                    </ul>
-                ) : tab === 'resources' ? (
+                    <>
+                        {regularNotes.length > 0 && (
+                            <ul>
+                                {regularNotes.map(({text}, idx) => (
+                                    <li key={idx}>{text}</li>
+                                ))}
+                            </ul>
+                        )}
+                        {numberedNotes.length > 0 && (
+                            <ul>
+                                {numberedNotes.map(({note, text}) => (
+                                    <li key={note}>
+                                        {note && (
+                                            <span className={styles.noteNum}>
+                                                {note}
+                                            </span>
+                                        )}
+                                        <span
+                                            dangerouslySetInnerHTML={{
+                                                __html: text,
+                                            }}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
+                ) : tab === 'links' ? (
                     <ul>
                         {data.links.map(({url, title}) => (
                             <li key={url}>
@@ -243,14 +240,4 @@ function VersionCell({item, prefix}) {
             {item?.version || <>&nbsp;</>}
         </div>
     );
-}
-
-function percentColor(percent) {
-    if (percent <= 33) {
-        return 'color-red';
-    } else if (percent <= 80) {
-        return 'color-yellow';
-    } else if (percent <= 100) {
-        return 'color-green';
-    }
 }

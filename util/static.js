@@ -110,27 +110,10 @@ export async function processMarkdownDir(dirPath) {
 }
 
 function caniuseEmbedData(content) {
-    return content.replace(/cani:[\w-]+/g, (match) =>
-        JSON.stringify(getFeature(match.replace(/^cani:/, '')))
+    return interpolate(content, 'caniuse', (id) =>
+        JSON.stringify(getFeature(id))
     );
 }
-
-const VISIBLE_BROWSERS = [
-    'ie',
-    'edge',
-    'firefox',
-    'chrome',
-    'safari',
-    'opera',
-    'and_ff',
-    'and_chr',
-    'ios_saf',
-    'op_mob',
-    'op_mini',
-    'android',
-    'samsung',
-    'and_uc',
-];
 
 function flagData(str) {
     const flags = str.split(/\s+/i);
@@ -210,55 +193,68 @@ function compressStats(stats) {
 function getFeature(id) {
     const feature = require(`caniuse-db/features-json/${id}.json`);
     const compressedStats = compressStats(feature.stats);
-    const stats = VISIBLE_BROWSERS.map((id) => ({
+    const browsers = Object.keys(caniuse.agents);
+    const stats = browsers.map((id) => ({
         id,
         name: caniuse.agents[id].browser,
         versions: compressedStats[id],
     }));
-    const prefixes = VISIBLE_BROWSERS.reduce(
+    const prefixes = browsers.reduce(
         (acc, id) => ({
             ...acc,
             [id]: caniuse.agents[id].prefix,
         }),
         {}
     );
-    const activeNotes = Object.values(stats)
-        .map(({versions}) => versions)
-        .reduce((acc, versions) => {
-            versions.forEach(({notes}) => acc.push(...notes));
-            return acc;
-        }, [])
-        .filter((note, idx, notes) => notes.indexOf(note) === idx);
 
     return {
         id,
         prefixes,
-        links: feature.links || [],
+        links: [
+            ...(feature.spec
+                ? [{url: feature.spec, title: 'Specification'}]
+                : []),
+            ...(feature.links || []),
+        ],
         bugs: (feature.bugs || []).map(({description}) =>
-            markdown
-                .toHTML(description.trim())
-                .replace(/^<p>\s*|\s*<\/p>$/gi, '')
+            inlineMarkdown(description)
         ),
         updated: caniuse.updated * 1000,
-        notesByNum: activeNotes
-            .filter((note) => feature.notes_by_num[note])
-            .sort((a, b) => (a > b ? 1 : a === b ? 0 : -1))
-            .map((note) => ({
-                note,
-                text: markdown
-                    .toHTML(feature.notes_by_num[note].trim())
-                    .replace(/^<p>\s*|\s*<\/p>$/gi, ''),
-            })),
+        notes: [
+            ...feature.notes
+                .split(/(?:\r?\n){2,}/g)
+                .filter((content) => content)
+                .map((content) => ({
+                    note: null,
+                    text: inlineMarkdown(content),
+                })),
+            ...Object.entries(feature.notes_by_num)
+                .map(([note, content]) => ({
+                    note: parseInt(note, 10),
+                    text: inlineMarkdown(content),
+                }))
+                .sort(({a}, {b}) => (a > b ? 1 : a === b ? 0 : -1)),
+        ],
         title: feature.title,
-        description: `${markdown
-            .toHTML(feature.description.trim())
-            .replace(/^<p>\s*|\s*<\/p>$/gi, '')}`,
+        description: inlineMarkdown(feature.description),
         status: feature.status,
-        spec: feature.spec,
         usage: {
             y: feature.usage_perc_y,
             a: feature.usage_perc_a,
         },
         stats,
     };
+}
+
+function inlineMarkdown(content) {
+    return markdown.toHTML(content.trim()).replace(/^<p>\s*|\s*<\/p>$/gi, '');
+}
+
+function interpolate(content, label, replace) {
+    const findRegExp = new RegExp(`{{${label}:.*?}}`, 'g');
+    const stripRegExp = new RegExp(`^{{${label}:|}}$`, 'g');
+
+    return content.replace(findRegExp, (match) =>
+        replace(match.replace(stripRegExp, ''))
+    );
 }
