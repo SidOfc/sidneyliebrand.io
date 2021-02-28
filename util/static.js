@@ -213,11 +213,13 @@ function getFeature(id) {
         id,
         prefixes,
         links: [
+            ...(feature.links || []),
             ...(feature.spec
                 ? [{url: feature.spec, title: 'Specification'}]
                 : []),
-            ...(feature.links || []),
-        ],
+        ].filter(
+            (l, idx, links) => links.findIndex((ll) => l.url === ll.url) === idx
+        ),
         bugs: (feature.bugs || []).map(({description}) =>
             inlineMarkdown(description)
         ),
