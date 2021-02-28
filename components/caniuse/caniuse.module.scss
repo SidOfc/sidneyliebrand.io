@@ -401,6 +401,7 @@
 
       li {
         display: flex;
+        align-items: center;
         padding: 0;
         margin: 0;
         font-size: 0.9rem;
@@ -415,6 +416,14 @@
         }
       }
 
+      .activeNote {
+        background-color: yellow;
+
+        a {
+          color: lighten(map-deep-get($vars, 'themes', 'default', 'primary-bg'), 5%);
+        }
+      }
+
       .noteNum {
         padding: 0.15rem 0.4rem;
         background-color: #c4ab7e;
@@ -422,6 +431,7 @@
         font-size: 0.6rem;
         color: white;
         margin-right: 1rem;
+        margin-top: 0.05rem;
         margin-bottom: auto;
       }
 

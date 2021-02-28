@@ -1,15 +1,21 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import styles from './caniuse.module.scss';
 import {classes, dateFormat} from '@src/util';
 import t from '@src/util/translate';
 
 export default function Caniuse({data}) {
     const [tab, setTab] = useState('notes');
+    const [active, setActive] = useState(null);
+    const activeTimeoutRef = useRef();
     const regularNotes = data.notes.filter(({note}) => note === null);
     const numberedNotes = data.notes.filter(({note}) => Number.isInteger(note));
+    const activate = (cell) => () => {
+        clearTimeout(activeTimeoutRef.current);
+        activeTimeoutRef.current = setTimeout(() => setActive(cell), 125);
+    };
 
     return (
-        <section className={styles.caniuse} data-embed>
+        <section className={styles.caniuse}>
             <div className={styles.header}>
                 <span className={styles.title}>
                     <a
@@ -72,11 +78,13 @@ export default function Caniuse({data}) {
                         <div key={name} className={styles.column}>
                             {versions
                                 .filter(({era}) => era < 0)
-                                .map((item, idx) => (
+                                .map((cell, idx) => (
                                     <VersionCell
-                                        item={item}
+                                        item={cell}
                                         prefix={data.prefixes[id]}
                                         key={idx}
+                                        onMouseEnter={activate(cell)}
+                                        onMouseLeave={activate(null)}
                                     />
                                 ))}
                         </div>
@@ -88,23 +96,34 @@ export default function Caniuse({data}) {
                         styles.tableBodyCurrent
                     )}
                 >
-                    {data.stats.map(({id, name, versions}) => (
-                        <div key={name} className={styles.column}>
-                            <VersionCell
-                                item={versions.find(({era}) => era === 0)}
-                                prefix={data.prefixes[id]}
-                                key={name}
-                            />
-                        </div>
-                    ))}
+                    {data.stats.map(({id, name, versions}) => {
+                        const cell = versions.find(({era}) => era === 0);
+
+                        return (
+                            <div key={name} className={styles.column}>
+                                <VersionCell
+                                    item={cell}
+                                    prefix={data.prefixes[id]}
+                                    key={name}
+                                    onMouseEnter={activate(cell)}
+                                    onMouseLeave={activate(null)}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className={styles.tableBody}>
                     {data.stats.map(({name, versions}) => (
                         <div key={name} className={styles.column}>
                             {versions
                                 .filter(({era}) => era > 0)
-                                .map((item, idx) => (
-                                    <VersionCell item={item} key={idx} />
+                                .map((cell, idx) => (
+                                    <VersionCell
+                                        item={cell}
+                                        key={idx}
+                                        onMouseEnter={activate(cell)}
+                                        onMouseLeave={activate(null)}
+                                    />
                                 ))}
                         </div>
                     ))}
@@ -146,6 +165,11 @@ export default function Caniuse({data}) {
                                             </span>
                                         )}
                                         <span
+                                            className={classes({
+                                                [styles.activeNote]: active?.notes?.includes(
+                                                    note
+                                                ),
+                                            })}
                                             dangerouslySetInnerHTML={{
                                                 __html: text,
                                             }}
@@ -190,11 +214,12 @@ export default function Caniuse({data}) {
     );
 }
 
-function VersionCell({item, prefix}) {
+function VersionCell({item, prefix, ...props}) {
     const flags = item?.flags || [];
 
     return (
         <div
+            {...props}
             title={
                 flags.includes('y')
                     ? 'Supported'

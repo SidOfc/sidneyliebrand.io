@@ -125,7 +125,9 @@ function flagData(str) {
 
     return {
         notes,
-        flags: flags.filter((flag) => !['d', 'x', 'p'].includes(flag)),
+        flags: flags.filter(
+            (flag) => !['d', 'x', 'p'].includes(flag) && !flag.startsWith('#')
+        ),
         disabled: flags.includes('d'),
         prefixed: flags.includes('x'),
     };
