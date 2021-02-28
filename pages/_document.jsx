@@ -1,4 +1,5 @@
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
+import {minify} from 'uglify-js';
 import {themes} from '@data/sass-variables.json';
 
 export default class Document extends NextDocument {
@@ -8,22 +9,35 @@ export default class Document extends NextDocument {
                 <Head>
                     <script
                         dangerouslySetInnerHTML={{
-                            __html: `
-                        try {
-                            var theme = localStorage.getItem('theme');
-                            if (theme) {
-                                var html = document.querySelector('html');
-                                var style = document.createElement('style');
-                                var themes = ${JSON.stringify(themes)};
+                            __html: minify(
+                                `
+                                    try {
+                                        var theme = localStorage.getItem('theme');
+                                        if (theme) {
+                                            var d = document;
+                                            var html = d.querySelector('html');
+                                            var style = d.createElement('style');
+                                            var backgrounds = ${JSON.stringify(
+                                                Object.entries(themes).reduce(
+                                                    (acc, [theme, rules]) => ({
+                                                        ...acc,
+                                                        [theme]:
+                                                            rules['page-bg'],
+                                                    }),
+                                                    {}
+                                                )
+                                            )};
 
-                                html.setAttribute('class', theme);
-                                style.innerHTML = 'html { background-color:' + themes[theme]['page-bg'] + '; }';
+                                            html.setAttribute('class', theme);
+                                            style.innerHTML = 'html { background-color:' + backgrounds[theme] + '; }';
 
-                                document.head.appendChild(style);
-                            }
-                        } catch (e) {
-                        }
-                    `,
+                                            d.head.appendChild(style);
+                                        }
+                                    } catch (e) {
+                                    }
+                                `,
+                                {mangle: {toplevel: true}}
+                            ).code,
                         }}
                     />
                 </Head>
