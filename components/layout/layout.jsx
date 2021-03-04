@@ -3,11 +3,13 @@ import Link from 'next/link';
 import Media from '@components/media';
 import Text from '@components/text';
 import DarkModeToggle from '@components/dark-mode-toggle';
+import Progress from '@components/progress';
 
 export default function Layout({children}) {
     return (
         <div className={styles.application}>
             <header className={styles.header}>
+                <Progress />
                 <div className={styles.headerFixed}>
                     <div className={styles.headerContent}>
                         <Link href="/">
