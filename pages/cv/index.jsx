@@ -9,6 +9,8 @@ import {getPinnedRepositories, getPageData} from '@src/util/static';
 import {dateFormat, dateDiff, linkProps} from '@src/util';
 import {profile} from '@data/content.json';
 
+export const config = {unstable_jsPreload: false};
+
 export default function Index({title, description, pinnedRepositories}) {
     const {programming, education, volunteering} = profile;
 
