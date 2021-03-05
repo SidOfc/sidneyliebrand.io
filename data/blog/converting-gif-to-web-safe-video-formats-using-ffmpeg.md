@@ -24,7 +24,7 @@ doing exactly? Let's dive in:
 - `-b:v`: Specifies the _video bitrate_, `0` allows us to specify the quality via the `-crf` option.
 - `-crf`: Specifies the _quality_, ranges between 0-63, lower means better quality.
 
-More detailed explanations about the options can be found [here](https://trac.ffmpeg.org/wiki/Encode/VP9 "Visit ffmpeg VP9 encode page").
+More detailed explanations about the options can be found on the [ffmpeg VP9 wiki](https://trac.ffmpeg.org/wiki/Encode/VP9 "Visit ffmpeg VP9 wiki").
 
 These .webm files will suffer a little bit of quality loss, but if more quality is
 needed the `-crf` flag can be set to a lower value easily. With these settings
@@ -51,7 +51,7 @@ Let's also cover the options for this one:
 - `-pix_fmt`: The default `yuv444p` can't be played by some mobile browsers so we set it to `yuv420p` instead.
 - `-vf`: This flag is allows us to set `"scale=trunc(iw/2)*2:trunc(ih/2)*2"` to ensure the video width and height are divisible by 2 which would otherwise cause an error when using `yuv420p`.
 
-More detailed explanations about the options can be found [here](https://trac.ffmpeg.org/wiki/Encode/H.264 "Visit ffmpeg H.264 encode page").
+More detailed explanations about the options can be found on the [ffmpeg H.264 wiki](https://trac.ffmpeg.org/wiki/Encode/H.264 "Visit ffmpeg H.264 wiki").
 Additionally, [this commit](https://github.com/manateelazycat/deepin-screen-recorder/commit/a49612faed28fc70a98aa117839cc67d96b99761 "Read details about pix_fmt and vf flags command line flags")
 provides some additional context about `-pix_fmt` and `-vf`.
 
