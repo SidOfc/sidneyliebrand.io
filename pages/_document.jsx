@@ -5,17 +5,20 @@ import {themes} from '@data/sass-variables.json';
 export default class Document extends NextDocument {
     render() {
         return (
-            <Html lang="en">
+            <Html lang="en" class="no-js">
                 <Head>
                     <script
                         dangerouslySetInnerHTML={{
                             __html: minify(
                                 `
+                                    var d = document;
+                                    var html = d.querySelector('html');
+
+                                    html.classList.remove('no-js');
+
                                     try {
                                         var theme = localStorage.getItem('theme');
                                         if (theme) {
-                                            var d = document;
-                                            var html = d.querySelector('html');
                                             var style = d.createElement('style');
                                             var backgrounds = ${JSON.stringify(
                                                 Object.entries(themes).reduce(
@@ -28,7 +31,7 @@ export default class Document extends NextDocument {
                                                 )
                                             )};
 
-                                            html.setAttribute('class', theme);
+                                            html.classList.add(theme);
                                             style.innerHTML = 'html { background-color:' + backgrounds[theme] + '; }';
 
                                             d.head.appendChild(style);

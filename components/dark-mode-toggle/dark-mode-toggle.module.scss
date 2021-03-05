@@ -6,6 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  :global(.no-js) & {
+    display: none;
+  }
 }
 
 .toggle {
