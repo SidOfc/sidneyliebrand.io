@@ -1,10 +1,7 @@
 const {types} = require('sass');
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.ANALYZE ? true : false,
-});
 const sassVars = require('./data/sass-variables.json');
 
-module.exports = withBundleAnalyzer({
+module.exports = {
     sassOptions: {
         prependData: `$vars: ${serializeToSass(sassVars)};`,
         functions: {
@@ -38,7 +35,7 @@ module.exports = withBundleAnalyzer({
             },
         },
     },
-});
+};
 
 function isType(thing, ...types) {
     return thing === null || thing === undefined
