@@ -7,13 +7,14 @@ import Media from '@components/media';
 import Head from '@components/head';
 import {getPinnedRepositories, getPageData} from '@src/util/static';
 import {dateFormat, dateDiff, linkProps} from '@src/util';
-import {profile} from '@data/content.json';
+import content from '@data/content';
+
+const {profile} = content;
+const {programming, education, volunteering} = profile;
 
 export const config = {unstable_JsPreload: false};
 
 export default function Index({title, description, pinnedRepositories}) {
-    const {programming, education, volunteering} = profile;
-
     return (
         <>
             <Head title={title} description={description} />

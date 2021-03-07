@@ -1,6 +1,8 @@
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 import {minify} from 'uglify-js';
-import {themes} from '@data/sass-variables.json';
+import sassVars from '@data/sass-variables.json';
+
+const {themes} = sassVars;
 
 export default class Document extends NextDocument {
     render() {

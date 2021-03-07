@@ -36,6 +36,9 @@
         "rimraf": "^3.0.2",
         "sass": "^1.32.8"
     },
+    "resolutions": {
+        "webpack": "^5.24.3"
+    },
     "prettier": {
         "tabWidth": 4,
         "singleQuote": true,

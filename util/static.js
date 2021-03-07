@@ -6,8 +6,10 @@ import {Octokit} from '@octokit/rest';
 import {markdown} from 'markdown';
 import {MARKDOWN_OPTIONS} from '@src/util/mdx';
 import {slug, readTime} from '@src/util';
-import {profile, pages} from '@data/content.json';
+import content from '@data/content';
 import caniuse from 'caniuse-db/fulldata-json/data-2.0.json';
+
+const {profile, pages} = content;
 
 export async function renderToString(content, opts = {}) {
     return remoteRenderToString(emojify(content), {

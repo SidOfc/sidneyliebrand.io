@@ -2,6 +2,9 @@ const {types} = require('sass');
 const sassVars = require('./data/sass-variables.json');
 
 module.exports = {
+    future: {
+        webpack5: true,
+    },
     sassOptions: {
         prependData: `$vars: ${serializeToSass(sassVars)};`,
         functions: {
