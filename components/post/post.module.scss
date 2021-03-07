@@ -12,10 +12,6 @@
     font-family: serif;
     margin-top: 2rem;
     margin-bottom: 2rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -45,12 +41,7 @@
   .postData {
     line-height: 1;
     display: inline-block;
-    margin-bottom: 2rem;
     margin-top: 0.25rem;
     font-size: 1.1rem;
-
-    & + * {
-      margin-top: 0;
-    }
   }
 }

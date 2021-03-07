@@ -23,7 +23,7 @@ export default function Post({
                 <Bullet />
                 {readTimeInMinutes} min read
             </Text>
-            {content}
+            <section>{content}</section>
             <Button href="/">Back</Button>
         </article>
     );
