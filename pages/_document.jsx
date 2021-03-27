@@ -22,7 +22,13 @@ export default class Document extends NextDocument {
                                         var theme = ev.target.getAttribute('data-theme');
                                         if (theme) {
                                             ${JSON.stringify(
-                                                Object.keys(themes)
+                                                Object.keys(
+                                                    themes
+                                                ).map((name) =>
+                                                    name === 'default'
+                                                        ? 'light'
+                                                        : name
+                                                )
                                             )}.map(function(name) {
                                                 html.classList.remove(name);
                                             });
