@@ -4,7 +4,6 @@ import {classes, dateFormat} from '@src/util';
 import t from '@src/util/translate';
 
 export default function Caniuse({data}) {
-    const [tab, setTab] = useState('notes');
     const [active, setActive] = useState(null);
     const activeTimeoutRef = useRef();
     const regularNotes = data.notes.filter(({note}) => note === null);
@@ -33,7 +32,7 @@ export default function Caniuse({data}) {
                             title={`%${data.usage.y} supported`}
                             className={styles.green}
                         >
-                            %{data.usage.y}
+                            %{data.usage.y.toFixed(2)}
                         </span>
                         {data.usage.a > 0 && (
                             <>
@@ -42,11 +41,11 @@ export default function Caniuse({data}) {
                                     title={`%${data.usage.y} partially supported`}
                                     className={styles.yellow}
                                 >
-                                    %{data.usage.a}
+                                    %{data.usage.a.toFixed(2)}
                                 </span>
                                 <span className={styles.operator}>=</span>
                                 <span title={`%${data.usage.y} total`}>
-                                    %{data.usage.y + data.usage.a}
+                                    %{(data.usage.y + data.usage.a).toFixed(2)}
                                 </span>
                             </>
                         )}
@@ -129,86 +128,89 @@ export default function Caniuse({data}) {
                     ))}
                 </div>
             </div>
+            {['notes', 'links', 'bugs'].map((type) => (
+                <input
+                    key={type}
+                    type="radio"
+                    name={data.id}
+                    id={`${data.id}-${type}`}
+                    value={type}
+                    className={styles.tabRadio}
+                    {...(type === 'notes' ? {checked: true} : {})}
+                />
+            ))}
             <div className={styles.tabs}>
                 {['notes', 'links', 'bugs']
                     .filter((type) => data[type]?.length > 0)
                     .map((type) => (
-                        <button
+                        <label
                             key={type}
-                            type="button"
-                            className={classes(styles.tabToggle, {
-                                [styles.tabSelected]: tab === type,
-                            })}
-                            onClick={() => setTab(type)}
+                            data-tab={type}
+                            htmlFor={`${data.id}-${type}`}
+                            className={styles.tabToggle}
                         >
                             {t(`caniuse.tabs.${type}`)}
-                        </button>
+                        </label>
                     ))}
             </div>
-            <div className={styles.tabContents}>
-                {tab === 'notes' ? (
-                    <>
-                        {regularNotes.length > 0 && (
-                            <ul>
-                                {regularNotes.map(({text}, idx) => (
-                                    <li key={idx}>{text}</li>
-                                ))}
-                            </ul>
-                        )}
-                        {numberedNotes.length > 0 && (
-                            <ul>
-                                {numberedNotes.map(({note, text}) => (
-                                    <li key={note}>
-                                        {note && (
-                                            <span className={styles.noteNum}>
-                                                {note}
-                                            </span>
-                                        )}
-                                        <span
-                                            className={classes({
-                                                [styles.activeNote]: active?.notes?.includes(
-                                                    note
-                                                ),
-                                            })}
-                                            dangerouslySetInnerHTML={{
-                                                __html: text,
-                                            }}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </>
-                ) : tab === 'links' ? (
+            <div className={styles.tabContents} data-tab="notes">
+                {regularNotes.length > 0 && (
                     <ul>
-                        {data.links.map(({url, title}) => (
-                            <li key={url}>
-                                <span className={styles.bullet} />
-                                <a
-                                    href={url}
-                                    target="_blank"
-                                    rel="noopener, noreferrer"
-                                >
-                                    {title}
-                                </a>
-                            </li>
+                        {regularNotes.map(({text}, idx) => (
+                            <li key={idx}>{text}</li>
                         ))}
                     </ul>
-                ) : tab === 'bugs' ? (
-                    <ul>
-                        {data.bugs.map((description, idx) => (
-                            <li
-                                key={idx}
+                )}
+                <ul>
+                    {numberedNotes.map(({note, text}) => (
+                        <li key={note}>
+                            {note && (
+                                <span className={styles.noteNum}>{note}</span>
+                            )}
+                            <span
+                                className={classes({
+                                    [styles.activeNote]: active?.notes?.includes(
+                                        note
+                                    ),
+                                })}
                                 dangerouslySetInnerHTML={{
-                                    __html: `
+                                    __html: text,
+                                }}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className={styles.tabContents} data-tab="links">
+                <ul>
+                    {data.links.map(({url, title}) => (
+                        <li key={url}>
+                            <span className={styles.bullet} />
+                            <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener, noreferrer"
+                            >
+                                {title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className={styles.tabContents} data-tab="bugs">
+                <ul>
+                    {data.bugs.map((description, idx) => (
+                        <li
+                            key={idx}
+                            dangerouslySetInnerHTML={{
+                                __html: `
                             <span class="${styles.bullet}"></span>
                             <span>${description}</span>
                             `,
-                                }}
-                            />
-                        ))}
-                    </ul>
-                ) : null}
+                            }}
+                        />
+                    ))}
+                </ul>
             </div>
         </section>
     );

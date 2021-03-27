@@ -1,6 +1,5 @@
 import {forwardRef} from 'react';
 import styles from './media.module.scss';
-import LazyLoad from 'react-lazyload';
 import {classes} from '@src/util';
 
 export default forwardRef(
@@ -28,33 +27,32 @@ export default forwardRef(
                 })}
                 ref={ref}
             >
-                <LazyLoad
-                    placeholder={<div style={{paddingBottom}} />}
-                    offset={300}
-                    once
-                >
-                    <div className={styles.relative} style={{paddingBottom}}>
-                        {src.match(/\.\w+$/) ? (
-                            <img className={styles.media} src={src} alt={alt} />
-                        ) : (
-                            <video
-                                className={styles.media}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            >
-                                {exts.map((ext) => (
-                                    <source
-                                        key={ext}
-                                        src={`${src}.${ext}`}
-                                        type={`video/${ext}`}
-                                    />
-                                ))}
-                            </video>
-                        )}
-                    </div>
-                </LazyLoad>
+                <div className={styles.relative} style={{paddingBottom}}>
+                    {src.match(/\.\w+$/) ? (
+                        <img
+                            loading="lazy"
+                            className={styles.media}
+                            src={src}
+                            alt={alt}
+                        />
+                    ) : (
+                        <video
+                            className={styles.media}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        >
+                            {exts.map((ext) => (
+                                <source
+                                    key={ext}
+                                    src={`${src}.${ext}`}
+                                    type={`video/${ext}`}
+                                />
+                            ))}
+                        </video>
+                    )}
+                </div>
                 {alt && showAlt && (
                     <figcaption className={styles.alt}>{alt}</figcaption>
                 )}

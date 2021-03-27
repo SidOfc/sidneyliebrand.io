@@ -1,26 +1,12 @@
 import styles from './dark-mode-toggle.module.scss';
 import {classes} from '@src/util';
-import useDarkMode from '@hooks/use-dark-mode';
 
 export default function DarkModeToggle() {
-    const {toggleDark} = useDarkMode();
-
     return (
-        <div
-            tabIndex={0}
-            onClick={toggleDark}
-            title="Toggle dark theme"
-            onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    toggleDark();
-                }
-            }}
-            className={styles.wrapper}
-        >
+        <div tabIndex={0} title="Toggle dark theme" className={styles.wrapper}>
             <svg
                 fill="#000000"
+                data-theme="light"
                 className={classes(styles.toggle, styles.toggleDark)}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -30,6 +16,7 @@ export default function DarkModeToggle() {
             </svg>
             <svg
                 fill="#000000"
+                data-theme="dark"
                 className={classes(styles.toggle, styles.toggleLight)}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

@@ -18,6 +18,22 @@ export default class Document extends NextDocument {
 
                                     html.classList.remove('no-js');
 
+                                    window.addEventListener('click', function(ev) {
+                                        var theme = ev.target.getAttribute('data-theme');
+                                        if (theme) {
+                                            ${JSON.stringify(
+                                                Object.keys(themes)
+                                            )}.map(function(name) {
+                                                html.classList.remove(name);
+                                            });
+
+                                            try {
+                                                html.classList.add(theme);
+                                                localStorage.setItem('theme', theme);
+                                            } catch(e) {}
+                                        }
+                                    }, {passive: true});
+
                                     try {
                                         var theme = localStorage.getItem('theme');
                                         if (theme) {

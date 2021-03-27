@@ -11,6 +11,22 @@
   font-family: sans-serif;
   border: 0.25rem solid #e0c89b;
 
+  @each $type in ('notes', 'links', 'bugs') {
+    input[value="#{$type}"]:checked {
+      & ~ .tabs label[data-tab="#{$type}"] {
+        background-color: #e0c89b;
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+
+    input[value="#{$type}"]:not(:checked) {
+      & ~ .tabContents[data-tab="#{$type}"] {
+        display: none;
+      }
+    }
+  }
+
   code {
     background-color: #c4ab7e;
     color: white;
@@ -457,6 +473,10 @@
     }
   }
 
+  .tabRadio {
+    display: none;
+  }
+
   .tabToggle {
     position: relative;
     overflow: hidden;
@@ -484,16 +504,6 @@
 
     &:hover {
       background-color: lighten(#e0c89b, 5%);
-    }
-
-    &.tabSelected {
-      background-color: #e0c89b;
-      cursor: default;
-      pointer-events: none;
-    }
-
-    :global(.no-js) &:not(:first-child) {
-      display: none;
     }
   }
 }
