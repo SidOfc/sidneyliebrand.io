@@ -9,7 +9,7 @@ published:   "2017-09-16T13:11:03Z"
     alt="A screenshot of my vimrc movement key bindings"
     width="900"
     height="315"
-    class="wide"
+    className="wide"
 />
 
 Vim is installed on almost every unix system known to man,

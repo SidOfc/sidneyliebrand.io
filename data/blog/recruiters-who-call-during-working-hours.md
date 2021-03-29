@@ -24,7 +24,7 @@ While uncommon to get a phone call like this, I thought it was probably somethin
 
 I had a small conversation with this guy, he had all kinds of "interests" in all my "skills".
 He was unclear about what he wanted exactly.
-I actually ended up giving him my phone number :man_facepalming: :man_facepalming: :man_facepalming: so that he would at least stop bothering me at that moment.
+I actually ended up giving him my phone number :man-facepalming: :man-facepalming: :man_facepalming: so that he would at least stop bothering me at that moment.
 
 ## Big. Freaking. Mistake.
 

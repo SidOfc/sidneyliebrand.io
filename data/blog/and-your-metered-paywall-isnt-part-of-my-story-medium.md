@@ -53,7 +53,7 @@ two-line paragraph of text that caught my eye:
 > and are not eligible to earn money.
 
 So just because I do not want to make my stories part of a paywall, they aren't shared to anyone except my followers? Hmmn...
-:man_facepalming:
+:man-facepalming:
 
 # Time for a change
 

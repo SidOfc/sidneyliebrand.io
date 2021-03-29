@@ -1,3 +1,5 @@
+@import "@styles/config";
+
 .post {
   display: block;
   margin: 0 auto;
@@ -38,10 +40,42 @@
     }
   }
 
+  table {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      background-color: #ddd;
+    }
+
+    th, td {
+      padding: 0.3rem;
+      border: 2px solid #ccc;
+    }
+
+    @include active-theme('dark') {
+      th {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      th, td {
+        border-color: #333;
+      }
+    }
+  }
+
   .postData {
     line-height: 1;
     display: inline-block;
     margin-top: 0.25rem;
     font-size: 1.1rem;
+  }
+
+  :global(.half-width) {
+    max-width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
