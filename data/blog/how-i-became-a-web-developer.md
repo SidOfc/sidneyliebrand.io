@@ -1,6 +1,6 @@
 ---
 title:       'How I became a web developer'
-description: 'Even though I always knew I wanted to do something with computers, I was certain I could never become a programmer. This post will be my attempt at explaining how I got there anyway :)'
+description: 'Even though I always knew I wanted to do something with computers, I was certain I could never become a web developer. This post will be my attempt at explaining how I got there anyway :)'
 published:   '2021-03-29T14:06:00Z'
 ---
 
