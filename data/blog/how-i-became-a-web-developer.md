@@ -177,8 +177,8 @@ chat but he was a really chill guy actually. I would even get a small fee of &eu
 per month (some actually didn't get paid at all). On top of that I would also learn
 JavaScript, something we didn't actually get at school unless you were an "advanced student".
 
-This internship was really nice, aside from Dave who would guide me in the ways of JavaScript,
-I also worked with Sander Dircken, who made website designs that I would then build.
+This internship was really nice, I worked with Dave who would guide me in the ways of JavaScript,
+and with Sander Dircken who made website designs in PhotoShop that I would then build in HTML and CSS.
 Sander was a real nitpicker on the details, everything had to be pixel-perfect across browsers.
 While this was a bit annoying to deal with I certainly respected the high standards he was
 striving for to please our clients.
