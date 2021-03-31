@@ -1,6 +1,6 @@
 {
     "themes": {
-        "default": {
+        "light": {
             "page-bg": "#fff",
             "page-fg": "#000",
             "page-accent-fg": "#666",

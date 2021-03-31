@@ -432,7 +432,7 @@
         min-height: 1rem;
 
         a {
-          color: darken(map-deep-get($vars, 'themes', 'default', 'primary-bg'), 5%);
+          color: darken(map-deep-get($vars, 'themes', 'light', 'primary-bg'), 5%);
         }
 
         &:not(:first-child) {
@@ -444,7 +444,7 @@
         background-color: yellow;
 
         a {
-          color: lighten(map-deep-get($vars, 'themes', 'default', 'primary-bg'), 5%);
+          color: lighten(map-deep-get($vars, 'themes', 'light', 'primary-bg'), 5%);
         }
       }
 

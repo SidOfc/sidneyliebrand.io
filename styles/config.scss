@@ -5,7 +5,7 @@
 
 @mixin css-theme-vars {
   @each $theme, $config in map-deep-get($vars, 'themes') {
-    @if ($theme == "default") {
+    @if ($theme == "light") {
       @each $var, $value in $config {
         --#{$var}: #{$value};
       }
@@ -24,7 +24,7 @@
   $var: list.nth($args, 1);
 
   @if $length == 1 {
-    #{$property}: #{map-deep-get($vars, 'themes', 'default', $var)};
+    #{$property}: #{map-deep-get($vars, 'themes', 'light', $var)};
     #{$property}: var(--#{$var});
   } @else if $length > 1 {
     $values: ();
@@ -32,7 +32,7 @@
 
     @for $idx from 2 through $length {
       $arg: list.nth($args, $idx);
-      $values: list.append($values, map-deep-get($vars, 'themes', 'default', $arg));
+      $values: list.append($values, map-deep-get($vars, 'themes', 'light', $arg));
       $keys: list.append($keys, "var(--#{$arg})");
     }
 
