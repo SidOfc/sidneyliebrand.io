@@ -33,7 +33,7 @@ async function createSitemap(destination, {entries}) {
         xml(
             `
             <?xml version="1.0" encoding="utf-8" ?>
-            <urlset xmlns="https://sitemaps.org/schemas/sitemap/0.9">
+            <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
                 ${entries
                     .map(({path, priority = 0.1, changefreq = 'yearly'}) =>
                         `
