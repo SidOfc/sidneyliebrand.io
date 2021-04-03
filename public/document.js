@@ -43,7 +43,8 @@
     });
 
     window.addEventListener('click', function (ev) {
-        applyTheme(ev.target.getAttribute('data-theme'), true);
+        const theme = ev.target.getAttribute('data-theme');
+        if (theme) applyTheme(theme, true);
     });
 
     window.addEventListener('storage', function (ev) {
