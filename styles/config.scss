@@ -2,8 +2,15 @@
 @use "sass:list";
 
 // NOTE: $vars is injected via next.config.js
-
 @mixin css-theme-vars {
+  @media (prefers-color-scheme: dark) {
+    @include not-themed('&$0') {
+      @each $var, $value in map-deep-get($vars, 'themes', 'dark') {
+        --#{$var}: #{$value};
+      }
+    }
+  }
+
   @each $theme, $config in map-deep-get($vars, 'themes') {
     @if ($theme == "light") {
       @each $var, $value in $config {
@@ -41,17 +48,27 @@
   }
 }
 
-@mixin active-theme($themes...) {
-  $length: list.length($themes);
-  $selector: ":global(.#{list.nth($themes, 1)}) &";
-
-  @if $length > 1 {
-    @for $idx from 2 through $length {
-      $selector: "#{$selector},:global(.#{list.nth($themes, $idx)}) &";
-    }
+@mixin active-theme($theme) {
+  :global(.#{$theme}) & {
+    @content;
   }
 
-  #{$selector} {
+  @if $theme == 'dark' {
+    @include not-themed('html$0 &') {
+      @media (prefers-color-scheme: dark) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin not-themed($structure) {
+  $not-selector: '';
+  @each $theme in map-keys(map-deep-get($vars, 'themes')) {
+    $not-selector: "#{$not-selector}:not(.#{$theme})";
+  }
+
+  #{substitute($structure, $not-selector)} {
     @content;
   }
 }
