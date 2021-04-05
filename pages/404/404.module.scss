@@ -1,0 +1,18 @@
+.page {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.jackieChanWhat {
+  width: 100%;
+  max-width: 40rem;
+  margin: 2rem 0;
+}
+
+.pageHeading {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+}
