@@ -136,7 +136,7 @@ export default function Caniuse({data}) {
                     id={`${data.id}-${type}`}
                     value={type}
                     className={styles.tabRadio}
-                    {...(type === 'notes' ? {checked: true} : {})}
+                    defaultChecked={type === 'notes'}
                 />
             ))}
             <div className={styles.tabs}>

@@ -8,7 +8,7 @@ const {themes} = sassVars;
 export default class Document extends NextDocument {
     render() {
         return (
-            <Html lang="en" class="no-js">
+            <Html lang="en" className="no-js">
                 <Head>
                     <script
                         dangerouslySetInnerHTML={{

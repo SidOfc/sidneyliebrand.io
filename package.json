@@ -14,7 +14,6 @@
     "author": "Sidney Liebrand",
     "license": "MIT",
     "dependencies": {
-        "@next/bundle-analyzer": "^10.0.7",
         "@octokit/rest": "^18.2.1",
         "caniuse-db": "^1.0.30001192",
         "gray-matter": "^4.0.2",
@@ -23,20 +22,18 @@
         "next": "^10.0.7",
         "next-mdx-remote": "^2.1.3",
         "node-emoji": "^1.10.0",
-        "preact": "^10.5.12",
-        "preact-render-to-string": "^5.1.12",
         "prettier": "^2.2.1",
         "prettify-xml": "^1.2.0",
         "prism-react-renderer": "^1.2.0",
         "prismjs": "^1.23.0",
-        "react": "npm:@preact/compat",
-        "react-dom": "npm:@preact/compat",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "react-innertext": "^1.1.5",
         "rimraf": "^3.0.2",
         "sass": "^1.32.8"
     },
     "resolutions": {
-        "webpack": "^5.24.3"
+        "webpack": "^5.30.0"
     },
     "prettier": {
         "tabWidth": 4,
