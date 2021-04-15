@@ -7,6 +7,7 @@ const {pages} = require('../data/content.json');
 
     return Promise.all([
         util.createWebmanifest('public/site.webmanifest'),
+        util.createRobotsTxt('public/robots.txt'),
         util.createFeed('public/feed.xml', {entries: posts, date}),
         util.createAtom('public/atom.xml', {entries: posts, date}),
         util.createSitemap('public/sitemap.xml', {

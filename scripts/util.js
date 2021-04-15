@@ -153,10 +153,18 @@ async function createWebmanifest(destination) {
     return fs.writeFile(destination, webmanifest);
 }
 
+async function createRobotsTxt(destination) {
+    return fs.writeFile(
+        destination,
+        ['User-agent: *', 'Allow: /', `Sitemap: ${host}/sitemap.xml`].join('\n')
+    );
+}
+
 module.exports = {
     getPosts,
     createSitemap,
     createFeed,
     createAtom,
     createWebmanifest,
+    createRobotsTxt,
 };
