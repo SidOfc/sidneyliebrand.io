@@ -71,6 +71,10 @@ export function dateFormat(maybeDate, {includeDay, fallback} = {}) {
     return `${MONTHS[date.getMonth()]},${day} ${date.getFullYear()}`;
 }
 
+export function pluralize(text, count) {
+    return text + (count !== 1 ? 's' : '');
+}
+
 export function dateDiff(a, b) {
     const aDate = a ? toDate(a) : new Date();
     const bDate = b ? toDate(b) : new Date();
@@ -78,13 +82,33 @@ export function dateDiff(a, b) {
     const diffMonths = bDate.getMonth() - aDate.getMonth();
     const years = diffYears - (diffMonths >= 0 ? 0 : 1);
     const months = diffMonths + (diffMonths >= 0 ? 0 : 12);
+    const hasYears = years > 0;
+    const hasMonths = months > 0;
+    const result = [];
 
-    return [
-        years,
-        `year${years !== 1 ? 's' : ''},`,
-        months,
-        `month${months !== 1 ? 's' : ''}`,
-    ].join(' ');
+    if (hasYears) {
+        result.push(years, pluralize('year', years) + (hasMonths ? ',' : ''));
+    }
+
+    if (hasMonths) {
+        result.push(months, pluralize('month', months));
+    }
+
+    if (!hasYears && !hasMonths) {
+        result.push('first month');
+        // const diffDays = bDate.getDate() - aDate.getDate();
+        // const weeks = Math.max(diffDays / 7, 1);
+        // const remDays = diffDays % 7;
+        // const hasRemDays = remDays > 0;
+
+        // result.push(weeks, pluralize('week', weeks) + (hasRemDays ? ',' : ''));
+
+        // if (hasRemDays) {
+        //     result.push(remDays, pluralize('day', remDays));
+        // }
+    }
+
+    return result.join(' ');
 }
 
 function toDate(maybeDate) {
