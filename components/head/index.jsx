@@ -2,14 +2,15 @@ import NextHead from 'next/head';
 import {useRouter} from 'next/router';
 import content from '@data/content';
 
-const {host, profile} = content;
+const {host, titlePrefix, profile} = content;
 
 export default function Head({title, description}) {
     const {asPath} = useRouter();
+    const fullTitle = [titlePrefix, title].filter((x) => x).join(' - ');
 
     return (
         <NextHead>
-            <title>{title}</title>
+            <title>{fullTitle}</title>
             <link rel="cannonical" href={`${host}${asPath}`} />
             <link rel="manifest" href="/site.webmanifest" />
             <link

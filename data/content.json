@@ -1,9 +1,10 @@
 {
+    "titlePrefix": "Sidney Liebrand's blog",
     "host": "https://sidneyliebrand.io",
     "pages": [
         {
             "path": "/",
-            "title": "Welcome to my digital home!",
+            "title": null,
             "description": "My name is Sidney Liebrand. I am a Dutch front-end developer working with React and Ruby on Rails at Floorplanner in Rotterdam. This is the place where I publish new blog posts and perhaps a tool or two in the future.",
             "priority": 1,
             "changefreq": "weekly"

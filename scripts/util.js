@@ -1,6 +1,6 @@
 const {promises: fs, readFileSync} = require('fs');
 const matter = require('gray-matter');
-const {host, profile} = require('../data/content.json');
+const {host, titlePrefix, profile} = require('../data/content.json');
 const sassVars = require('../data/sass-variables.json');
 const xml = require('prettify-xml');
 const {encode: htmlentities} = require('html-entities');
@@ -54,10 +54,11 @@ async function createSitemap(destination, {entries}) {
 function feedItem({title, description, path, published}) {
     const url = `${host}${path.replace(/\/+$/i, '')}`;
     const xmlDescription = htmlentities(description, {level: 'xml'});
+    const fullTitle = [titlePrefix, title].filter((x) => x).join(' - ');
 
     return `
         <item>
-            <title>${title}</title>
+            <title>${fullTitle}</title>
             <description>${xmlDescription}</description>
             <link>${url}</link>
             <guid isPermalink="true">${url}</guid>
@@ -89,10 +90,11 @@ async function createFeed(destination, {entries, date}) {
 
 function atomItem({title, description, path, published, updated = published}) {
     const url = `${host}${path.replace(/\/+$/i, '')}`;
+    const fullTitle = [titlePrefix, title].filter((x) => x).join(' - ');
 
     return `
         <entry>
-            <title>${title}</title>
+            <title>${fullTitle}</title>
             <summary>${htmlentities(description, {level: 'xml'})}</summary>
             <id>${url}</id>
             <link rel="alternate" href="${url}" />
