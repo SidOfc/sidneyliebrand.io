@@ -76,6 +76,7 @@ export function pluralize(text, count) {
 }
 
 export function dateDiff(a, b) {
+    const hasEnd = b ? true : false;
     const aDate = a ? toDate(a) : new Date();
     const bDate = b ? toDate(b) : new Date();
     const diffYears = bDate.getFullYear() - aDate.getFullYear();
@@ -95,17 +96,27 @@ export function dateDiff(a, b) {
     }
 
     if (!hasYears && !hasMonths) {
-        result.push('first month');
-        // const diffDays = bDate.getDate() - aDate.getDate();
-        // const weeks = Math.max(diffDays / 7, 1);
-        // const remDays = diffDays % 7;
-        // const hasRemDays = remDays > 0;
+        if (hasEnd) {
+            const diffDays = bDate.getDate() - aDate.getDate();
+            if (diffDays >= 7) {
+                const weeks = Math.max(diffDays / 7, 1);
+                const remDays = diffDays % 7;
+                const hasRemDays = remDays > 0;
 
-        // result.push(weeks, pluralize('week', weeks) + (hasRemDays ? ',' : ''));
+                result.push(
+                    weeks,
+                    pluralize('week', weeks) + (hasRemDays ? ',' : '')
+                );
 
-        // if (hasRemDays) {
-        //     result.push(remDays, pluralize('day', remDays));
-        // }
+                if (hasRemDays) {
+                    result.push(remDays, pluralize('day', remDays));
+                }
+            } else {
+                result.push(diffDays, pluralize('day', diffDays));
+            }
+        } else {
+            result.push(1, 'month');
+        }
     }
 
     return result.join(' ');
