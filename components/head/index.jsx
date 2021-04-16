@@ -11,7 +11,7 @@ export default function Head({title, description}) {
     return (
         <NextHead>
             <title>{fullTitle}</title>
-            <link rel="cannonical" href={`${host}${asPath}`} />
+            <link rel="canonical" href={`${host}${asPath}`} />
             <link rel="manifest" href="/site.webmanifest" />
             <link
                 rel="mask-icon"
