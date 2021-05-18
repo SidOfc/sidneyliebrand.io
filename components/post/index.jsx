@@ -1,10 +1,11 @@
 import styles from './post.module.scss';
+import {MDXRemote} from 'next-mdx-remote';
 import Text from '@components/text';
 import Heading from '@components/heading';
 import Bullet from '@components/bullet';
 import Button from '@components/button';
 import {dateFormat} from '@src/util';
-import {hydrate} from '@src/util/mdx';
+import {MARKDOWN_OPTIONS} from '@src/util/mdx';
 
 export default function Post({
     title,
@@ -13,8 +14,6 @@ export default function Post({
     source,
     slug,
 }) {
-    const content = hydrate(source);
-
     return (
         <article className={styles.post}>
             <Heading link={`/blog/${slug}`}>{title}</Heading>
@@ -23,7 +22,9 @@ export default function Post({
                 <Bullet />
                 {readTimeInMinutes} min read
             </Text>
-            <section>{content}</section>
+            <section>
+                <MDXRemote {...{...source, ...MARKDOWN_OPTIONS}} />
+            </section>
             <Button href="/">Back</Button>
         </article>
     );

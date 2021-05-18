@@ -1,10 +1,9 @@
 import {promises as fs} from 'fs';
-import remoteRenderToString from 'next-mdx-remote/render-to-string';
+import {serialize} from 'next-mdx-remote/serialize';
 import matter from 'gray-matter';
 import {emojify} from 'node-emoji';
 import {Octokit} from '@octokit/rest';
 import {markdown} from 'markdown';
-import {MARKDOWN_OPTIONS} from '@src/util/mdx';
 import {slug, readTime} from '@src/util';
 import content from '@data/content';
 import caniuse from 'caniuse-db/fulldata-json/data-2.0.json';
@@ -12,10 +11,7 @@ import caniuse from 'caniuse-db/fulldata-json/data-2.0.json';
 const {profile, pages} = content;
 
 export async function renderToString(content, opts = {}) {
-    return remoteRenderToString(emojify(content), {
-        ...opts,
-        ...MARKDOWN_OPTIONS,
-    });
+    return serialize(emojify(content), opts);
 }
 
 export function getPageData(path) {

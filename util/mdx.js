@@ -1,4 +1,3 @@
-import remoteHydrate from 'next-mdx-remote/hydrate';
 import CodeBlock from '@components/code-block';
 import Heading from '@components/heading';
 import Media from '@components/media';
@@ -17,7 +16,3 @@ export const MARKDOWN_OPTIONS = {
         h6: (props) => <Heading {...props} as="h6" />,
     },
 };
-
-export function hydrate(source) {
-    return remoteHydrate(source, MARKDOWN_OPTIONS);
-}
