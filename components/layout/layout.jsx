@@ -2,6 +2,7 @@ import styles from './layout.module.scss';
 import Link from 'next/link';
 import Media from '@components/media';
 import Text from '@components/text';
+import Bullet from '@components/bullet';
 import DarkModeToggle from '@components/dark-mode-toggle';
 
 export default function Layout({children}) {
@@ -47,6 +48,14 @@ export default function Layout({children}) {
             <footer className={styles.footer}>
                 <strong>&copy;</strong> sidneyliebrand.io{' '}
                 {new Date().getFullYear()}
+                <Bullet wide />
+                <Link href="/feed.xml">
+                    <a title="View RSS feed">RSS</a>
+                </Link>
+                <Bullet wide />
+                <Link href="/atom.xml">
+                    <a title="View Atom feed">Atom</a>
+                </Link>
             </footer>
         </div>
     );
