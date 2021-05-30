@@ -18,7 +18,8 @@ export default function Post({
         <article className={styles.post}>
             <Heading link={`/blog/${slug}`}>{title}</Heading>
             <Text className={styles.postData} color="page-accent">
-                By Sidney Liebrand on {dateFormat(published)}
+                By Sidney Liebrand on{' '}
+                {dateFormat(published, {includeDay: true})}
                 <Bullet />
                 {readTimeInMinutes} min read
             </Text>

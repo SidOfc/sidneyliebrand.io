@@ -81,6 +81,7 @@
                     "start": "2015-03-31T00:00:00Z",
                     "end": null,
                     "tags": [
+                        "babel",
                         "git",
                         "html",
                         "css",
@@ -91,6 +92,8 @@
                         "coffeescript",
                         "ruby-on-rails",
                         "react",
+                        "rollup",
+                        "flow",
                         "jekyll",
                         "postcss",
                         "pug",

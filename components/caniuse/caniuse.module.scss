@@ -283,10 +283,10 @@
   }
 
   .cell {
-    padding: 0.7rem;
+    padding: 0.5rem 0.3rem;
     margin: 0.125rem 0;
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-align: center;
     white-space: nowrap;
     position: relative;
@@ -382,7 +382,7 @@
 
   .note {
     display: block;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 0.1rem 0.2rem;
 
@@ -436,7 +436,7 @@
         }
 
         &:not(:first-child) {
-          margin-top: 0.5rem;
+          margin-top: 0.35rem;
         }
       }
 
@@ -450,12 +450,12 @@
 
       .noteNum {
         padding: 0.15rem 0.4rem;
-        background-color: #c4ab7e;
+        background-color: rgba(0, 0, 0, 0.7);
         font-weight: 700;
         font-size: 0.6rem;
         color: white;
-        margin-right: 1rem;
-        margin-top: 0.05rem;
+        margin-right: 0.75rem;
+        margin-top: 0.035rem;
         margin-bottom: auto;
       }
 

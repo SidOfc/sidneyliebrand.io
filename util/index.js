@@ -68,7 +68,7 @@ export function dateFormat(maybeDate, {includeDay, fallback} = {}) {
     const date = toDate(maybeDate);
     const day = includeDay ? ` ${date.getDate()}` : '';
 
-    return `${MONTHS[date.getMonth()]},${day} ${date.getFullYear()}`;
+    return `${MONTHS[date.getMonth()]}${day}, ${date.getFullYear()}`;
 }
 
 export function pluralize(text, count) {

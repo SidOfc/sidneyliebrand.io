@@ -19,7 +19,7 @@
         "gray-matter": "^4.0.2",
         "html-entities": "^2.1.0",
         "markdown": "^0.5.0",
-        "next": "^10.0.7",
+        "next": "^10.2.3",
         "next-mdx-remote": "^3.0.2",
         "node-emoji": "^1.10.0",
         "prettier": "^2.2.1",
@@ -30,8 +30,7 @@
         "react-dom": "^17.0.2",
         "react-innertext": "^1.1.5",
         "rimraf": "^3.0.2",
-        "sass": "^1.32.8",
-        "webpack": "^5.33.2"
+        "sass": "^1.32.8"
     },
     "prettier": {
         "tabWidth": 4,
