@@ -3,8 +3,10 @@ import styles from './caniuse.module.scss';
 import {classes, dateFormat} from '@src/util';
 import t from '@src/util/translate';
 
+let _uid = 0;
 export default function Caniuse({data}) {
     const [active, setActive] = useState(null);
+    const {current: uid} = useRef(_uid++);
     const activeTimeoutRef = useRef();
     const regularNotes = data.notes.filter(({note}) => note === null);
     const numberedNotes = data.notes.filter(({note}) => Number.isInteger(note));
@@ -133,7 +135,7 @@ export default function Caniuse({data}) {
                     key={type}
                     type="radio"
                     name={data.id}
-                    id={`${data.id}-${type}`}
+                    id={`${data.id}-${type}-${uid}`}
                     value={type}
                     className={styles.tabRadio}
                     defaultChecked={type === 'notes'}
@@ -146,7 +148,7 @@ export default function Caniuse({data}) {
                         <label
                             key={type}
                             data-tab={type}
-                            htmlFor={`${data.id}-${type}`}
+                            htmlFor={`${data.id}-${type}-${uid}`}
                             className={styles.tabToggle}
                         >
                             {t(`caniuse.tabs.${type}`)}
@@ -169,9 +171,8 @@ export default function Caniuse({data}) {
                             )}
                             <span
                                 className={classes({
-                                    [styles.activeNote]: active?.notes?.includes(
-                                        note
-                                    ),
+                                    [styles.activeNote]:
+                                        active?.notes?.includes(note),
                                 })}
                                 dangerouslySetInnerHTML={{
                                     __html: text,

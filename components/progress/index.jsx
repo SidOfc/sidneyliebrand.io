@@ -45,7 +45,7 @@ export default function Progress() {
             router.events.off('routeChangeComplete');
             router.events.off('routeChangeError');
         };
-    }, []);
+    }, [router.events]);
 
     return (
         <div className={styles.progress}>

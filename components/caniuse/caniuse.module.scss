@@ -283,15 +283,15 @@
   }
 
   .cell {
-    padding: 0.5rem 0.3rem;
+    padding: 0.75rem 0.3rem 0.65rem;
     margin: 0.125rem 0;
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: center;
     white-space: nowrap;
     position: relative;
     z-index: 0;
-    cursor: default;
+    cursor: pointer;
   }
 
   .tableBodyCurrent .cell {
@@ -382,7 +382,8 @@
 
   .note {
     display: block;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 0.125rem;
     color: white;
     padding: 0.1rem 0.2rem;
 
@@ -450,7 +451,8 @@
 
       .noteNum {
         padding: 0.15rem 0.4rem;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.9);
+        border-radius: 0.25rem;
         font-weight: 700;
         font-size: 0.6rem;
         color: white;

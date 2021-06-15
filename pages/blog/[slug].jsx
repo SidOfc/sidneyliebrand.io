@@ -2,7 +2,7 @@ import Post from '@components/post';
 import Head from '@components/head';
 import {processMarkdownSlug, getMarkdownDirSlugs} from '@src/util/static';
 
-export const config = {unstable_JsPreload: false, unstable_runtimeJS: false};
+// export const config = {unstable_JsPreload: false, unstable_runtimeJS: false};
 
 export default function Blog(props) {
     return (
