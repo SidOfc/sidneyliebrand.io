@@ -8,9 +8,9 @@
 
     try {
         theme = localStorage.getItem('theme');
-    } catch (e) {
-        theme = 'light';
-    }
+    } catch (e) {}
+
+    theme = theme || 'light';
 
     function applyTheme(theme, store) {
         themeNames.forEach(function (name) {
