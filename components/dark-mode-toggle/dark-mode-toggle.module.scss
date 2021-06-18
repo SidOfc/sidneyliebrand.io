@@ -28,18 +28,18 @@
   }
 }
 
-.toggleLight {
+.toggle[data-theme="light"] {
   display: block;
 
-  @include active-theme('dark') {
+  @include active-theme('light') {
     display: none;
   }
 }
 
-.toggleDark {
+.toggle[data-theme="dark"] {
   display: none;
 
-  @include active-theme('dark') {
+  @include active-theme('light') {
     display: block;
   }
 }

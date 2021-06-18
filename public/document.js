@@ -8,7 +8,9 @@
 
     try {
         theme = localStorage.getItem('theme');
-    } catch (e) {}
+    } catch (e) {
+        theme = 'light';
+    }
 
     function applyTheme(theme, store) {
         themeNames.forEach(function (name) {
@@ -35,13 +37,6 @@
     html.classList.remove('no-js');
     d.head.appendChild(style);
 
-    window.addEventListener('contextmenu', function (ev) {
-        if (ev.target.getAttribute('data-theme')) {
-            ev.preventDefault();
-            applyTheme(null, true);
-        }
-    });
-
     window.addEventListener('click', function (ev) {
         const theme = ev.target.getAttribute('data-theme');
         if (theme) applyTheme(theme, true);
@@ -57,9 +52,11 @@
         if (!theme && darkThemeQuery.matches) theme = 'dark';
 
         darkThemeQuery.addEventListener('change', function (query) {
-            if (!localStorage.getItem('theme')) {
-                applyTheme(query.matches ? 'dark' : 'light');
-            }
+            try {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(query.matches ? 'dark' : 'light');
+                }
+            } catch (e) {}
         });
     }
 

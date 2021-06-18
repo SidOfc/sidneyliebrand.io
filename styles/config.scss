@@ -3,20 +3,12 @@
 
 // NOTE: $vars is injected via next.config.js
 @mixin css-theme-vars {
-  @media (prefers-color-scheme: dark) {
-    @include not-themed('&$0') {
-      @each $var, $value in map-deep-get($vars, 'themes', 'dark') {
-        --#{$var}: #{$value};
-      }
-    }
+  @each $var, $value in map-deep-get($vars, 'themes', 'light') {
+    --#{$var}: #{$value};
   }
 
   @each $theme, $config in map-deep-get($vars, 'themes') {
-    @if ($theme == "light") {
-      @each $var, $value in $config {
-        --#{$var}: #{$value};
-      }
-    } @else {
+    @if ($theme != "light") {
       &.#{$theme} {
         @each $var, $value in $config {
           --#{$var}: #{$value};
@@ -49,27 +41,23 @@
 }
 
 @mixin active-theme($theme) {
-  :global(.#{$theme}) & {
+  :global(html.#{$theme}) & {
     @content;
   }
 
   @if $theme == 'dark' {
-    @include not-themed('html$0 &') {
+    $not-selector: '';
+    @each $theme-name in map-keys(map-deep-get($vars, 'themes')) {
+      @if $theme-name != $theme {
+        $not-selector: "#{$not-selector}:not(.#{$theme-name})";
+      }
+    }
+
+    :global(html.#{$theme}#{$not-selector}) {
       @media (prefers-color-scheme: dark) {
         @content;
       }
     }
-  }
-}
-
-@mixin not-themed($structure) {
-  $not-selector: '';
-  @each $theme in map-keys(map-deep-get($vars, 'themes')) {
-    $not-selector: "#{$not-selector}:not(.#{$theme})";
-  }
-
-  #{substitute($structure, $not-selector)} {
-    @content;
   }
 }
 
