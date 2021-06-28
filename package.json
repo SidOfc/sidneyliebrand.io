@@ -25,7 +25,7 @@
         "prettier": "^2.2.1",
         "prettify-xml": "^1.2.0",
         "prism-react-renderer": "^1.2.0",
-        "prismjs": "^1.23.0",
+        "prismjs": "^1.24.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-innertext": "^1.1.5",
