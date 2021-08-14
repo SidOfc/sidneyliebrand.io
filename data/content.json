@@ -30,12 +30,12 @@
         },
         "programming": {
             "repos": [
-                "browserino",
+                "babel-plugin-transform-media-imports",
                 "mkdx",
+                "browserino",
                 "cani",
                 "simple_csv",
-                "TwentyFortyEight",
-                "2048-crystal"
+                "TwentyFortyEight"
             ],
             "languages": [
                 "ruby",
