@@ -66,13 +66,15 @@
                 "flow",
                 "jekyll",
                 "postcss",
-                "pug"
+                "pug",
+                "puppeteer",
+                "typescript"
             ],
             "jobs": [
                 {
                     "title": "Front-end developer",
                     "organisation": "Floorplanner B.V.",
-                    "description": "At Floorplanner I currently work on the statically-generated main <a href=\"https://floorplanner.com\" rel=\"noopener,noreferrer\">website</a> using gulp and pugjs, and the logged-in <a href=\"https://floorplanner.com/home\" rel=\"noopener,noreferrer\">React dashboard</a>. Before that I worked on a Rails <a href=\"https://roomstyler.com\" rel=\"noopener,noreferrer\">website</a>.",
+                    "description": "At Floorplanner I currently work on the statically-generated main <a href=\"https://floorplanner.com\" rel=\"noopener,noreferrer\">website</a> using gulp and pugjs, the logged-in <a href=\"https://floorplanner.com/home\" rel=\"noopener,noreferrer\">React dashboard</a>, and occasionally I write scraping tools used to extract product and/or color palette data from our vendors. Before that I worked on Roomstyler, a Rails <a href=\"https://roomstyler.com\" rel=\"noopener,noreferrer\">website</a>.",
                     "logo": {
                         "url": "floorplanner-circle.svg",
                         "width": 512,
@@ -98,7 +100,9 @@
                         "postcss",
                         "pug",
                         "i18next",
-                        "styled-components"
+                        "styled-components",
+                        "puppeteer",
+                        "typescript"
                     ]
                 },
                 {
