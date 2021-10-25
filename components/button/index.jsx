@@ -7,12 +7,15 @@ export default function Button({
     as: Component = href ? 'a' : 'button',
     className,
     children,
+    disabled,
+    onClick,
     tabIndex = 0,
 }) {
     const button = (
         <Component
             tabIndex={tabIndex}
-            className={classes(className, styles.button)}
+            className={classes(className, {disabled}, styles.button)}
+            onClick={disabled ? null : onClick}
         >
             {children}
         </Component>

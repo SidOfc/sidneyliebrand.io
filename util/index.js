@@ -13,6 +13,28 @@ const MONTHS = [
     'Dec',
 ];
 
+export function handleKeys(inputKeys, fn) {
+    const keys = typeof inputKeys === 'string' ? [inputKeys] : inputKeys;
+
+    if (Array.isArray(keys)) {
+        if (keys.includes('space')) keys.push(' ');
+
+        return (event) => {
+            const pressed = event.key.toLowerCase();
+
+            keys.find((trigger) => pressed === trigger) && fn(event);
+        };
+    } else if (keys && !fn && keys.constructor === Object) {
+        if (keys.space) keys[' '] = keys.space;
+
+        return (event) => {
+            const pressed = event.key.toLowerCase();
+
+            keys[pressed] && keys[pressed](event);
+        };
+    }
+}
+
 export function except(obj, keys) {
     return Object.entries(obj).reduce((filtered, [key, value]) => {
         if (!keys.includes(key)) Object.assign(filtered, {[key]: value});

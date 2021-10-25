@@ -1,0 +1,208 @@
+$class-colors: (
+  Druid:   #ff7c0a,
+  Hunter:  #aad372,
+  Mage:    #68ccef,
+  Paladin: #f48cba,
+  Priest:  #ffffff,
+  Rogue:   #fff468,
+  Shaman:  #2359ff,
+  Warlock: #9382c9,
+  Warrior: #c69b6d,
+);
+
+@each $class, $color in $class-colors {
+  @if ($class == 'Warlock') {
+    $color: lighten($color, 10%);
+  }
+
+  @if ($class == 'Shaman') {
+    $color: lighten($color, 10%);
+  }
+
+  .#{$class}Color {
+    color: $color;
+
+    &.nameInput {
+      color: $color;
+
+      &::selection {
+        background-color: rgba($color, 0.5);
+      }
+
+      &:focus-visible {
+        box-shadow: none;
+        border-color: $color;
+      }
+    }
+  }
+}
+
+.raidSize {
+  display: flex;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.groups {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  width: calc(100% + 1rem);
+  margin: -0.5rem 0 0 -0.5rem;
+}
+
+.group {
+  width: calc(25% - 1rem);
+  margin: 0.5rem;
+
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0.2rem 0.3rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    min-height: 2.25rem;
+    min-width: 5rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: #444;
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+    @each $class, $color in $class-colors {
+      &.#{$class} {
+        background-color: $color;
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: 700;
+      }
+    }
+
+    & + li {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.roleIcon {
+  width: 1.5rem;
+  max-width: 1.5rem;
+  height: 1.5rem;
+  max-height: 1.5rem;
+  transform: scale(1.2);
+  margin-right: 0.5rem;
+  margin-left: -0.1rem;
+}
+
+.groupTitle {
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.editForm {
+  width: 24.5rem;
+  max-width: 100%;
+}
+
+.roles {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: calc(100% + 0.5rem);
+  height: 2.75rem;
+  margin: -0.25rem;
+}
+
+.role {
+  position: relative;
+  margin: 0.25rem;
+  width: 2.25rem;
+  max-width: 2.25rem;
+  height: 2.25rem;
+  max-height: 2.25rem;
+  border-radius: 0.25rem;
+  border: 3px solid transparent;
+  cursor: pointer;
+
+  div:first-child {
+    overflow: hidden;
+    border-radius: 0.1rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+    z-index: 10;
+  }
+
+  &:global(.selected) {
+    background-color: yellow;
+    border-color: yellow;
+  }
+
+  &:global(.selected):first-child {
+    margin-right: 1rem;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      border-left: 0.75rem solid yellow;
+      border-top: 0.75rem solid transparent;
+      border-bottom: 0.75rem solid transparent;
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+  }
+
+  @each $class, $color in $class-colors {
+    &:global(.selected.#{$class}) {
+      background-color: $color;
+      border-color: $color;
+
+      &::after {
+        border-left: 0.75rem solid $color;
+      }
+    }
+  }
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button.cancelBtn {
+  background-color: #d22;
+}
+
+button.saveBtn {
+  background-color: #2b2;
+}
+
+.nameInput {
+  display: block;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.3rem 0.6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  color: #fff;
+
+  &:focus-visible {
+    box-shadow: none;
+    border-color: #fff;
+  }
+}

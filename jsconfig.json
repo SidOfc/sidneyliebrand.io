@@ -6,6 +6,7 @@
           "@pages/*": ["pages/*"],
           "@data/*": ["data/*"],
           "@styles/*": ["styles/*"],
+          "@hooks/*": ["hooks/*"],
           "@src/*": ["./*"],
        },
     }

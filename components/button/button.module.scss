@@ -13,6 +13,12 @@
   line-height: 1.4;
   cursor: pointer;
 
+  &:global(.disabled) {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
   &::after {
     content: '';
     position: absolute;

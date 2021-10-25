@@ -9,6 +9,7 @@ export default function Media({
     className,
     alt,
     invertDark,
+    onClick,
     showAlt = true,
     exts = ['webm', 'mp4'],
 }) {
@@ -18,6 +19,7 @@ export default function Media({
 
     return (
         <figure
+            onClick={onClick}
             className={classes(className, styles.figure, {
                 [styles.invertDark]: invertDark,
             })}

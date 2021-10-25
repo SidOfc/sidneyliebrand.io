@@ -15,6 +15,13 @@
             "description": "View the C.V. of Sidney Liebrand, a Dutch front-end developer working with React and Ruby on Rails at Floorplanner in Rotterdam.",
             "priority": 0.9,
             "changefreq": "yearly"
+        },
+        {
+            "path": "/wow-raid-roster",
+            "title": "WoW Raid Roster",
+            "description": "Build a roster for your WoW raid team. Supports 10, 25, and 40 man raids.",
+            "priority": 0.9,
+            "changefreq": "yearly"
         }
     ],
     "profile": {
