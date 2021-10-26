@@ -1,0 +1,209 @@
+[
+    {
+        "id": 1,
+        "name": "Druid",
+        "color": "#ff7c0a",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Balance",
+                "icon": "/media/wow-raid-roster/druid-balance.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Feral Combat",
+                "icon": "/media/wow-raid-roster/druid-feral-combat.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Restoration",
+                "icon": "/media/wow-raid-roster/druid-restoration.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/druid.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Hunter",
+        "color": "#aad372",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Beast Mastery",
+                "icon": "/media/wow-raid-roster/hunter-beast-mastery.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Marksmanship",
+                "icon": "/media/wow-raid-roster/hunter-marksmanship.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Survival",
+                "icon": "/media/wow-raid-roster/hunter-survival.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/hunter.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Mage",
+        "color": "#68ccef",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Arcane",
+                "icon": "/media/wow-raid-roster/mage-arcane.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Fire",
+                "icon": "/media/wow-raid-roster/mage-fire.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Frost",
+                "icon": "/media/wow-raid-roster/mage-frost.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/mage.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Paladin",
+        "color": "#f48cba",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Holy",
+                "icon": "/media/wow-raid-roster/paladin-holy.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Protection",
+                "icon": "/media/wow-raid-roster/paladin-protection.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Retribution",
+                "icon": "/media/wow-raid-roster/paladin-retribution.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/paladin.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Priest",
+        "color": "#ffffff",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Discipline",
+                "icon": "/media/wow-raid-roster/priest-discipline.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Holy",
+                "icon": "/media/wow-raid-roster/priest-holy.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Shadow",
+                "icon": "/media/wow-raid-roster/priest-shadow.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/priest.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Rogue",
+        "color": "#fff468",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Assassination",
+                "icon": "/media/wow-raid-roster/rogue-assassination.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Combat",
+                "icon": "/media/wow-raid-roster/rogue-combat.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Subtlety",
+                "icon": "/media/wow-raid-roster/rogue-subtlety.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/rogue.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Shaman",
+        "color": "#2359ff",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Elemental",
+                "icon": "/media/wow-raid-roster/shaman-elemental.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Enhancement",
+                "icon": "/media/wow-raid-roster/shaman-enhancement.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Restoration",
+                "icon": "/media/wow-raid-roster/shaman-restoration.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/shaman.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Warlock",
+        "color": "#9382c9",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Affliction",
+                "icon": "/media/wow-raid-roster/warlock-affliction.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Demonology",
+                "icon": "/media/wow-raid-roster/warlock-demonology.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Destruction",
+                "icon": "/media/wow-raid-roster/warlock-destruction.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/warlock.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Warrior",
+        "color": "#c69b6d",
+        "specs": [
+            {
+                "id": 1,
+                "name": "Arms",
+                "icon": "/media/wow-raid-roster/warrior-arms.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Fury",
+                "icon": "/media/wow-raid-roster/warrior-fury.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Protection",
+                "icon": "/media/wow-raid-roster/warrior-protection.jpg"
+            }
+        ],
+        "icon": "/media/wow-raid-roster/warrior.jpg"
+    }
+]

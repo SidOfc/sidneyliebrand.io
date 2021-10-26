@@ -9,8 +9,9 @@ import Button from '@components/button';
 import {pauseEscape, resumeEscape} from '@hooks/use-escape';
 import {getPageData} from '@src/util/static';
 import {classes, handleKeys} from '@src/util';
+import wowClasses from '@data/wow-classes.json';
 
-export default function Index({title, description, classData}) {
+export default function Index({title, description}) {
     const router = useRouter();
     const [size, setSize] = useState(10);
     const [editingIndex, setEditingIndex] = useState(null);
@@ -19,7 +20,7 @@ export default function Index({title, description, classData}) {
     const [role, setRole] = useState(0);
     const classId = (role & 0xf0) >> 4;
     const specId = role & 0x0f;
-    const cls = classData.find(({id}) => id === classId);
+    const cls = wowClasses.find(({id}) => id === classId);
     const spec = cls?.specs?.find(({id}) => id === specId);
     const edit = useCallback(
         (index) => {
@@ -43,14 +44,14 @@ export default function Index({title, description, classData}) {
     );
     const save = useCallback(() => {
         const nextData = {...data, [editingIndex]: {name, role}};
+        router.push(`#${encode(size, nextData)}`);
         setData(nextData);
-        router.push(`#${rosterId(size, nextData)}`);
         close();
     }, [role, name, editingIndex, close, router, size, data]);
     const updateSize = useCallback(
         (size) => {
             setSize(size);
-            router.push(`#${rosterId(size, data)}`);
+            router.push(`#${encode(size, data)}`);
         },
         [data, router]
     );
@@ -59,28 +60,29 @@ export default function Index({title, description, classData}) {
         const {name, role} = data[index] || {name: '', role: 0};
         const classId = (role & 0xf0) >> 4;
         const specId = role & 0x0f;
-        const cls = classData.find(({id}) => id === classId);
+        const cls = wowClasses.find(({id}) => id === classId);
         const spec = cls?.specs?.find(({id}) => id === specId);
 
         return {
             index,
             name,
-            cls: cls?.name || '',
-            spec: spec?.name || '',
-            icon: cls && spec && iconUrl(cls.name, spec.name),
+            cls: cls?.name,
+            spec: spec?.name,
+            icon: spec?.icon,
         };
     };
 
     useEffect(() => {
         const handler = () => {
-            const {size, data} = getRoster();
+            if (!location.hash) return;
+
+            const {size, data} = decode(location.hash.slice(1));
 
             setSize(size ?? 10);
             setData(data ?? {});
         };
 
-        if (window.location.hash) handler();
-
+        handler();
         window.addEventListener('popstate', handler);
 
         return () => window.removeEventListener('popstate', handler);
@@ -99,7 +101,7 @@ export default function Index({title, description, classData}) {
                                     height={40}
                                     alt={cls.name}
                                     showAlt={false}
-                                    src={iconUrl(cls.name)}
+                                    src={cls.icon}
                                     className={classes(
                                         styles.role,
                                         cls.name,
@@ -115,7 +117,7 @@ export default function Index({title, description, classData}) {
                                         height={40}
                                         alt={`${spec.name} ${cls.name}`}
                                         showAlt={false}
-                                        src={iconUrl(cls.name, spec.name)}
+                                        src={spec.icon}
                                         className={classes(
                                             styles.role,
                                             cls.name,
@@ -133,7 +135,7 @@ export default function Index({title, description, classData}) {
                                 <div
                                     className={classes(
                                         styles.selectedClass,
-                                        clsColor(cls)
+                                        styles[`${cls?.name}Color`]
                                     )}
                                 >
                                     {spec?.name} {cls.name}
@@ -141,14 +143,14 @@ export default function Index({title, description, classData}) {
                             </div>
                         ) : (
                             <div className={styles.roles}>
-                                {classData.map((cls) => (
+                                {wowClasses.map((cls) => (
                                     <Media
                                         key={cls.name}
                                         width={40}
                                         height={40}
                                         alt={cls.name}
                                         showAlt={false}
-                                        src={iconUrl(cls.name)}
+                                        src={cls.icon}
                                         className={styles.role}
                                         onClick={() => updateClass(cls.id)}
                                     />
@@ -156,7 +158,10 @@ export default function Index({title, description, classData}) {
                             </div>
                         )}
                         <input
-                            className={classes(styles.nameInput, clsColor(cls))}
+                            className={classes(
+                                styles.nameInput,
+                                styles[`${cls?.name}Color`]
+                            )}
                             type="text"
                             value={name}
                             placeholder="Name"
@@ -211,19 +216,19 @@ export default function Index({title, description, classData}) {
                                 {Array(5)
                                     .fill(idx)
                                     .map(getData)
-                                    .map(({index, name, cls, spec}) => (
+                                    .map(({index, name, cls, icon}) => (
                                         <li
                                             key={index}
                                             className={styles[cls]}
                                             onClick={() => edit(index)}
                                         >
-                                            {cls && spec && (
+                                            {icon && (
                                                 <Media
                                                     width={40}
                                                     height={40}
                                                     alt={`${spec} ${cls}`}
                                                     showAlt={false}
-                                                    src={iconUrl(cls, spec)}
+                                                    src={icon}
                                                     className={styles.roleIcon}
                                                 />
                                             )}
@@ -240,146 +245,32 @@ export default function Index({title, description, classData}) {
     );
 }
 
-const classData = [
-    {
-        id: 1,
-        name: 'Druid',
-        color: '#ff7c0a',
-        specs: [
-            {id: 1, name: 'Balance'},
-            {id: 2, name: 'Feral Combat'},
-            {id: 3, name: 'Restoration'},
-        ],
-    },
-    {
-        id: 2,
-        name: 'Hunter',
-        color: '#aad372',
-        specs: [
-            {id: 1, name: 'Beast Mastery'},
-            {id: 2, name: 'Marksmanship'},
-            {id: 3, name: 'Survival'},
-        ],
-    },
-    {
-        id: 3,
-        name: 'Mage',
-        color: '#68ccef',
-        specs: [
-            {id: 1, name: 'Arcane'},
-            {id: 2, name: 'Fire'},
-            {id: 3, name: 'Frost'},
-        ],
-    },
-    {
-        id: 4,
-        name: 'Paladin',
-        color: '#f48cba',
-        specs: [
-            {id: 1, name: 'Holy'},
-            {id: 2, name: 'Protection'},
-            {id: 3, name: 'Retribution'},
-        ],
-    },
-    {
-        id: 5,
-        name: 'Priest',
-        color: '#ffffff',
-        specs: [
-            {id: 1, name: 'Discipline'},
-            {id: 2, name: 'Holy'},
-            {id: 3, name: 'Shadow'},
-        ],
-    },
-    {
-        id: 6,
-        name: 'Rogue',
-        color: '#fff468',
-        specs: [
-            {id: 1, name: 'Assassination'},
-            {id: 2, name: 'Combat'},
-            {id: 3, name: 'Subtlety'},
-        ],
-    },
-    {
-        id: 7,
-        name: 'Shaman',
-        color: '#2359ff',
-        specs: [
-            {id: 1, name: 'Elemental'},
-            {id: 2, name: 'Enhancement'},
-            {id: 3, name: 'Restoration'},
-        ],
-    },
-    {
-        id: 8,
-        name: 'Warlock',
-        color: '#9382c9',
-        specs: [
-            {id: 1, name: 'Affliction'},
-            {id: 2, name: 'Demonology'},
-            {id: 3, name: 'Destruction'},
-        ],
-    },
-    {
-        id: 9,
-        name: 'Warrior',
-        color: '#c69b6d',
-        specs: [
-            {id: 1, name: 'Arms'},
-            {id: 2, name: 'Fury'},
-            {id: 3, name: 'Protection'},
-        ],
-    },
-];
-
-function iconUrl(...args) {
-    const urlItems = args.map((arg) => arg.toLowerCase().replace(' ', '-'));
-
-    return `/media/wow-raid-roster/${urlItems.join('-')}.jpg`;
-}
-
-function clsColor(cls) {
-    return styles[`${cls?.name}Color`];
-}
-
-function rosterId(size, data) {
-    const items = Object.entries(data)
-        .map(([key, {name, role}]) => name && role && `${key}@${name}@${role}`)
-        .filter(Boolean);
-
-    return `${size}:${items.join(',')}`;
-}
-
-function getRoster() {
-    try {
-        const [sizeStr, ...rest] = window.location.hash
-            .replace('#', '')
-            .split(':');
-        const size = parseInt(sizeStr) || 10;
-        const data = rest
-            .join(':')
-            .split(',')
-            .reduce((items, item) => {
-                const [keyStr, nameStr, roleStr] = item.split('@');
-                items[keyStr] = {
-                    name: nameStr || '',
-                    role: parseInt(roleStr) || 0,
-                };
-
-                return items;
-            }, {});
-
-        return {size, data};
-    } catch {
-        return {size: 10, data: {}};
-    }
-}
-
 export async function getStaticProps() {
     const {title, description} = getPageData('/wow-raid-roster');
 
     return {
-        props: {title, description, classData},
+        props: {title, description},
+    };
+}
+
+function encode(size, data) {
+    const items = Object.entries(data)
+        .map(([key, {name, role}]) => name && role && `${key}${name}${role}`)
+        .filter(Boolean);
+
+    return `${size},${items.join('.')}`;
+}
+
+function decode(input) {
+    const [size, ...items] = input.split('.');
+
+    return {
+        size: parseInt(size),
+        data: items.reduce((items, item) => {
+            const [key, name, role] = item.match(/(\d+)(\D+)(\d+)/).slice(1);
+            items[key] = {name, role: parseInt(role)};
+
+            return items;
+        }, {}),
     };
 }
