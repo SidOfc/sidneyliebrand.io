@@ -49,8 +49,8 @@
 }
 
 .popupContent {
-  background-color: #09c;
   padding: 1rem;
+  max-width: calc(100% - 1rem);
   background-color: #444;
   border: 3px solid #222;
   border-radius: 0.5rem;

@@ -1,4 +1,5 @@
-import {useState, useCallback} from 'react';
+import {useState, useEffect, useCallback} from 'react';
+import {useRouter} from 'next/router';
 import styles from './wow-raid-roster.module.scss';
 import Head from '@components/head';
 import Dropdown from '@components/dropdown';
@@ -9,13 +10,8 @@ import {pauseEscape, resumeEscape} from '@hooks/use-escape';
 import {getPageData} from '@src/util/static';
 import {classes, handleKeys} from '@src/util';
 
-function iconUrl(...args) {
-    const urlItems = args.map((arg) => arg.toLowerCase().replace(' ', '-'));
-
-    return `/media/wow-raid-roster/${urlItems.join('-')}.jpg`;
-}
-
 export default function Index({title, description, classData}) {
+    const router = useRouter();
     const [size, setSize] = useState(10);
     const [editingIndex, setEditingIndex] = useState(null);
     const [data, setData] = useState({});
@@ -25,13 +21,16 @@ export default function Index({title, description, classData}) {
     const specId = role & 0x0f;
     const cls = classData.find(({id}) => id === classId);
     const spec = cls?.specs?.find(({id}) => id === specId);
-    const edit = useCallback((index) => {
-        const {role, name} = data[index] || {name: '', role: 0};
+    const edit = useCallback(
+        (index) => {
+            const {n, r} = data[index] || {n: '', r: 0};
 
-        setEditingIndex(index);
-        setName(name);
-        setRole(role);
-    }, [data]);
+            setEditingIndex(index);
+            setName(n);
+            setRole(r);
+        },
+        [data]
+    );
     const close = useCallback(() => {
         setEditingIndex(null);
         setName('');
@@ -43,31 +42,54 @@ export default function Index({title, description, classData}) {
         [classId]
     );
     const save = useCallback(() => {
-        setData((prev) => ({...prev, [editingIndex]: {role, name}}))
+        const nextData = {...data, [editingIndex]: {n: name, r: role}};
+        setData(nextData);
+        router.push(`#${rosterId(size, nextData)}`);
         close();
-    }, [role, name, editingIndex, close]);
-
+    }, [role, name, editingIndex, close, router, size, data]);
+    const updateSize = useCallback(
+        (size) => {
+            setSize(size);
+            router.push(`#${rosterId(size, data)}`);
+        },
+        [data, router]
+    );
     const getData = (group, row) => {
         const index = group * 5 + row;
-        const {role, name} = data[index] || {name: '', role: 0};
-        const classId = (role & 0xf0) >> 4;
-        const specId = role & 0x0f;
+        const {n, r} = data[index] || {n: '', r: 0};
+        const classId = (r & 0xf0) >> 4;
+        const specId = r & 0x0f;
         const cls = classData.find(({id}) => id === classId);
         const spec = cls?.specs?.find(({id}) => id === specId);
 
         return {
             index,
-            name,
+            name: n,
             cls: cls?.name || '',
             spec: spec?.name || '',
-            icon: cls && spec && iconUrl(cls.name, spec.name)
+            icon: cls && spec && iconUrl(cls.name, spec.name),
         };
     };
+
+    useEffect(() => {
+        const handler = () => {
+            const {size, data} = getRoster();
+
+            setSize(size ?? 10);
+            setData(data ?? {});
+        };
+
+        if (window.location.hash) handler();
+
+        window.addEventListener('popstate', handler);
+
+        return () => window.removeEventListener('popstate', handler);
+    }, []);
 
     return (
         <>
             {Number.isInteger(editingIndex) && (
-                <Popup onClose={close}>
+                <Popup>
                     <div className={styles.editForm}>
                         {cls ? (
                             <div className={styles.roles}>
@@ -99,9 +121,23 @@ export default function Index({title, description, classData}) {
                                             cls.name,
                                             {selected: specId === spec.id}
                                         )}
-                                        onClick={() => updateSpec(spec.id)}
+                                        onClick={() =>
+                                            updateSpec(
+                                                specId === spec.id
+                                                    ? null
+                                                    : spec.id
+                                            )
+                                        }
                                     />
                                 ))}
+                                <div
+                                    className={classes(
+                                        styles.selectedClass,
+                                        clsColor(cls)
+                                    )}
+                                >
+                                    {spec?.name} {cls.name}
+                                </div>
                             </div>
                         ) : (
                             <div className={styles.roles}>
@@ -120,10 +156,7 @@ export default function Index({title, description, classData}) {
                             </div>
                         )}
                         <input
-                            className={classes(
-                                styles.nameInput,
-                                styles.[`${(cls?.name)}Color`]
-                            )}
+                            className={classes(styles.nameInput, clsColor(cls))}
                             type="text"
                             value={name}
                             placeholder="Name"
@@ -155,7 +188,7 @@ export default function Index({title, description, classData}) {
                 <Dropdown
                     items={[10, 25, 40]}
                     value={size}
-                    onChange={setSize}
+                    onChange={updateSize}
                     asCaption={(size) => `${size} man`}
                 />
             </section>
@@ -170,22 +203,26 @@ export default function Index({title, description, classData}) {
                             <ol>
                                 {Array(5)
                                     .fill(idx)
-                                        .map(getData)
-                                        .map(({index, name, cls, spec}) => (
+                                    .map(getData)
+                                    .map(({index, name, cls, spec}) => (
                                         <li
                                             key={index}
                                             className={styles[cls]}
                                             onClick={() => edit(index)}
                                         >
-                                            {cls && spec && <Media
-                                                width={40}
-                                                height={40}
-                                                alt={`${spec} ${cls}`}
-                                                showAlt={false}
-                                                src={iconUrl(cls, spec)}
-                                                className={styles.roleIcon}
-                                            />}
-                                            {name}
+                                            {cls && spec && (
+                                                <Media
+                                                    width={40}
+                                                    height={40}
+                                                    alt={`${spec} ${cls}`}
+                                                    showAlt={false}
+                                                    src={iconUrl(cls, spec)}
+                                                    className={styles.roleIcon}
+                                                />
+                                            )}
+                                            <span className={styles.trunc}>
+                                                <span>{name}</span>
+                                            </span>
                                         </li>
                                     ))}
                             </ol>
@@ -288,6 +325,28 @@ const classData = [
         ],
     },
 ];
+
+function iconUrl(...args) {
+    const urlItems = args.map((arg) => arg.toLowerCase().replace(' ', '-'));
+
+    return `/media/wow-raid-roster/${urlItems.join('-')}.jpg`;
+}
+
+function clsColor(cls) {
+    return styles[`${cls?.name}Color`];
+}
+
+function rosterId(size, data) {
+    return btoa(JSON.stringify({size, data}));
+}
+
+function getRoster() {
+    try {
+        return JSON.parse(atob(window.location.hash.replace('#', '')));
+    } catch {
+        return {size: 10, data: {}};
+    }
+}
 
 export async function getStaticProps() {
     const {title, description} = getPageData('/wow-raid-roster');

@@ -66,20 +66,20 @@ $class-colors: (
     flex-flow: row nowrap;
     align-items: center;
     padding: 0.2rem 0.3rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1;
-    min-height: 2.25rem;
+    min-height: 2.1rem;
     min-width: 5rem;
     border: 2px solid rgba(0, 0, 0, 0.1);
     background-color: #444;
     border-radius: 0.25rem;
+    font-weight: 700;
     cursor: pointer;
 
     @each $class, $color in $class-colors {
       &.#{$class} {
         background-color: $color;
         color: rgba(0, 0, 0, 0.5);
-        font-weight: 700;
       }
     }
 
@@ -87,13 +87,41 @@ $class-colors: (
       margin-top: 0.5rem;
     }
   }
+
+  @media all and (max-width: 48rem) {
+    width: calc(100% / 3 - 1rem);
+  }
+
+  @media all and (max-width: 38rem) {
+    width: calc(50% - 1rem);
+  }
+
+  @media all and (max-width: 28rem) {
+    width: calc(100% - 1rem);
+  }
+}
+
+.trunc {
+  display: inline-block;
+  min-width: 0;
+  max-width: 100%;
+
+  span {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
 }
 
 .roleIcon {
-  width: 1.5rem;
-  max-width: 1.5rem;
-  height: 1.5rem;
-  max-height: 1.5rem;
+  width: 1.2em;
+  min-width: 1.2em;
+  max-width: 1.2em;
+  height: 1.2em;
+  min-height: 1.2em;
+  max-height: 1.2em;
   transform: scale(1.2);
   margin-right: 0.5rem;
   margin-left: -0.1rem;
@@ -116,7 +144,7 @@ $class-colors: (
   flex-flow: row wrap;
   align-items: center;
   width: calc(100% + 0.5rem);
-  height: 2.75rem;
+  min-height: 2.75rem;
   margin: -0.25rem;
 }
 
@@ -169,6 +197,18 @@ $class-colors: (
         border-left: 0.75rem solid $color;
       }
     }
+  }
+}
+
+.selectedClass {
+  font-weight: 700;
+  margin: 0.25rem 0.25rem 0.25rem auto;
+
+  @media all and (max-width: 25rem) {
+    width: 100%;
+    line-height: 2.25rem;
+    height: 2.25rem;
+    margin-left: 0.25rem;
   }
 }
 
