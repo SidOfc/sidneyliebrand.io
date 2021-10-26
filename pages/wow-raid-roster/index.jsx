@@ -23,11 +23,11 @@ export default function Index({title, description, classData}) {
     const spec = cls?.specs?.find(({id}) => id === specId);
     const edit = useCallback(
         (index) => {
-            const {n, r} = data[index] || {n: '', r: 0};
+            const {name, role} = data[index] || {name: '', role: 0};
 
             setEditingIndex(index);
-            setName(n);
-            setRole(r);
+            setName(name);
+            setRole(role);
         },
         [data]
     );
@@ -42,7 +42,7 @@ export default function Index({title, description, classData}) {
         [classId]
     );
     const save = useCallback(() => {
-        const nextData = {...data, [editingIndex]: {n: name, r: role}};
+        const nextData = {...data, [editingIndex]: {name, role}};
         setData(nextData);
         router.push(`#${rosterId(size, nextData)}`);
         close();
@@ -56,15 +56,15 @@ export default function Index({title, description, classData}) {
     );
     const getData = (group, row) => {
         const index = group * 5 + row;
-        const {n, r} = data[index] || {n: '', r: 0};
-        const classId = (r & 0xf0) >> 4;
-        const specId = r & 0x0f;
+        const {name, role} = data[index] || {name: '', role: 0};
+        const classId = (role & 0xf0) >> 4;
+        const specId = role & 0x0f;
         const cls = classData.find(({id}) => id === classId);
         const spec = cls?.specs?.find(({id}) => id === specId);
 
         return {
             index,
-            name: n,
+            name,
             cls: cls?.name || '',
             spec: spec?.name || '',
             icon: cls && spec && iconUrl(cls.name, spec.name),
@@ -162,7 +162,14 @@ export default function Index({title, description, classData}) {
                             placeholder="Name"
                             onFocus={pauseEscape}
                             onBlur={resumeEscape}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) =>
+                                setName(
+                                    e.target.value
+                                        .replace(/\W/gi, '')
+                                        .replace(/[\d_]/gi, '')
+                                        .slice(0, 15)
+                                )
+                            }
                             onKeyDown={handleKeys('enter', save)}
                         />
                         <div className={styles.buttons}>
@@ -337,12 +344,33 @@ function clsColor(cls) {
 }
 
 function rosterId(size, data) {
-    return btoa(JSON.stringify({size, data}));
+    const items = Object.entries(data)
+        .map(([key, {name, role}]) => name && role && `${key}@${name}@${role}`)
+        .filter(Boolean);
+
+    return `${size}:${items.join(',')}`;
 }
 
 function getRoster() {
     try {
-        return JSON.parse(atob(window.location.hash.replace('#', '')));
+        const [sizeStr, ...rest] = window.location.hash
+            .replace('#', '')
+            .split(':');
+        const size = parseInt(sizeStr) || 10;
+        const data = rest
+            .join(':')
+            .split(',')
+            .reduce((items, item) => {
+                const [keyStr, nameStr, roleStr] = item.split('@');
+                items[keyStr] = {
+                    name: nameStr || '',
+                    role: parseInt(roleStr) || 0,
+                };
+
+                return items;
+            }, {});
+
+        return {size, data};
     } catch {
         return {size: 10, data: {}};
     }
