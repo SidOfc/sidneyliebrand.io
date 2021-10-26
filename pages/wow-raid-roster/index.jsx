@@ -258,7 +258,7 @@ function encode(size, data) {
         .map(([key, {name, role}]) => name && role && `${key}${name}${role}`)
         .filter(Boolean);
 
-    return `${size},${items.join('.')}`;
+    return `${size}.${items.join('.')}`;
 }
 
 function decode(input) {
