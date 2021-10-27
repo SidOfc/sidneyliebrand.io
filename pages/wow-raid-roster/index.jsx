@@ -89,11 +89,12 @@ export default function Index({title, description}) {
                     onDelete={() => deleteTeam(teamIndex)}
                 />
             ))}
-            <section className={styles.groupForm}>
+            <section className={styles.teamForm}>
                 <div className={styles.field}>
                     <Dropdown
                         items={[10, 25, 40]}
                         value={model.size}
+                        className={styles.fieldInput}
                         onChange={(size) => updateModel({size})}
                         asCaption={(size) => `${size} man`}
                     />
@@ -102,6 +103,7 @@ export default function Index({title, description}) {
                     <Input
                         placeholder="Team name"
                         value={model.name}
+                        className={styles.fieldInput}
                         onChange={(name) =>
                             updateModel({
                                 name: name
