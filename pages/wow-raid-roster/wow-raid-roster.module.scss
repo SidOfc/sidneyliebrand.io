@@ -1,3 +1,5 @@
+@import "@styles/config";
+
 $class-colors: (
   Druid:   #ff7c0a,
   Hunter:  #aad372,
@@ -11,14 +13,6 @@ $class-colors: (
 );
 
 @each $class, $color in $class-colors {
-  @if ($class == 'Warlock') {
-    $color: lighten($color, 10%);
-  }
-
-  @if ($class == 'Shaman') {
-    $color: lighten($color, 10%);
-  }
-
   .#{$class}Color {
     color: $color;
 
@@ -27,6 +21,7 @@ $class-colors: (
 
       &::selection {
         background-color: rgba($color, 0.5);
+        color: darken($color, 20%);
       }
 
       &:focus-visible {
@@ -37,31 +32,72 @@ $class-colors: (
   }
 }
 
-.raidSize {
+.groupForm {
   display: flex;
-  width: 100%;
-  margin: 2rem 0;
+  margin: 1rem 0;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  @include active-theme('dark') {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
-.groups {
+.field {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & + .field {
+    margin-left: 1rem;
+  }
+
+  &.fieldButton {
+    margin-left: auto;
+  }
+}
+
+.team {
   position: relative;
   display: flex;
   flex-flow: row wrap;
-  width: calc(100% + 1rem);
-  margin: -0.5rem 0 0 -0.5rem;
+  border-radius: 0.8rem;
+  padding: 1rem 0.5rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  & + .team {
+    margin-top: 1rem;
+  }
+
+  @include active-theme('dark') {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.teamTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0 0.5rem;
 }
 
 .group {
+  display: block;
   width: calc(25% - 1rem);
+  padding: 0.5rem 0 0;
   margin: 0.5rem;
+  list-style: none;
 
-  ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  &.spaceLeft {
+    margin-left: auto;
   }
 
   li {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -70,16 +106,64 @@ $class-colors: (
     line-height: 1;
     min-height: 2.1rem;
     min-width: 5rem;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    background-color: #444;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
+    background-color: #fff;
     font-weight: 700;
     cursor: pointer;
+    overflow: hidden;
+
+    &:hover::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    @include active-theme('dark') {
+      background-color: #444;
+
+      &:hover::after {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    &.groupTitle {
+      background-color: transparent;
+      border-color: transparent;
+      padding-top: 0.2rem;
+      min-height: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: default;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      @include active-theme('dark') {
+        background-color: transparent;
+
+        &:hover::after {
+          display: none;
+        }
+      }
+    }
 
     @each $class, $color in $class-colors {
       &.#{$class} {
         background-color: $color;
         color: rgba(0, 0, 0, 0.5);
+        @include active-theme('dark') {
+          background-color: $color;
+          color: rgba(0, 0, 0, 0.5);
+        }
       }
     }
 
@@ -98,6 +182,37 @@ $class-colors: (
 
   @media all and (max-width: 28rem) {
     width: calc(100% - 1rem);
+  }
+}
+
+.bench {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  flex: 1 1 auto;
+  max-width: 50%;
+  margin-left: auto;
+
+  .group {
+    width: calc(50% - 1rem);
+  }
+
+  @media all and (max-width: 48rem) {
+    width: 100%;
+    max-width: calc(100% / 3 * 2);
+    margin-left: 0;
+  }
+
+  @media all and (max-width: 38rem) {
+    max-width: 100%;
+  }
+
+  @media all and (max-width: 28rem) {
+    max-width: 100%;
+
+    .group {
+      width: calc(100% - 1rem);
+    }
   }
 }
 
@@ -125,13 +240,6 @@ $class-colors: (
   transform: scale(1.2);
   margin-right: 0.5rem;
   margin-left: -0.1rem;
-}
-
-.groupTitle {
-  padding: 0.3rem 0;
-  font-size: 1rem;
-  font-weight: 700;
-  text-align: center;
 }
 
 .editForm {
@@ -213,7 +321,6 @@ $class-colors: (
 }
 
 .buttons {
-  margin-top: 2rem;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -228,21 +335,11 @@ button.saveBtn {
   background-color: #2b2;
 }
 
-.nameInput {
-  display: block;
+input.nameInput {
   width: 100%;
-  margin: 1rem 0;
-  padding: 0.3rem 0.6rem;
+  margin: 1rem 0 1.5rem;
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.25rem;
-  overflow: hidden;
-  color: #fff;
-
-  &:focus-visible {
-    box-shadow: none;
-    border-color: #fff;
-  }
+  padding: 0.3rem 0.6rem;
+  border-width: 2px;
 }

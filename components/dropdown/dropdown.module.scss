@@ -1,18 +1,17 @@
 .dropdown {
-  display: inline-block;
   position: relative;
   cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  overflow: hidden;
 }
 
 .select {
-  min-width: 10rem;
+  width: auto;
+  max-width: 100%;
   font-size: 1rem;
   padding: 0.2rem 0.3rem;
   cursor: pointer;
-  opacity: 0;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.44rem 0.3rem;
 }
 
 .overlay {
@@ -29,4 +28,7 @@
   background-color: #fff;
   color: #000;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
 }

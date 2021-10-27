@@ -2,6 +2,7 @@ import {useCallback} from 'react';
 import styles from './dropdown.module.scss';
 
 export default function Dropdown({
+    name,
     items,
     value,
     onChange,
@@ -27,6 +28,8 @@ export default function Dropdown({
     return (
         <div className={styles.dropdown}>
             <select
+                id={name}
+                name={name}
                 className={styles.select}
                 value={selectedIndex}
                 onChange={onChangeHandler}
