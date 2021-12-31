@@ -12,8 +12,6 @@ import content from '@data/content';
 const {profile} = content;
 const {programming, education, volunteering} = profile;
 
-// export const config = {unstable_JsPreload: false, unstable_runtimeJS: false};
-
 export default function Index({title, description, pinnedRepositories}) {
     return (
         <>

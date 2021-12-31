@@ -2,8 +2,6 @@ import styles from './404.module.scss';
 import Media from '@components/media';
 import Button from '@components/button';
 
-// export const config = {unstable_JsPreload: false, unstable_runtimeJS: false};
-
 export default function PageNotFound() {
     return (
         <section className={styles.page}>
