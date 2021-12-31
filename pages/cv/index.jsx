@@ -120,12 +120,12 @@ export default function Index({title, description, pinnedRepositories}) {
                             <span>{item.city}</span>
                             <span>
                                 {dateFormat(item.start, {
-                                    day: true,
+                                    includeDay: true,
                                     fallback: 'Unknown',
                                 })}
                                 &nbsp;-&nbsp;
                                 {dateFormat(item.end, {
-                                    day: true,
+                                    includeDay: true,
                                     fallback: 'Present',
                                 })}
                             </span>
