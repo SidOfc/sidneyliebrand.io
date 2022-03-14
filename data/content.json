@@ -38,11 +38,11 @@
         "programming": {
             "repos": [
                 "babel-plugin-transform-media-imports",
+                "leather",
                 "mkdx",
+                "carbon.nvim",
                 "browserino",
-                "cani",
-                "simple_csv",
-                "TwentyFortyEight"
+                "cani"
             ],
             "languages": [
                 "ruby",

@@ -166,7 +166,10 @@ export default function Index({title, description, pinnedRepositories}) {
                                         color="star"
                                         title={`${item.starCount} GitHub stars`}
                                     >
-                                        {item.starCount}&#9733;
+                                        {item.starCount}
+                                        <small className={styles.star}>
+                                            &#9733;
+                                        </small>
                                     </Text>
                                     <Bullet wide />
                                     {item.stats.commits} commits,
@@ -226,6 +229,10 @@ function Details({
 export async function getStaticProps() {
     const {title, description} = getPageData('/cv');
     const pinnedRepositories = await getPinnedRepositories();
+
+    pinnedRepositories.sort((a, b) =>
+        Math.min(1, Math.max(-1, b.starCount - a.starCount))
+    );
 
     return {
         props: {title, description, pinnedRepositories},
