@@ -19,11 +19,11 @@ Why would you create customized mappings that only work on your machine?
 ## Ease of use
 
 Key binds in Vim are not always the most intuitive to use.
-Take for instance, moving up or down a paragraph which are bound to <kbd>{</kbd> and <kbd>}</kbd> respectively.
+Take for instance, moving up or down a paragraph which are bound to <kbd>\{</kbd> and <kbd>\}</kbd> respectively.
 I find these binds quite awkward, but like <kbd>w</kbd>, they allow you to move a lot faster
 than using line wise <kbd>j</kbd> or <kbd>k</kbd>. For that reason, I rebound them to <kbd>J</kbd> and <kbd>K</kbd> instead (note their case).
 Since they apply no useful action in normal mode and they are more easily combined with the <kbd>shift</kbd>
-key than <kbd>{</kbd> and <kbd>}</kbd> it made sense to me to map them to something easier to reach.
+key than <kbd>\{</kbd> and <kbd>\}</kbd> it made sense to me to map them to something easier to reach.
 
 ## Consistency
 
@@ -60,7 +60,7 @@ The way I type braces might be weird, but I like it. Basically, whenever I type 
 I close it off and move my cursor between them. This ensures that I always have matching braces and I don't
 actually have to go back and add them later (especially useful in nesting situations).
 
-What this does is when you type <kbd><</kbd> followed by <kbd>></kbd> for example, vim will replace it with the same characters,
+What this does is when you type <kbd>\<</kbd> followed by <kbd>\></kbd> for example, vim will replace it with the same characters,
 but it will also "insert" `<Left>` or rather, insert an arrow keypress left which leaves you in this position:
 `<|>` where the bar represents the cursor. You can now type away without having to worry about that closing brace!
 
@@ -134,7 +134,7 @@ vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
 ~~~
 
-Yet another pair of inconvenient binds are used for indenting and de-indenting code, <kbd>>></kbd> and <kbd><<</kbd> respectively.
+Yet another pair of inconvenient binds are used for indenting and de-indenting code, <kbd>\>\></kbd> and <kbd>\<\<</kbd> respectively.
 Like with the default paragraph binds I think these can be better by just using the bindings I already know and use: <kbd>tab</kbd>
 and <kbd>shift</kbd>+<kbd>tab</kbd>. These binds are to be used in normal or visual mode as we have a special purpose for <kbd>shift</kbd>+<kbd>tab</kbd> in insert mode.
 
