@@ -21,12 +21,14 @@
             "selection-bg": "rgba(101, 30, 234, 0.2)",
             "prism-bg": "#f8f8f8",
             "prism-fg": "#111",
-            "prism-operator": "#545454",
-            "prism-keyword": "#651eea",
-            "prism-string": "#de0060",
-            "prism-function": "#008294",
-            "prism-property": "#008331",
-            "prism-selector": "#003aff"
+            "prism-tag": "#ff0000",
+            "prism-operator": "#727272",
+            "prism-keyword": "#804cff",
+            "prism-string": "#1d814b",
+            "prism-function": "#0083ff",
+            "prism-property": "#bf4e00",
+            "prism-selector": "#0083ff",
+            "prism-special": "#d200ad"
         },
         "dark": {
             "page-bg": "#111",
@@ -49,12 +51,14 @@
             "selection-bg": "rgba(131, 77, 232, 0.4)",
             "prism-bg": "#1d1d1d",
             "prism-fg": "#eee",
+            "prism-tag": "#ffef53",
             "prism-operator": "#949494",
-            "prism-keyword": "#b085ff",
-            "prism-string": "#ff539e",
-            "prism-function": "#009bb1",
-            "prism-property": "#00aa40",
-            "prism-selector": "#6e8fff"
+            "prism-keyword": "#be9bff",
+            "prism-string": "#2fd27a",
+            "prism-function": "#00beff",
+            "prism-property": "#ff9767",
+            "prism-selector": "#00beff",
+            "prism-special": "#fb7eb6"
         }
     }
 }

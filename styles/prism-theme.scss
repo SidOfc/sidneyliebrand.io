@@ -66,9 +66,12 @@ pre[class*='language-'] {
 }
 
 .token.string,
-.token.attr-value,
-[class='token tag'] {
+.token.attr-value {
     @include themed('color', 'prism-string');
+}
+
+[class='token tag'] {
+    @include themed('color', 'prism-tag');
 }
 
 .token.punctuation,
@@ -79,15 +82,18 @@ pre[class*='language-'] {
 .token.entity,
 .token.url,
 .token.symbol,
-.token.number,
-.token.boolean,
 .token.variable,
 .token.constant,
 .token.property,
-.token.regex,
 .token.inserted,
 .token.tag.attr-name {
     @include themed('color', 'prism-property');
+}
+
+.token.number,
+.token.boolean,
+.token.regex {
+    @include themed('color', 'prism-special');
 }
 
 .token.atrule,
@@ -106,11 +112,16 @@ pre[class*='language-'] {
 }
 
 .token.important,
-.token.function,
 .token.bold {
     font-weight: bold;
 }
 
 .token.italic {
     font-style: italic;
+}
+
+.language-vim {
+    .token.comment ~ .token {
+        color: #999988;
+    }
 }
