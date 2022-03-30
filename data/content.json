@@ -5,7 +5,7 @@
         {
             "path": "/",
             "title": null,
-            "description": "My name is Sidney Liebrand. I am a Dutch front-end developer working with React and Ruby on Rails at Floorplanner in Rotterdam. This is the place where I publish new blog posts and perhaps a tool or two in the future.",
+            "description": "My name is Sidney Liebrand. I am a Software developer specialized in front-end development with experience in JS, React, Ruby, Rails, Lua, PHP, and more. This is the place where I publish new blog posts and perhaps a tool or two in the future.",
             "priority": 1,
             "changefreq": "weekly"
         },
@@ -27,7 +27,7 @@
     "profile": {
         "name": "Sidney Liebrand",
         "birthday": "1994-10-26T00:00:00Z",
-        "title": "Front-end developer",
+        "title": "Software developer specialized in front-end development",
         "city": "Dinteloord",
         "country": "Netherlands",
         "languages": ["Dutch", "English"],
@@ -46,13 +46,10 @@
             ],
             "languages": [
                 "ruby",
-                "crystal",
                 "javascript",
-                "python",
                 "lua",
                 "php",
-                "sql",
-                "vimscript",
+                "python",
                 "html",
                 "css"
             ],
@@ -117,9 +114,9 @@
                     "organisation": "DEX Online Services",
                     "description": "As Front-end developer at DEX Online Services I sliced and based photoshop designs into responsive websites using HTML5, CSS3 and sprinkles of non-framework JS where needed.",
                     "logo": {
-                        "url": "dex-online-services.gif",
-                        "width": 203,
-                        "height": 88
+                        "url": "dex-online-services.svg",
+                        "width": 52,
+                        "height": 23
                     },
                     "start": "2012-08-16T00:00:00Z",
                     "end": "2014-12-16T00:00:00Z",
@@ -141,9 +138,9 @@
                 "title": "Media development",
                 "organisation": "Radius College",
                 "logo": {
-                    "url": "radius-college.png",
-                    "width": 360,
-                    "height": 90
+                    "url": "radius-college.svg",
+                    "width": 60,
+                    "height": 35
                 },
                 "start": "2011-09-16T00:00:00Z",
                 "end": "2014-07-16T00:00:00Z",
@@ -153,9 +150,9 @@
                 "title": "Technology",
                 "organisation": "Moller College",
                 "logo": {
-                    "url": "moller-college-small.png",
-                    "width": 150,
-                    "height": 61
+                    "url": "moller-college.svg",
+                    "width": 60,
+                    "height": 33
                 },
                 "start": "2007-09-16T00:00:00Z",
                 "end": "2011-07-16T00:00:00Z",

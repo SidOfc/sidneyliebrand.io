@@ -1,21 +1,21 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .tag {
-  @include themed('background-color', 'tag-bg');
-  @include themed('color', 'tag-fg');
-  border-radius: 3px;
-  padding: 0 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
+    @include themed('background-color', 'tag-bg');
+    @include themed('color', 'tag-fg');
+    border-radius: 3px;
+    padding: 0 0.5rem;
+    font-size: 0.95rem;
 }
 
 .container {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 -0.125rem;
-  width: calc(100% + 0.25rem);
+    $gap: 3px;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 -$gap;
+    width: calc(100% + #{$gap * 2});
 
-  .tag {
-    margin: 0.125rem;
-  }
+    .tag {
+        margin: $gap;
+    }
 }

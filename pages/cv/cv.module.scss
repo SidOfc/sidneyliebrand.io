@@ -1,184 +1,336 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .h2 {
-  @include themed('background-color', 'primary-bg');
-  @include themed('color', 'primary-fg');
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  line-height: 1;
-  padding: 0.5rem;
-  margin: 0;
-  margin-bottom: 3rem;
+    position: relative;
+    @include themed('background-color', 'primary-bg');
+    @include themed('color', 'primary-fg');
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0.5rem 0.5rem 0.4rem;
+    margin: 0;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 0.2rem;
 
-  &:first-child {
-    margin-top: 0;
-  }
+    &:first-child {
+        margin-top: 0;
+    }
+
+    span {
+        position: relative;
+        z-index: 1;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate3d(-35%, -50%, 0) rotate(45deg);
+        z-index: 0;
+        border-radius: 0.2rem;
+        @include themed('background-color', 'primary-bg');
+    }
+
+    &::after {
+        transform: translate3d(-65%, -50%, 0) rotate(45deg);
+        left: 100%;
+    }
+}
+
+.h3 {
+    margin: 0;
+    line-height: 1;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .column {
-  display: flex;
-  flex-flow: column nowrap;
+    display: flex;
+    flex-flow: column nowrap;
 
-  & + & {
-    margin-top: 3rem;
-  }
+    & + & {
+        margin-top: 3rem;
+    }
 }
 
 .row {
-  & + & {
-    margin-top: 1rem;
-  }
+    & + & {
+        margin-top: 1rem;
+    }
 
-  &:first-child {
-    margin-top: 0;
-  }
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.clampedRow {
+    width: 35rem;
+    max-width: 100%;
+}
+
+.experienceBlock {
+    display: grid;
+    grid-gap: 4px;
+    column-gap: 16px;
+    grid-template-rows: repeat(4, min-content);
+    grid-template-columns: auto repeat(5, 1fr);
+    grid-template-areas:
+        'logo     title    title    title    title    title   '
+        'logo     subtitle subtitle subtitle subtitle subtitle'
+        'tools    tools    tools    tools    tools    tools'
+        'excerpt  excerpt  excerpt  excerpt  excerpt  excerpt';
+
+    & + & {
+        margin-top: 3rem;
+    }
+}
+
+.experienceLogo {
+    grid-area: logo;
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    min-width: 70px;
+    max-width: 70px;
+    align-self: center;
+}
+
+.experienceLogoImage img {
+    padding: 0.2rem;
+
+    @include active-theme('dark') {
+        background-color: #fff;
+        border-radius: 0.25rem;
+    }
+}
+
+.experienceTitle {
+    grid-area: title;
+    margin: 0;
+    line-height: 1;
+    font-size: 1.2rem;
+    align-self: end;
+}
+
+.experienceTimespan {
+    line-height: 1;
+    grid-area: subtitle;
+    align-self: start;
+}
+
+.experienceTags {
+    grid-area: tools;
+    align-self: center;
+    padding: 0.5rem 0;
+}
+
+.experienceExcerpt {
+    grid-area: excerpt;
+    margin: 0;
+    font-size: 1rem;
 }
 
 .block {
-  display: flex;
-  flex-flow: row nowrap;
+    display: flex;
+    flex-flow: row nowrap;
 
-  & + & {
-    margin-top: 3rem;
-  }
-
-  p {
-    margin: 0.75rem 0;
-
-    &:last-child {
-      margin-bottom: 0;
+    & + & {
+        margin-top: 3rem;
     }
-  }
+
+    p {
+        margin: 0.75rem 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .details {
-  display: flex;
-  flex-flow: column nowrap;
+    display: flex;
+    flex-flow: column nowrap;
 
-  .logo + & {
-    max-width: 46rem;
-  }
+    .logo + & {
+        max-width: 46rem;
+    }
 }
 
 .title {
-  margin: 0;
-  margin-bottom: 0.25rem;
-  line-height: 1;
-  font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+    font-size: 1.2rem;
 }
 
 .subtitle {
-  margin: 0.25rem 0;
-  line-height: 1;
+    margin: 0.25rem 0;
+    line-height: 1;
 }
 
 .stats {
-  margin: 0.25rem 0;
-  line-height: 1;
+    margin: 0.25rem 0;
+    line-height: 1;
+}
+
+.star {
+    display: inline-block;
+    font-size: 0.7rem;
+    vertical-align: middle;
+    transform: translateY(-10%);
 }
 
 .dates {
-  display: inline-block;
-  margin: 0.25rem 0;
+    display: inline-block;
+    margin: 0.25rem 0;
 }
 
 .subtitle + .dates,
 .subtitle + .stats,
 .dates + .stats {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .logo {
-  flex: 0 0 6rem;
-  position: relative;
-  width: 6rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-right: 1rem;
+    flex: 0 0 6rem;
+    position: relative;
+    width: 6rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 1rem;
 
-  @media all and (max-width: 32rem) {
-    display: none;
-  }
-
-  @include active-theme('dark') {
-    figure {
-      @include themed('background-color', 'page-fg');
-      padding: 0.5rem;
-      border-radius: 0.25rem;
+    @media all and (max-width: 32rem) {
+        display: none;
     }
-  }
+
+    @include active-theme('dark') {
+        figure {
+            @include themed('background-color', 'page-fg');
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+    }
 }
 
 .volunteering {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  justify-content: space-around;
-  margin: -1rem;
-  width: calc(100% + 2rem);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: -1rem;
+    width: calc(100% + 2rem);
 }
 
 .volunteer {
-  flex: 1 1 calc(100% / 3 - 2rem);
-  min-width: 9rem;
-  display: flex;
-  margin: 1rem;
-  flex-flow: column nowrap;
+    flex: 1 1 calc(100% / 3 - 2rem);
+    min-width: 9rem;
+    display: flex;
+    margin: 1rem;
+    flex-flow: column nowrap;
 }
 
 .banner {
-  margin: 3rem 0;
-  display: flex;
-  flex-flow: row nowrap;
-  line-height: 1.1;
+    margin: 3rem 0;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    line-height: 1.1;
+
+    .column {
+        margin-right: auto;
+    }
 }
 
 .bannerLogo {
-  display: flex;
-  flex: 0 1 8.75rem;
-  width: auto;
-  margin-right: 1rem;
-  border-radius: 0.25rem;
-  overflow: hidden;
-  border: 0.25rem solid transparent;
+    display: flex;
+    flex: 0 0 6rem;
+    width: auto;
+    margin-left: 1rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border: 0.25rem solid transparent;
+    transform-origin: top right;
+    transform: scale(2);
+    transition: transform 0.1s ease-out;
 
-  @include active-theme('dark') {
-    @include themed('border', '0.25rem solid $0', 'page-fg');
-  }
+    @include active-theme('dark') {
+        @include themed('border', '0.25rem solid $0', 'page-fg');
+    }
 }
 
 .bannerHeader {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2rem;
 }
 
 .bannerSubtitle {
-  font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .bannerDetails {
-  margin-top: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  line-height: 1.5;
+    display: flex;
+    flex-flow: column nowrap;
+    line-height: 1.5;
 
-  a * {
-    vertical-align: middle;
-  }
+    a * {
+        vertical-align: middle;
+    }
 
-  figure {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-  }
+    figure {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+    }
 }
 
-.star {
-  display: inline-block;
-  font-size: 0.7rem;
-  vertical-align: middle;
-  transform: translateY(-10%);
+@media all and (max-width: 48rem) {
+    .bannerLogo {
+        transform: scale(1.5);
+    }
+
+    .experienceLogo {
+        padding-left: 0.5rem;
+        min-width: 80px;
+        max-width: 80px;
+    }
+
+    .experienceTitle {
+        display: flex;
+        align-items: flex-end;
+    }
+}
+
+@media all and (max-width: 43rem) {
+    .bannerLogo {
+        transform: scale(1.2);
+    }
+}
+
+@media all and (max-width: 32rem) {
+    .banner {
+        flex-flow: column nowrap;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .bannerLogo {
+        position: relative;
+        left: 50%;
+        flex: 1 1 auto;
+        margin: 0 0 3rem;
+        max-width: 10rem;
+        transform: translateX(-50%);
+    }
 }

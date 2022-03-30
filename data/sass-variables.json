@@ -14,8 +14,8 @@
             "addition-fg": "#00852c",
             "deletion-fg": "#d33947",
             "star-fg": "#bf9a00",
-            "tag-bg": "#fafafa",
-            "tag-fg": "#727272",
+            "tag-bg": "#eeeeee",
+            "tag-fg": "#666666",
             "link-fg": "#651eea",
             "selection-bg": "rgba(101, 30, 234, 0.2)"
         },
@@ -34,7 +34,7 @@
             "deletion-fg": "#ff0000",
             "star-fg": "#f2d043",
             "tag-bg": "#666",
-            "tag-fg": "#e8e8e8",
+            "tag-fg": "#cdcdcd",
             "link-fg": "#a676ff",
             "selection-bg": "rgba(131, 77, 232, 0.4)"
         }

@@ -1,6 +1,6 @@
 import styles from './cv.module.scss';
 import Link from 'next/link';
-import {Container as Tags} from '@components/tag';
+import {Tags} from '@components/tag';
 import Text from '@components/text';
 import Bullet from '@components/bullet';
 import Media from '@components/media';
@@ -32,7 +32,6 @@ export default function Index({title, description, pinnedRepositories}) {
                         {profile.title}
                     </Text>
                     <div className={styles.bannerDetails}>
-                        <span>{`${profile.city}, ${profile.country}`}</span>
                         <Link href="https://github.com/SidOfc">
                             <a title="Visit Sidney Liebrand's GitHub page">
                                 <Media
@@ -63,54 +62,38 @@ export default function Index({title, description, pinnedRepositories}) {
                 </div>
             </section>
             <section className={styles.column}>
-                <h2 className={styles.h2}>Familiar technologies</h2>
-                <div className={styles.row}>
-                    <strong>Programming languages</strong>
+                <h2 className={styles.h2}>
+                    <span>Familiar technologies</span>
+                </h2>
+                <div className={`${styles.row} ${styles.clampedRow}`}>
+                    <h3 className={styles.h3}>Programming languages</h3>
                     <Tags tags={programming.languages.sort()} />
                 </div>
-                <div className={styles.row}>
-                    <strong>Tools</strong>
+                <div className={`${styles.row} ${styles.clampedRow}`}>
+                    <h3 className={styles.h3}>Tools</h3>
                     <Tags tags={programming.tools.sort()} />
                 </div>
             </section>
             <section className={styles.column}>
-                <h2 className={styles.h2}>Experience</h2>
+                <h2 className={styles.h2}>
+                    <span>Experience</span>
+                </h2>
                 {programming.jobs.map((item) => (
-                    <div key={item.organisation} className={styles.block}>
-                        <div className={styles.logo}>
-                            <Media
-                                src={`/media/${item.logo.url}`}
-                                width={item.logo.width}
-                                height={item.logo.height}
-                            />
-                        </div>
-                        <Details
-                            {...item}
-                            title={`${item.title} at ${item.organisation}`}
-                        />
-                    </div>
+                    <Experience key={item.organisation} item={item} />
                 ))}
             </section>
             <section className={styles.column}>
-                <h2 className={styles.h2}>Education</h2>
+                <h2 className={styles.h2}>
+                    <span>Education</span>
+                </h2>
                 {education.map((item) => (
-                    <div key={item.organisation} className={styles.block}>
-                        <div className={styles.logo}>
-                            <Media
-                                src={`/media/${item.logo.url}`}
-                                width={item.logo.width}
-                                height={item.logo.height}
-                            />
-                        </div>
-                        <Details
-                            {...item}
-                            title={`${item.title} at ${item.organisation}`}
-                        />
-                    </div>
+                    <Experience key={item.organisation} item={item} />
                 ))}
             </section>
             <section className={styles.column}>
-                <h2 className={styles.h2}>Volunteering</h2>
+                <h2 className={styles.h2}>
+                    <span>Volunteering</span>
+                </h2>
                 <div className={styles.volunteering}>
                     {volunteering.map((item) => (
                         <div key={item.start} className={styles.volunteer}>
@@ -137,52 +120,70 @@ export default function Index({title, description, pinnedRepositories}) {
                 </div>
             </section>
             <section className={styles.column}>
-                <h2 className={styles.h2}>Open source projects</h2>
+                <h2 className={styles.h2}>
+                    <span>Open source projects</span>
+                </h2>
                 {pinnedRepositories.map((item) => (
                     <div key={item.name} className={styles.block}>
-                        <Details
-                            link={item.url}
-                            title={item.name}
-                            tags={item.topics}
-                            start={item.createdAt}
-                            subtitle={item.description}
-                            customData={
-                                <span className={styles.stats}>
-                                    <Text
-                                        color="addition"
-                                        title={`${item.stats.additions} additions`}
-                                    >
-                                        {item.stats.additions}++
-                                    </Text>
-                                    <Bullet wide />
-                                    <Text
-                                        color="deletion"
-                                        title={`${item.stats.deletions} deletions`}
-                                    >
-                                        {item.stats.deletions}--
-                                    </Text>
-                                    <Bullet wide />
-                                    <Text
-                                        color="star"
-                                        title={`${item.starCount} GitHub stars`}
-                                    >
-                                        {item.starCount}
-                                        <small className={styles.star}>
-                                            &#9733;
-                                        </small>
-                                    </Text>
-                                    <Bullet wide />
-                                    {item.stats.commits} commits,
-                                    {item.pushedAt && (
-                                        <>
-                                            {' '}
-                                            last commit on{' '}
-                                            {dateFormat(item.pushedAt, true)}
-                                        </>
-                                    )}
-                                </span>
-                            }
-                        />
+                        <div className={styles.details}>
+                            <h3 className={styles.title}>
+                                {item.url ? (
+                                    <a {...linkProps(item.url)}>{item.name}</a>
+                                ) : (
+                                    item.name
+                                )}
+                            </h3>
+                            <span
+                                className={styles.subtitle}
+                                dangerouslySetInnerHTML={{
+                                    __html: item.description,
+                                }}
+                            />
+                            <span className={styles.dates}>
+                                {dateFormat(item.createdAt, {
+                                    fallback: 'Unknown',
+                                })}
+                                &nbsp;-&nbsp;Present{' '}
+                                <Text color="page-accent">
+                                    ({dateDiff(item.createdAt)})
+                                </Text>
+                            </span>
+                            <span className={styles.stats}>
+                                <Text
+                                    color="addition"
+                                    title={`${item.stats.additions} additions`}
+                                >
+                                    {item.stats.additions}++
+                                </Text>
+                                <Bullet wide />
+                                <Text
+                                    color="deletion"
+                                    title={`${item.stats.deletions} deletions`}
+                                >
+                                    {item.stats.deletions}--
+                                </Text>
+                                <Bullet wide />
+                                <Text
+                                    color="star"
+                                    title={`${item.starCount} GitHub stars`}
+                                >
+                                    {item.starCount}
+                                    <small className={styles.star}>
+                                        &#9733;
+                                    </small>
+                                </Text>
+                                <Bullet wide />
+                                {item.stats.commits} commits,
+                                {item.pushedAt && (
+                                    <>
+                                        {' '}
+                                        last commit on{' '}
+                                        {dateFormat(item.pushedAt, true)}
+                                    </>
+                                )}
+                            </span>
+                            {item.topics && <Tags tags={item.topics.sort()} />}
+                        </div>
                     </div>
                 ))}
             </section>
@@ -190,38 +191,38 @@ export default function Index({title, description, pinnedRepositories}) {
     );
 }
 
-function Details({
-    link,
-    title,
-    subtitle,
-    tags,
-    description,
-    start,
-    end,
-    customData,
-}) {
+function Experience({item, showLogo = item.logo}) {
+    const title = `${item.title} at ${item.organisation}`;
     return (
-        <div className={styles.details}>
-            <h3 className={styles.title}>
-                {link ? <a {...linkProps(link)}>{title}</a> : title}
+        <div className={styles.experienceBlock}>
+            <div className={styles.experienceLogo}>
+                {showLogo && (
+                    <Media
+                        className={styles.experienceLogoImage}
+                        src={`/media/${item.logo.url}`}
+                        width={item.logo.width}
+                        height={item.logo.height}
+                    />
+                )}
+            </div>
+            <h3 className={styles.experienceTitle}>
+                {item.link ? <a {...linkProps(item.link)}>{title}</a> : title}
             </h3>
-            {subtitle && (
-                <span
-                    className={styles.subtitle}
-                    dangerouslySetInnerHTML={{__html: subtitle}}
-                />
-            )}
-            <span className={styles.dates}>
-                {dateFormat(start, {fallback: 'Unknown'})}
+            <span className={styles.experienceTimespan}>
+                {dateFormat(item.start, {fallback: 'Unknown'})}
                 &nbsp;-&nbsp;
-                {dateFormat(end, {fallback: 'Present'})}{' '}
-                <Text color="page-accent">({dateDiff(start, end)})</Text>
+                {dateFormat(item.end, {fallback: 'Present'})}{' '}
+                <Text color="page-accent">
+                    ({dateDiff(item.start, item.end)})
+                </Text>
             </span>
-            {customData}
-            {tags && <Tags tags={tags.sort()} />}
-            {description && (
-                <p dangerouslySetInnerHTML={{__html: description}} />
-            )}
+            <div className={styles.experienceTags}>
+                <Tags tags={item.tags.sort()} />
+            </div>
+            <p
+                className={styles.experienceExcerpt}
+                dangerouslySetInnerHTML={{__html: item.description}}
+            />
         </div>
     );
 }
