@@ -96,10 +96,10 @@ Unfortunately it didn't make it since it was too workflow specific.
 As you may have been able to see in the issue though, the code in that snippet is _slighty_ different from the example gist linked in this post.
 The main difference is this line which resizes codi to 50% of the buffer width whenever a new instance is spawned:
 
-~~~viml
+```vim
 " since it is fullscreen, I'd like a 50/50 split
 let g:codi#width = winwidth(winnr()) / 2
-~~~
+```
 
 The author thought it would be a nice addition to have percentage width support and for the snippets to live elsewhere for others to use in their .vimrc.
 So I went ahead and [wrote a PR](https://github.com/metakirby5/codi.vim/pull/95 "View metakirby5/codi.vim pull request #95") for that instead, this is why you see

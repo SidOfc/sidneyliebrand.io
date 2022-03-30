@@ -1,15 +1,15 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .container {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .anchor {
-  position: relative;
-  visibility: hidden;
-  top: -4.125rem;
+    position: relative;
+    visibility: hidden;
+    top: -4.125rem;
 }
 
 .link {
-  @include themed('color', 'page-fg');
+    @include themed('color', 'page-heading-fg');
 }

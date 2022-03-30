@@ -271,14 +271,14 @@ An [issue](https://github.com/junegunn/fzf.vim/issues/346 "Visit junegunn/fzf.vi
 exact same reason for the `:Ag` command. Based on [this comment](https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704 "Visit junegunn/fzf.vim issue #346 issue comment")
 I came up with the following setup to accomplish this:
 
-~~~viml
+```vim
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
-~~~
+```
 
 This one I mapped to <kbd>ctrl</kbd>+<kbd>g</kbd>, right next to <kbd>ctrl</kbd>+<kbd>f</kbd>
 for the `:Files` command: `nnoremap <C-g> :Rg<Cr>`

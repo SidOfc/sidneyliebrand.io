@@ -1,71 +1,72 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .banner {
-  margin: 2rem 0 3rem;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+    margin: 2rem 0 3rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
 .image {
-  flex: 1 1 10rem;
-  min-width: 10rem;
-  border-radius: 100%;
-  overflow: hidden;
-  margin: 0;
+    flex: 1 1 10rem;
+    min-width: 10rem;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 0;
 
-  @include active-theme('dark') {
-    @include themed('border', '0.25rem solid $0', 'page-fg');
-  }
+    @include active-theme('dark') {
+        @include themed('border', '0.25rem solid $0', 'page-fg');
+    }
 }
 
 .content {
-  flex: 1 1 auto;
-  padding-left: 2rem;
-  font-family: serif;
+    flex: 1 1 auto;
+    padding-left: 2rem;
+    font-weight: 300;
+    font-variation-settings: 'wght' 300;
 
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
+    h2 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
 
-  *:first-child {
-    margin-top: 0;
-  }
+    *:first-child {
+        margin-top: 0;
+    }
 
-  *:last-child {
-    margin-bottom: 0;
-  }
+    *:last-child {
+        margin-bottom: 0;
+    }
 }
 
 @media all and (max-width: 40rem) {
-  .banner {
-    flex-flow: column nowrap;
-  }
-
-  .image {
-    flex: 1 1 50%;
-    width: 50%;
-    max-width: 80%;
-  }
-
-  .content {
-    position: relative;
-    margin-top: 2rem;
-    padding-left: 0;
-    text-align: center;
-    padding-bottom: 3rem;
-
-    &::after {
-      @include themed('background-color', 'primary-bg');
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 25%;
-      width: 50%;
-      height: 0.3rem;
-      border-radius: 0.15rem;
-      transform: translateY(-50%);
+    .banner {
+        flex-flow: column nowrap;
     }
-  }
+
+    .image {
+        flex: 1 1 50%;
+        width: 50%;
+        max-width: 80%;
+    }
+
+    .content {
+        position: relative;
+        margin-top: 2rem;
+        padding-left: 0;
+        text-align: center;
+        padding-bottom: 3rem;
+
+        &::after {
+            @include themed('background-color', 'primary-bg');
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 25%;
+            width: 50%;
+            height: 0.3rem;
+            border-radius: 0.15rem;
+            transform: translateY(-50%);
+        }
+    }
 }

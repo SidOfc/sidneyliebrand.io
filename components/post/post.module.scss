@@ -1,81 +1,90 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .post {
-  display: block;
-  margin: 0 auto;
-  line-height: 1.6;
+    display: block;
+    margin: 0 auto;
+    line-height: 1.6;
 
-  figure {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  p {
-    font-family: serif;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    & + * {
-      margin-top: 0.5rem;
-    }
-  }
-
-  ul, ol {
-    padding: 0 1rem;
-
-    li {
-      padding: 0 0.5rem;
-      font-size: 1.1rem;
-      line-height: 1.3;
-
-      & > * {
-        margin: 0;
-      }
-
-      & + li {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  table {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    width: 100%;
-    border-collapse: collapse;
-
-    th {
-      background-color: #ddd;
+    figure {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
-    th, td {
-      padding: 0.3rem;
-      border: 2px solid #ccc;
+    p {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        font-variation-settings: 'wght' 300;
     }
 
-    @include active-theme('dark') {
-      th {
-        background-color: rgba(255, 255, 255, 0.08);
-      }
-
-      th, td {
-        border-color: #333;
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        & + * {
+            margin-top: 0.5rem;
+        }
     }
-  }
 
-  .postData {
-    line-height: 1;
-    display: inline-block;
-    margin-top: 0.25rem;
-    font-size: 1.1rem;
-  }
+    ul,
+    ol {
+        padding: 0 1rem;
 
-  :global(.half-width) {
-    max-width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
+        li {
+            padding: 0 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.3;
+
+            & > * {
+                margin: 0;
+            }
+
+            & + li {
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    table {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            background-color: #ddd;
+        }
+
+        th,
+        td {
+            padding: 0.3rem;
+            border: 2px solid #ccc;
+        }
+
+        @include active-theme('dark') {
+            th {
+                background-color: rgba(255, 255, 255, 0.08);
+            }
+
+            th,
+            td {
+                border-color: #333;
+            }
+        }
+    }
+
+    .postData {
+        line-height: 1;
+        display: inline-block;
+        margin-top: 0.25rem;
+        font-size: 1.1rem;
+    }
+
+    :global(.half-width) {
+        max-width: 25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

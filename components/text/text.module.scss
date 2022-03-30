@@ -1,18 +1,18 @@
-@import "@styles/config";
+@import '@styles/config';
 
 @each $name, $value in map-deep-get($vars, 'themes', 'light') {
-  @if ends-with($name, '-fg') {
-    .#{$name} {
-      @include themed('color', $name)
+    @if ends-with($name, '-fg') {
+        .#{$name} {
+            @include themed('color', $name);
+        }
     }
-  }
 }
 
-
 .bold {
-  font-weight: 700;
+    font-weight: 700;
+    font-variation-settings: 'wght' 700;
 }
 
 .italic {
-  font-style: italic;
+    font-style: italic;
 }

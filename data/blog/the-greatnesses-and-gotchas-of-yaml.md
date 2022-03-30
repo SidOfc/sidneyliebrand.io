@@ -22,56 +22,56 @@ that allows you to store data in a structured way. Last week I had a
 discussion with a colleague about an unexpected output value when parsing
 YAML to a Ruby hash. The YAML data looks like this:
 
-~~~yaml
+```yaml
 ---
 some_key:
   some_other_key: nil
-~~~
+```
 
 When parsed in Ruby, it looks like this:
 
-~~~ruby
+```ruby
 {'some_key' => {'some_other_key' => 'nil'}}
-~~~
+```
 
 And the equivalent Python output:
 
-~~~python
+```python
 {'some_key': {'some_other_key': 'nil'}}
-~~~
+```
 
 The confusion was about the value of `some_other_key` which we
 both thought would become `nil` instead of `'nil'`. I mentioned to my
 colleague that if he wanted to get a nil value, he might as well
 leave it completely empty:
 
-~~~yaml
+```yaml
 ---
 some_key:
   some_other_key:
-~~~
+```
 
 Which indeed, leads to the expected result in Ruby:
 
-~~~ruby
+```ruby
 {'some_key' => {'some_other_key' => nil}}
-~~~
+```
 
 And of course, in Python too:
 
-~~~python
+```python
 {'some_key': {'some_other_key': None}}
-~~~
+```
 
 At this point we became curious, I mean, there must be *some* kind of `nil` value,
 right? So we ventured to Google and well, found an answer in no time at all :)
 There is a `nil` value in YAML, it's called [`null`](http://yaml.org/type/null.html "Visit null type documentation on yaml.org")!
 
-~~~yaml
+```yaml
 ---
 some_key:
   some_other_key: null
-~~~
+```
 
 Also yields the expected result for both Ruby and Python.
 
@@ -114,7 +114,7 @@ One cool feature, which I first saw when bootstrapping a sample Rails applicatio
 can define "defaults" using anchors. In Rails, the `config/database.yml` file contains the
 following content by default:
 
-~~~yaml
+```yaml
 default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -131,7 +131,7 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
-~~~
+```
 
 As you can see, there is a `default` key followed by `&default`. The `&default` keyword here represents
 the anchor. Then, in another YAML node, you can inherit properties from that anchor by adding a
@@ -145,17 +145,17 @@ expected as [YAML is a superset of JSON](https://stackoverflow.com/questions/172
 
 The following YAML:
 
-~~~yaml
+```yaml
 ---
 key: {"some": "json"}
 another: [1, 2, 3]
-~~~
+```
 
 Parsed in Ruby this results in:
 
-~~~ruby
+```ruby
 {"key"=>{"some"=>"json"}, "another"=>[1, 2, 3]}
-~~~
+```
 
 ## YAML keys as Ruby symbols
 
@@ -165,22 +165,22 @@ Ruby *Symbols* instead of *Strings*. While I didn't have thousands of tests writ
 time, I thought "Why not?". The answer was that indeed, the Ruby parser understands symbols written
 in YAML, and treats them as such when parsing in Ruby.
 
-~~~yaml
+```yaml
 ---
 :my_symbol_key: :or_value
-~~~
+```
 
 In Ruby, evaluates to the following:
 
-~~~ruby
+```ruby
 {:my_symbol_key=>:or_value}
-~~~
+```
 
 Whereas the same YAML parsed in Python outputs:
 
-~~~python
+```python
 {':my_symbol_key': ':or_value'}
-~~~
+```
 
 I only recently gave this some thought, if I were to port my gem to Python for whatever reason,
 I couldn't "conveniently" use this YAML anymore and for anyone wanting to use the gem's YAML
@@ -196,7 +196,7 @@ two solutions. The pipe (`|`) character and the greater than (`>`) sign.
 
 The pipe notation, also referred to as "literal block":
 
-~~~yaml
+```yaml
 literal: |
     This block of text will be the value of the 'literal' key,
     with line breaks being preserved.
@@ -207,11 +207,11 @@ literal: |
         Any lines that are 'more-indented' keep the rest
         of their indentation -
         these lines will be indented by 4 spaces.
-~~~
+```
 
 The greater than sign notation, also referred to as "folded block":
 
-~~~yaml
+```yaml
 folded: >
     This block of text will be the value of 'folded', but this
     time, all newlines will be replaced with a single space.
@@ -221,7 +221,7 @@ folded: >
 
         'More-indented' lines keep their newlines, too -
         this text will appear over two lines.
-~~~
+```
 
 [Both snippets came from here.](https://learnxinyminutes.com/docs/yaml/ "Visit the learnxinyminutes.com YAML docs") This post also contains
 a lot of other great YAML examples you should definitely check out!
@@ -231,22 +231,22 @@ a lot of other great YAML examples you should definitely check out!
 Unlike its friend JSON, YAML doesn't mind if you don't put your strings between quotes.
 The following will output exactly what you would expect:
 
-~~~yaml
+```yaml
 some_key: with a string value
-~~~
+```
 
 In Ruby and Python, the results are the same (output in Ruby):
 
-~~~ruby
+```ruby
 {"some_key"=>"with a string value"}
-~~~
+```
 
 Keys don't have to be quoted either, so removing the `_` from `some_key` results
 in the following in both Ruby and Python (output in Ruby):
 
-~~~ruby
+```ruby
 {"some key"=>"with a string value"}
-~~~
+```
 
 While this makes copying certain values easier YAML tries to be smart about some
 (more than you might think) of them. When a key with a value of either `yes`, `Yes`,
@@ -255,7 +255,7 @@ a boolean. The same is true for values `no`, `No`, `NO`, `off`, `Off` and `OFF`.
 
 The following example shows Ruby syntax but Python 3.6 parsed it exactly the same.
 
-~~~ruby
+```ruby
 # All the following equal true
 YAML.load("key: Yes")
 YAML.load("key: yes")
@@ -273,7 +273,7 @@ YAML.load("key: off")
 YAML.load("key: Off")
 YAML.load("key: OFF")
 # => {"key"=>false}
-~~~
+```
 
 If you expect your program to see these values as strings, the solution is to quote
 the string or to cast the value as we'll see in the next section.
@@ -286,46 +286,46 @@ key: `!!float '0.5'` => `{"key" => 0.5}` as well.
 
 Some parsers actually implement *language specific* tags. These can be used to create specific data structures for that given language:
 
-~~~yaml
+```yaml
 ---
 key: !!python/tuple [1, 2]
-~~~
+```
 
 Results in the following in Python:
 
-~~~python
+```python
 {'key': (1, 2)}
-~~~
+```
 
 What REALLY surprised me here was that the *Ruby parser turned it into an Array instead:*
 
-~~~ruby
+```ruby
 {"key" => [1, 2]}
-~~~
+```
 
 So I thought to myself, *"What if I change `!!python/tuple` to `!!ruby/array?`".*
 So I went on ahead and updated the snippet:
 
-~~~yaml
+```yaml
 ---
 key: !!ruby/array [1, 2]
-~~~
+```
 
 And as expected, Ruby returns the correct result:
 
-~~~ruby
+```ruby
 {"key" => [1, 2]}
-~~~
+```
 
 Our friend Python on the other hand, has some issues here:
 
-~~~plain
+```plain
 ...snipped...
 yaml.constructor.ConstructorError: could not determine a
 constructor for the tag 'tag:yaml.org,2002:ruby/array'
   in "<unicode string>", line 1, column 6:
     key: !!ruby/array [1, 2]
-~~~
+```
 
 In the above example we see that the Python parser throws an error because it can't find the
 correct constructor for the tag. When Ruby finds a *language specific* tag that it doesn't know
@@ -348,25 +348,25 @@ therefore think that YAML deserves a honorable mention for including this awesom
 We've already seen some weird behavior with some unquoted string values magically turning
 into booleans but there is more! YAML parses numbers in `ii:jj` format in base 60! For example, in Ruby:
 
-~~~ruby
+```ruby
 YAML.load("key: 12:30:00")
 # => {"key"=>45000}
-~~~
+```
 
 While the result is [following the spec](http://yaml.org/type/float.html "Visit float type documentation on yaml.org"), it is more often than
 not undesired. It becomes more interesting when the digit starts with a leading `0`. In Ruby:
 
-~~~ruby
+```ruby
 YAML.load("key: 01:30:00")
 # => {"key"=>5400}
-~~~
+```
 
 Whereas in Python:
 
-~~~python
+```python
   yaml.safe_load("key: 01:30:00")
   # => {'key': '01:30:00'}
-~~~
+```
 
 Ruby seems to be trying to "fix" this by trimming the leading `0` and parsing the rest in base 60 whereas
 Python sees that this value is not valid `ii:jj` format. I am not sure why this is but my guess is what
@@ -377,7 +377,7 @@ we're going to talk about next.
 If your YAML contains integer values that start with a `0` and do not contain digits greater than `7`,
 they will be parsed as octal values. In Ruby:
 
-~~~ruby
+```ruby
 # parsed as octal
 YAML.load("key: 0123")
 # => {"key": 83}
@@ -385,7 +385,7 @@ YAML.load("key: 0123")
 # parsed 'normally'
 YAML.load("key: 01238")
 # => {"key": "01238"}
-~~~
+```
 
 Python does exactly the same thing in this case. To get back to the previous example, I think Python
 sees the value `01:30:00` as an invalid octal number and therefore chooses to parse it as a string.
@@ -404,24 +404,24 @@ A complex key is created by first inserting a question mark followed by a space,
 *language specific* tag and the final value of the key. Then, on a new line, the value is added as usual,
 starting with a colon followed by a space character and the value of the key:
 
-~~~yaml
+```yaml
   ---
   ? !!python/tuple [1, 2]
   : hello
-~~~
+```
 
 In Python, this will result in:
 
-~~~python
+```python
 {(1, 2): 'hello'}
-~~~
+```
 
 Ruby on the other hand, has no "Tuple" type (nor did I expect it to understand the python tags)
 and uses the thing that most closely resembles it, an Array:
 
-~~~ruby
+```ruby
 {[1, 2] => "hello"}
-~~~
+```
 
 So while it is a bit awkward and not very portable, still something useful to know just in case :)
 
@@ -435,18 +435,18 @@ seemingly-trivial-yet-missing-from-JSON feature would be the fact that you can a
 In JSON, comments aren't supported but of course, YAML has our back and lets us do pretty much
 whatever we want, a comment starts with a # sign:
 
-~~~yaml
+```yaml
 ---
 some: yaml
 # oh noes! A comment
 no: problem
-~~~
+```
 
 Both Ruby and Python simply ignore the comment:
 
-~~~ruby
+```ruby
 {"key"=>[1, 2], "key2"=>"no problem"}
-~~~
+```
 
 ## Summary
 

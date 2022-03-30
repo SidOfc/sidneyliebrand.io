@@ -1,64 +1,65 @@
-@import "@styles/config";
+@import '@styles/config';
 
 .popup {
-  z-index: 100;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: sans-serif;
-  background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .header {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .title {
-  font-weight: 700;
-  font-size: 1.3rem;
+    font-weight: 700;
+    font-variation-settings: 'wght' 700;
+    font-size: 1.3rem;
 }
 
 .close {
-  position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
-  cursor: pointer;
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
 
-  &::before, &::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    content: '';
-    display: block;
-    width: 3px;
-    height: 100%;
-    border-radius: 3px;
-    background-color: red;
-    transform: translate3d(-50%, -50%, 0) rotate(45deg);
-  }
+    &::before,
+    &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        display: block;
+        width: 3px;
+        height: 100%;
+        border-radius: 3px;
+        background-color: red;
+        transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    }
 
-  &::after {
-    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
-  }
+    &::after {
+        transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    }
 }
 
 .popupContent {
-  padding: 1rem;
-  max-width: calc(100% - 1rem);
-  background-color: #ddd;
-  border: 3px solid #222;
-  border-radius: 0.5rem;
-
-  @include active-theme('dark') {
-    background-color: #444;
+    padding: 1rem;
+    max-width: calc(100% - 1rem);
+    background-color: #ddd;
     border: 3px solid #222;
-  }
+    border-radius: 0.5rem;
+
+    @include active-theme('dark') {
+        background-color: #444;
+        border: 3px solid #222;
+    }
 }

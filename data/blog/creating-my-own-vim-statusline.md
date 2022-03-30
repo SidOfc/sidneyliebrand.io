@@ -113,7 +113,7 @@ go back to the documentation to figure out how to do stuff.
 All that being said, I'd like to share the full "block" of configuration
 that made this possible:
 
-~~~viml
+```vim
 let s:base1   = '#C8CACB'
 let s:base0   = '#AEB0B1'
 let s:base00  = '#949697'
@@ -128,18 +128,22 @@ let s:cyan    = '#55dbbe'
 let s:blue    = '#55b5db'
 let s:magenta = '#a074c4'
 
+
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {},
          \ 'replace': {}, 'visual': {}, 'tabline': {}}
 
-let s:p.normal.left    = [ [ s:blue,   s:base03  ], [ s:base03, s:blue   ] ]
-let s:p.normal.middle  = [ [ s:base1,  s:base03  ]  ]
-let s:p.normal.right   = [ [ s:base03, s:blue    ], [ s:base00, s:base03 ] ]
-let s:p.normal.error   = [ [ s:red,    s:base023 ]  ]
-let s:p.normal.warning = [ [ s:yellow, s:base02  ]  ]
+
+let s:p.normal.left     = [ [ s:blue,   s:base03  ], [ s:base03, s:blue   ] ]
+let s:p.normal.middle   = [ [ s:base1,  s:base03  ]  ]
+let s:p.normal.right    = [ [ s:base03, s:blue    ], [ s:base00, s:base03 ] ]
+let s:p.normal.error    = [ [ s:red,    s:base023 ]  ]
+let s:p.normal.warning  = [ [ s:yellow, s:base02  ]  ]
+
 
 let s:p.inactive.left   = [ [ s:base1,   s:base03  ], [ s:base03, s:base03  ] ]
 let s:p.inactive.middle = [ [ s:base03,  s:base03  ]  ]
 let s:p.inactive.right  = [ [ s:base03,  s:base03  ], [ s:base03, s:base03  ] ]
+
 
 let s:p.insert.left     = [ [ s:green,   s:base03  ], [ s:base03, s:green   ] ]
 let s:p.insert.right    = [ [ s:base03,  s:green   ], [ s:base00, s:base03  ] ]
@@ -148,30 +152,30 @@ let s:p.replace.right   = [ [ s:base03,  s:orange  ], [ s:base00, s:base03  ] ]
 let s:p.visual.left     = [ [ s:magenta, s:base03  ], [ s:base03, s:magenta ] ]
 let s:p.visual.right    = [ [ s:base03,  s:magenta ], [ s:base00, s:base03  ] ]
 
+
 let g:lightline#colorscheme#base16_seti#palette = lightline#colorscheme#fill(s:p)
 let s:label = '%{substitute(expand("%"), "NetrwTreeListing \\d\\+", "netrw", "")}'
 let g:lightline = {
-      \ 'colorscheme':      'base16_seti',
-      \ 'separator':        { 'left': "", 'right': "" },
-      \ 'subseparator':     { 'left': "│", 'right': "│" },
+      \ 'colorscheme':  'base16_seti',
+      \ 'separator':    { 'left': "", 'right': "" },
+      \ 'subseparator': { 'left': "│", 'right': "│" },
       \ 'active': {
-      \   'left': [ [ 'paste' ],
-      \             [ 'modified', 'label' ] ],
+      \   'left':  [ [ 'paste' ], [ 'modified', 'label' ] ],
       \   'right': [ [ 'lineinfo' ] ]
       \ },
       \ 'component': {
       \   'mode':     '%{lightline#mode()[0]}',
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"!":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'readonly': '%{&filetype == "help" ? "" : &readonly ? "!" : ""}',
+      \   'modified': '%{&filetype == "help" ? "" : &modified ? "+" : &modifiable ? "" : "-"}',
       \   'label':    s:label
       \ },
       \ 'component_visible_condition': {
-      \   'paste':    '(&paste!="nopaste")',
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'paste':    '(&paste != "nopaste")',
+      \   'readonly': '(&filetype != "help" && &readonly)',
+      \   'modified': '(&filetype != "help" && (&modified || !&modifiable))',
       \ }
     \ }
-~~~
+```
 
 At the start I was perfectly fine with dealing with this, I was in
 "the configuration zone" at the time anyway so I did not care. Future me however,
@@ -199,7 +203,7 @@ plain Vimscript in addition to stealing a small snippet from a statusline plugin
 to make sure only one statusline was active and unfocussed windows would
 show a "grayscale" version. This is the pure-vimscript implementation I came up with:
 
-~~~viml
+```vim
 let g:mode_colors = {
       \ 'n':  'StatusLineSection',
       \ 'v':  'StatusLineSectionV',
@@ -208,6 +212,7 @@ let g:mode_colors = {
       \ 'c':  'StatusLineSectionC',
       \ 'r':  'StatusLineSectionR'
       \ }
+
 
 fun! StatusLineRenderer()
   let hl = '%#' . get(g:mode_colors, tolower(mode()), g:mode_colors.n) . '#'
@@ -219,10 +224,12 @@ fun! StatusLineRenderer()
         \ . ' %l:%c '
 endfun
 
+
 fun! StatusLineFilename()
   if (&ft ==? 'netrw') | return '*' | endif
   return substitute(expand('%'), '^' . getcwd() . '/\?', '', 'i')
 endfun
+
 
 fun! <SID>StatusLineHighlights()
   hi StatusLine         ctermbg=8  guibg=#313131 ctermfg=15 guifg=#cccccc
@@ -234,6 +241,7 @@ fun! <SID>StatusLineHighlights()
   hi StatusLineSectionR ctermbg=12 guibg=#ed3f45 ctermfg=0  guifg=#000000
 endfun
 
+
 call <SID>StatusLineHighlights()
 
 " only set default statusline once on initial startup.
@@ -242,6 +250,7 @@ call <SID>StatusLineHighlights()
 if has('vim_starting')
   let &statusline = ' %{StatusLineFilename()}%= %l:%c '
 endif
+
 
 augroup vimrc
   au!
@@ -256,7 +265,7 @@ augroup vimrc
   " restore statusline highlights on colorscheme update
   au Colorscheme * call <SID>StatusLineHighlights()
 augroup END
-~~~
+```
 
 To my surprise, the above snippet is **56 lines** for the **entire implementation**
 whereas the **lightline configuration** weighs in at **57 lines**. Yes,

@@ -46,7 +46,7 @@ So without further ado, here are my non-plugin key binds.
 
 ### Pairing braces
 
-~~~viml
+```vim.map
 inoremap <> <><Left>
 inoremap () ()<Left>
 inoremap {} {}<Left>
@@ -54,7 +54,7 @@ inoremap [] []<Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
-~~~
+```
 
 The way I type braces might be weird, but I like it. Basically, whenever I type an opening brace or quote,
 I close it off and move my cursor between them. This ensures that I always have matching braces and I don't
@@ -66,7 +66,7 @@ but it will also "insert" `<Left>` or rather, insert an arrow keypress left whic
 
 ### Navigational keys
 
-~~~viml
+```vim.map
 nmap <Up>    <Nop>
 nmap <Down>  <Nop>
 nmap <Left>  <Nop>
@@ -82,7 +82,7 @@ noremap J     }
 noremap H     ^
 noremap L     $
 noremap <C-x> :bp<Bar>bd #<Cr>
-~~~
+```
 
 I've already discussed the keys <kbd>J</kbd> and <kbd>K</kbd> which are used for moving up and down by paragraph.
 Likewise <kbd>H</kbd> maps to <kbd>^</kbd> which takes you to the first *non-whitespace* character of the current line
@@ -97,7 +97,7 @@ I'm done working with a file. Now it will show me the file I had open before tha
 
 ### Insert mode navigational keys
 
-~~~viml
+```vim.map
 imap <Up>    <Nop>
 imap <Down>  <Nop>
 imap <Left>  <Nop>
@@ -107,7 +107,7 @@ inoremap <C-k> <Up>
 inoremap <C-j> <Down>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-~~~
+```
 
 These ones are very new to me and I have only added them recently. I'm still thinking that when I
 did this about a month ago, I was completely and utterly disoriented without the arrow keys in insert mode.
@@ -122,7 +122,7 @@ ended up with the `<C-[direction]>` keys for movement in insert mode.
 
 ### <kbd>tab</kbd> and <kbd>shift</kbd>+<kbd>tab</kbd> to indent and de-indent
 
-~~~viml
+```vim.map
 nmap >> <Nop>
 nmap << <Nop>
 vmap >> <Nop>
@@ -132,7 +132,7 @@ nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
-~~~
+```
 
 Yet another pair of inconvenient binds are used for indenting and de-indenting code, <kbd>\>\></kbd> and <kbd>\<\<</kbd> respectively.
 Like with the default paragraph binds I think these can be better by just using the bindings I already know and use: <kbd>tab</kbd>
@@ -140,10 +140,10 @@ and <kbd>shift</kbd>+<kbd>tab</kbd>. These binds are to be used in normal or vis
 
 ### Avoiding the <kbd>esc</kbd> key
 
-~~~viml
+```vim.map
 inoremap <S-Tab> <Esc>
 onoremap <S-Tab> <Esc>
-~~~
+```
 
 While there is no such real thing like completely avoiding the escape key, I can manage pretty
 well without it with these simple binds. The first one will take you out of insert mode when
@@ -155,9 +155,9 @@ I will no longer be in operator pending mode, handy for when you accidentally ty
 
 ### Run macro's with <kbd>Q</kbd>
 
-~~~viml
+```vim.map
 nnoremap Q @q
-~~~
+```
 
 This one is a bit different, I'm not unbinding <kbd>@</kbd><kbd>q</kbd> here as I simply *don't have to*. The clumsiness of this
 bind leads me to never accidentally press it anyway. To explain, for recording a macro use <kbd>qq</kbd>,
@@ -167,9 +167,9 @@ I mostly remember and use one macro at a time for the moment so this bind fits m
 
 ### Consistent <kbd>Y</kbd>
 
-~~~viml
+```vim.map
 nnoremap Y y$
-~~~
+```
 
 So unlike our friends <kbd>C</kbd> and <kbd>D</kbd> which change and delete *from cursor to end of line* respectively, <kbd>Y</kbd>
 seems to have some issues, it basically does a <kbd>y</kbd><kbd>y</kbd> which we already have... <kbd>y</kbd><kbd>y</kbd> for. So to make it consistent with its bro's,

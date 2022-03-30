@@ -12,9 +12,9 @@ files is usually more efficient and works in pretty much every major browser tod
 
 To convert a .gif file to .webm, use the following command:
 
-~~~shell
+```shell
 ffmpeg -i file.gif -c vp9 -b:v 0 -crf 40 file.webm
-~~~
+```
 
 This will output a .webm file that works in most browsers, but what are these options
 doing exactly? Let's dive in:
@@ -39,10 +39,10 @@ Indeed the only real reason today to use .mp4 on the web is to support Internet 
 
 To convert a .gif file to a web-safe .mp4, use the following command:
 
-~~~shell
+```shell
 ffmpeg -i file.gif -movflags +faststart -pix_fmt yuv420p \
        -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" file.mp4
-~~~
+```
 
 Let's also cover the options for this one:
 

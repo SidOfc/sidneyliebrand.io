@@ -1,70 +1,73 @@
-@use "sass:map";
-@use "sass:list";
+@use 'sass:map';
+@use 'sass:list';
 
 // NOTE: $vars is injected via next.config.js
 @mixin css-theme-vars {
-  @each $var, $value in map-deep-get($vars, 'themes', 'light') {
-    --#{$var}: #{$value};
-  }
-
-  @each $theme, $config in map-deep-get($vars, 'themes') {
-    @if ($theme != "light") {
-      &.#{$theme} {
-        @each $var, $value in $config {
-          --#{$var}: #{$value};
-        }
-      }
+    @each $var, $value in map-deep-get($vars, 'themes', 'light') {
+        --#{$var}: #{$value};
     }
-  }
+
+    @each $theme, $config in map-deep-get($vars, 'themes') {
+        @if ($theme != 'light') {
+            &.#{$theme} {
+                @each $var, $value in $config {
+                    --#{$var}: #{$value};
+                }
+            }
+        }
+    }
 }
 
 @mixin themed($property, $args...) {
-  $length: list.length($args);
-  $var: list.nth($args, 1);
+    $length: list.length($args);
+    $var: list.nth($args, 1);
 
-  @if $length == 1 {
-    #{$property}: #{map-deep-get($vars, 'themes', 'light', $var)};
-    #{$property}: var(--#{$var});
-  } @else if $length > 1 {
-    $values: ();
-    $keys: ();
+    @if $length == 1 {
+        #{$property}: #{map-deep-get($vars, 'themes', 'light', $var)};
+        #{$property}: var(--#{$var});
+    } @else if $length > 1 {
+        $values: ();
+        $keys: ();
 
-    @for $idx from 2 through $length {
-      $arg: list.nth($args, $idx);
-      $values: list.append($values, map-deep-get($vars, 'themes', 'light', $arg));
-      $keys: list.append($keys, "var(--#{$arg})");
+        @for $idx from 2 through $length {
+            $arg: list.nth($args, $idx);
+            $values: list.append(
+                $values,
+                map-deep-get($vars, 'themes', 'light', $arg)
+            );
+            $keys: list.append($keys, 'var(--#{$arg})');
+        }
+
+        #{$property}: #{substitute($var, $values...)};
+        #{$property}: #{substitute($var, $keys...)};
     }
-
-    #{$property}: #{substitute($var, $values...)};
-    #{$property}: #{substitute($var, $keys...)};
-  }
 }
 
 @mixin active-theme($theme) {
-  :global(html.#{$theme}) & {
-    @content;
-  }
-
-  @if $theme == 'dark' {
-    $not-selector: '';
-    @each $theme-name in map-keys(map-deep-get($vars, 'themes')) {
-      @if $theme-name != $theme {
-        $not-selector: "#{$not-selector}:not(.#{$theme-name})";
-      }
-    }
-
-    :global(html.#{$theme}#{$not-selector}) {
-      @media (prefers-color-scheme: dark) {
+    :global(html.#{$theme}) & {
         @content;
-      }
     }
-  }
+
+    @if $theme == 'dark' {
+        $not-selector: '';
+        @each $theme-name in map-keys(map-deep-get($vars, 'themes')) {
+            @if $theme-name != $theme {
+                $not-selector: '#{$not-selector}:not(.#{$theme-name})';
+            }
+        }
+
+        :global(html.#{$theme}#{$not-selector}) {
+            @media (prefers-color-scheme: dark) {
+                @content;
+            }
+        }
+    }
 }
 
 @function map-deep-get($map, $keys...) {
-  @each $key in $keys {
-    $map: map-get($map, $key);
-  }
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
 
-  @return $map;
+    @return $map;
 }

@@ -5,6 +5,7 @@
     @include themed('background-color', 'primary-bg');
     @include themed('color', 'primary-fg');
     font-weight: 700;
+    font-variation-settings: 'wght' 700;
     font-size: 1.2rem;
     text-transform: uppercase;
     line-height: 1;

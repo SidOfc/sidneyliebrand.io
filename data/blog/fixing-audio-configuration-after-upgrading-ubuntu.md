@@ -10,9 +10,9 @@ connected as "Line Out" and a wireless headset. After an upgrade Ubuntu
 may refuse to play audio through my headset entirely, this can be fixed
 by removing pulse config:
 
-~~~shell
+```shell
 rm -rf ~/.config/pulse
-~~~
+```
 
 On restart, Ubuntu will create a fresh config file which will work.
 
@@ -26,9 +26,9 @@ switch to "newly connected" audio devices.
 Since this is never what I want, I have to disable it by editing the file
 and commenting out `load-module module-switch-on-connect` like this:
 
-~~~ini
+```ini
 # load-module module-switch-on-connect
-~~~
+```
 
 Until next time :)
 

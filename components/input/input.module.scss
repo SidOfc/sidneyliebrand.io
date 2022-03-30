@@ -1,16 +1,17 @@
 .input {
-  display: inline-block;
-  min-width: 10rem;
-  padding: 0.2rem 0.3rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #fff;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  overflow: hidden;
-  color: #000;
+    display: inline-block;
+    min-width: 10rem;
+    padding: 0.2rem 0.3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-variation-settings: 'wght' 700;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    color: #000;
 
-  &::placeholder {
-    color: #bbb;
-  }
+    &::placeholder {
+        color: #bbb;
+    }
 }
