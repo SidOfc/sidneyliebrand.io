@@ -45,6 +45,7 @@
                 "cani"
             ],
             "languages": [
+                "bash",
                 "ruby",
                 "javascript",
                 "lua",
@@ -54,31 +55,33 @@
                 "css"
             ],
             "tools": [
-                "git",
                 "babel",
-                "rollup",
-                "webpack",
-                "react",
-                "next.js",
-                "css-modules",
-                "styled-components",
-                "i18next",
-                "ruby-on-rails",
                 "coffeescript",
-                "gulp",
-                "sass",
+                "css-modules",
                 "flow",
+                "git",
+                "gulp",
+                "i18next",
                 "jekyll",
+                "laravel",
+                "next.js",
                 "postcss",
                 "pug",
                 "puppeteer",
-                "typescript"
+                "react",
+                "rollup",
+                "ruby-on-rails",
+                "sass",
+                "styled-components",
+                "typescript",
+                "webpack"
             ],
             "jobs": [
                 {
                     "title": "Front-end developer",
-                    "organisation": "Floorplanner B.V.",
-                    "description": "At Floorplanner I currently work on the statically-generated main <a href=\"https://floorplanner.com\" rel=\"noopener,noreferrer\">website</a> using gulp and pugjs, the logged-in <a href=\"https://floorplanner.com/home\" rel=\"noopener,noreferrer\">React dashboard</a>, and occasionally I write scraping tools used to extract product and/or color palette data from our vendors. Before that I worked on Roomstyler, a Rails <a href=\"https://roomstyler.com\" rel=\"noopener,noreferrer\">website</a>.",
+                    "organisation": "Floorplanner.com B.V.",
+                    "description": "Started out learning Ruby and Rails, worked in a Rails back-end for the first three years. Currently developing the Floorplanner Dashboard and Editor React applications and main website in addition to developing various web scrapers which are used to extract color palettes and/or product information from our vendor's websites.",
+                    "link": "https://floorplanner.com/",
                     "logo": {
                         "url": "floorplanner-circle.svg",
                         "width": 512,
@@ -110,9 +113,24 @@
                     ]
                 },
                 {
+                    "title": "Back-end developer",
+                    "organisation": "CodeCrashers",
+                    "description": "CodeCrashers is an educational platform for which I maintain the back-end API written in Laravel. I've also set up a basic back-end deploy procedure using git and manage the integration with the React front-end.",
+                    "link": "https://codecrashers.nl/",
+                    "logo": {
+                        "url": "codecrashers.svg",
+                        "width": 500,
+                        "height": 427
+                    },
+                    "start": "2022-03-16T00:00:00Z",
+                    "end": null,
+                    "tags": ["bash", "git", "laravel", "php"]
+                },
+                {
                     "title": "Front-end developer",
                     "organisation": "DEX Online Services",
                     "description": "As Front-end developer at DEX Online Services I sliced and based photoshop designs into responsive websites using HTML5, CSS3 and sprinkles of non-framework JS where needed.",
+                    "link": "http://www.dexos.nl/",
                     "logo": {
                         "url": "dex-online-services.svg",
                         "width": 52,
@@ -137,6 +155,8 @@
             {
                 "title": "Media development",
                 "organisation": "Radius College",
+                "description": "Figured out I wanted to become a front-end developer by the end of the first year of orientation. Spent the next two years working passionately after which I graduated successfully.",
+                "link": "https://www.curio.nl/terheijdenseweg-348/",
                 "logo": {
                     "url": "radius-college.svg",
                     "width": 60,
@@ -149,6 +169,8 @@
             {
                 "title": "Technology",
                 "organisation": "Moller College",
+                "description": "Learnt about self control as I was failing the second year due to heavy gaming addiction. I did manage to overcome this addiction, pass the year, and graduate successfully.",
+                "link": "https://www.ravelijnstb.nl/",
                 "logo": {
                     "url": "moller-college.svg",
                     "width": 60,

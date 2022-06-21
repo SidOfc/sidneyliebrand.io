@@ -192,7 +192,12 @@ export default function Index({title, description, pinnedRepositories}) {
 }
 
 function Experience({item, showLogo = item.logo}) {
-    const title = `${item.title} at ${item.organisation}`;
+    const organisation = item.link ? (
+        <a {...linkProps(item.link)}>{item.organisation}</a>
+    ) : (
+        item.organisation
+    );
+
     return (
         <div className={styles.experienceBlock}>
             <div className={styles.experienceLogo}>
@@ -206,7 +211,7 @@ function Experience({item, showLogo = item.logo}) {
                 )}
             </div>
             <h3 className={styles.experienceTitle}>
-                {item.link ? <a {...linkProps(item.link)}>{title}</a> : title}
+                {item.title} at {organisation}
             </h3>
             <span className={styles.experienceTimespan}>
                 {dateFormat(item.start, {fallback: 'Unknown'})}
@@ -217,7 +222,7 @@ function Experience({item, showLogo = item.logo}) {
                 </Text>
             </span>
             <div className={styles.experienceTags}>
-                <Tags tags={item.tags.sort()} />
+                {item.tags.length > 0 && <Tags tags={item.tags.sort()} />}
             </div>
             <p
                 className={styles.experienceExcerpt}

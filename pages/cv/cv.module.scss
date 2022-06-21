@@ -131,6 +131,10 @@
     grid-area: tools;
     align-self: center;
     padding: 0.5rem 0;
+
+    &:empty {
+        padding: 0.4rem 0 0;
+    }
 }
 
 .experienceExcerpt {
