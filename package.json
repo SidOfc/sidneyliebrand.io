@@ -14,7 +14,7 @@
     "author": "Sidney Liebrand",
     "license": "MIT",
     "dependencies": {
-        "@octokit/rest": "^18.2.1",
+        "@octokit/rest": "^19.0.3",
         "caniuse-db": "^1.0.30001192",
         "gray-matter": "^4.0.2",
         "html-entities": "^2.1.0",
