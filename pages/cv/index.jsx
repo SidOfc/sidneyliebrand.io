@@ -221,6 +221,7 @@ function Experience({item, showLogo = item.logo}) {
                     ({dateDiff(item.start, item.end)})
                 </Text>
             </span>
+            <span className={styles.experienceContract}>{item.contract}</span>
             <div className={styles.experienceTags}>
                 {item.tags.length > 0 && <Tags tags={item.tags.sort()} />}
             </div>

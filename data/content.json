@@ -80,6 +80,7 @@
                 {
                     "title": "Front-end developer",
                     "organisation": "Floorplanner.com B.V.",
+                    "contract": "Full time",
                     "description": "Started out learning Ruby and Rails, worked in a Rails back-end for the first three years. Currently developing the Floorplanner Dashboard and Editor React applications and main website in addition to developing various web scrapers which are used to extract color palettes and/or product information from our vendor's websites.",
                     "link": "https://floorplanner.com/",
                     "logo": {
@@ -115,6 +116,7 @@
                 {
                     "title": "Back-end developer",
                     "organisation": "CodeCrashers",
+                    "contract": "Spare time",
                     "description": "CodeCrashers is an educational platform for which I maintain the back-end API written in Laravel. I've also set up a basic back-end deploy procedure using git and manage the integration with the React front-end.",
                     "link": "https://codecrashers.nl/",
                     "logo": {
@@ -129,6 +131,7 @@
                 {
                     "title": "Front-end developer",
                     "organisation": "DEX Online Services",
+                    "contract": "Part time",
                     "description": "As Front-end developer at DEX Online Services I sliced and based photoshop designs into responsive websites using HTML5, CSS3 and sprinkles of non-framework JS where needed.",
                     "link": "http://www.dexos.nl/",
                     "logo": {
