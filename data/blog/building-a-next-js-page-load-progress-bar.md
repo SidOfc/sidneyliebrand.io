@@ -284,8 +284,6 @@ also less JS and CSS. Adding an endless spinner here also wouldn't be too
 difficult if you really wanted to but this is something I'll leave
 as an exercise for the reader :)
 
-If you've got any questions, feel free to hit me up on Twitter [@scbydoooo](https://twitter.com/scbydoooo).
-
 Until next time!
 
 :wave:
