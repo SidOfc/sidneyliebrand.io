@@ -38,7 +38,7 @@
             "header-shadow": "#333",
             "primary-bg": "#834de8",
             "primary-fg": "#fff",
-            "inline-code-bg": "#666",
+            "inline-code-bg": "#333",
             "inline-code-fg": "#eeeeee",
             "kbd-bg": "#666",
             "kbd-fg": "#e8e8e8",
