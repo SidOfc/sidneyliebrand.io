@@ -94,6 +94,10 @@ a code {
     @include themed('color', 'link-fg');
 }
 
+strong {
+    font-variation-settings: 'wght' 700;
+}
+
 pre {
     padding: 0.5rem 0.75rem;
     overflow-x: auto;
