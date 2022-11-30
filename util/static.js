@@ -2,6 +2,7 @@ import {promises as fs} from 'fs';
 import {serialize} from 'next-mdx-remote/serialize';
 import matter from 'gray-matter';
 import {emojify} from 'node-emoji';
+import {retry} from '@octokit/plugin-retry';
 import {Octokit} from '@octokit/rest';
 import {markdown} from 'markdown';
 import {slug, readTime} from '@src/util';
@@ -20,7 +21,8 @@ export function getPageData(path) {
 
 export async function getPinnedRepositories() {
     const auth = (await fs.readFile('.api-access-token')).toString();
-    const api = new Octokit({auth});
+    const RetriableOctokit = Octokit.plugin(retry);
+    const api = new RetriableOctokit({auth, request: {retries: 3}});
 
     return Promise.all(
         profile.programming.repos.map(async (name, index) => {
