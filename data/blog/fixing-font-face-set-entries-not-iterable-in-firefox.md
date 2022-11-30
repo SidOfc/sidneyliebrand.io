@@ -93,8 +93,7 @@ which means there is little hope for a "hotfix" and also means that this
 behavior has existed in Firefox for at least one year.
 
 Since this isn't something Firefox seems to be fixing and the documentation
-is lacking there isn't much to do aside from writing a workaround for
-a problem which shouldn't even exist in the first place.
+is lacking there isn't much to do aside from writing a workaround.
 
 ## Solving the problem
 
@@ -102,8 +101,7 @@ The value returned by `document.fonts.entries()` in Firefox may not be "official
 iterable from the browser's own perspective, but it **does** have a `.next()`
 method as is required per [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol).
 
-So, instead of relying on browser magic, we can instead write a
-wrapper function which exhausts this fake "iterator":
+So, instead of relying on the browser we write our own function which exhausts this fake "iterator":
 
 ```javascript
 function fontFaceSetIteratorToArray(target) {
