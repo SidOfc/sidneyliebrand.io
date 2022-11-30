@@ -9,7 +9,6 @@ published:   "2018-08-27T07:55:24Z"
     alt="A Codi.vim fullscreen buffer"
     width="1672"
     height="972"
-    className="wide"
 />
 
 Recently I discovered [codi.vim](https://github.com/metakirby5/codi.vim "Visit metakirby5/codi.vim on GitHub") on [vimawesome.com](https://vimawesome.com/?q=cat%3Aother "Visit vimawesome.com 'Other' category plugin").
