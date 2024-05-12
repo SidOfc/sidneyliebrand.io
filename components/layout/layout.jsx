@@ -1,7 +1,6 @@
 import styles from './layout.module.scss';
 import Link from 'next/link';
 import Media from '@components/media';
-import Text from '@components/text';
 import Bullet from '@components/bullet';
 import DarkModeToggle from '@components/dark-mode-toggle';
 

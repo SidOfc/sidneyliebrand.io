@@ -1,4 +1,3 @@
-import {forwardRef} from 'react';
 import styles from './media.module.scss';
 import {classes} from '@src/util';
 

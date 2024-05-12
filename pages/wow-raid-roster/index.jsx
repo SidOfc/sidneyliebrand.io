@@ -2,7 +2,6 @@ import {useState, useEffect, useCallback} from 'react';
 import {useRouter} from 'next/router';
 import styles from './wow-raid-roster.module.scss';
 import Head from '@components/head';
-import Text from '@components/text';
 import Dropdown from '@components/dropdown';
 import Input from '@components/input';
 import Popup from '@components/popup';
@@ -10,14 +9,13 @@ import Media from '@components/media';
 import Button from '@components/button';
 import {pauseEscape, resumeEscape} from '@hooks/use-escape';
 import {getPageData} from '@src/util/static';
-import {classes, handleKeys} from '@src/util';
+import {classes} from '@src/util';
 import wowClasses from '@data/wow-classes.json';
 
 export default function Index({title, description}) {
     const router = useRouter();
     const [model, setModel] = useState({name: '', size: 10, items: {}});
     const [teams, setTeams] = useState([]);
-    const [data, setData] = useState({});
     const updateModel = useCallback(
         (next) => setModel((current) => ({...current, ...next})),
         [],
@@ -132,10 +130,10 @@ function Team({data, onUpdate, onDelete}) {
     const [editingIndex, setEditingIndex] = useState(null);
     const {name, role} = data.items[editingIndex] || {name: '', role: 0};
     const groupCount = data.size / 5;
-    const classId = (role & 0xf0) >> 4;
-    const specId = role & 0x0f;
-    const cls = wowClasses.find(({id}) => id === classId);
-    const spec = cls?.specs?.find(({id}) => id === specId);
+    // const classId = (role & 0xf0) >> 4;
+    // const specId = role & 0x0f;
+    // const cls = wowClasses.find(({id}) => id === classId);
+    // const spec = cls?.specs?.find(({id}) => id === specId);
     const close = useCallback(() => setEditingIndex(null), []);
     const save = useCallback(
         (current) => {
