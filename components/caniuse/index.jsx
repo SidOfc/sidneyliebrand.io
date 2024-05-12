@@ -227,12 +227,12 @@ function VersionCell({item, prefix, ...props}) {
                 flags.includes('y')
                     ? 'Supported'
                     : flags.includes('n')
-                    ? 'Not supported'
-                    : flags.includes('u')
-                    ? 'Unknown'
-                    : flags.includes('a')
-                    ? 'Partial support'
-                    : null
+                      ? 'Not supported'
+                      : flags.includes('u')
+                        ? 'Unknown'
+                        : flags.includes('a')
+                          ? 'Partial support'
+                          : null
             }
             className={classes(
                 styles.cell,
