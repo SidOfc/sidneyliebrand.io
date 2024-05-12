@@ -1,4 +1,5 @@
 import Highlight, {defaultProps} from 'prism-react-renderer';
+import {except} from '@src/util';
 import '@src/util/prism';
 
 export default function CodeBlock({className, children}) {
@@ -12,11 +13,16 @@ export default function CodeBlock({className, children}) {
             {({className, style, tokens, getLineProps, getTokenProps}) => (
                 <pre className={className} style={{...style}}>
                     {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({line, key: i})}>
+                        <div
+                            key={i}
+                            {...except(getLineProps({line, key: i}), ['key'])}
+                        >
                             {line.map((token, key) => (
                                 <span
                                     key={key}
-                                    {...getTokenProps({token, key})}
+                                    {...except(getTokenProps({token, key}), [
+                                        'key',
+                                    ])}
                                 />
                             ))}
                         </div>

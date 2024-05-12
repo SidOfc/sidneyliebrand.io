@@ -28,32 +28,29 @@ export async function getPinnedRepositories() {
         profile.programming.repos.map(async (name, index) => {
             const options = {owner: 'sidofc', repo: name};
             const [repo, topics, stats] = await Promise.all([
-                api.repos
-                    .get(options)
-                    .then(({data}) => data)
-                    .catch(() => ({})),
+                api.repos.get(options).then(({data}) => data),
                 api.repos
                     .getAllTopics(options)
-                    .then(({data}) => data.names || [])
-                    .catch(() => []),
-                api.repos
-                    .getContributorsStats(options)
-                    .then(({data}) =>
-                        data.reduce(
-                            (acc, {total, weeks}) =>
-                                weeks.reduce(
-                                    (acc, week) => {
-                                        acc.additions += week.a;
-                                        acc.deletions += week.d;
+                    .then(({data}) => data.names || []),
+                api.repos.getContributorsStats(options).then((response) => {
+                    const data = Array.isArray(response.data)
+                        ? response.data
+                        : [];
 
-                                        return acc;
-                                    },
-                                    {...acc, commits: acc.commits + total}
-                                ),
-                            {commits: 0, additions: 0, deletions: 0}
-                        )
-                    )
-                    .catch(() => []),
+                    return data.reduce(
+                        (acc, {total, weeks}) =>
+                            weeks.reduce(
+                                (acc, week) => {
+                                    acc.additions += week.a;
+                                    acc.deletions += week.d;
+
+                                    return acc;
+                                },
+                                {...acc, commits: acc.commits + total},
+                            ),
+                        {commits: 0, additions: 0, deletions: 0},
+                    );
+                }),
             ]);
 
             return {
@@ -68,7 +65,7 @@ export async function getPinnedRepositories() {
                 topics,
                 stats,
             };
-        })
+        }),
     );
 }
 
@@ -104,14 +101,14 @@ export async function processMarkdownDir(dirPath) {
 
     return Promise.all(
         filenames.map((filename) =>
-            processMarkdownFile(`${dirPath}/${filename}`)
-        )
+            processMarkdownFile(`${dirPath}/${filename}`),
+        ),
     );
 }
 
 function caniuseEmbedData(content) {
     return interpolate(content, 'caniuse', (id) =>
-        JSON.stringify(getFeature(id))
+        JSON.stringify(getFeature(id)),
     );
 }
 
@@ -126,7 +123,7 @@ function flagData(str) {
     return {
         notes,
         flags: flags.filter(
-            (flag) => !['d', 'x', 'p'].includes(flag) && !flag.startsWith('#')
+            (flag) => !['d', 'x', 'p'].includes(flag) && !flag.startsWith('#'),
         ),
         disabled: flags.includes('d'),
         prefixed: flags.includes('x'),
@@ -206,7 +203,7 @@ function getFeature(id) {
             ...acc,
             [id]: caniuse.agents[id].prefix,
         }),
-        {}
+        {},
     );
 
     return {
@@ -218,10 +215,11 @@ function getFeature(id) {
                 ? [{url: feature.spec, title: 'Specification'}]
                 : []),
         ].filter(
-            (l, idx, links) => links.findIndex((ll) => l.url === ll.url) === idx
+            (l, idx, links) =>
+                links.findIndex((ll) => l.url === ll.url) === idx,
         ),
         bugs: (feature.bugs || []).map(({description}) =>
-            inlineMarkdown(description)
+            inlineMarkdown(description),
         ),
         updated: caniuse.updated * 1000,
         notes: [
@@ -259,6 +257,6 @@ function interpolate(content, label, replace) {
     const stripRegExp = new RegExp(`^{{${label}:|}}$`, 'g');
 
     return content.replace(findRegExp, (match) =>
-        replace(match.replace(stripRegExp, ''))
+        replace(match.replace(stripRegExp, '')),
     );
 }

@@ -20,13 +20,13 @@ export default class Document extends NextDocument {
                                                 ...acc,
                                                 [theme]: rules['page-bg'],
                                             }),
-                                            {}
-                                        )
+                                            {},
+                                        ),
                                     )};
                                     window.themeNames = Object.keys(themeBackgrounds);
                                     ${readFileSync('public/document.js')}
                                 `,
-                                {mangle: {toplevel: true}}
+                                {mangle: {toplevel: true}},
                             ).code,
                         }}
                     />

@@ -23,6 +23,6 @@ export default function Popup({onClose, children}) {
             >
                 {children}
             </div>
-        </div>
+        </div>,
     );
 }

@@ -238,7 +238,7 @@ export async function getStaticProps() {
     const pinnedRepositories = await getPinnedRepositories();
 
     pinnedRepositories.sort((a, b) =>
-        Math.min(1, Math.max(-1, b.starCount - a.starCount))
+        Math.min(1, Math.max(-1, b.starCount - a.starCount)),
     );
 
     return {

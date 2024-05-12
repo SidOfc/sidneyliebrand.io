@@ -51,7 +51,7 @@ export default function Index({title, description, posts}) {
                                 </Button>
                             </a>
                         </Link>
-                    )
+                    ),
                 )}
             </section>
         </>

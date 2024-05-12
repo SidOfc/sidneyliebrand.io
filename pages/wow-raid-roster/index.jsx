@@ -20,7 +20,7 @@ export default function Index({title, description}) {
     const [data, setData] = useState({});
     const updateModel = useCallback(
         (next) => setModel((current) => ({...current, ...next})),
-        []
+        [],
     );
 
     const addTeam = useCallback(() => {
@@ -46,7 +46,7 @@ export default function Index({title, description}) {
 
             router.push(`#${encode(next)}`);
         },
-        [router, teams]
+        [router, teams],
     );
 
     const deleteTeam = useCallback(
@@ -62,7 +62,7 @@ export default function Index({title, description}) {
                 router.push(`#${encode(next)}`);
             }
         },
-        [router, teams]
+        [router, teams],
     );
 
     useEffect(() => {
@@ -142,7 +142,7 @@ function Team({data, onUpdate, onDelete}) {
             onUpdate({[editingIndex]: current});
             close();
         },
-        [onUpdate, editingIndex, close]
+        [onUpdate, editingIndex, close],
     );
 
     const getData = (group, row) => {
@@ -277,11 +277,11 @@ function Form({data, onSubmit, onCancel}) {
     const updateClass = useCallback((classId) => setRole(classId << 4), []);
     const updateSpec = useCallback(
         (specId) => setRole((classId << 4) | specId),
-        [classId]
+        [classId],
     );
     const onSubmitHandler = useCallback(
         () => onSubmit?.({name, role}),
-        [name, role, onSubmit]
+        [name, role, onSubmit],
     );
 
     return (
@@ -303,7 +303,7 @@ function Form({data, onSubmit, onCancel}) {
                                 className={specId === spec.id && 'selected'}
                                 onClick={() =>
                                     updateSpec(
-                                        specId === spec.id ? null : spec.id
+                                        specId === spec.id ? null : spec.id,
                                     )
                                 }
                             />
@@ -311,7 +311,7 @@ function Form({data, onSubmit, onCancel}) {
                         <div
                             className={classes(
                                 styles.selectedClass,
-                                styles[`${cls?.name}Color`]
+                                styles[`${cls?.name}Color`],
                             )}
                         >
                             {spec?.name} {cls.name}
@@ -336,7 +336,7 @@ function Form({data, onSubmit, onCancel}) {
                 <Input
                     className={classes(
                         styles.nameInput,
-                        styles[`${cls?.name}Color`]
+                        styles[`${cls?.name}Color`],
                     )}
                     value={name}
                     placeholder="Name"
@@ -380,7 +380,7 @@ function encode(teams) {
             const items = Object.entries(team.items)
                 .map(
                     ([key, {name, role}]) =>
-                        name && role && `${key}${name}${role}`
+                        name && role && `${key}${name}${role}`,
                 )
                 .filter(Boolean);
 

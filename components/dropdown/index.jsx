@@ -22,7 +22,7 @@ export default function Dropdown({
                 onChange(isResetValue ? resetValue : items[v]);
             }
         },
-        [items, resetValue, onChange, disabled, allowReset]
+        [items, resetValue, onChange, disabled, allowReset],
     );
 
     return (

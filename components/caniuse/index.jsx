@@ -94,7 +94,7 @@ export default function Caniuse({data}) {
                 <div
                     className={classes(
                         styles.tableBody,
-                        styles.tableBodyCurrent
+                        styles.tableBodyCurrent,
                     )}
                 >
                     {data.stats.map(({id, name, versions}) => {
@@ -236,7 +236,7 @@ function VersionCell({item, prefix, ...props}) {
             }
             className={classes(
                 styles.cell,
-                ...flags.map((flag) => styles[`flag-${flag}`])
+                ...flags.map((flag) => styles[`flag-${flag}`]),
             )}
         >
             <div className={styles.cellDetails}>
