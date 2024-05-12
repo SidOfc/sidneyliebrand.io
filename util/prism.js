@@ -1,17 +1,18 @@
-import Prism from 'prism-react-renderer/prism';
+import {Prism, themes} from 'prism-react-renderer';
 
 (global || window).Prism = Prism;
 
 require('prismjs/components/prism-vim');
 require('prismjs/components/prism-ruby');
 require('prismjs/components/prism-yaml');
+require('prismjs/components/prism-bash');
 
 Prism.languages['vim.map'] = {
     keyword: /\b[nivox]?(?:nore)?map\b/,
     string: /<[\w-]+>/i,
 };
 
-Prism.languages.shell['function-name'].push({
+Prism.languages.bash['function-name'].push({
     pattern: /(?:^|\| |&& |;\s*(?:or|and) )\s*([\w.]\S*)/g,
     alias: 'function',
 });
@@ -41,3 +42,46 @@ Prism.languages.vim.string = {
         },
     },
 };
+
+function patchTheme({plain, styles}) {
+    const props = new Map();
+    const propValueKeys = new Map();
+    const process = (target) => {
+        const idx = propValueKeys.size;
+        const result = {};
+
+        for (const [prop, value] of Object.entries(target)) {
+            const key = propValueKeys.get(value) ?? `--prism-${idx}-${prop}`;
+
+            if (!propValueKeys.has(value)) {
+                props.set(key, value);
+                propValueKeys.set(value, key);
+            }
+
+            result[prop] = `var(${key})`;
+        }
+
+        return result;
+    };
+
+    return {
+        props,
+        theme: {
+            plain: process(plain),
+            styles: styles.map(({types, style}) => ({
+                style: process(style),
+                types,
+            })),
+        },
+    };
+}
+
+export const darkTheme = patchTheme(themes.dracula);
+export const lightTheme = patchTheme(themes.github);
+export const darkStyles = Array.from(darkTheme.props.entries())
+    .map(([prop, value]) => `${prop}: ${value};`)
+    .join('');
+export const lightStyles = Array.from(lightTheme.props.entries())
+    .map(([prop, value]) => `${prop}: ${value};`)
+    .join('');
+export const prismStyles = `html { ${lightStyles} }\nhtml.dark { ${darkStyles} }`;

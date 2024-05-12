@@ -8,7 +8,9 @@
 
     try {
         theme = localStorage.getItem('theme');
-    } catch (e) {}
+    } catch (error) {
+        // console.error(error);
+    }
 
     theme = theme || 'light';
 
@@ -30,7 +32,9 @@
                 } else {
                     localStorage.removeItem('theme');
                 }
-            } catch (e) {}
+            } catch (error) {
+                // console.error(error);
+            }
         }
     }
 
@@ -56,7 +60,9 @@
                 if (!localStorage.getItem('theme')) {
                     applyTheme(query.matches ? 'dark' : 'light');
                 }
-            } catch (e) {}
+            } catch (error) {
+                // console.error(error);
+            }
         });
     }
 

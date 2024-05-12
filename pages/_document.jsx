@@ -1,9 +1,8 @@
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 import {readFileSync} from 'fs';
 import {minify} from 'uglify-js';
+import {prismStyles} from '@src/util/prism';
 import sassVars from '@data/sass-variables.json';
-
-const {themes} = sassVars;
 
 export default class Document extends NextDocument {
     render() {
@@ -15,7 +14,7 @@ export default class Document extends NextDocument {
                             __html: minify(
                                 `
                                     window.themeBackgrounds = ${JSON.stringify(
-                                        Object.entries(themes).reduce(
+                                        Object.entries(sassVars.themes).reduce(
                                             (acc, [theme, rules]) => ({
                                                 ...acc,
                                                 [theme]: rules['page-bg'],
@@ -31,6 +30,7 @@ export default class Document extends NextDocument {
                         }}
                     />
                 </Head>
+                <style>{prismStyles}</style>
                 <body>
                     <Main />
                     <NextScript />
