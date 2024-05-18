@@ -5,10 +5,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "npx rimraf .next && next build && yarn generate-metadata && next export",
+        "build": "npx rimraf .next && next build && npm run generate-metadata && next export",
         "start": "next start",
         "generate-metadata": "node scripts/generate-metadata.js",
-        "deploy": "yarn build --silent && bash scripts/deploy"
+        "deploy": "npm run build --silent && bash scripts/deploy"
     },
     "keywords": [],
     "author": "Sidney Liebrand",
