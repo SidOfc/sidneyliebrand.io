@@ -7,8 +7,11 @@ import Banner from '@components/banner';
 import Text from '@components/text';
 import {processMarkdownDir, getPageData} from '@src/util/static';
 import {dateFormat, except} from '@src/util';
+import content from '@data/content';
 
 export default function Index({title, description, posts}) {
+    const fullTitle = [content.titlePrefix, title].filter((x) => x).join(' - ');
+
     return (
         <>
             <Head title={title} description={description} />
@@ -17,7 +20,7 @@ export default function Index({title, description, posts}) {
                 alt="Cartoon avatar of Sidney Liebrand"
                 width={280}
                 height={280}
-                title={title}
+                title={fullTitle}
                 description={description}
             />
             <section className={styles.blogEntries}>
