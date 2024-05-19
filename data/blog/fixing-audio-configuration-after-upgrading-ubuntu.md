@@ -10,7 +10,7 @@ connected as "Line Out" and a wireless headset. After an upgrade Ubuntu
 may refuse to play audio through my headset entirely, this can be fixed
 by removing pulse config:
 
-```shell
+```bash
 rm -rf ~/.config/pulse
 ```
 

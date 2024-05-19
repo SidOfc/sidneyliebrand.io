@@ -4,7 +4,6 @@ import {classes} from '@src/util';
 
 export default function Button({
     href,
-    as: Component = href ? 'a' : 'button',
     className,
     children,
     disabled,
@@ -12,14 +11,14 @@ export default function Button({
     tabIndex = 0,
 }) {
     const button = (
-        <Component
+        <button
             tabIndex={tabIndex}
             className={classes(className, {disabled}, styles.button)}
             onClick={disabled ? null : onClick}
         >
             {children}
-        </Component>
+        </button>
     );
 
-    return Component === 'a' ? <Link href={href}>{button}</Link> : button;
+    return href ? <Link href={href}>{button}</Link> : button;
 }

@@ -10,33 +10,34 @@ export default function Layout({children}) {
             <header className={styles.header}>
                 <div className={styles.headerFixed}>
                     <div className={styles.headerContent}>
-                        <Link href="/">
-                            <a className={styles.logo} title="View home page">
-                                <span className={styles.logoTopLeft} />
-                                <span className={styles.logoBottomLeft} />
-                                <span className={styles.logoTopRight} />
-                                <span className={styles.logoBottomRight} />
-                            </a>
+                        <Link
+                            href="/"
+                            className={styles.logo}
+                            title="View home page"
+                        >
+                            <span className={styles.logoTopLeft} />
+                            <span className={styles.logoBottomLeft} />
+                            <span className={styles.logoTopRight} />
+                            <span className={styles.logoBottomRight} />
                         </Link>
                         <nav className={styles.navigation}>
-                            <Link href="/cv">
-                                <a title="View curriculum vitae">C.V.</a>
+                            <Link href="/cv" title="View curriculum vitae">
+                                C.V.
                             </Link>
                             <Link
                                 className={styles.githubWrapper}
                                 href="https://github.com/SidOfc"
+                                title="Visit Sidney Liebrand's GitHub page"
                             >
-                                <a title="Visit Sidney Liebrand's GitHub page">
-                                    <Media
-                                        invertDark
-                                        className={styles.github}
-                                        src="/media/github.svg"
-                                        alt="Sidney Liebrand's GitHub page"
-                                        showAlt={false}
-                                        width={16}
-                                        height={16}
-                                    />
-                                </a>
+                                <Media
+                                    invertDark
+                                    className={styles.github}
+                                    src="/media/github.svg"
+                                    alt="Sidney Liebrand's GitHub page"
+                                    showAlt={false}
+                                    width={16}
+                                    height={16}
+                                />
                             </Link>
                             <DarkModeToggle />
                         </nav>
@@ -48,12 +49,12 @@ export default function Layout({children}) {
                 <strong>&copy;</strong> sidneyliebrand.io{' '}
                 {new Date().getFullYear()}
                 <Bullet wide />
-                <Link href="/feed.xml">
-                    <a title="View RSS feed">RSS</a>
+                <Link href="/feed.xml" title="View RSS feed">
+                    RSS
                 </Link>
                 <Bullet wide />
-                <Link href="/atom.xml">
-                    <a title="View Atom feed">Atom</a>
+                <Link href="/atom.xml" title="View Atom feed">
+                    Atom
                 </Link>
             </footer>
         </div>

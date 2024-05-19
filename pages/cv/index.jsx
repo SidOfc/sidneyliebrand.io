@@ -32,31 +32,33 @@ export default function Index({title, description, pinnedRepositories}) {
                         {profile.title}
                     </Text>
                     <div className={styles.bannerDetails}>
-                        <Link href="https://github.com/SidOfc">
-                            <a title="Visit Sidney Liebrand's GitHub page">
-                                <Media
-                                    invertDark
-                                    showAlt={false}
-                                    src="/media/github.svg"
-                                    alt="Sidney Liebrand's GitHub page"
-                                    width={16}
-                                    height={16}
-                                />{' '}
-                                /SidOfc
-                            </a>
+                        <Link
+                            href="https://github.com/SidOfc"
+                            title="Visit Sidney Liebrand's GitHub page"
+                        >
+                            <Media
+                                invertDark
+                                showAlt={false}
+                                src="/media/github.svg"
+                                alt="Sidney Liebrand's GitHub page"
+                                width={16}
+                                height={16}
+                            />{' '}
+                            /SidOfc
                         </Link>
-                        <Link href="https://linkedin.com/in/sidneyliebrand">
-                            <a title="Visit Sidney Liebrand's LinkedIn page">
-                                <Media
-                                    invertDark
-                                    showAlt={false}
-                                    src="/media/linkedin.svg"
-                                    alt="Sidney Liebrand's LinkedIn page"
-                                    width={16}
-                                    height={16}
-                                />{' '}
-                                /sidneyliebrand
-                            </a>
+                        <Link
+                            href="https://linkedin.com/in/sidneyliebrand"
+                            title="Visit Sidney Liebrand's LinkedIn page"
+                        >
+                            <Media
+                                invertDark
+                                showAlt={false}
+                                src="/media/linkedin.svg"
+                                alt="Sidney Liebrand's LinkedIn page"
+                                width={16}
+                                height={16}
+                            />{' '}
+                            /sidneyliebrand
                         </Link>
                     </div>
                 </div>

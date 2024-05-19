@@ -88,7 +88,7 @@ us to select one or multiple results and run them through `caniuse` so that we c
 
 To do this, I created a ZSH function (which depends on my script for listing the features):
 
-```shell
+```bash
 # caniuse for quick access to global support list
 cani() {
   local feats=$(~/dotfiles/bin/ciu | sort -rn | fzf -m | sed -e 's/^.*%\ *//g' | sed -e 's/   .*//g')

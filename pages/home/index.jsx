@@ -29,27 +29,30 @@ export default function Index({title, description, posts}) {
                         published,
                         readTimeInMinutes,
                     }) => (
-                        <Link key={title} href={`/blog/${slug}`}>
-                            <a title={title} className={styles.blogEntry}>
-                                <h2>{title}</h2>
-                                <Text color="page-accent">
-                                    By Sidney Liebrand on{' '}
-                                    {dateFormat(published, {includeDay: true})}
-                                    <Bullet />
-                                    {readTimeInMinutes} min read
-                                </Text>
-                                <p
-                                    dangerouslySetInnerHTML={{
-                                        __html: description,
-                                    }}
-                                />
-                                <Button
-                                    tabIndex={-1}
-                                    className={styles.blogEntryButton}
-                                >
-                                    View post
-                                </Button>
-                            </a>
+                        <Link
+                            key={title}
+                            href={`/blog/${slug}`}
+                            title={title}
+                            className={styles.blogEntry}
+                        >
+                            <h2>{title}</h2>
+                            <Text color="page-accent">
+                                By Sidney Liebrand on{' '}
+                                {dateFormat(published, {includeDay: true})}
+                                <Bullet />
+                                {readTimeInMinutes} min read
+                            </Text>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: description,
+                                }}
+                            />
+                            <Button
+                                tabIndex={-1}
+                                className={styles.blogEntryButton}
+                            >
+                                View post
+                            </Button>
                         </Link>
                     ),
                 )}

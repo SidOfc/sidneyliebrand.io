@@ -2,6 +2,7 @@ const {types} = require('sass');
 const sassVars = require('./data/sass-variables.json');
 
 module.exports = {
+    output: 'export',
     swcMinify: true,
     sassOptions: {
         prependData: `$vars: ${serializeToSass(sassVars)};`,
@@ -28,7 +29,7 @@ module.exports = {
                 const result = replacements.reduce((acc, replacement, idx) => {
                     return acc.replace(
                         new RegExp(`\\$${idx}`, 'gi'),
-                        replacement
+                        replacement,
                     );
                 }, string);
 
