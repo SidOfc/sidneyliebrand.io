@@ -1,13 +1,13 @@
 import {Highlight} from 'prism-react-renderer';
 import {except} from '@src/util';
-import {lightTheme} from '@src/util/prism';
+import {theme} from '@src/util/prism';
 import '@src/util/prism';
 
 export default function CodeBlock({className, children}) {
     return (
         <Highlight
             className={className}
-            theme={lightTheme.theme}
+            theme={theme}
             code={children.props.children.trim()}
             language={children.props.className.split('-').pop()}
         >

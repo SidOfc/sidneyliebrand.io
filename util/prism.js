@@ -43,45 +43,75 @@ Prism.languages.vim.string = {
     },
 };
 
-function patchTheme({plain, styles}) {
-    const props = new Map();
-    const propValueKeys = new Map();
-    const process = (target) => {
-        const idx = propValueKeys.size;
-        const result = {};
+function extract(theme) {
+    const result = {plain: theme.plain};
 
-        for (const [prop, value] of Object.entries(target)) {
-            const key = propValueKeys.get(value) ?? `--prism-${idx}-${prop}`;
-
-            if (!propValueKeys.has(value)) {
-                props.set(key, value);
-                propValueKeys.set(value, key);
+    for (const {types, style} of theme.styles) {
+        for (const type of types) {
+            if (result[type]) {
+                Object.assign(result[type], style);
+            } else {
+                result[type] = structuredClone(style);
             }
-
-            result[prop] = `var(${key})`;
         }
+    }
 
-        return result;
-    };
-
-    return {
-        props,
-        theme: {
-            plain: process(plain),
-            styles: styles.map(({types, style}) => ({
-                style: process(style),
-                types,
-            })),
-        },
-    };
+    return result;
 }
 
-export const darkTheme = patchTheme(themes.dracula);
-export const lightTheme = patchTheme(themes.github);
-export const darkStyles = Array.from(darkTheme.props.entries())
+function group(a, b) {
+    return Object.keys(a)
+        .concat(Object.keys(b))
+        .reduce((acc, key) => {
+            const aProps = a[key] ?? {};
+            const bProps = b[key] ?? {};
+
+            acc[key] = Object.keys(aProps)
+                .concat(Object.keys(bProps))
+                .reduce((acc, key) => {
+                    acc[key] = [aProps[key] ?? null, bProps[key] ?? null];
+
+                    return acc;
+                }, {});
+
+            return acc;
+        }, {});
+}
+
+const dark = extract(themes.oneDark);
+const light = extract(themes.github);
+const result = Object.entries(group(dark, light)).reduce(
+    (acc, [type, rules]) => {
+        const style = {};
+
+        for (const [prop, [dark, light]] of Object.entries(rules)) {
+            const key = `--prism-${type}-${prop}`;
+
+            if (dark !== null) acc.defs.dark.set(key, dark);
+            if (light !== null) acc.defs.light.set(key, light);
+
+            style[prop] = `var(${key})`;
+        }
+
+        if (type === 'plain') {
+            acc.theme[type] = style;
+        } else {
+            acc.theme.styles.push({types: [type], style});
+        }
+
+        return acc;
+    },
+    {
+        theme: {plain: {}, styles: []},
+        defs: {dark: new Map(), light: new Map()},
+    },
+);
+
+export const theme = result.theme;
+export const darkStyles = Array.from(result.defs.dark.entries())
     .map(([prop, value]) => `${prop}: ${value};`)
     .join('');
-export const lightStyles = Array.from(lightTheme.props.entries())
+export const lightStyles = Array.from(result.defs.light.entries())
     .map(([prop, value]) => `${prop}: ${value};`)
     .join('');
-export const prismStyles = `html { ${lightStyles} }\nhtml.dark { ${darkStyles} }`;
+export const prismStyles = `html.light { ${lightStyles} }\nhtml.dark { ${darkStyles} }`;
