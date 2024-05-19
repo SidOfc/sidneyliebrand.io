@@ -23,6 +23,23 @@ export async function getPinnedRepositories() {
     const auth = (await fs.readFile('.api-access-token')).toString();
     const RetriableOctokit = Octokit.plugin(retry);
     const api = new RetriableOctokit({auth, request: {retries: 3}});
+    const completion = async (fn, attempts = 3) => {
+        const response = await fn();
+
+        if (response.status === 200 || attempts === 0) {
+            return response;
+        }
+
+        return new Promise((resolve, reject) => {
+            setTimeout(
+                () =>
+                    completion(fn, attempts - 1)
+                        .then(resolve)
+                        .catch(reject),
+                1000,
+            );
+        });
+    };
 
     return Promise.all(
         profile.programming.repos.map(async (name, index) => {
@@ -32,25 +49,27 @@ export async function getPinnedRepositories() {
                 api.repos
                     .getAllTopics(options)
                     .then(({data}) => data.names || []),
-                api.repos.getContributorsStats(options).then((response) => {
-                    const data = Array.isArray(response.data)
-                        ? response.data
-                        : [];
+                completion(() => api.repos.getContributorsStats(options)).then(
+                    (response) => {
+                        const data = Array.isArray(response.data)
+                            ? response.data
+                            : [];
 
-                    return data.reduce(
-                        (acc, {total, weeks}) =>
-                            weeks.reduce(
-                                (acc, week) => {
-                                    acc.additions += week.a;
-                                    acc.deletions += week.d;
+                        return data.reduce(
+                            (acc, {total, weeks}) =>
+                                weeks.reduce(
+                                    (acc, week) => {
+                                        acc.additions += week.a;
+                                        acc.deletions += week.d;
 
-                                    return acc;
-                                },
-                                {...acc, commits: acc.commits + total},
-                            ),
-                        {commits: 0, additions: 0, deletions: 0},
-                    );
-                }),
+                                        return acc;
+                                    },
+                                    {...acc, commits: acc.commits + total},
+                                ),
+                            {commits: 0, additions: 0, deletions: 0},
+                        );
+                    },
+                ),
             ]);
 
             return {
