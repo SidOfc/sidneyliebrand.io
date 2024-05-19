@@ -3,10 +3,11 @@ import Link from 'next/link';
 import Media from '@components/media';
 import Bullet from '@components/bullet';
 import DarkModeToggle from '@components/dark-mode-toggle';
+import {classes} from '@src/util';
 
-export default function Layout({children}) {
+export default function Layout({children, className}) {
     return (
-        <div className={styles.application}>
+        <div className={classes(styles.application, className)}>
             <header className={styles.header}>
                 <div className={styles.headerFixed}>
                     <div className={styles.headerContent}>
