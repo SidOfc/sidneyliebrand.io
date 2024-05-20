@@ -1,4 +1,4 @@
-import styles from './404.module.scss';
+import styles from './not-found.module.scss';
 import Media from '@components/media';
 import Button from '@components/button';
 

@@ -18,12 +18,16 @@ async function getPosts() {
         paths
             .map((path) => ({
                 ...matter(readFileSync(`data/blog/${path}`)).data,
-                path: `/blog/${slug(path)}`,
+                path,
+            }))
+            .map((metadata) => ({
+                ...metadata,
+                path: `/blog/${slug(metadata.path)}`,
                 priority: 0.5,
                 changefreq: 'yearly',
             }))
             .filter((p) => p.published)
-            .sort((a, b) => new Date(b.published) - new Date(a.published))
+            .sort((a, b) => new Date(b.published) - new Date(a.published)),
     );
 }
 
@@ -42,12 +46,12 @@ async function createSitemap(destination, {entries}) {
                             <priority>${priority}</priority>
                             <changefreq>${changefreq}</changefreq>
                         </url>
-                        `.trim()
+                        `.trim(),
                     )
                     .join('')}
             </urlset>
-            `
-        )
+            `,
+        ),
     );
 }
 
@@ -73,7 +77,7 @@ async function createFeed(destination, {entries, date}) {
         <?xml version="1.0" encoding="utf-8" ?>
         <rss version="2.0">
             <channel>
-                <title>${profile.name}'s blog</title>
+                <title>${titlePrefix}</title>
                 <description>The official ${host} RSS feed</description>
                 <link>${host}</link>
                 <lastBuildDate>${date.toUTCString()}</lastBuildDate>
@@ -82,7 +86,7 @@ async function createFeed(destination, {entries, date}) {
                 ${entries.map(feedItem).join('\n')}
             </channel>
         </rss>
-        `
+        `,
     );
 
     return fs.writeFile(destination, feed);
@@ -111,7 +115,7 @@ async function createAtom(destination, {entries, date}) {
             `
             <?xml version="1.0" encoding="utf-8" ?>
             <feed xmlns="https://www.w3.org/2005/Atom">
-                <title>${profile.name}'s blog</title>
+                <title>${titlePrefix}</title>
                 <subtitle>The official ${host} Atom feed</subtitle>
                 <id>${host}</id>
                 <link href="${host}" />
@@ -124,8 +128,8 @@ async function createAtom(destination, {entries, date}) {
                 </author>
                 ${entries.map(atomItem).join('\n')}
             </feed>
-            `
-        )
+            `,
+        ),
     );
 }
 
@@ -156,7 +160,9 @@ async function createWebmanifest(destination) {
 async function createRobotsTxt(destination) {
     return fs.writeFile(
         destination,
-        ['User-agent: *', 'Allow: /', `Sitemap: ${host}/sitemap.xml`].join('\n')
+        ['User-agent: *', 'Allow: /', `Sitemap: ${host}/sitemap.xml`].join(
+            '\n',
+        ),
     );
 }
 

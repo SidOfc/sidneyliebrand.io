@@ -1,3 +1,5 @@
+'use client';
+
 import {useState, useRef} from 'react';
 import styles from './caniuse.module.scss';
 import {classes, dateFormat} from '@src/util';

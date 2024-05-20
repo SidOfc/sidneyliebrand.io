@@ -1,7 +1,8 @@
+'use client';
+
 import {Highlight} from 'prism-react-renderer';
 import {except} from '@src/util';
 import {theme} from '@src/util/prism';
-import '@src/util/prism';
 
 export default function CodeBlock({className, children}) {
     return (

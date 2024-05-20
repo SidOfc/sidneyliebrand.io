@@ -1,5 +1,4 @@
 import {promises as fs} from 'fs';
-import {serialize} from 'next-mdx-remote/serialize';
 import matter from 'gray-matter';
 import {emojify} from 'node-emoji';
 import {retry} from '@octokit/plugin-retry';
@@ -8,15 +7,58 @@ import {markdown} from 'markdown';
 import {slug, readTime} from '@src/util';
 import content from '@data/content';
 import caniuse from 'caniuse-db/fulldata-json/data-2.0.json';
+const {profile, pages, host, titlePrefix} = content;
 
-const {profile, pages} = content;
+export function getMetadata(targetPath = '/', attrs = {}) {
+    const page = pages.find((page) => page.path.endsWith(targetPath));
+    const {
+        title,
+        description,
+        og = {},
+        path = targetPath,
+        canonical = `${host}${path}`.replace(/\/+$/, ''),
+    } = {...(page ?? {}), ...(attrs ?? {})};
+    const fullTitle = [titlePrefix, title].filter(Boolean).join(' - ');
 
-export async function renderToString(content, opts = {}) {
-    return serialize(emojify(content), opts);
-}
-
-export function getPageData(path) {
-    return pages.find((page) => page.path.endsWith(path));
+    return {
+        description,
+        title: fullTitle,
+        authors: [{name: profile.name, url: host}],
+        creator: profile.name,
+        publisher: profile.name,
+        manifest: '/site.webmanifest',
+        metadataBase: new URL(host),
+        robots: {index: true, follow: true},
+        openGraph: {
+            url: canonical,
+            type: 'website',
+            siteName: titlePrefix,
+            ...og,
+        },
+        other: {'msapplication-TileColor': '#ffc40d'},
+        icons: {
+            apple: {url: '/apple-icon.png', sizes: '180x180'},
+            icon: [
+                {url: '/favicon.ico', sizes: '48x48'},
+                {url: '/favicon-16x16.png', sizes: '16x16'},
+                {url: '/favicon-32x32.png', sizes: '32x32'},
+            ],
+            other: [
+                {
+                    rel: 'mask-icon',
+                    url: '/safari-pinned-tab.svg',
+                    color: '#a676ff',
+                },
+            ],
+        },
+        alternates: {
+            canonical,
+            types: {
+                'application/rss+xml': '/feed.xml',
+                'application/atom+xml': '/atom.xml',
+            },
+        },
+    };
 }
 
 export async function getPinnedRepositories() {
@@ -92,12 +134,11 @@ export async function processMarkdownFile(filePath) {
     const filename = filePath.split('/').pop();
     const rawMarkdown = await fs.readFile(filePath);
     const {content, data} = matter(caniuseEmbedData(rawMarkdown.toString()));
-    const source = await renderToString(content, {scope: data});
 
     return {
         ...data,
         readTimeInMinutes: readTime(rawMarkdown.toString()),
-        source,
+        markdown: emojify(content),
         slug: slug(filename),
     };
 }

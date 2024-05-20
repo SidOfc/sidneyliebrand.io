@@ -1,21 +1,35 @@
-import styles from './cv.module.scss';
+import styles from './page.module.scss';
 import Link from 'next/link';
 import {Tags} from '@components/tag';
 import Text from '@components/text';
 import Bullet from '@components/bullet';
 import Media from '@components/media';
-import Head from '@components/head';
-import {getPinnedRepositories, getPageData} from '@src/util/static';
+import {getPinnedRepositories, getMetadata} from '@src/util/static';
 import {dateFormat, dateDiff, linkProps} from '@src/util';
 import content from '@data/content';
 
 const {profile} = content;
 const {programming, education, volunteering} = profile;
 
-export default function Index({title, description, pinnedRepositories}) {
+export async function generateMetadata() {
+    return getMetadata('/cv', {
+        og: {
+            type: 'profile',
+            firstName: 'Sidney',
+            lastName: 'Liebrand',
+            username: 'SidOfc',
+            gender: 'male',
+        },
+    });
+}
+
+export default async function Page() {
+    const repositories = (await getPinnedRepositories()).sort((a, b) =>
+        Math.min(1, Math.max(-1, b.starCount - a.starCount)),
+    );
+
     return (
         <>
-            <Head title={title} description={description} />
             <section className={styles.banner}>
                 <div className={styles.bannerLogo}>
                     <Media
@@ -125,7 +139,7 @@ export default function Index({title, description, pinnedRepositories}) {
                 <h2 className={styles.h2}>
                     <span>Open source projects</span>
                 </h2>
-                {pinnedRepositories.map((item) => (
+                {repositories.map((item) => (
                     <div key={item.name} className={styles.block}>
                         <div className={styles.details}>
                             <h3 className={styles.title}>
@@ -233,17 +247,4 @@ function Experience({item, showLogo = item.logo}) {
             />
         </div>
     );
-}
-
-export async function getStaticProps() {
-    const {title, description} = getPageData('/cv');
-    const pinnedRepositories = await getPinnedRepositories();
-
-    pinnedRepositories.sort((a, b) =>
-        Math.min(1, Math.max(-1, b.starCount - a.starCount)),
-    );
-
-    return {
-        props: {title, description, pinnedRepositories},
-    };
 }

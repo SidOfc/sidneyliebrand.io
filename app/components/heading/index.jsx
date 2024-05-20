@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './heading.module.scss';
 import innerText from 'react-innertext';
 import {hash} from '@src/util';

@@ -1,5 +1,5 @@
 import styles from './post.module.scss';
-import {MDXRemote} from 'next-mdx-remote';
+import {MDXRemote} from 'next-mdx-remote/rsc';
 import Text from '@components/text';
 import Heading from '@components/heading';
 import Bullet from '@components/bullet';
@@ -11,7 +11,7 @@ export default function Post({
     title,
     published,
     readTimeInMinutes,
-    source,
+    markdown,
     slug,
 }) {
     return (
@@ -24,7 +24,7 @@ export default function Post({
                 {readTimeInMinutes} min read
             </Text>
             <section>
-                <MDXRemote {...{...source, ...MARKDOWN_OPTIONS}} />
+                <MDXRemote {...MARKDOWN_OPTIONS} source={markdown} />
             </section>
             <Button href="/">Back</Button>
         </article>

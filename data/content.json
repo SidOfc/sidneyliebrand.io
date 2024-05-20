@@ -7,19 +7,13 @@
             "title": null,
             "description": "My name is Sidney Liebrand. I am a Software developer specialized in front-end development with experience in JS, React, Ruby, Rails, Lua, PHP, and more. This is the place where I publish new blog posts and perhaps a tool or two in the future.",
             "priority": 1,
-            "changefreq": "weekly"
+            "changefreq": "weekly",
+            "ogType": "website"
         },
         {
             "path": "/cv",
             "title": "Curriculum Vitae",
             "description": "View the C.V. of Sidney Liebrand, a Dutch front-end developer working with React and Ruby on Rails at Floorplanner in Rotterdam.",
-            "priority": 0.9,
-            "changefreq": "yearly"
-        },
-        {
-            "path": "/wow-raid-roster",
-            "title": "WoW Raid Roster",
-            "description": "Build a roster for your WoW raid team. Supports 10, 25, and 40 man raids.",
             "priority": 0.9,
             "changefreq": "yearly"
         }
