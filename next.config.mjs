@@ -1,7 +1,7 @@
-const {types} = require('sass');
-const sassVars = require('./data/sass-variables.json');
+import {types} from 'sass';
+import sassVars from './data/sass-variables.json' assert {'type': 'json'};
 
-module.exports = {
+export default {
     output: 'export',
     swcMinify: true,
     sassOptions: {

@@ -32,16 +32,25 @@
         "rimraf": "^5.0.7",
         "sass": "^1.32.8"
     },
+    "devDependencies": {
+        "@octokit/plugin-retry": "^7.1.1",
+        "eslint": "^8.57.0",
+        "eslint-config-next": "^14.2.3",
+        "uglify-js": "^3.12.8"
+    },
     "prettier": {
         "tabWidth": 4,
         "singleQuote": true,
         "printWidth": 80,
         "bracketSpacing": false
     },
-    "devDependencies": {
-        "@octokit/plugin-retry": "^7.1.1",
-        "eslint": "8",
-        "eslint-config-next": "^14.2.3",
-        "uglify-js": "^3.12.8"
+    "eslintConfig": {
+        "extends": [
+            "eslint:recommended",
+            "next/core-web-vitals"
+        ],
+        "rules": {
+            "@next/next/no-img-element": "off"
+        }
     }
 }

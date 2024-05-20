@@ -1,6 +1,6 @@
 import {Prism, themes} from 'prism-react-renderer';
 
-(global || window).Prism = Prism;
+globalThis.Prism = Prism;
 
 require('prismjs/components/prism-vim');
 require('prismjs/components/prism-ruby');
