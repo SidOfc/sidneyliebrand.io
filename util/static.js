@@ -65,7 +65,7 @@ export async function getPinnedRepositories() {
     const auth = (await fs.readFile('.api-access-token')).toString();
     const RetriableOctokit = Octokit.plugin(retry);
     const api = new RetriableOctokit({auth, request: {retries: 3}});
-    const completion = async (fn, attempts = 3) => {
+    const completion = async (fn, attempts = 9) => {
         const response = await fn();
 
         if (response.status === 200 || attempts === 0) {
@@ -78,7 +78,7 @@ export async function getPinnedRepositories() {
                     completion(fn, attempts - 1)
                         .then(resolve)
                         .catch(reject),
-                1000,
+                1500,
             );
         });
     };
