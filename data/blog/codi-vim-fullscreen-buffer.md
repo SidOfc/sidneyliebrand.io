@@ -116,7 +116,6 @@ I want to thank [Ethan Chan](https://medium.com/@metakirby5 "View @metakirby5 on
 
 That's it! If you want a fullscreen workflow with codi.vim, you have it.
 If you want to persist the code in the buffer, you have it.
-If you have a great idea, comment on this post!
 
 Until next time.
 
