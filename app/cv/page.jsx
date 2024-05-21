@@ -221,6 +221,7 @@ function Experience({item, showLogo = item.logo}) {
                     <Media
                         className={styles.experienceLogoImage}
                         src={`/media/${item.logo.url}`}
+                        alt={`${organisation} logo`}
                         width={item.logo.width}
                         height={item.logo.height}
                     />
