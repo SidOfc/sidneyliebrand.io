@@ -2,10 +2,11 @@ import {Prism, themes} from 'prism-react-renderer';
 
 globalThis.Prism = Prism;
 
-require('prismjs/components/prism-vim');
-require('prismjs/components/prism-ruby');
-require('prismjs/components/prism-yaml');
-require('prismjs/components/prism-bash');
+require('prismjs/components/prism-ini.min');
+require('prismjs/components/prism-vim.min');
+require('prismjs/components/prism-ruby.min');
+require('prismjs/components/prism-yaml.min');
+require('prismjs/components/prism-bash.min');
 
 Prism.languages['vim.map'] = {
     keyword: /\b[nivox]?(?:nore)?map\b/,

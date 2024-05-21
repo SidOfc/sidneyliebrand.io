@@ -45,6 +45,9 @@
         "bracketSpacing": false
     },
     "eslintConfig": {
+        "env": {
+            "es6": true
+        },
         "extends": [
             "eslint:recommended",
             "next/core-web-vitals"
