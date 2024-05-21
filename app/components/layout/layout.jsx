@@ -50,11 +50,11 @@ export default function Layout({children, className}) {
                 <strong>&copy;</strong> sidneyliebrand.io{' '}
                 {new Date().getFullYear()}
                 <Bullet wide />
-                <Link href="/feed.xml" title="View RSS feed">
+                <Link prefetch={false} href="/feed.xml" title="View RSS feed">
                     RSS
                 </Link>
                 <Bullet wide />
-                <Link href="/atom.xml" title="View Atom feed">
+                <Link prefetch={false} href="/atom.xml" title="View Atom feed">
                     Atom
                 </Link>
             </footer>
