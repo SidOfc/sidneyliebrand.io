@@ -1,6 +1,7 @@
 import {types} from 'sass';
 import sassVars from './data/sass-variables.json' assert {'type': 'json'};
 
+/* eslint-disable import/no-anonymous-default-export */
 export default {
     output: 'export',
     swcMinify: true,
