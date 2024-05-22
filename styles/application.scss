@@ -67,14 +67,11 @@ body {
 }
 
 a,
-code a {
+code a,
+a code {
     text-decoration: none;
 
     @include themed('color', 'link-fg');
-}
-
-a code {
-    text-decoration: none;
 }
 
 strong {
