@@ -25,9 +25,6 @@
         "city": "Dinteloord",
         "country": "Netherlands",
         "languages": ["Dutch", "English"],
-        "accounts": {
-            "linkedin": "sidneyliebrand"
-        },
         "programming": {
             "repos": [
                 "babel-plugin-transform-media-imports",

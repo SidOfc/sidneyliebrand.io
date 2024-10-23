@@ -60,20 +60,6 @@ export default async function Page() {
                             />{' '}
                             /SidOfc
                         </Link>
-                        <Link
-                            href="https://linkedin.com/in/sidneyliebrand"
-                            title="Visit Sidney Liebrand's LinkedIn page"
-                        >
-                            <Media
-                                invertDark
-                                showAlt={false}
-                                src="/media/linkedin.svg"
-                                alt="Sidney Liebrand's LinkedIn page"
-                                width={16}
-                                height={16}
-                            />{' '}
-                            /sidneyliebrand
-                        </Link>
                     </div>
                 </div>
             </section>
